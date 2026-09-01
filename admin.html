@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Administración de usuarios, carreras, materias, programas y categorías de publicación.">
+  <meta name="theme-color" content="#14294a">
+  <title>Administración · FacuLeaks</title>
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body data-pagina="admin" data-nav="admin">
+
+  <a class="fl-saltar" href="#contenido-principal">Saltar al contenido principal</a>
+
+  <header data-componente="encabezado"></header>
+
+  <main id="contenido-principal" class="fl-principal">
+
+    <div class="fl-contenedor" id="contenido-admin">
+      <nav data-componente="migas"></nav>
+
+      <h1>Administración</h1>
+      <p class="fl-suave">
+        Gestión del catálogo académico y de las cuentas de la comunidad.
+      </p>
+
+      <div class="fl-estadisticas fl-seccion" id="resumen-admin"></div>
+
+      <div class="fl-tabs" id="tabs-admin" role="tablist" aria-label="Secciones de administración">
+        <button class="fl-tabs__boton" type="button" role="tab" id="tab-usuarios"
+                aria-selected="true" aria-controls="panel-usuarios">Usuarios</button>
+        <button class="fl-tabs__boton" type="button" role="tab" id="tab-carreras"
+                aria-selected="false" aria-controls="panel-carreras">Carreras</button>
+        <button class="fl-tabs__boton" type="button" role="tab" id="tab-materias"
+                aria-selected="false" aria-controls="panel-materias">Materias</button>
+        <button class="fl-tabs__boton" type="button" role="tab" id="tab-programas"
+                aria-selected="false" aria-controls="panel-programas">Programas</button>
+        <button class="fl-tabs__boton" type="button" role="tab" id="tab-categorias"
+                aria-selected="false" aria-controls="panel-categorias">Categorías</button>
+      </div>
+
+      <section class="fl-panel" id="panel-usuarios" role="tabpanel"
+               aria-labelledby="tab-usuarios" tabindex="0">
+        <div class="fl-campo">
+          <label for="buscar-usuario">Buscar usuario</label>
+          <input class="fl-entrada" type="search" id="buscar-usuario"
+                 placeholder="Usuario, nombre o correo" autocomplete="off">
+        </div>
+        <div class="fl-tabla-contenedor">
+          <table class="fl-tabla" id="tabla-usuarios">
+            <caption>Cuentas registradas en la plataforma.</caption>
+            <thead>
+              <tr>
+                <th scope="col">Usuario</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Rol</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Alta</th>
+                <th scope="col">Acciones</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="fl-panel" id="panel-carreras" role="tabpanel"
+               aria-labelledby="tab-carreras" tabindex="0" hidden>
+        <div class="fl-tabla-contenedor">
+          <table class="fl-tabla" id="tabla-carreras">
+            <caption>Carreras del catálogo académico.</caption>
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Duración</th>
+                <th scope="col">Materias</th>
+                <th scope="col">Publicaciones</th>
+                <th scope="col">Estado</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="fl-panel" id="panel-materias" role="tabpanel"
+               aria-labelledby="tab-materias" tabindex="0" hidden>
+        <div class="fl-tabla-contenedor">
+          <table class="fl-tabla" id="tabla-materias">
+            <caption>
+              Catálogo global de materias. Una misma materia puede dictarse en varias carreras.
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Código</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">En carreras</th>
+                <th scope="col">Estado</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="fl-panel" id="panel-programas" role="tabpanel"
+               aria-labelledby="tab-programas" tabindex="0" hidden>
+        <div class="fl-tabla-contenedor">
+          <table class="fl-tabla" id="tabla-programas">
+            <caption>
+              Programas por materia. Cada uno se identifica por su materia, su ciclo lectivo
+              y su versión: es una entidad débil.
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Materia</th>
+                <th scope="col">Ciclo</th>
+                <th scope="col">Versión</th>
+                <th scope="col">Docente</th>
+                <th scope="col">Publicado</th>
+                <th scope="col">Estado</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="fl-panel" id="panel-categorias" role="tabpanel"
+               aria-labelledby="tab-categorias" tabindex="0" hidden>
+        <div class="fl-tabla-contenedor">
+          <table class="fl-tabla" id="tabla-categorias">
+            <caption>
+              Valores admitidos para la categoría de una publicación.
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Categoría</th>
+                <th scope="col">Valor</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Publicaciones</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer data-componente="pie"></footer>
+
+  <script src="assets/js/data/dataset.js"></script>
+  <script src="assets/js/utils/dom.js"></script>
+  <script src="assets/js/utils/formato.js"></script>
+  <script src="assets/js/utils/almacenamiento.js"></script>
+  <script src="assets/js/utils/validacion.js"></script>
+  <script src="assets/js/services/repositorio.js"></script>
+  <script src="assets/js/services/sesionService.js"></script>
+  <script src="assets/js/services/carrerasService.js"></script>
+  <script src="assets/js/services/publicacionesService.js"></script>
+  <script src="assets/js/services/comentariosService.js"></script>
+  <script src="assets/js/services/interaccionesService.js"></script>
+  <script src="assets/js/services/usuariosService.js"></script>
+  <script src="assets/js/components/avisos.js"></script>
+  <script src="assets/js/components/modal.js"></script>
+  <script src="assets/js/components/encabezado.js"></script>
+  <script src="assets/js/components/pie.js"></script>
+  <script src="assets/js/components/migas.js"></script>
+  <script src="assets/js/components/tarjetaPublicacion.js"></script>
+  <script src="assets/js/components/tarjetaCarrera.js"></script>
+  <script src="assets/js/components/paginacion.js"></script>
+  <script src="assets/js/pages/admin.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

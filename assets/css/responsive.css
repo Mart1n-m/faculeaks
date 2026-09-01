@@ -1,0 +1,113 @@
+/* =====================================================================
+   FacuLeaks - responsive.css
+   Estrategia mobile first: main.css y components.css definen el layout
+   de pantalla angosta; aquí se amplía progresivamente.
+   Puntos de corte: 600px (móvil grande), 900px (tablet), 1100px (escritorio).
+   ===================================================================== */
+
+/* --- Móvil: navegación colapsable ----------------------------------- */
+@media (max-width: 899px) {
+  .fl-encabezado__alternar { display: inline-flex; align-items: center; gap: 0.4rem; }
+
+  .fl-nav {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: var(--fl-azul-800);
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    padding: var(--fl-e2);
+    box-shadow: var(--fl-sombra-lg);
+  }
+  .fl-nav--abierta { display: flex; }
+  .fl-nav__enlace { padding: var(--fl-e3); border-radius: var(--fl-radio-sm); }
+
+  .fl-encabezado__barra { position: relative; }
+
+  .fl-panel-lateral { position: static; }
+
+  /* La barra lateral se ubica debajo del contenido principal. */
+  .fl-disposicion > .fl-barra-lateral { order: 2; }
+  .fl-disposicion > .fl-columna-principal { order: 1; }
+}
+
+/* En pantallas angostas la barra del encabezado no entra completa: se recorta
+   el nombre de usuario y se ocultan los accesos que ya están disponibles en el
+   menú desplegable y en la navegación. */
+@media (max-width: 599px) {
+  .fl-encabezado__barra { gap: var(--fl-e2); }
+  .fl-encabezado__acciones { gap: var(--fl-e1); min-width: 0; }
+  .fl-encabezado__publicar { display: none; }
+  .fl-usuario-chip { max-width: 46vw; }
+  .fl-usuario-chip__nombre {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 420px) {
+  .fl-encabezado__registro { display: none; }
+  .fl-encabezado__acciones .fl-boton { padding: 0.3rem 0.5rem; }
+}
+
+@media (max-width: 360px) {
+  .fl-contenedor { padding-inline: var(--fl-e3); }
+  .fl-encabezado__acciones .fl-boton { font-size: var(--fl-txt-xs); }
+  .fl-marca__texto { font-size: var(--fl-txt-sm); }
+  .fl-usuario-chip { max-width: 38vw; font-size: var(--fl-txt-xs); }
+  .fl-buscador .fl-entrada { width: 100%; }
+}
+
+/* --- Móvil grande --------------------------------------------------- */
+@media (min-width: 600px) {
+  .fl-cuadricula--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .fl-fila-campos--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .fl-estadisticas { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .fl-pie__grilla { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  h1 { font-size: var(--fl-txt-3xl); }
+  .fl-portada h1 { font-size: var(--fl-txt-3xl); }
+}
+
+/* --- Tablet --------------------------------------------------------- */
+@media (min-width: 900px) {
+  .fl-contenedor { padding-inline: var(--fl-e5); }
+
+  .fl-cuadricula--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .fl-fila-campos--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+  .fl-disposicion--con-lateral { grid-template-columns: minmax(0, 1fr) 300px; }
+  .fl-disposicion--lateral-izq { grid-template-columns: 260px minmax(0, 1fr); }
+  .fl-disposicion--lateral-izq > .fl-barra-lateral { order: 0; }
+
+  .fl-pie__grilla { grid-template-columns: 2fr 1fr 1fr 1fr; }
+
+  .fl-portada { padding-block: 4rem; }
+}
+
+/* --- Escritorio ----------------------------------------------------- */
+@media (min-width: 1100px) {
+  .fl-cuadricula--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .fl-disposicion--con-lateral { grid-template-columns: minmax(0, 1fr) 320px; }
+}
+
+/* --- Pantallas muy angostas ----------------------------------------- */
+@media (max-width: 420px) {
+  .fl-publicacion { grid-template-columns: 44px minmax(0, 1fr); gap: var(--fl-e3); padding: var(--fl-e3); }
+  .fl-votos__boton { width: 30px; }
+  .fl-marca__texto { font-size: var(--fl-txt-base); }
+  .fl-buscador { flex-direction: column; }
+  .fl-modal__caja { padding: var(--fl-e4); }
+}
+
+/* --- Impresión ------------------------------------------------------ */
+@media print {
+  .fl-encabezado, .fl-pie, .fl-barra-lateral, .fl-avisos-flotantes,
+  .fl-votos, .fl-boton, .fl-tabs { display: none !important; }
+  body { background: #fff; color: #000; }
+  .fl-tarjeta, .fl-publicacion { border: 1px solid #999; box-shadow: none; }
+}

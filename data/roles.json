@@ -1,0 +1,22 @@
+[
+  {
+    "idRol": 1,
+    "nombre": "invitado",
+    "descripcion": "Visitante sin sesión iniciada. Solo lectura."
+  },
+  {
+    "idRol": 2,
+    "nombre": "usuario",
+    "descripcion": "Estudiante registrado. Publica, comenta, vota y reporta."
+  },
+  {
+    "idRol": 3,
+    "nombre": "moderador",
+    "descripcion": "Gestiona reportes y modera contenido de la comunidad."
+  },
+  {
+    "idRol": 4,
+    "nombre": "administrador",
+    "descripcion": "Administra usuarios y el catálogo académico completo."
+  }
+]

@@ -1,0 +1,520 @@
+[
+  {
+    "carreraId": 4,
+    "materiaId": 21,
+    "anioCursada": 1,
+    "cuatrimestre": 1,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 4,
+    "materiaId": 16,
+    "anioCursada": 1,
+    "cuatrimestre": 2,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 4,
+    "materiaId": 22,
+    "anioCursada": 2,
+    "cuatrimestre": 1,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 4,
+    "materiaId": 23,
+    "anioCursada": 3,
+    "cuatrimestre": 1,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 4,
+    "materiaId": 42,
+    "anioCursada": 4,
+    "cuatrimestre": 2,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 11,
+    "materiaId": 15,
+    "anioCursada": 1,
+    "cuatrimestre": 1,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 11,
+    "materiaId": 16,
+    "anioCursada": 1,
+    "cuatrimestre": 2,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 11,
+    "materiaId": 17,
+    "anioCursada": 2,
+    "cuatrimestre": 1,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 11,
+    "materiaId": 20,
+    "anioCursada": 2,
+    "cuatrimestre": 2,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 11,
+    "materiaId": 18,
+    "anioCursada": 3,
+    "cuatrimestre": 1,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 13,
+    "materiaId": 38,
+    "anioCursada": 1,
+    "cuatrimestre": 1,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 13,
+    "materiaId": 36,
+    "anioCursada": 1,
+    "cuatrimestre": 2,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 13,
+    "materiaId": 40,
+    "anioCursada": 3,
+    "cuatrimestre": 1,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 10,
+    "materiaId": 1,
+    "anioCursada": 1,
+    "cuatrimestre": 1,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 10,
+    "materiaId": 4,
+    "anioCursada": 1,
+    "cuatrimestre": 1,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 10,
+    "materiaId": 2,
+    "anioCursada": 1,
+    "cuatrimestre": 2,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 10,
+    "materiaId": 5,
+    "anioCursada": 2,
+    "cuatrimestre": 1,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 10,
+    "materiaId": 6,
+    "anioCursada": 2,
+    "cuatrimestre": 1,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 10,
+    "materiaId": 8,
+    "anioCursada": 2,
+    "cuatrimestre": 2,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 10,
+    "materiaId": 12,
+    "anioCursada": 3,
+    "cuatrimestre": 1,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 10,
+    "materiaId": 9,
+    "anioCursada": 3,
+    "cuatrimestre": 1,
+    "obligatoria": false
+  },
+  {
+    "carreraId": 10,
+    "materiaId": 41,
+    "anioCursada": 3,
+    "cuatrimestre": 2,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 2,
+    "materiaId": 15,
+    "anioCursada": 1,
+    "cuatrimestre": 1,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 2,
+    "materiaId": 16,
+    "anioCursada": 1,
+    "cuatrimestre": 2,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 2,
+    "materiaId": 43,
+    "anioCursada": 1,
+    "cuatrimestre": 2,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 2,
+    "materiaId": 17,
+    "anioCursada": 2,
+    "cuatrimestre": 1,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 2,
+    "materiaId": 20,
+    "anioCursada": 2,
+    "cuatrimestre": 2,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 2,
+    "materiaId": 18,
+    "anioCursada": 3,
+    "cuatrimestre": 1,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 2,
+    "materiaId": 19,
+    "anioCursada": 4,
+    "cuatrimestre": 1,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 2,
+    "materiaId": 42,
+    "anioCursada": 5,
+    "cuatrimestre": 1,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 12,
+    "materiaId": 38,
+    "anioCursada": 1,
+    "cuatrimestre": 1,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 12,
+    "materiaId": 3,
+    "anioCursada": 1,
+    "cuatrimestre": 1,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 12,
+    "materiaId": 41,
+    "anioCursada": 1,
+    "cuatrimestre": 2,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 12,
+    "materiaId": 39,
+    "anioCursada": 3,
+    "cuatrimestre": 1,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 12,
+    "materiaId": 40,
+    "anioCursada": 4,
+    "cuatrimestre": 1,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 3,
+    "materiaId": 1,
+    "anioCursada": 1,
+    "cuatrimestre": 1,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 3,
+    "materiaId": 3,
+    "anioCursada": 1,
+    "cuatrimestre": 1,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 3,
+    "materiaId": 4,
+    "anioCursada": 1,
+    "cuatrimestre": 1,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 3,
+    "materiaId": 2,
+    "anioCursada": 1,
+    "cuatrimestre": 2,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 3,
+    "materiaId": 41,
+    "anioCursada": 1,
+    "cuatrimestre": 2,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 3,
+    "materiaId": 5,
+    "anioCursada": 2,
+    "cuatrimestre": 1,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 3,
+    "materiaId": 6,
+    "anioCursada": 2,
+    "cuatrimestre": 1,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 3,
+    "materiaId": 43,
+    "anioCursada": 2,
+    "cuatrimestre": 1,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 3,
+    "materiaId": 7,
+    "anioCursada": 2,
+    "cuatrimestre": 2,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 3,
+    "materiaId": 8,
+    "anioCursada": 2,
+    "cuatrimestre": 2,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 3,
+    "materiaId": 9,
+    "anioCursada": 3,
+    "cuatrimestre": 1,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 3,
+    "materiaId": 10,
+    "anioCursada": 3,
+    "cuatrimestre": 1,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 3,
+    "materiaId": 11,
+    "anioCursada": 3,
+    "cuatrimestre": 2,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 3,
+    "materiaId": 12,
+    "anioCursada": 3,
+    "cuatrimestre": 2,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 3,
+    "materiaId": 13,
+    "anioCursada": 4,
+    "cuatrimestre": 1,
+    "obligatoria": false
+  },
+  {
+    "carreraId": 3,
+    "materiaId": 14,
+    "anioCursada": 4,
+    "cuatrimestre": 2,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 3,
+    "materiaId": 42,
+    "anioCursada": 4,
+    "cuatrimestre": 2,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 5,
+    "materiaId": 30,
+    "anioCursada": 1,
+    "cuatrimestre": 1,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 5,
+    "materiaId": 21,
+    "anioCursada": 1,
+    "cuatrimestre": 2,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 5,
+    "materiaId": 31,
+    "anioCursada": 2,
+    "cuatrimestre": 1,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 5,
+    "materiaId": 43,
+    "anioCursada": 2,
+    "cuatrimestre": 2,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 1,
+    "materiaId": 27,
+    "anioCursada": 1,
+    "cuatrimestre": 1,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 1,
+    "materiaId": 28,
+    "anioCursada": 2,
+    "cuatrimestre": 1,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 1,
+    "materiaId": 29,
+    "anioCursada": 3,
+    "cuatrimestre": 1,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 1,
+    "materiaId": 12,
+    "anioCursada": 3,
+    "cuatrimestre": 2,
+    "obligatoria": false
+  },
+  {
+    "carreraId": 7,
+    "materiaId": 32,
+    "anioCursada": 1,
+    "cuatrimestre": 1,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 7,
+    "materiaId": 24,
+    "anioCursada": 1,
+    "cuatrimestre": 2,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 7,
+    "materiaId": 33,
+    "anioCursada": 3,
+    "cuatrimestre": 1,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 9,
+    "materiaId": 38,
+    "anioCursada": 1,
+    "cuatrimestre": 1,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 9,
+    "materiaId": 36,
+    "anioCursada": 2,
+    "cuatrimestre": 1,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 9,
+    "materiaId": 37,
+    "anioCursada": 3,
+    "cuatrimestre": 1,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 6,
+    "materiaId": 24,
+    "anioCursada": 1,
+    "cuatrimestre": 1,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 6,
+    "materiaId": 43,
+    "anioCursada": 1,
+    "cuatrimestre": 2,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 6,
+    "materiaId": 25,
+    "anioCursada": 2,
+    "cuatrimestre": 1,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 6,
+    "materiaId": 26,
+    "anioCursada": 3,
+    "cuatrimestre": 1,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 6,
+    "materiaId": 42,
+    "anioCursada": 4,
+    "cuatrimestre": 1,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 8,
+    "materiaId": 34,
+    "anioCursada": 1,
+    "cuatrimestre": 1,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 8,
+    "materiaId": 25,
+    "anioCursada": 2,
+    "cuatrimestre": 1,
+    "obligatoria": true
+  },
+  {
+    "carreraId": 8,
+    "materiaId": 35,
+    "anioCursada": 3,
+    "cuatrimestre": 1,
+    "obligatoria": true
+  }
+]

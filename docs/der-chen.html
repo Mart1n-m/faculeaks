@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Diagrama entidad-relacion de FacuLeaks en notacion de Chen: entidades, relaciones, cardinalidades y esquema relacional resultante.">
+<meta name="theme-color" content="#14294a">
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+</head>
+<body>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap">
+<title>FacuLeaks · DER en notación de Chen</title>
+<style>
+  /* ===================================================================
+     Registro visual: lámina de dibujo técnico.
+     Papel frío sesgado hacia el azul del proyecto, tinta azul para las
+     entidades, ámbar para las relaciones (único acento fuerte), y la
+     superfamilia IBM Plex en sus tres cortes: Sans para títulos, Serif
+     para prosa, Mono para todo lo que es notación.
+     =================================================================== */
+  :root {
+    --papel:      #e9edf4;
+    --lamina:     #ffffff;
+    --lamina-alt: #f4f6fa;
+    --tinta:      #0f1d33;
+    --tinta-tenue:#5b6b84;
+    --azul:       #1c3763;
+    --azul-suave: #c9d8ef;
+    --ambar:      #a8560a;
+    --ambar-suave:#fbeacd;
+    --regla:      #c3ccdb;
+    --regla-fina: #dce2ec;
+    --foco:       #1d4ed8;
+
+    --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --serif: "IBM Plex Serif", Georgia, "Times New Roman", serif;
+    --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+
+    --paso: clamp(1rem, 2.5vw, 1.75rem);
+    --ancho: 1280px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --papel:      #0b1322;
+      --lamina:     #101c30;
+      --lamina-alt: #16243c;
+      --tinta:      #e8eef8;
+      --tinta-tenue:#9aabc5;
+      --azul:       #8fb2ec;
+      --azul-suave: #24395e;
+      --ambar:      #f0ad4e;
+      --ambar-suave:#3a2a11;
+      --regla:      #2c3f5f;
+      --regla-fina: #1e2e49;
+      --foco:       #93b8ff;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --papel:      #0b1322;
+    --lamina:     #101c30;
+    --lamina-alt: #16243c;
+    --tinta:      #e8eef8;
+    --tinta-tenue:#9aabc5;
+    --azul:       #8fb2ec;
+    --azul-suave: #24395e;
+    --ambar:      #f0ad4e;
+    --ambar-suave:#3a2a11;
+    --regla:      #2c3f5f;
+    --regla-fina: #1e2e49;
+    --foco:       #93b8ff;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--papel);
+    color: var(--tinta);
+    font-family: var(--serif);
+    font-size: 1rem;
+    line-height: 1.65;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  .fl-oculto {
+    position: absolute; width: 1px; height: 1px;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+  }
+
+  :focus-visible { outline: 3px solid var(--foco); outline-offset: 3px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  .envoltura {
+    max-width: var(--ancho);
+    margin-inline: auto;
+    padding: clamp(2rem, 5vw, 4rem) var(--paso) 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(2rem, 4vw, 3.5rem);
+  }
+
+  /* --- Encabezado ---------------------------------------------------- */
+  .portada { display: grid; gap: 1rem; }
+
+  .portada__eyebrow {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ambar);
+  }
+
+  h1 {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: clamp(1.9rem, 5vw, 2.9rem);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .portada p { margin: 0; max-width: 66ch; color: var(--tinta-tenue); }
+
+  .cinta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.75rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--regla);
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--tinta-tenue);
+  }
+  .cinta b { color: var(--tinta); font-weight: 600; }
+
+  /* --- Lámina -------------------------------------------------------- */
+  .lamina {
+    background: var(--lamina);
+    border: 1px solid var(--regla);
+    border-radius: 2px;
+    box-shadow: 0 1px 2px rgba(15, 29, 51, 0.06);
+  }
+
+  .lamina__cab {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding: 1.1rem var(--paso);
+    border-bottom: 1px solid var(--regla);
+    background: var(--lamina-alt);
+  }
+  .lamina__num {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ambar);
+  }
+  .lamina__cab h2 {
+    font-family: var(--sans);
+    font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 0.15rem 0 0;
+    flex: 1 1 20ch;
+  }
+  .lamina__nota {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--tinta-tenue);
+  }
+
+  .lamina__cuerpo { padding: var(--paso); }
+  .lamina__cuerpo > p { max-width: 68ch; }
+  .lamina__cuerpo > p:first-child { margin-top: 0; }
+
+  .lienzo {
+    overflow-x: auto;
+    padding: 0.5rem 0 1rem;
+    border-bottom: 1px solid var(--regla-fina);
+    margin-bottom: 1.5rem;
+  }
+  .lienzo svg { display: block; width: 100%; min-width: 1020px; height: auto; }
+
+  /* --- Notación de Chen --------------------------------------------- */
+  .e-caja {
+    fill: var(--lamina);
+    stroke: var(--azul);
+    stroke-width: 2.2;
+  }
+  .e-caja--interna { fill: none; stroke-width: 1.4; }
+  .e-texto {
+    font-family: var(--sans);
+    font-size: 17px;
+    font-weight: 600;
+    fill: var(--azul);
+    text-anchor: middle;
+    letter-spacing: 0.02em;
+  }
+
+  .r-caja { fill: var(--ambar-suave); stroke: var(--ambar); stroke-width: 2; }
+  .r-caja--interna { fill: none; stroke-width: 1.2; }
+  .r-texto {
+    font-family: var(--sans);
+    font-size: 12.5px;
+    font-weight: 600;
+    fill: var(--ambar);
+    text-anchor: middle;
+    letter-spacing: 0.04em;
+  }
+
+  .a-caja { fill: var(--lamina); stroke: var(--tinta-tenue); stroke-width: 1.6; }
+  .a-caja--derivado { stroke-dasharray: 5 4; }
+  .a-texto {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    fill: var(--tinta);
+    text-anchor: middle;
+  }
+  .a-texto--clave { text-decoration: underline; text-decoration-thickness: 1.5px; }
+  .a-texto--parcial {
+    text-decoration: underline;
+    text-decoration-style: dashed;
+    text-decoration-thickness: 1.2px;
+  }
+
+  .v-linea { fill: none; stroke: var(--tinta-tenue); stroke-width: 1.7; }
+  .v-linea--total { stroke-width: 5.4; }
+  .v-linea--total-interna { stroke: var(--lamina); stroke-width: 2; }
+  .v-salto {
+    fill: none;
+    stroke: var(--tinta-tenue);
+    stroke-width: 1.7;
+  }
+
+  .isa-caja { fill: var(--lamina); stroke: var(--azul); stroke-width: 2; }
+  .isa-texto {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 700;
+    fill: var(--azul);
+    text-anchor: middle;
+    letter-spacing: 0.06em;
+  }
+
+  .c-texto {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 500;
+    fill: var(--tinta-tenue);
+  }
+  .rol-texto {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-style: italic;
+    fill: var(--tinta-tenue);
+  }
+
+  /* --- Leyenda ------------------------------------------------------- */
+  .leyenda {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 0.85rem 1.75rem;
+    padding: 1.25rem;
+    background: var(--lamina-alt);
+    border: 1px solid var(--regla-fina);
+    border-radius: 2px;
+    font-size: 0.9rem;
+  }
+  .leyenda__item { display: flex; gap: 0.7rem; align-items: flex-start; }
+  .leyenda__item svg { flex: 0 0 54px; margin-top: 2px; }
+  .leyenda__item span { color: var(--tinta-tenue); }
+  .leyenda__item b {
+    display: block;
+    font-family: var(--sans);
+    font-weight: 600;
+    color: var(--tinta);
+  }
+
+  /* --- Mini-diagramas de atributos ----------------------------------- */
+  .mosaico {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+    gap: 1.5rem;
+  }
+  .mini { margin: 0; }
+  .mini__lienzo {
+    border: 1px solid var(--regla-fina);
+    border-radius: 2px;
+    background: var(--lamina-alt);
+    overflow: hidden;
+  }
+  .mini__lienzo svg { display: block; width: 100%; height: auto; }
+  .mini figcaption {
+    padding-top: 0.6rem;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--tinta-tenue);
+  }
+  .mini figcaption strong {
+    font-family: var(--sans);
+    font-weight: 600;
+    color: var(--tinta);
+    margin-right: 0.5rem;
+  }
+  .mini figcaption span { display: block; margin-top: 0.15rem; }
+
+  /* --- Tablas del esquema relacional --------------------------------- */
+  .esquema {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(430px, 1fr));
+    gap: 1.25rem;
+  }
+  .tabla {
+    border: 1px solid var(--regla-fina);
+    border-radius: 2px;
+    overflow: hidden;
+    background: var(--lamina);
+  }
+  .tabla__cab {
+    padding: 0.75rem 1rem;
+    background: var(--azul-suave);
+    border-bottom: 1px solid var(--regla-fina);
+  }
+  .tabla__cab h3 {
+    margin: 0;
+    font-family: var(--mono);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--tinta);
+  }
+  .tabla__cab p {
+    margin: 0.1rem 0 0;
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    color: var(--tinta-tenue);
+  }
+  .tabla__scroll { overflow-x: auto; }
+  .tabla table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .tabla thead th {
+    text-align: left;
+    padding: 0.5rem 1rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--tinta-tenue);
+    font-weight: 500;
+    border-bottom: 1px solid var(--regla-fina);
+  }
+  .tabla td, .tabla tbody th {
+    padding: 0.42rem 1rem;
+    border-bottom: 1px solid var(--regla-fina);
+    text-align: left;
+    font-weight: 400;
+    vertical-align: top;
+  }
+  .tabla tbody tr:last-child td,
+  .tabla tbody tr:last-child th { border-bottom: 0; }
+  .col { color: var(--tinta); }
+  .col--pk { font-weight: 600; text-decoration: underline; text-decoration-thickness: 1.5px; }
+  .col--fk { font-style: italic; }
+  .marca { color: var(--ambar); white-space: nowrap; }
+  .tipo { color: var(--tinta-tenue); }
+
+  /* --- Prosa --------------------------------------------------------- */
+  h3.seccion {
+    font-family: var(--sans);
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 2rem 0 0.6rem;
+    padding-bottom: 0.35rem;
+    border-bottom: 1px solid var(--regla-fina);
+  }
+  .lamina__cuerpo ul { max-width: 68ch; padding-left: 1.15rem; }
+  .lamina__cuerpo li { margin-bottom: 0.4rem; }
+  code {
+    font-family: var(--mono);
+    font-size: 0.86em;
+    background: var(--lamina-alt);
+    border: 1px solid var(--regla-fina);
+    border-radius: 2px;
+    padding: 0.05em 0.35em;
+  }
+
+  .cierre {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--tinta-tenue);
+    border-top: 1px solid var(--regla);
+    padding-top: 1.25rem;
+  }
+  .cierre a { color: var(--azul); }
+</style>
+
+<div class="envoltura">
+
+  <header class="portada">
+    <p class="portada__eyebrow">FacuLeaks · Modelo de datos</p>
+    <h1>Diagrama entidad-relación en notación de Chen</h1>
+    <p>
+      Ocho entidades, trece relaciones y doce tablas. El modelo reduce a lo
+      necesario la estructura académica y unifica el voto y el reporte sobre una
+      generalización, de modo que publicaciones y comentarios se tratan con un
+      único mecanismo.
+    </p>
+    <div class="cinta">
+      <span><b>8</b> entidades</span>
+      <span><b>13</b> relaciones</span>
+      <span><b>12</b> tablas</span>
+      <span><b>1</b> jerarquía ISA</span>
+      <span><b>1</b> entidad débil</span>
+      <span><b>1</b> relación reflexiva</span>
+    </div>
+  </header>
+
+  <section class="lamina">
+    <div class="lamina__cab">
+      <div>
+        <p class="lamina__num">Lámina 1</p>
+        <h2>Diagrama entidad-relación</h2>
+      </div>
+      <p class="lamina__nota">Cardinalidades en formato (mín., máx.)</p>
+    </div>
+    <div class="lamina__cuerpo">
+      <div class="lienzo"><svg viewBox="0 0 1560 1090" role="img" aria-label="Diagrama entidad-relación de FacuLeaks en notación de Chen"><rect class="e-caja" x="75" y="118" width="150" height="64" rx="3"/><text class="e-texto" x="150" y="156">ROL</text><rect class="e-caja" x="465" y="118" width="190" height="64" rx="3"/><text class="e-texto" x="560" y="156">USUARIO</text><rect class="e-caja" x="1240" y="118" width="180" height="64" rx="3"/><text class="e-texto" x="1330" y="156">CARRERA</text><rect class="e-caja" x="1240" y="438" width="180" height="64" rx="3"/><text class="e-texto" x="1330" y="476">MATERIA</text><rect class="e-caja" x="1235" y="766" width="190" height="68" rx="3"/><rect class="e-caja e-caja--interna" x="1241" y="772" width="178" height="56" rx="2"/><text class="e-texto" x="1330" y="806">PROGRAMA</text><rect class="e-caja" x="465" y="438" width="190" height="64" rx="3"/><text class="e-texto" x="560" y="476">CONTENIDO</text><rect class="e-caja" x="235" y="798" width="190" height="64" rx="3"/><text class="e-texto" x="330" y="836">COMENTARIO</text><rect class="e-caja" x="700" y="798" width="200" height="64" rx="3"/><text class="e-texto" x="800" y="836">PUBLICACIÓN</text><polyline class="v-linea" points="225,150 268,150"/><polyline class="v-linea" points="392,150 465,150"/><polygon class="r-caja" points="330,112 392,150 330,188 268,150"/><text class="r-texto" x="330" y="155">POSEE</text><text class="c-texto" x="246" y="138" text-anchor="middle">(0,N)</text><text class="c-texto" x="428" y="138" text-anchor="middle">(1,1)</text><polyline class="v-linea" points="655,150 870,150"/><polyline class="v-linea" points="1010,150 1240,150"/><polygon class="r-caja" points="940,110 1010,150 940,190 870,150"/><text class="r-texto" x="940" y="148">ESTUDIA</text><text class="r-texto" x="940" y="163"></text><text class="c-texto" x="760" y="138" text-anchor="middle">(0,N)</text><text class="c-texto" x="1125" y="138" text-anchor="middle">(0,N)</text><polyline class="v-linea" points="1330,182 1330,262"/><polyline class="v-linea" points="1330,358 1330,438"/><polygon class="r-caja" points="1330,262 1422,310 1330,358 1238,310"/><text class="r-texto" x="1330" y="308">SE DICTA</text><text class="r-texto" x="1330" y="323">EN</text><text class="c-texto" x="1392" y="236" text-anchor="middle">(0,N)</text><text class="c-texto" x="1390" y="404" text-anchor="middle">(1,N)</text><polyline class="v-linea" points="1330,502 1330,592"/><polyline class="v-linea v-linea--total" points="1330,688 1330,766"/><polyline class="v-linea v-linea--total-interna" points="1330,688 1330,766"/><polygon class="r-caja" points="1330,592 1426,640 1330,688 1234,640"/><polygon class="r-caja r-caja--interna" points="1330,599 1418,640 1330,681 1242,640"/><text class="r-texto" x="1330" y="638">TIENE</text><text class="r-texto" x="1330" y="653">PROGRAMA</text><text class="c-texto" x="1392" y="556" text-anchor="middle">(0,N)</text><text class="c-texto" x="1392" y="736" text-anchor="middle">(1,1)</text><polyline class="v-linea" points="600,118 600,60 1490,60 1490,800 1425,800"/><polygon class="r-caja" points="1150,26 1212,60 1150,94 1088,60"/><text class="r-texto" x="1150" y="65">CARGA</text><text class="c-texto" x="660" y="50" text-anchor="middle">(0,N)</text><text class="c-texto" x="1452" y="838" text-anchor="middle">(0,1)</text><polyline class="v-linea" points="490,182 400,272"/><polyline class="v-linea v-linea--total" points="400,348 490,438"/><polyline class="v-linea v-linea--total-interna" points="400,348 490,438"/><polygon class="r-caja" points="400,272 466,310 400,348 334,310"/><text class="r-texto" x="400" y="315">ESCRIBE</text><text class="c-texto" x="400" y="208" text-anchor="middle">(0,N)</text><text class="c-texto" x="400" y="424" text-anchor="middle">(1,1)</text><polyline class="v-linea" points="560,182 560,272"/><polyline class="v-linea" points="560,348 560,438"/><polygon class="r-caja" points="560,272 620,310 560,348 500,310"/><text class="r-texto" x="560" y="315">VOTA</text><text class="c-texto" x="600" y="208" text-anchor="middle">(0,N)</text><text class="c-texto" x="600" y="424" text-anchor="middle">(0,N)</text><polyline class="v-linea" points="630,182 720,272"/><polyline class="v-linea" points="720,348 630,438"/><polygon class="r-caja" points="720,272 788,310 720,348 652,310"/><text class="r-texto" x="720" y="315">REPORTA</text><text class="c-texto" x="724" y="208" text-anchor="middle">(0,N)</text><text class="c-texto" x="724" y="424" text-anchor="middle">(0,N)</text><polyline class="v-linea v-linea--total" points="560,502 560,600"/><polyline class="v-linea v-linea--total-interna" points="560,502 560,600"/><circle class="isa-caja" cx="560" cy="630" r="30"/><text class="isa-texto" x="560" y="636">ISA</text><polyline class="v-linea" points="560,660 560,700 330,700 330,798"/><polyline class="v-linea" points="560,700 800,700 800,798"/><text class="rol-texto" x="506" y="556" text-anchor="end">total,</text><text class="rol-texto" x="506" y="572" text-anchor="end">disjunta</text><polyline class="v-linea v-linea--total" points="330,862 330,1000 495,1000"/><polyline class="v-linea v-linea--total-interna" points="330,862 330,1000 495,1000"/><polyline class="v-linea" points="760,862 760,1000 635,1000"/><polygon class="r-caja" points="565,960 635,1000 565,1040 495,1000"/><text class="r-texto" x="565" y="1005">COMENTA</text><text class="c-texto" x="374" y="990" text-anchor="middle">(1,1)</text><text class="c-texto" x="716" y="990" text-anchor="middle">(0,N)</text><polyline class="v-linea" points="235,810 140,810 140,934"/><polyline class="v-linea" points="300,862 300,970 215,970"/><polygon class="r-caja" points="140,934 215,970 140,1006 65,970"/><text class="r-texto" x="140" y="968">RESPONDE</text><text class="r-texto" x="140" y="983">A</text><text class="rol-texto" x="186" y="800" text-anchor="middle">respuesta</text><text class="rol-texto" x="258" y="900" text-anchor="middle">padre</text><text class="c-texto" x="140" y="892" text-anchor="middle">(0,1)</text><text class="c-texto" x="258" y="990" text-anchor="middle">(0,N)</text><polyline class="v-linea" points="860,862 860,1000 930,1000"/><polyline class="v-linea" points="1070,1000 1150,1000 1150,230 700,230 700,182"/><polygon class="r-caja" points="1000,962 1068,1000 1000,1038 932,1000"/><text class="r-texto" x="1000" y="1005">GUARDA</text><text class="c-texto" x="880" y="1032" text-anchor="middle">(0,N)</text><text class="c-texto" x="910" y="218" text-anchor="middle">(0,N)</text><polyline class="v-linea" points="860,798 860,640 1006,640"/><polyline class="v-linea" points="1154,640 1190,640 1190,540 1290,540 1290,502"/><polygon class="r-caja" points="1080,596 1158,640 1080,684 1002,640"/><text class="r-texto" x="1080" y="638">TRATA</text><text class="r-texto" x="1080" y="653">SOBRE</text><text class="c-texto" x="902" y="628" text-anchor="middle">(0,1)</text><text class="c-texto" x="1244" y="528" text-anchor="middle">(0,N)</text><polyline class="v-linea v-linea--total" points="830,862 830,930 1002,930"/><polyline class="v-linea v-linea--total-interna" points="830,862 830,930 1002,930"/><polyline class="v-linea" points="1158,930 1460,930 1460,215 1380,215 1380,182"/><path class="v-salto" d="M 1460 809 A 9 9 0 0 1 1460 791"/><polygon class="r-caja" points="1080,886 1158,930 1080,974 1002,930"/><text class="r-texto" x="1080" y="928">PERTENECE</text><text class="r-texto" x="1080" y="943">A</text><text class="c-texto" x="872" y="918" text-anchor="middle">(1,1)</text><text class="c-texto" x="1428" y="203" text-anchor="middle">(0,N)</text></svg></div>
+
+      <div class="leyenda">
+        <div class="leyenda__item">
+          <svg viewBox="0 0 54 34" aria-hidden="true">
+            <rect class="e-caja" x="4" y="6" width="46" height="22" rx="2"/>
+          </svg>
+          <span><b>Entidad</b>Objeto con existencia propia.</span>
+        </div>
+        <div class="leyenda__item">
+          <svg viewBox="0 0 54 34" aria-hidden="true">
+            <rect class="e-caja" x="2" y="4" width="50" height="26" rx="2"/>
+            <rect class="e-caja e-caja--interna" x="7" y="9" width="40" height="16" rx="1"/>
+          </svg>
+          <span><b>Entidad débil</b>No existe sin su entidad fuerte.</span>
+        </div>
+        <div class="leyenda__item">
+          <svg viewBox="0 0 54 34" aria-hidden="true">
+            <polygon class="r-caja" points="27,4 51,17 27,30 3,17"/>
+          </svg>
+          <span><b>Relación</b>Asociación entre entidades.</span>
+        </div>
+        <div class="leyenda__item">
+          <svg viewBox="0 0 54 34" aria-hidden="true">
+            <polygon class="r-caja" points="27,2 52,17 27,32 2,17"/>
+            <polygon class="r-caja r-caja--interna" points="27,7 45,17 27,27 9,17"/>
+          </svg>
+          <span><b>Relación identificadora</b>Da identidad a una entidad débil.</span>
+        </div>
+        <div class="leyenda__item">
+          <svg viewBox="0 0 54 34" aria-hidden="true">
+            <line class="v-linea" x1="4" y1="17" x2="50" y2="17"/>
+          </svg>
+          <span><b>Participación parcial</b>Mínimo 0: puede no participar.</span>
+        </div>
+        <div class="leyenda__item">
+          <svg viewBox="0 0 54 34" aria-hidden="true">
+            <line class="v-linea v-linea--total" x1="4" y1="17" x2="50" y2="17"/>
+            <line class="v-linea v-linea--total-interna" x1="4" y1="17" x2="50" y2="17"/>
+          </svg>
+          <span><b>Participación total</b>Mínimo 1: siempre participa.</span>
+        </div>
+        <div class="leyenda__item">
+          <svg viewBox="0 0 54 34" aria-hidden="true">
+            <circle class="isa-caja" cx="27" cy="17" r="13"/>
+            <text class="isa-texto" x="27" y="21">ISA</text>
+          </svg>
+          <span><b>Especialización</b>Total y disjunta: cada contenido es de un solo subtipo.</span>
+        </div>
+        <div class="leyenda__item">
+          <svg viewBox="0 0 54 34" aria-hidden="true">
+            <ellipse class="a-caja" cx="27" cy="17" rx="22" ry="11"/>
+          </svg>
+          <span><b>Atributo</b>Se detallan en la lámina 2.</span>
+        </div>
+      </div>
+
+      <h3 class="seccion">Reglas de negocio que el diagrama fija</h3>
+      <ul>
+        <li>Todo usuario tiene exactamente un rol; un rol lo pueden tener muchos usuarios.</li>
+        <li>Un usuario puede estudiar varias carreras, y una carrera la estudian muchos usuarios.
+            El año de ingreso y la sede son atributos de esa relación, no del usuario.</li>
+        <li>Una materia se dicta en al menos una carrera y puede compartirse entre varias.
+            El año de cursada, el cuatrimestre y la obligatoriedad dependen del par
+            carrera-materia: la misma materia puede ser de 2.º año y obligatoria en una carrera
+            y de 3.º y optativa en otra.</li>
+        <li>Un programa no existe sin su materia, y se identifica dentro de ella por su ciclo
+            lectivo y su versión.</li>
+        <li>Todo contenido tiene un autor y es exactamente una publicación o un comentario.</li>
+        <li>Toda publicación pertenece a una carrera; la materia es opcional, porque hay
+            publicaciones generales de la carrera.</li>
+        <li>Un comentario responde a lo sumo a otro comentario de la misma publicación.</li>
+        <li>Un usuario vota, guarda o reporta cada objeto una sola vez: la clave de esas
+            relaciones es el par de participantes.</li>
+      </ul>
+
+      <h3 class="seccion">Por qué una generalización</h3>
+      <p>
+        Votar y reportar se aplican por igual a publicaciones y a comentarios. Sin una
+        entidad que los reúna hay que elegir entre duplicar la relación —dos tablas de votos
+        gemelas—, usar dos claves foráneas opcionales con una restricción que exija que solo
+        una esté presente, o guardar el tipo del objeto en una columna, lo que impide declarar
+        una clave foránea real.
+      </p>
+      <p>
+        <strong>CONTENIDO</strong> resuelve las tres cosas: <code>VOTA</code> y
+        <code>REPORTA</code> tienen un único extremo, con integridad referencial verificada por
+        el motor. El estado de moderación también vive ahí, así que ocultar o eliminar funciona
+        igual para los dos subtipos.
+      </p>
+    </div>
+  </section>
+
+  <section class="lamina">
+    <div class="lamina__cab">
+      <div>
+        <p class="lamina__num">Lámina 2</p>
+        <h2>Atributos por entidad</h2>
+      </div>
+      <p class="lamina__nota">Identificador subrayado · parcial con guiones</p>
+    </div>
+    <div class="lamina__cuerpo">
+      <p>
+        Los atributos se dibujan aparte para que la lámina 1 quede legible. En un diagrama de
+        Chen completo cada elipse cuelga de su rectángulo con una línea, tal como aquí.
+      </p>
+      <div class="mosaico"><figure class="mini"><div class="mini__lienzo"><svg viewBox="0 0 840 560" role="img" aria-label="Atributos de la entidad ROL"><polyline class="v-linea" points="420,248 420,121.16"/><ellipse class="a-caja" cx="420" cy="100" rx="64" ry="23"/><text class="a-texto a-texto--clave" x="420" y="104">id_rol</text><polyline class="v-linea" points="484.952,296 628.816,359.42"/><ellipse class="a-caja" cx="679.808" cy="370" rx="64" ry="23"/><text class="a-texto" x="679.808" y="374">nombre</text><polyline class="v-linea" points="355.048,296 211.184,359.42"/><ellipse class="a-caja" cx="160.192" cy="370" rx="64" ry="23"/><text class="a-texto" x="160.192" y="374">descripcion</text><rect class="e-caja" x="325" y="248" width="190" height="64" rx="3"/><text class="e-texto" x="420" y="286">ROL</text></svg></div><figcaption><strong>ROL</strong></figcaption></figure><figure class="mini"><div class="mini__lienzo"><svg viewBox="0 0 840 560" role="img" aria-label="Atributos de la entidad USUARIO"><polyline class="v-linea" points="420,248 420,121.16"/><ellipse class="a-caja" cx="420" cy="100" rx="64" ry="23"/><text class="a-texto a-texto--clave" x="420" y="104">id_usuario</text><polyline class="v-linea" points="464.084,254.111 592.292,115.899"/><ellipse class="a-caja" cx="626.9" cy="98.7802" rx="64" ry="23"/><text class="a-texto" x="626.9" y="102.78">username</text><polyline class="v-linea" points="491.329,270.111 649.319,230.916"/><ellipse class="a-caja" cx="705.317" cy="224.377" rx="64" ry="23"/><text class="a-texto" x="705.317" y="228.377">email</text><polyline class="v-linea" points="491.329,289.889 698.774,342.681"/><ellipse class="a-caja" cx="754.772" cy="349.22" rx="64" ry="23"/><text class="a-texto" x="754.772" y="353.22">password_hash</text><polyline class="v-linea" points="464.084,305.889 561.727,408.504"/><ellipse class="a-caja" cx="596.336" cy="425.623" rx="64" ry="23"/><text class="a-texto" x="596.336" y="429.623">nombre</text><polyline class="v-linea" points="420,312 420,482.84"/><ellipse class="a-caja" cx="420" cy="504" rx="64" ry="23"/><text class="a-texto" x="420" y="508">apellido</text><polyline class="v-linea" points="375.916,305.889 278.273,408.504"/><ellipse class="a-caja" cx="243.664" cy="425.623" rx="64" ry="23"/><text class="a-texto" x="243.664" y="429.623">avatar_url</text><polyline class="v-linea" points="348.671,289.889 141.226,342.681"/><ellipse class="a-caja" cx="85.2281" cy="349.22" rx="64" ry="23"/><text class="a-texto" x="85.2281" y="353.22">biografia</text><polyline class="v-linea" points="348.671,270.111 190.681,230.916"/><ellipse class="a-caja" cx="134.683" cy="224.377" rx="64" ry="23"/><text class="a-texto" x="134.683" y="228.377">estado</text><polyline class="v-linea" points="375.916,254.111 247.708,115.899"/><ellipse class="a-caja" cx="213.1" cy="98.7802" rx="64" ry="23"/><text class="a-texto" x="213.1" y="102.78">fecha_registro</text><rect class="e-caja" x="325" y="248" width="190" height="64" rx="3"/><text class="e-texto" x="420" y="286">USUARIO</text></svg></div><figcaption><strong>USUARIO</strong></figcaption></figure><figure class="mini"><div class="mini__lienzo"><svg viewBox="0 0 840 560" role="img" aria-label="Atributos de la entidad CARRERA"><polyline class="v-linea" points="420,248 420,121.16"/><ellipse class="a-caja" cx="420" cy="100" rx="64" ry="23"/><text class="a-texto a-texto--clave" x="420" y="104">id_carrera</text><polyline class="v-linea" points="484.952,264 628.816,200.58"/><ellipse class="a-caja" cx="679.808" cy="190" rx="64" ry="23"/><text class="a-texto" x="679.808" y="194">nombre</text><polyline class="v-linea" points="484.952,296 628.816,359.42"/><ellipse class="a-caja" cx="679.808" cy="370" rx="64" ry="23"/><text class="a-texto" x="679.808" y="374">slug</text><polyline class="v-linea" points="420,312 420,438.84"/><ellipse class="a-caja" cx="420" cy="460" rx="64" ry="23"/><text class="a-texto" x="420" y="464">descripcion</text><polyline class="v-linea" points="355.048,296 211.184,359.42"/><ellipse class="a-caja" cx="160.192" cy="370" rx="64" ry="23"/><text class="a-texto" x="160.192" y="374">duracion_anios</text><polyline class="v-linea" points="355.048,264 211.184,200.58"/><ellipse class="a-caja" cx="160.192" cy="190" rx="64" ry="23"/><text class="a-texto" x="160.192" y="194">activa</text><rect class="e-caja" x="325" y="248" width="190" height="64" rx="3"/><text class="e-texto" x="420" y="286">CARRERA</text></svg></div><figcaption><strong>CARRERA</strong></figcaption></figure><figure class="mini"><div class="mini__lienzo"><svg viewBox="0 0 840 560" role="img" aria-label="Atributos de la entidad MATERIA"><polyline class="v-linea" points="420,248 420,121.16"/><ellipse class="a-caja" cx="420" cy="100" rx="64" ry="23"/><text class="a-texto a-texto--clave" x="420" y="104">id_materia</text><polyline class="v-linea" points="491.329,270.111 649.319,230.916"/><ellipse class="a-caja" cx="705.317" cy="224.377" rx="64" ry="23"/><text class="a-texto" x="705.317" y="228.377">codigo</text><polyline class="v-linea" points="464.084,305.889 561.727,408.504"/><ellipse class="a-caja" cx="596.336" cy="425.623" rx="64" ry="23"/><text class="a-texto" x="596.336" y="429.623">nombre</text><polyline class="v-linea" points="375.916,305.889 278.273,408.504"/><ellipse class="a-caja" cx="243.664" cy="425.623" rx="64" ry="23"/><text class="a-texto" x="243.664" y="429.623">descripcion</text><polyline class="v-linea" points="348.671,270.111 190.681,230.916"/><ellipse class="a-caja" cx="134.683" cy="224.377" rx="64" ry="23"/><text class="a-texto" x="134.683" y="228.377">activa</text><rect class="e-caja" x="325" y="248" width="190" height="64" rx="3"/><text class="e-texto" x="420" y="286">MATERIA</text></svg></div><figcaption><strong>MATERIA</strong></figcaption></figure><figure class="mini"><div class="mini__lienzo"><svg viewBox="0 0 840 560" role="img" aria-label="Atributos de la entidad CONTENIDO"><polyline class="v-linea" points="420,248 420,121.16"/><ellipse class="a-caja" cx="420" cy="100" rx="64" ry="23"/><text class="a-texto a-texto--clave" x="420" y="104">id_contenido</text><polyline class="v-linea" points="491.329,270.111 649.319,230.916"/><ellipse class="a-caja" cx="705.317" cy="224.377" rx="64" ry="23"/><text class="a-texto" x="705.317" y="228.377">tipo</text><polyline class="v-linea" points="464.084,305.889 561.727,408.504"/><ellipse class="a-caja" cx="596.336" cy="425.623" rx="64" ry="23"/><text class="a-texto" x="596.336" y="429.623">cuerpo</text><polyline class="v-linea" points="375.916,305.889 278.273,408.504"/><ellipse class="a-caja" cx="243.664" cy="425.623" rx="64" ry="23"/><text class="a-texto" x="243.664" y="429.623">estado</text><polyline class="v-linea" points="348.671,270.111 190.681,230.916"/><ellipse class="a-caja" cx="134.683" cy="224.377" rx="64" ry="23"/><text class="a-texto" x="134.683" y="228.377">fecha_creacion</text><rect class="e-caja" x="325" y="248" width="190" height="64" rx="3"/><text class="e-texto" x="420" y="286">CONTENIDO</text></svg></div><figcaption><strong>CONTENIDO</strong><span>«tipo» es el atributo discriminante de la especialización.</span></figcaption></figure><figure class="mini"><div class="mini__lienzo"><svg viewBox="0 0 840 560" role="img" aria-label="Atributos de la entidad PUBLICACIÓN"><polyline class="v-linea" points="420,248 420,121.16"/><ellipse class="a-caja" cx="420" cy="100" rx="64" ry="23"/><text class="a-texto" x="420" y="104">titulo</text><polyline class="v-linea" points="468.209,255.487 608.414,124.616"/><ellipse class="a-caja" cx="646.261" cy="108.406" rx="64" ry="23"/><text class="a-texto" x="646.261" y="112.406">categoria</text><polyline class="v-linea" points="493.861,274.443 657.457,252.418"/><ellipse class="a-caja" cx="715.442" cy="248.743" rx="64" ry="23"/><text class="a-texto" x="715.442" y="252.743">fijada</text><polyline class="v-linea" points="484.952,296 673.849,381.42"/><ellipse class="a-caja" cx="724.841" cy="392" rx="64" ry="23"/><text class="a-texto" x="724.841" y="396">visitas</text><polyline class="v-linea" points="445.652,310.07 502.468,429.261"/><ellipse class="a-caja" cx="522.606" cy="449.145" rx="64" ry="23"/><text class="a-texto" x="522.606" y="453.145">fecha_actualizacion</text><polyline class="v-linea" points="394.348,310.07 319.747,470.607"/><ellipse class="a-caja" cx="299.609" cy="490.491" rx="64" ry="23"/><text class="a-texto" x="299.609" y="494.491">archivo_nombre</text><polyline class="v-linea" points="355.048,296 211.184,359.42"/><ellipse class="a-caja" cx="160.192" cy="370" rx="64" ry="23"/><text class="a-texto" x="160.192" y="374">archivo_url</text><polyline class="v-linea" points="346.139,274.443 131.333,244.777"/><ellipse class="a-caja" cx="73.3477" cy="241.103" rx="64" ry="23"/><text class="a-texto" x="73.3477" y="245.103">archivo_tipo</text><polyline class="v-linea" points="371.791,255.487 265.011,158.322"/><ellipse class="a-caja" cx="227.164" cy="142.112" rx="64" ry="23"/><text class="a-texto" x="227.164" y="146.112">archivo_tamano_kb</text><rect class="e-caja" x="325" y="248" width="190" height="64" rx="3"/><text class="e-texto" x="420" y="286">PUBLICACIÓN</text></svg></div><figcaption><strong>PUBLICACIÓN</strong><span>Hereda el identificador de CONTENIDO.</span></figcaption></figure><figure class="mini"><div class="mini__lienzo"><svg viewBox="0 0 840 560" role="img" aria-label="Atributos de la entidad COMENTARIO"><rect class="e-caja" x="325" y="248" width="190" height="64" rx="3"/><text class="e-texto" x="420" y="286">COMENTARIO</text></svg></div><figcaption><strong>COMENTARIO</strong><span>No agrega atributos propios: hereda todo de CONTENIDO.</span></figcaption></figure><figure class="mini"><div class="mini__lienzo"><svg viewBox="0 0 840 560" role="img" aria-label="Atributos de la entidad PROGRAMA"><polyline class="v-linea" points="420,248 420,121.16"/><ellipse class="a-caja" cx="420" cy="100" rx="64" ry="23"/><text class="a-texto a-texto--parcial" x="420" y="104">anio_academico</text><polyline class="v-linea" points="478.637,260.048 649.17,153.531"/><ellipse class="a-caja" cx="695.205" cy="140.338" rx="64" ry="23"/><text class="a-texto a-texto--parcial" x="695.205" y="144.338">version</text><polyline class="v-linea" points="493.12,287.121 655.075,315.345"/><ellipse class="a-caja" cx="712.478" cy="320.054" rx="64" ry="23"/><text class="a-texto" x="712.478" y="324.054">titulo</text><polyline class="v-linea" points="452.541,308.831 547.18,462.753"/><ellipse class="a-caja" cx="572.727" cy="481.817" rx="64" ry="23"/><text class="a-texto" x="572.727" y="485.817">archivo_url</text><polyline class="v-linea" points="387.459,308.831 315.382,423.11"/><ellipse class="a-caja" cx="289.835" cy="442.174" rx="64" ry="23"/><text class="a-texto" x="289.835" y="446.174">docente_referencia</text><polyline class="v-linea" points="346.88,287.121 134.229,325.136"/><ellipse class="a-caja" cx="76.8254" cy="329.845" rx="64" ry="23"/><text class="a-texto" x="76.8254" y="333.845">fecha_publicacion</text><polyline class="v-linea" points="361.363,260.048 231.485,180.965"/><ellipse class="a-caja" cx="185.451" cy="167.772" rx="64" ry="23"/><text class="a-texto" x="185.451" y="171.772">vigente</text><rect class="e-caja" x="325" y="248" width="190" height="64" rx="3"/><rect class="e-caja e-caja--interna" x="331" y="254" width="178" height="52" rx="2"/><text class="e-texto" x="420" y="286">PROGRAMA</text></svg></div><figcaption><strong>PROGRAMA</strong><span>Entidad débil: su identificador es parcial y se completa con el de MATERIA.</span></figcaption></figure></div>
+    </div>
+  </section>
+
+  <section class="lamina">
+    <div class="lamina__cab">
+      <div>
+        <p class="lamina__num">Lámina 3</p>
+        <h2>Esquema relacional</h2>
+      </div>
+      <p class="lamina__nota">Clave primaria subrayada · foránea en cursiva</p>
+    </div>
+    <div class="lamina__cuerpo">
+      <p>
+        Resultado de aplicar las reglas de paso a tablas: una tabla por entidad; las relaciones
+        1:N se propagan como clave foránea al lado <em>muchos</em>; las N:M generan tabla propia
+        con clave primaria compuesta; la entidad débil hereda la clave de su entidad fuerte; y la
+        jerarquía ISA produce una tabla para el supertipo y una por cada subtipo.
+      </p>
+      <div class="esquema"><article class="tabla"><header class="tabla__cab"><h3>roles</h3><p>Entidad ROL</p></header><div class="tabla__scroll"><table><caption class="fl-oculto">Columnas de la tabla roles</caption><thead><tr><th scope="col">Columna</th><th scope="col">Restricción</th><th scope="col">Tipo</th></tr></thead><tbody><tr><th scope="row" class="col col--pk">id_rol</th><td class="marca">PK</td><td class="tipo">INT UNSIGNED</td></tr><tr><th scope="row" class="col">nombre</th><td class="marca">UNIQUE</td><td class="tipo">VARCHAR(30)</td></tr><tr><th scope="row" class="col">descripcion</th><td class="marca">—</td><td class="tipo">VARCHAR(255)</td></tr></tbody></table></div></article><article class="tabla"><header class="tabla__cab"><h3>usuarios</h3><p>Entidad USUARIO + relación POSEE</p></header><div class="tabla__scroll"><table><caption class="fl-oculto">Columnas de la tabla usuarios</caption><thead><tr><th scope="col">Columna</th><th scope="col">Restricción</th><th scope="col">Tipo</th></tr></thead><tbody><tr><th scope="row" class="col col--pk">id_usuario</th><td class="marca">PK</td><td class="tipo">INT UNSIGNED</td></tr><tr><th scope="row" class="col col--fk">rol_id</th><td class="marca">FK → roles</td><td class="tipo">INT UNSIGNED</td></tr><tr><th scope="row" class="col">username</th><td class="marca">UNIQUE</td><td class="tipo">VARCHAR(30)</td></tr><tr><th scope="row" class="col">email</th><td class="marca">UNIQUE</td><td class="tipo">VARCHAR(120)</td></tr><tr><th scope="row" class="col">password_hash</th><td class="marca">—</td><td class="tipo">VARCHAR(255)</td></tr><tr><th scope="row" class="col">nombre, apellido</th><td class="marca">—</td><td class="tipo">VARCHAR(60)</td></tr><tr><th scope="row" class="col">avatar_url, biografia</th><td class="marca">—</td><td class="tipo">VARCHAR</td></tr><tr><th scope="row" class="col">estado</th><td class="marca">ENUM</td><td class="tipo">activo · suspendido · eliminado</td></tr><tr><th scope="row" class="col">fecha_registro</th><td class="marca">—</td><td class="tipo">DATETIME</td></tr></tbody></table></div></article><article class="tabla"><header class="tabla__cab"><h3>carreras</h3><p>Entidad CARRERA</p></header><div class="tabla__scroll"><table><caption class="fl-oculto">Columnas de la tabla carreras</caption><thead><tr><th scope="col">Columna</th><th scope="col">Restricción</th><th scope="col">Tipo</th></tr></thead><tbody><tr><th scope="row" class="col col--pk">id_carrera</th><td class="marca">PK</td><td class="tipo">INT UNSIGNED</td></tr><tr><th scope="row" class="col">nombre</th><td class="marca">UNIQUE</td><td class="tipo">VARCHAR(120)</td></tr><tr><th scope="row" class="col">slug</th><td class="marca">UNIQUE</td><td class="tipo">VARCHAR(140)</td></tr><tr><th scope="row" class="col">descripcion</th><td class="marca">—</td><td class="tipo">VARCHAR(500)</td></tr><tr><th scope="row" class="col">duracion_anios</th><td class="marca">CHECK 1-8</td><td class="tipo">TINYINT</td></tr><tr><th scope="row" class="col">activa</th><td class="marca">—</td><td class="tipo">BOOLEAN</td></tr></tbody></table></div></article><article class="tabla"><header class="tabla__cab"><h3>materias</h3><p>Entidad MATERIA</p></header><div class="tabla__scroll"><table><caption class="fl-oculto">Columnas de la tabla materias</caption><thead><tr><th scope="col">Columna</th><th scope="col">Restricción</th><th scope="col">Tipo</th></tr></thead><tbody><tr><th scope="row" class="col col--pk">id_materia</th><td class="marca">PK</td><td class="tipo">INT UNSIGNED</td></tr><tr><th scope="row" class="col">codigo</th><td class="marca">UNIQUE</td><td class="tipo">VARCHAR(20)</td></tr><tr><th scope="row" class="col">nombre</th><td class="marca">—</td><td class="tipo">VARCHAR(120)</td></tr><tr><th scope="row" class="col">descripcion</th><td class="marca">—</td><td class="tipo">VARCHAR(500)</td></tr><tr><th scope="row" class="col">activa</th><td class="marca">—</td><td class="tipo">BOOLEAN</td></tr></tbody></table></div></article><article class="tabla"><header class="tabla__cab"><h3>carrera_materia</h3><p>Relación SE DICTA EN (N:M con atributos)</p></header><div class="tabla__scroll"><table><caption class="fl-oculto">Columnas de la tabla carrera_materia</caption><thead><tr><th scope="col">Columna</th><th scope="col">Restricción</th><th scope="col">Tipo</th></tr></thead><tbody><tr><th scope="row" class="col col--pk">carrera_id</th><td class="marca">PK · FK → carreras</td><td class="tipo">INT UNSIGNED</td></tr><tr><th scope="row" class="col col--pk">materia_id</th><td class="marca">PK · FK → materias</td><td class="tipo">INT UNSIGNED</td></tr><tr><th scope="row" class="col">anio_cursada</th><td class="marca">CHECK 1-8</td><td class="tipo">TINYINT</td></tr><tr><th scope="row" class="col">cuatrimestre</th><td class="marca">CHECK 1-3</td><td class="tipo">TINYINT</td></tr><tr><th scope="row" class="col">obligatoria</th><td class="marca">—</td><td class="tipo">BOOLEAN</td></tr></tbody></table></div></article><article class="tabla"><header class="tabla__cab"><h3>estudia</h3><p>Relación ESTUDIA (N:M con atributos)</p></header><div class="tabla__scroll"><table><caption class="fl-oculto">Columnas de la tabla estudia</caption><thead><tr><th scope="col">Columna</th><th scope="col">Restricción</th><th scope="col">Tipo</th></tr></thead><tbody><tr><th scope="row" class="col col--pk">usuario_id</th><td class="marca">PK · FK → usuarios</td><td class="tipo">INT UNSIGNED</td></tr><tr><th scope="row" class="col col--pk">carrera_id</th><td class="marca">PK · FK → carreras</td><td class="tipo">INT UNSIGNED</td></tr><tr><th scope="row" class="col">anio_ingreso</th><td class="marca">CHECK 1950-2100</td><td class="tipo">SMALLINT</td></tr><tr><th scope="row" class="col">sede</th><td class="marca">—</td><td class="tipo">VARCHAR(80)</td></tr><tr><th scope="row" class="col">activo</th><td class="marca">—</td><td class="tipo">BOOLEAN</td></tr></tbody></table></div></article><article class="tabla"><header class="tabla__cab"><h3>programas</h3><p>Entidad débil PROGRAMA + relación CARGA</p></header><div class="tabla__scroll"><table><caption class="fl-oculto">Columnas de la tabla programas</caption><thead><tr><th scope="col">Columna</th><th scope="col">Restricción</th><th scope="col">Tipo</th></tr></thead><tbody><tr><th scope="row" class="col col--pk">materia_id</th><td class="marca">PK · FK → materias</td><td class="tipo">INT UNSIGNED</td></tr><tr><th scope="row" class="col col--pk">anio_academico</th><td class="marca">PK</td><td class="tipo">SMALLINT</td></tr><tr><th scope="row" class="col col--pk">version</th><td class="marca">PK</td><td class="tipo">VARCHAR(20)</td></tr><tr><th scope="row" class="col">titulo</th><td class="marca">—</td><td class="tipo">VARCHAR(180)</td></tr><tr><th scope="row" class="col">archivo_url</th><td class="marca">—</td><td class="tipo">VARCHAR(255)</td></tr><tr><th scope="row" class="col">docente_referencia</th><td class="marca">—</td><td class="tipo">VARCHAR(120)</td></tr><tr><th scope="row" class="col col--fk">cargado_por</th><td class="marca">FK → usuarios</td><td class="tipo">INT UNSIGNED NULL</td></tr><tr><th scope="row" class="col">fecha_publicacion</th><td class="marca">—</td><td class="tipo">DATETIME</td></tr><tr><th scope="row" class="col">vigente</th><td class="marca">—</td><td class="tipo">BOOLEAN</td></tr></tbody></table></div></article><article class="tabla"><header class="tabla__cab"><h3>contenidos</h3><p>Supertipo CONTENIDO + relación ESCRIBE</p></header><div class="tabla__scroll"><table><caption class="fl-oculto">Columnas de la tabla contenidos</caption><thead><tr><th scope="col">Columna</th><th scope="col">Restricción</th><th scope="col">Tipo</th></tr></thead><tbody><tr><th scope="row" class="col col--pk">id_contenido</th><td class="marca">PK</td><td class="tipo">INT UNSIGNED</td></tr><tr><th scope="row" class="col col--fk">usuario_id</th><td class="marca">FK → usuarios</td><td class="tipo">INT UNSIGNED</td></tr><tr><th scope="row" class="col">tipo</th><td class="marca">ENUM · discriminante</td><td class="tipo">publicacion · comentario</td></tr><tr><th scope="row" class="col">cuerpo</th><td class="marca">—</td><td class="tipo">TEXT</td></tr><tr><th scope="row" class="col">estado</th><td class="marca">ENUM</td><td class="tipo">publicado · oculto · eliminado</td></tr><tr><th scope="row" class="col">fecha_creacion</th><td class="marca">—</td><td class="tipo">DATETIME</td></tr></tbody></table></div></article><article class="tabla"><header class="tabla__cab"><h3>publicaciones</h3><p>Subtipo PUBLICACIÓN + PERTENECE A + TRATA SOBRE</p></header><div class="tabla__scroll"><table><caption class="fl-oculto">Columnas de la tabla publicaciones</caption><thead><tr><th scope="col">Columna</th><th scope="col">Restricción</th><th scope="col">Tipo</th></tr></thead><tbody><tr><th scope="row" class="col col--pk">id_contenido</th><td class="marca">PK · FK → contenidos</td><td class="tipo">INT UNSIGNED</td></tr><tr><th scope="row" class="col col--fk">carrera_id</th><td class="marca">FK → carreras</td><td class="tipo">INT UNSIGNED</td></tr><tr><th scope="row" class="col col--fk">materia_id</th><td class="marca">FK → materias</td><td class="tipo">INT UNSIGNED NULL</td></tr><tr><th scope="row" class="col">titulo</th><td class="marca">CHECK ≥ 5</td><td class="tipo">VARCHAR(180)</td></tr><tr><th scope="row" class="col">categoria</th><td class="marca">ENUM</td><td class="tipo">pregunta · apunte · parcial · …</td></tr><tr><th scope="row" class="col">fijada, visitas</th><td class="marca">—</td><td class="tipo">BOOLEAN · INT</td></tr><tr><th scope="row" class="col">fecha_actualizacion</th><td class="marca">—</td><td class="tipo">DATETIME</td></tr><tr><th scope="row" class="col">archivo_nombre, archivo_url</th><td class="marca">CHECK todo o nada</td><td class="tipo">VARCHAR NULL</td></tr><tr><th scope="row" class="col">archivo_tipo, archivo_tamano_kb</th><td class="marca">CHECK ≤ 20 MB</td><td class="tipo">VARCHAR · INT NULL</td></tr></tbody></table></div></article><article class="tabla"><header class="tabla__cab"><h3>comentarios</h3><p>Subtipo COMENTARIO + COMENTA + RESPONDE A</p></header><div class="tabla__scroll"><table><caption class="fl-oculto">Columnas de la tabla comentarios</caption><thead><tr><th scope="col">Columna</th><th scope="col">Restricción</th><th scope="col">Tipo</th></tr></thead><tbody><tr><th scope="row" class="col col--pk">id_contenido</th><td class="marca">PK · FK → contenidos</td><td class="tipo">INT UNSIGNED</td></tr><tr><th scope="row" class="col col--fk">publicacion_id</th><td class="marca">FK → publicaciones</td><td class="tipo">INT UNSIGNED</td></tr><tr><th scope="row" class="col col--fk">comentario_padre_id</th><td class="marca">FK → comentarios</td><td class="tipo">INT UNSIGNED NULL</td></tr></tbody></table></div></article><article class="tabla"><header class="tabla__cab"><h3>votos</h3><p>Relación VOTA (N:M con atributos)</p></header><div class="tabla__scroll"><table><caption class="fl-oculto">Columnas de la tabla votos</caption><thead><tr><th scope="col">Columna</th><th scope="col">Restricción</th><th scope="col">Tipo</th></tr></thead><tbody><tr><th scope="row" class="col col--pk">usuario_id</th><td class="marca">PK · FK → usuarios</td><td class="tipo">INT UNSIGNED</td></tr><tr><th scope="row" class="col col--pk">contenido_id</th><td class="marca">PK · FK → contenidos</td><td class="tipo">INT UNSIGNED</td></tr><tr><th scope="row" class="col">valor</th><td class="marca">CHECK ∈ {-1, 1}</td><td class="tipo">TINYINT</td></tr><tr><th scope="row" class="col">fecha_voto</th><td class="marca">—</td><td class="tipo">DATETIME</td></tr></tbody></table></div></article><article class="tabla"><header class="tabla__cab"><h3>favoritos</h3><p>Relación GUARDA (N:M)</p></header><div class="tabla__scroll"><table><caption class="fl-oculto">Columnas de la tabla favoritos</caption><thead><tr><th scope="col">Columna</th><th scope="col">Restricción</th><th scope="col">Tipo</th></tr></thead><tbody><tr><th scope="row" class="col col--pk">usuario_id</th><td class="marca">PK · FK → usuarios</td><td class="tipo">INT UNSIGNED</td></tr><tr><th scope="row" class="col col--pk">publicacion_id</th><td class="marca">PK · FK → publicaciones</td><td class="tipo">INT UNSIGNED</td></tr><tr><th scope="row" class="col">fecha</th><td class="marca">—</td><td class="tipo">DATETIME</td></tr></tbody></table></div></article><article class="tabla"><header class="tabla__cab"><h3>reportes</h3><p>Relación REPORTA (N:M con atributos)</p></header><div class="tabla__scroll"><table><caption class="fl-oculto">Columnas de la tabla reportes</caption><thead><tr><th scope="col">Columna</th><th scope="col">Restricción</th><th scope="col">Tipo</th></tr></thead><tbody><tr><th scope="row" class="col col--pk">usuario_id</th><td class="marca">PK · FK → usuarios</td><td class="tipo">INT UNSIGNED</td></tr><tr><th scope="row" class="col col--pk">contenido_id</th><td class="marca">PK · FK → contenidos</td><td class="tipo">INT UNSIGNED</td></tr><tr><th scope="row" class="col">motivo</th><td class="marca">ENUM</td><td class="tipo">spam · contenido_inapropiado · …</td></tr><tr><th scope="row" class="col">descripcion</th><td class="marca">—</td><td class="tipo">VARCHAR(500)</td></tr><tr><th scope="row" class="col">estado</th><td class="marca">ENUM</td><td class="tipo">pendiente · en_revision · …</td></tr><tr><th scope="row" class="col">fecha_reporte</th><td class="marca">—</td><td class="tipo">DATETIME</td></tr></tbody></table></div></article></div>
+    </div>
+  </section>
+
+  <p class="cierre">
+    Notación según Chen, P. P-S. (1976), <em>The Entity-Relationship Model — Toward a Unified
+    View of Data</em>, ACM Transactions on Database Systems 1(1), 9-36.
+    El detalle del modelo está en <code>docs/modelo-conceptual.md</code> y el esquema ejecutable
+    en <code>database/schema.sql</code>.
+  </p>
+
+</div>
+
+</body>
+</html>

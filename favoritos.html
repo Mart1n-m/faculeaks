@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Publicaciones que guardaste para consultar más tarde.">
+  <meta name="theme-color" content="#14294a">
+  <title>Favoritos · FacuLeaks</title>
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body data-pagina="favoritos" data-nav="favoritos">
+
+  <a class="fl-saltar" href="#contenido-principal">Saltar al contenido principal</a>
+
+  <header data-componente="encabezado"></header>
+
+  <main id="contenido-principal" class="fl-principal">
+
+    <div class="fl-contenedor" id="contenido-favoritos">
+      <nav data-componente="migas"></nav>
+
+      <div class="fl-seccion__cabecera">
+        <div>
+          <h1>Favoritos</h1>
+          <p class="fl-suave fl-mb0" id="contador-favoritos" aria-live="polite"></p>
+        </div>
+      </div>
+
+      <div class="fl-tarjeta fl-seccion">
+        <div class="fl-fila-campos fl-fila-campos--2">
+          <div class="fl-campo fl-mb0">
+            <label for="filtro-categoria-fav">Categoría</label>
+            <select class="fl-select" id="filtro-categoria-fav">
+              <option value="">Todas las categorías</option>
+            </select>
+          </div>
+          <div class="fl-campo fl-mb0">
+            <label for="orden-favoritos">Ordenar por</label>
+            <select class="fl-select" id="orden-favoritos">
+              <option value="recientes">Más recientes</option>
+              <option value="populares">Más votadas</option>
+              <option value="titulo">Título (A-Z)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="fl-cuadricula" id="lista-favoritos"></div>
+    </div>
+  </main>
+
+  <footer data-componente="pie"></footer>
+
+  <script src="assets/js/data/dataset.js"></script>
+  <script src="assets/js/utils/dom.js"></script>
+  <script src="assets/js/utils/formato.js"></script>
+  <script src="assets/js/utils/almacenamiento.js"></script>
+  <script src="assets/js/utils/validacion.js"></script>
+  <script src="assets/js/services/repositorio.js"></script>
+  <script src="assets/js/services/sesionService.js"></script>
+  <script src="assets/js/services/carrerasService.js"></script>
+  <script src="assets/js/services/publicacionesService.js"></script>
+  <script src="assets/js/services/comentariosService.js"></script>
+  <script src="assets/js/services/interaccionesService.js"></script>
+  <script src="assets/js/services/usuariosService.js"></script>
+  <script src="assets/js/components/avisos.js"></script>
+  <script src="assets/js/components/modal.js"></script>
+  <script src="assets/js/components/encabezado.js"></script>
+  <script src="assets/js/components/pie.js"></script>
+  <script src="assets/js/components/migas.js"></script>
+  <script src="assets/js/components/tarjetaPublicacion.js"></script>
+  <script src="assets/js/components/tarjetaCarrera.js"></script>
+  <script src="assets/js/components/paginacion.js"></script>
+  <script src="assets/js/pages/favoritos.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

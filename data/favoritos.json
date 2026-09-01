@@ -1,0 +1,277 @@
+[
+  {
+    "usuarioId": 1,
+    "publicacionId": 7,
+    "fecha": "2026-01-01 09:00:00"
+  },
+  {
+    "usuarioId": 1,
+    "publicacionId": 19,
+    "fecha": "2026-01-01 10:00:00"
+  },
+  {
+    "usuarioId": 1,
+    "publicacionId": 22,
+    "fecha": "2026-01-01 11:00:00"
+  },
+  {
+    "usuarioId": 1,
+    "publicacionId": 38,
+    "fecha": "2026-01-01 12:00:00"
+  },
+  {
+    "usuarioId": 1,
+    "publicacionId": 10,
+    "fecha": "2026-01-01 13:00:00"
+  },
+  {
+    "usuarioId": 2,
+    "publicacionId": 16,
+    "fecha": "2026-01-01 14:00:00"
+  },
+  {
+    "usuarioId": 2,
+    "publicacionId": 4,
+    "fecha": "2026-01-01 15:00:00"
+  },
+  {
+    "usuarioId": 2,
+    "publicacionId": 9,
+    "fecha": "2026-01-01 16:00:00"
+  },
+  {
+    "usuarioId": 2,
+    "publicacionId": 33,
+    "fecha": "2026-01-01 17:00:00"
+  },
+  {
+    "usuarioId": 3,
+    "publicacionId": 32,
+    "fecha": "2026-01-01 18:00:00"
+  },
+  {
+    "usuarioId": 3,
+    "publicacionId": 29,
+    "fecha": "2026-01-01 19:00:00"
+  },
+  {
+    "usuarioId": 3,
+    "publicacionId": 16,
+    "fecha": "2026-01-01 20:00:00"
+  },
+  {
+    "usuarioId": 3,
+    "publicacionId": 5,
+    "fecha": "2026-01-01 21:00:00"
+  },
+  {
+    "usuarioId": 3,
+    "publicacionId": 8,
+    "fecha": "2026-01-01 22:00:00"
+  },
+  {
+    "usuarioId": 4,
+    "publicacionId": 36,
+    "fecha": "2026-01-01 23:00:00"
+  },
+  {
+    "usuarioId": 4,
+    "publicacionId": 25,
+    "fecha": "2026-01-02 00:00:00"
+  },
+  {
+    "usuarioId": 4,
+    "publicacionId": 10,
+    "fecha": "2026-01-02 01:00:00"
+  },
+  {
+    "usuarioId": 4,
+    "publicacionId": 28,
+    "fecha": "2026-01-02 02:00:00"
+  },
+  {
+    "usuarioId": 5,
+    "publicacionId": 24,
+    "fecha": "2026-01-02 03:00:00"
+  },
+  {
+    "usuarioId": 5,
+    "publicacionId": 23,
+    "fecha": "2026-01-02 04:00:00"
+  },
+  {
+    "usuarioId": 5,
+    "publicacionId": 4,
+    "fecha": "2026-01-01 09:00:00"
+  },
+  {
+    "usuarioId": 5,
+    "publicacionId": 36,
+    "fecha": "2026-01-01 10:00:00"
+  },
+  {
+    "usuarioId": 5,
+    "publicacionId": 21,
+    "fecha": "2026-01-01 11:00:00"
+  },
+  {
+    "usuarioId": 6,
+    "publicacionId": 1,
+    "fecha": "2026-01-01 12:00:00"
+  },
+  {
+    "usuarioId": 6,
+    "publicacionId": 10,
+    "fecha": "2026-01-01 13:00:00"
+  },
+  {
+    "usuarioId": 6,
+    "publicacionId": 30,
+    "fecha": "2026-01-01 14:00:00"
+  },
+  {
+    "usuarioId": 6,
+    "publicacionId": 32,
+    "fecha": "2026-01-01 15:00:00"
+  },
+  {
+    "usuarioId": 6,
+    "publicacionId": 5,
+    "fecha": "2026-01-01 16:00:00"
+  },
+  {
+    "usuarioId": 6,
+    "publicacionId": 36,
+    "fecha": "2026-01-01 17:00:00"
+  },
+  {
+    "usuarioId": 7,
+    "publicacionId": 30,
+    "fecha": "2026-01-01 18:00:00"
+  },
+  {
+    "usuarioId": 7,
+    "publicacionId": 17,
+    "fecha": "2026-01-01 19:00:00"
+  },
+  {
+    "usuarioId": 7,
+    "publicacionId": 34,
+    "fecha": "2026-01-01 20:00:00"
+  },
+  {
+    "usuarioId": 8,
+    "publicacionId": 2,
+    "fecha": "2026-01-01 21:00:00"
+  },
+  {
+    "usuarioId": 8,
+    "publicacionId": 26,
+    "fecha": "2026-01-01 22:00:00"
+  },
+  {
+    "usuarioId": 9,
+    "publicacionId": 37,
+    "fecha": "2026-01-01 23:00:00"
+  },
+  {
+    "usuarioId": 9,
+    "publicacionId": 3,
+    "fecha": "2026-01-02 00:00:00"
+  },
+  {
+    "usuarioId": 9,
+    "publicacionId": 18,
+    "fecha": "2026-01-02 01:00:00"
+  },
+  {
+    "usuarioId": 9,
+    "publicacionId": 12,
+    "fecha": "2026-01-02 02:00:00"
+  },
+  {
+    "usuarioId": 10,
+    "publicacionId": 12,
+    "fecha": "2026-01-02 03:00:00"
+  },
+  {
+    "usuarioId": 10,
+    "publicacionId": 14,
+    "fecha": "2026-01-02 04:00:00"
+  },
+  {
+    "usuarioId": 11,
+    "publicacionId": 19,
+    "fecha": "2026-01-01 09:00:00"
+  },
+  {
+    "usuarioId": 11,
+    "publicacionId": 33,
+    "fecha": "2026-01-01 10:00:00"
+  },
+  {
+    "usuarioId": 11,
+    "publicacionId": 15,
+    "fecha": "2026-01-01 11:00:00"
+  },
+  {
+    "usuarioId": 11,
+    "publicacionId": 38,
+    "fecha": "2026-01-01 12:00:00"
+  },
+  {
+    "usuarioId": 11,
+    "publicacionId": 29,
+    "fecha": "2026-01-01 13:00:00"
+  },
+  {
+    "usuarioId": 12,
+    "publicacionId": 37,
+    "fecha": "2026-01-01 14:00:00"
+  },
+  {
+    "usuarioId": 12,
+    "publicacionId": 22,
+    "fecha": "2026-01-01 15:00:00"
+  },
+  {
+    "usuarioId": 12,
+    "publicacionId": 39,
+    "fecha": "2026-01-01 16:00:00"
+  },
+  {
+    "usuarioId": 13,
+    "publicacionId": 38,
+    "fecha": "2026-01-01 17:00:00"
+  },
+  {
+    "usuarioId": 13,
+    "publicacionId": 32,
+    "fecha": "2026-01-01 18:00:00"
+  },
+  {
+    "usuarioId": 13,
+    "publicacionId": 5,
+    "fecha": "2026-01-01 19:00:00"
+  },
+  {
+    "usuarioId": 14,
+    "publicacionId": 38,
+    "fecha": "2026-01-01 20:00:00"
+  },
+  {
+    "usuarioId": 14,
+    "publicacionId": 12,
+    "fecha": "2026-01-01 21:00:00"
+  },
+  {
+    "usuarioId": 14,
+    "publicacionId": 11,
+    "fecha": "2026-01-01 22:00:00"
+  },
+  {
+    "usuarioId": 14,
+    "publicacionId": 10,
+    "fecha": "2026-01-01 23:00:00"
+  }
+]

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Registrate en FacuLeaks y asociá la carrera que estás cursando.">
+  <meta name="theme-color" content="#14294a">
+  <title>Crear cuenta · FacuLeaks</title>
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body data-pagina="registro" data-nav="registro">
+
+  <a class="fl-saltar" href="#contenido-principal">Saltar al contenido principal</a>
+
+  <header data-componente="encabezado"></header>
+
+  <main id="contenido-principal" class="fl-principal">
+
+    <div class="fl-contenedor">
+      <nav data-componente="migas"></nav>
+
+      <div class="fl-disposicion fl-disposicion--con-lateral">
+
+        <div class="fl-columna-principal">
+          <h1>Crear cuenta</h1>
+          <p class="fl-suave">
+            Los campos marcados con <span class="fl-requerido" aria-hidden="true">*</span>
+            son obligatorios.
+          </p>
+
+          <form class="fl-tarjeta" id="form-registro" novalidate>
+
+            <fieldset>
+              <legend class="fl-etiqueta">Datos personales</legend>
+
+              <div class="fl-fila-campos fl-fila-campos--2">
+                <div class="fl-campo">
+                  <label for="nombre">Nombre <span class="fl-requerido" aria-hidden="true">*</span></label>
+                  <input class="fl-entrada" type="text" id="nombre" data-campo="nombre"
+                         autocomplete="given-name" required aria-describedby="nombre-error">
+                  <span class="fl-error-campo" id="nombre-error"></span>
+                </div>
+
+                <div class="fl-campo">
+                  <label for="apellido">Apellido <span class="fl-requerido" aria-hidden="true">*</span></label>
+                  <input class="fl-entrada" type="text" id="apellido" data-campo="apellido"
+                         autocomplete="family-name" required aria-describedby="apellido-error">
+                  <span class="fl-error-campo" id="apellido-error"></span>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend class="fl-etiqueta">Datos de la cuenta</legend>
+
+              <div class="fl-campo">
+                <label for="username">Nombre de usuario <span class="fl-requerido" aria-hidden="true">*</span></label>
+                <input class="fl-entrada" type="text" id="username" data-campo="username"
+                       autocomplete="username" required aria-describedby="username-ayuda username-error">
+                <span class="fl-campo__ayuda" id="username-ayuda">
+                  Entre 3 y 30 caracteres. Solo letras, números, punto, guion y guion bajo.
+                </span>
+                <span class="fl-error-campo" id="username-error"></span>
+              </div>
+
+              <div class="fl-campo">
+                <label for="email">Correo electrónico <span class="fl-requerido" aria-hidden="true">*</span></label>
+                <input class="fl-entrada" type="email" id="email" data-campo="email"
+                       autocomplete="email" required aria-describedby="email-error">
+                <span class="fl-error-campo" id="email-error"></span>
+              </div>
+
+              <div class="fl-fila-campos fl-fila-campos--2">
+                <div class="fl-campo">
+                  <label for="password">Contraseña <span class="fl-requerido" aria-hidden="true">*</span></label>
+                  <input class="fl-entrada" type="password" id="password" data-campo="password"
+                         autocomplete="new-password" required aria-describedby="password-ayuda password-error">
+                  <span class="fl-campo__ayuda" id="password-ayuda">
+                    Mínimo 8 caracteres, combinando letras y números.
+                  </span>
+                  <span class="fl-error-campo" id="password-error"></span>
+                </div>
+
+                <div class="fl-campo">
+                  <label for="password2">Repetir contraseña <span class="fl-requerido" aria-hidden="true">*</span></label>
+                  <input class="fl-entrada" type="password" id="password2" data-campo="password2"
+                         autocomplete="new-password" required aria-describedby="password2-error">
+                  <span class="fl-error-campo" id="password2-error"></span>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend class="fl-etiqueta">Perfil académico (opcional)</legend>
+
+              <div class="fl-fila-campos fl-fila-campos--2">
+                <div class="fl-campo">
+                  <label for="carrera">Carrera</label>
+                  <select class="fl-select" id="carrera" data-campo="carreraId">
+                    <option value="">Cargando…</option>
+                  </select>
+                  <span class="fl-campo__ayuda">
+                    Podés sumar otras carreras más adelante desde tu perfil.
+                  </span>
+                  <span class="fl-error-campo" id="carrera-error"></span>
+                </div>
+
+                <div class="fl-campo">
+                  <label for="anio-ingreso">Año de ingreso</label>
+                  <input class="fl-entrada" type="number" id="anio-ingreso" data-campo="anioIngreso"
+                         min="1950" max="2100" step="1" aria-describedby="anio-ingreso-error">
+                  <span class="fl-error-campo" id="anio-ingreso-error"></span>
+                </div>
+              </div>
+            </fieldset>
+
+            <div class="fl-campo">
+              <label class="fl-check" for="terminos">
+                <input type="checkbox" id="terminos" data-campo="terminos"
+                       aria-describedby="terminos-error">
+                <span>
+                  Acepto las normas de la comunidad: compartir material propio o de acceso
+                  libre y mantener un trato respetuoso.
+                  <span class="fl-requerido" aria-hidden="true">*</span>
+                </span>
+              </label>
+              <span class="fl-error-campo" id="terminos-error"></span>
+            </div>
+
+            <button class="fl-boton fl-boton--bloque" type="submit" id="enviar-registro">
+              Crear cuenta
+            </button>
+
+            <p class="fl-centrado fl-suave fl-mb0">
+              ¿Ya tenés cuenta? <a href="login.html">Iniciá sesión</a>.
+            </p>
+          </form>
+        </div>
+
+        <aside class="fl-barra-lateral" aria-label="Sobre el registro">
+          <div class="fl-tarjeta fl-panel-lateral">
+            <h3 class="fl-tarjeta__titulo">Qué habilita tu cuenta</h3>
+            <ul class="fl-suave">
+              <li>Publicar preguntas, apuntes y parciales.</li>
+              <li>Comentar y responder a otras personas.</li>
+              <li>Votar el contenido que te resultó útil.</li>
+              <li>Guardar publicaciones en favoritos.</li>
+              <li>Reportar contenido inadecuado.</li>
+            </ul>
+            <p class="fl-tenue fl-mb0">
+              En esta entrega los datos se guardan solo en tu navegador.
+            </p>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </main>
+
+  <footer data-componente="pie"></footer>
+
+  <script src="assets/js/data/dataset.js"></script>
+  <script src="assets/js/utils/dom.js"></script>
+  <script src="assets/js/utils/formato.js"></script>
+  <script src="assets/js/utils/almacenamiento.js"></script>
+  <script src="assets/js/utils/validacion.js"></script>
+  <script src="assets/js/services/repositorio.js"></script>
+  <script src="assets/js/services/sesionService.js"></script>
+  <script src="assets/js/services/carrerasService.js"></script>
+  <script src="assets/js/services/publicacionesService.js"></script>
+  <script src="assets/js/services/comentariosService.js"></script>
+  <script src="assets/js/services/interaccionesService.js"></script>
+  <script src="assets/js/services/usuariosService.js"></script>
+  <script src="assets/js/components/avisos.js"></script>
+  <script src="assets/js/components/modal.js"></script>
+  <script src="assets/js/components/encabezado.js"></script>
+  <script src="assets/js/components/pie.js"></script>
+  <script src="assets/js/components/migas.js"></script>
+  <script src="assets/js/components/tarjetaPublicacion.js"></script>
+  <script src="assets/js/components/tarjetaCarrera.js"></script>
+  <script src="assets/js/components/paginacion.js"></script>
+  <script src="assets/js/pages/registro.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

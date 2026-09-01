@@ -1,0 +1,1354 @@
+[
+  {
+    "idContenido": 1,
+    "usuarioId": 4,
+    "tipo": "publicacion",
+    "cuerpo": "Estoy arrancando Paradigmas y me cuesta ver la diferencia real entre programar en Haskell y en Prolog.\n\nEntiendo que en el funcional describo transformaciones con funciones puras y en el lógico declaro hechos y reglas y el motor resuelve por unificación, pero no me queda claro cuando conviene cada uno en la práctica.\n\nAlguien que ya haya rendido puede dar un ejemplo concreto?",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-04 10:00:00"
+  },
+  {
+    "idContenido": 2,
+    "usuarioId": 8,
+    "tipo": "publicacion",
+    "cuerpo": "Subo un resumen de 8 páginas que armé para el primer parcial de Paradigmas.\n\nContenido:\n- Términos, hechos, reglas y consultas\n- Algoritmo de unificación paso a paso\n- Árbol de resolución y backtracking\n- Corte (!) y sus efectos\n- 12 ejercicios resueltos\n\nEstá basado en las clases teóricas y en el capítulo correspondiente de la bibliografía de cátedra.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-06 11:00:00"
+  },
+  {
+    "idContenido": 3,
+    "usuarioId": 4,
+    "tipo": "publicacion",
+    "cuerpo": "Comparto el parcial que tomaron el año pasado. Tenía tres partes: normalización hasta 3FN, álgebra relacional y consultas SQL con subconsultas y agregación.\n\nLo que más pesaba era la parte de normalización, asi que practiquen dependencias funcionales.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-08 12:00:00"
+  },
+  {
+    "idContenido": 4,
+    "usuarioId": 8,
+    "tipo": "publicacion",
+    "cuerpo": "Cursando con la cátedra de la mañana: mucho énfasis en el modelo relacional formal antes de tocar SQL.\n\nLas prácticas son con MariaDB y piden un trabajo integrador de diseño de esquema. Toman coloquio oral al final. Muy exigentes con la justificación de las claves y las cardinalidades.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-10 13:00:00"
+  },
+  {
+    "idContenido": 5,
+    "usuarioId": 4,
+    "tipo": "publicacion",
+    "cuerpo": "Ambas caen en segundo año y tienen carga práctica fuerte. Yo las cursé juntas y fue pesado pero se puede si organizás los TPs con anticipación.\n\nSi trabajás más de 4 horas por día, yo dejaría Sistemas Operativos para el cuatrimestre siguiente.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-12 14:00:00"
+  },
+  {
+    "idContenido": 6,
+    "usuarioId": 8,
+    "tipo": "publicacion",
+    "cuerpo": "Lista de recursos que me sirvieron:\n- MDN Web Docs para referencia de HTML, CSS y JS\n- Especificación de WCAG para accesibilidad\n- Un simulador local con el servidor http de Python para probar fetch\n\nNo hace falta ningún framework para aprobar la materia.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-14 15:00:00"
+  },
+  {
+    "idContenido": 7,
+    "usuarioId": 5,
+    "tipo": "publicacion",
+    "cuerpo": "Es la materia que más me cambió la mirada. Se trabaja mucho con entregas semanales y correcciones en clase.\n\nConsejo: no dejen las entregas para el último día, la corrección iterativa es la mitad de la nota.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-16 16:00:00"
+  },
+  {
+    "idContenido": 8,
+    "usuarioId": 5,
+    "tipo": "publicacion",
+    "cuerpo": "Resumen de los principios de composición: equilibrio, ritmo, jerarquía, contraste y proporción, con ejemplos analizados de piezas editoriales.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-18 17:00:00"
+  },
+  {
+    "idContenido": 9,
+    "usuarioId": 6,
+    "tipo": "publicacion",
+    "cuerpo": "Cuando una compra tiene percepción, la percepción no forma parte del crédito fiscal, verdad? Me quedó la duda del práctico 4.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-20 18:00:00"
+  },
+  {
+    "idContenido": 10,
+    "usuarioId": 6,
+    "tipo": "publicacion",
+    "cuerpo": "Comparto el tema 2 del final de diciembre. Ocho asientos, un mayor y el armado de la ecuación patrimonial.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-22 19:00:00"
+  },
+  {
+    "idContenido": 11,
+    "usuarioId": 6,
+    "tipo": "publicacion",
+    "cuerpo": "Idealmente: Contabilidad Intermedia, después Costos y Gestión, después Impuestos I. Llegar a Auditoría sin Impuestos se puede pero se sufre.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-24 20:00:00"
+  },
+  {
+    "idContenido": 12,
+    "usuarioId": 7,
+    "tipo": "publicacion",
+    "cuerpo": "Armé un cuadro comparando los criterios de las principales clasificaciones diagnosticas trabajadas en la cátedra, con las críticas que se le hacen a cada una.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-26 09:00:00"
+  },
+  {
+    "idContenido": 13,
+    "usuarioId": 7,
+    "tipo": "publicacion",
+    "cuerpo": "Es una materia de mucha lectura. Lo que me funcionó fue hacer fichas por autor y por etapa del ciclo vital, y releer solo las fichas antes del parcial.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-28 10:00:00"
+  },
+  {
+    "idContenido": 14,
+    "usuarioId": 9,
+    "tipo": "publicacion",
+    "cuerpo": "Necesito una explicación clara con el ejemplo argentino. En el apunte de cátedra esta muy resumido.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-30 11:00:00"
+  },
+  {
+    "idContenido": 15,
+    "usuarioId": 9,
+    "tipo": "publicacion",
+    "cuerpo": "Dos parciales escritos con desarrollo y un final oral. Piden manejo de la teoría del delito con la estructura completa.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-01 12:00:00"
+  },
+  {
+    "idContenido": 16,
+    "usuarioId": 10,
+    "tipo": "publicacion",
+    "cuerpo": "Los cuadros del código alimentario que se piden en el TP estan disponibles públicamente. Recomiendo trabajar con la versión actualizada y no con fotocopias viejas.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-03 13:00:00"
+  },
+  {
+    "idContenido": 17,
+    "usuarioId": 10,
+    "tipo": "publicacion",
+    "cuerpo": "En el caso práctico 3 no me cierra el factor de actividad. Alguien lo resolvió?",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-05 14:00:00"
+  },
+  {
+    "idContenido": 18,
+    "usuarioId": 11,
+    "tipo": "publicacion",
+    "cuerpo": "Resumen con las ecuaciones de conducción, convección y radiación, más los números adimensionales que se usan en la práctica (Reynolds, Prandtl, Nusselt).",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-07 15:00:00"
+  },
+  {
+    "idContenido": 19,
+    "usuarioId": 11,
+    "tipo": "publicacion",
+    "cuerpo": "Modelo del primer parcial: planes de muestreo, cartas de control y un caso de análisis sensorial.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-09 16:00:00"
+  },
+  {
+    "idContenido": 20,
+    "usuarioId": 12,
+    "tipo": "publicacion",
+    "cuerpo": "Se trabaja con material inerte y simulaciones. La parte teórica de trayectorias es la que más cuesta, conviene repasar física de tiro oblicuo.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-11 17:00:00"
+  },
+  {
+    "idContenido": 21,
+    "usuarioId": 12,
+    "tipo": "publicacion",
+    "cuerpo": "Resumen de los pasos formales de resguardo de indicios, con el detalle de la documentación asociada a cada etapa.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-13 18:00:00"
+  },
+  {
+    "idContenido": 22,
+    "usuarioId": 13,
+    "tipo": "publicacion",
+    "cuerpo": "Cuando el umbral óseo esta normal y el aéreo descendido, es conductiva, no? Quiero confirmar antes del parcial.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-15 19:00:00"
+  },
+  {
+    "idContenido": 23,
+    "usuarioId": 14,
+    "tipo": "publicacion",
+    "cuerpo": "En la práctica de la cátedra se trabaja principalmente con entrevista, hora de juego y pruebas pedagógicas. Conviene leer antes el marco teórico de cada instrumento.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-17 20:00:00"
+  },
+  {
+    "idContenido": 24,
+    "usuarioId": 4,
+    "tipo": "publicacion",
+    "cuerpo": "Practicar todos los días media hora, aunque sea un ejercicio chico. Y entregar los TPs aunque estén incompletos, porque la devolución es lo que más enseña.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-19 09:00:00"
+  },
+  {
+    "idContenido": 25,
+    "usuarioId": 8,
+    "tipo": "publicacion",
+    "cuerpo": "Entiendo la definición pero no me queda claro cómo afecta al tiempo de respuesta promedio en el ejercicio de Round Robin.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-21 10:00:00"
+  },
+  {
+    "idContenido": 26,
+    "usuarioId": 4,
+    "tipo": "publicacion",
+    "cuerpo": "Si abren los archivos con doble clic, el navegador usa el protocolo file y algunas cosas fallan.\n\nDesde la carpeta del proyecto:\n\npython3 -m http.server 8000\n\nY entran a localhost en el puerto 8000.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-23 11:00:00"
+  },
+  {
+    "idContenido": 27,
+    "usuarioId": 5,
+    "tipo": "publicacion",
+    "cuerpo": "Yo lo intenté un cuatrimestre. Es posible si las cursadas no se superponen, pero hay que ser realista con la carga de trabajos prácticos.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-25 12:00:00"
+  },
+  {
+    "idContenido": 28,
+    "usuarioId": 7,
+    "tipo": "publicacion",
+    "cuerpo": "El trámite se presenta en Alumnado con la justificación. Conviene hacerlo con anticipación porque tarda.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-27 13:00:00"
+  },
+  {
+    "idContenido": 29,
+    "usuarioId": 6,
+    "tipo": "publicacion",
+    "cuerpo": "Una hoja con las fórmulas de medidas de posición, dispersión, distribuciones y los intervalos de confianza más usados.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-29 14:00:00"
+  },
+  {
+    "idContenido": 30,
+    "usuarioId": 8,
+    "tipo": "publicacion",
+    "cuerpo": "La comisión de la mañana trabaja con pseudocódigo y la de la tarde arranca directo con código. El parcial es el mismo, asi que elijan por horario y no por modalidad.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-31 15:00:00"
+  },
+  {
+    "idContenido": 31,
+    "usuarioId": 9,
+    "tipo": "publicacion",
+    "cuerpo": "La cátedra trabaja principalmente con el manual de teoría general y con selección de fallos. Los fallos son de acceso público.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-02-02 16:00:00"
+  },
+  {
+    "idContenido": 32,
+    "usuarioId": 11,
+    "tipo": "publicacion",
+    "cuerpo": "Es una redox en medio ácido. Me quedan mal los electrones y no encuentro el error.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-02-04 17:00:00"
+  },
+  {
+    "idContenido": 33,
+    "usuarioId": 10,
+    "tipo": "publicacion",
+    "cuerpo": "Que Química es filtro y que conviene no dejarla para el final del cuatrimestre. Y que el grupo de estudio hace mucha diferencia.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-02-06 18:00:00"
+  },
+  {
+    "idContenido": 34,
+    "usuarioId": 13,
+    "tipo": "publicacion",
+    "cuerpo": "Esquema con las tres partes del aparato fonador y su función, más un cuadro de los pares craneales implicados.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-02-08 19:00:00"
+  },
+  {
+    "idContenido": 35,
+    "usuarioId": 14,
+    "tipo": "publicacion",
+    "cuerpo": "Es teórica pero con muchos ejemplos de aula. Tomar nota de los ejemplos sirve más que subrayar el apunte.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-02-10 20:00:00"
+  },
+  {
+    "idContenido": 36,
+    "usuarioId": 12,
+    "tipo": "publicacion",
+    "cuerpo": "Los tres terminos aparecen en el apunte pero se usan casi como sinónimos y en el parcial los distinguen.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-02-12 09:00:00"
+  },
+  {
+    "idContenido": 37,
+    "usuarioId": 4,
+    "tipo": "publicacion",
+    "cuerpo": "Aunque la correlativa no lo exija en todos los planes, tener Análisis de Sistemas antes hace que Ingeniería de Software se entienda mucho mejor.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-02-14 10:00:00"
+  },
+  {
+    "idContenido": 38,
+    "usuarioId": 8,
+    "tipo": "publicacion",
+    "cuerpo": "Piden maquetar una página responsive con HTML semántico y CSS propio, y resolver una consigna de manipulación del DOM con JavaScript.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-02-16 11:00:00"
+  },
+  {
+    "idContenido": 39,
+    "usuarioId": 7,
+    "tipo": "publicacion",
+    "cuerpo": "Además de la bibliografía obligatoria, la cátedra sugiere textos de ampliación que ayudan mucho para el final.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-02-18 12:00:00"
+  },
+  {
+    "idContenido": 40,
+    "usuarioId": 6,
+    "tipo": "publicacion",
+    "cuerpo": "Es donde se junta todo lo contable con la toma de decisiones. Si la entendés bien, Auditoría se hace mucho más simple.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-02-20 13:00:00"
+  },
+  {
+    "idContenido": 41,
+    "usuarioId": 12,
+    "tipo": "comentario",
+    "cuerpo": "Sumo un detalle: el criterio cambia si el caso es el excepcional.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-06 11:00:00"
+  },
+  {
+    "idContenido": 42,
+    "usuarioId": 2,
+    "tipo": "comentario",
+    "cuerpo": "Coincido, a mí me pasó lo mismo el cuatrimestre pasado.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-06 12:00:00"
+  },
+  {
+    "idContenido": 43,
+    "usuarioId": 6,
+    "tipo": "comentario",
+    "cuerpo": "Gracias por compartir, debería estar fijado.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-08 11:00:00"
+  },
+  {
+    "idContenido": 44,
+    "usuarioId": 11,
+    "tipo": "comentario",
+    "cuerpo": "Perfecto, con esto me destrabó el ejercicio. Gracias.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-08 12:00:00"
+  },
+  {
+    "idContenido": 45,
+    "usuarioId": 1,
+    "tipo": "comentario",
+    "cuerpo": "Buenísimo el aporte, justo lo estaba buscando.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-08 13:00:00"
+  },
+  {
+    "idContenido": 46,
+    "usuarioId": 11,
+    "tipo": "comentario",
+    "cuerpo": "Recomiendo repasar la unidad anterior antes, si no queda colgado.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-08 14:00:00"
+  },
+  {
+    "idContenido": 47,
+    "usuarioId": 1,
+    "tipo": "comentario",
+    "cuerpo": "Coincido, a mí me pasó lo mismo el cuatrimestre pasado.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-09 14:00:00"
+  },
+  {
+    "idContenido": 48,
+    "usuarioId": 12,
+    "tipo": "comentario",
+    "cuerpo": "Perfecto, con esto me destrabó el ejercicio. Gracias.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-10 11:00:00"
+  },
+  {
+    "idContenido": 49,
+    "usuarioId": 14,
+    "tipo": "comentario",
+    "cuerpo": "Recomiendo repasar la unidad anterior antes, si no queda colgado.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-11 14:00:00"
+  },
+  {
+    "idContenido": 50,
+    "usuarioId": 6,
+    "tipo": "comentario",
+    "cuerpo": "Ojo que este año cambió la modalidad de evaluación, conviene confirmarlo con la cátedra.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-12 11:00:00"
+  },
+  {
+    "idContenido": 51,
+    "usuarioId": 14,
+    "tipo": "comentario",
+    "cuerpo": "Gracias por compartir, debería estar fijado.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-12 12:00:00"
+  },
+  {
+    "idContenido": 52,
+    "usuarioId": 10,
+    "tipo": "comentario",
+    "cuerpo": "Exacto, esa es la interpretación correcta según el apunte de cátedra.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-12 13:00:00"
+  },
+  {
+    "idContenido": 53,
+    "usuarioId": 1,
+    "tipo": "comentario",
+    "cuerpo": "Perfecto, con esto me destrabó el ejercicio. Gracias.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-13 14:00:00"
+  },
+  {
+    "idContenido": 54,
+    "usuarioId": 9,
+    "tipo": "comentario",
+    "cuerpo": "Yo lo resolví armando primero el esquema y después las consultas. Me resultó más ordenado.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-14 11:00:00"
+  },
+  {
+    "idContenido": 55,
+    "usuarioId": 1,
+    "tipo": "comentario",
+    "cuerpo": "Sumo un detalle: el criterio cambia si el caso es el excepcional.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-16 11:00:00"
+  },
+  {
+    "idContenido": 56,
+    "usuarioId": 3,
+    "tipo": "comentario",
+    "cuerpo": "Ojo que este año cambió la modalidad de evaluación, conviene confirmarlo con la cátedra.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-16 12:00:00"
+  },
+  {
+    "idContenido": 57,
+    "usuarioId": 5,
+    "tipo": "comentario",
+    "cuerpo": "Gracias por compartir, debería estar fijado.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-16 13:00:00"
+  },
+  {
+    "idContenido": 58,
+    "usuarioId": 5,
+    "tipo": "comentario",
+    "cuerpo": "Coincido, a mí me pasó lo mismo el cuatrimestre pasado.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-17 14:00:00"
+  },
+  {
+    "idContenido": 59,
+    "usuarioId": 3,
+    "tipo": "comentario",
+    "cuerpo": "Buenísimo el aporte, justo lo estaba buscando.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-18 11:00:00"
+  },
+  {
+    "idContenido": 60,
+    "usuarioId": 9,
+    "tipo": "comentario",
+    "cuerpo": "A mí me tomaron algo muy parecido en el recuperatorio.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-18 12:00:00"
+  },
+  {
+    "idContenido": 61,
+    "usuarioId": 12,
+    "tipo": "comentario",
+    "cuerpo": "Sumo un detalle: el criterio cambia si el caso es el excepcional.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-18 13:00:00"
+  },
+  {
+    "idContenido": 62,
+    "usuarioId": 6,
+    "tipo": "comentario",
+    "cuerpo": "Yo lo resolví armando primero el esquema y después las consultas. Me resultó más ordenado.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-18 14:00:00"
+  },
+  {
+    "idContenido": 63,
+    "usuarioId": 1,
+    "tipo": "comentario",
+    "cuerpo": "Ojo que este año cambió la modalidad de evaluación, conviene confirmarlo con la cátedra.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-20 11:00:00"
+  },
+  {
+    "idContenido": 64,
+    "usuarioId": 9,
+    "tipo": "comentario",
+    "cuerpo": "Yo lo resolví armando primero el esquema y después las consultas. Me resultó más ordenado.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-20 12:00:00"
+  },
+  {
+    "idContenido": 65,
+    "usuarioId": 6,
+    "tipo": "comentario",
+    "cuerpo": "Yo lo resolví armando primero el esquema y después las consultas. Me resultó más ordenado.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-21 14:00:00"
+  },
+  {
+    "idContenido": 66,
+    "usuarioId": 5,
+    "tipo": "comentario",
+    "cuerpo": "Ojo que este año cambió la modalidad de evaluación, conviene confirmarlo con la cátedra.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-22 11:00:00"
+  },
+  {
+    "idContenido": 67,
+    "usuarioId": 13,
+    "tipo": "comentario",
+    "cuerpo": "Coincido, a mí me pasó lo mismo el cuatrimestre pasado.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-22 12:00:00"
+  },
+  {
+    "idContenido": 68,
+    "usuarioId": 9,
+    "tipo": "comentario",
+    "cuerpo": "Si necesitan más ejemplos, la guía de trabajos prácticos tiene tres resueltos.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-22 13:00:00"
+  },
+  {
+    "idContenido": 69,
+    "usuarioId": 4,
+    "tipo": "comentario",
+    "cuerpo": "Recomiendo repasar la unidad anterior antes, si no queda colgado.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-22 14:00:00"
+  },
+  {
+    "idContenido": 70,
+    "usuarioId": 13,
+    "tipo": "comentario",
+    "cuerpo": "Sumo un detalle: el criterio cambia si el caso es el excepcional.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-24 11:00:00"
+  },
+  {
+    "idContenido": 71,
+    "usuarioId": 9,
+    "tipo": "comentario",
+    "cuerpo": "En la teórica lo explicaron distinto, pero el resultado es el mismo.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-24 12:00:00"
+  },
+  {
+    "idContenido": 72,
+    "usuarioId": 12,
+    "tipo": "comentario",
+    "cuerpo": "Coincido, a mí me pasó lo mismo el cuatrimestre pasado.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-24 13:00:00"
+  },
+  {
+    "idContenido": 73,
+    "usuarioId": 14,
+    "tipo": "comentario",
+    "cuerpo": "Exacto, esa es la interpretación correcta según el apunte de cátedra.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-25 14:00:00"
+  },
+  {
+    "idContenido": 74,
+    "usuarioId": 14,
+    "tipo": "comentario",
+    "cuerpo": "Ojo que este año cambió la modalidad de evaluación, conviene confirmarlo con la cátedra.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-26 11:00:00"
+  },
+  {
+    "idContenido": 75,
+    "usuarioId": 9,
+    "tipo": "comentario",
+    "cuerpo": "Buenísimo el aporte, justo lo estaba buscando.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-26 12:00:00"
+  },
+  {
+    "idContenido": 76,
+    "usuarioId": 6,
+    "tipo": "comentario",
+    "cuerpo": "Recomiendo repasar la unidad anterior antes, si no queda colgado.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-27 14:00:00"
+  },
+  {
+    "idContenido": 77,
+    "usuarioId": 10,
+    "tipo": "comentario",
+    "cuerpo": "Gracias por compartir, debería estar fijado.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-28 11:00:00"
+  },
+  {
+    "idContenido": 78,
+    "usuarioId": 6,
+    "tipo": "comentario",
+    "cuerpo": "Recomiendo repasar la unidad anterior antes, si no queda colgado.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-28 12:00:00"
+  },
+  {
+    "idContenido": 79,
+    "usuarioId": 11,
+    "tipo": "comentario",
+    "cuerpo": "Buenísimo el aporte, justo lo estaba buscando.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-30 11:00:00"
+  },
+  {
+    "idContenido": 80,
+    "usuarioId": 13,
+    "tipo": "comentario",
+    "cuerpo": "Yo lo resolví armando primero el esquema y después las consultas. Me resultó más ordenado.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-30 12:00:00"
+  },
+  {
+    "idContenido": 81,
+    "usuarioId": 10,
+    "tipo": "comentario",
+    "cuerpo": "En la teórica lo explicaron distinto, pero el resultado es el mismo.",
+    "estado": "publicado",
+    "fechaCreacion": "2025-12-31 14:00:00"
+  },
+  {
+    "idContenido": 82,
+    "usuarioId": 10,
+    "tipo": "comentario",
+    "cuerpo": "Perfecto, con esto me destrabó el ejercicio. Gracias.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-01 11:00:00"
+  },
+  {
+    "idContenido": 83,
+    "usuarioId": 14,
+    "tipo": "comentario",
+    "cuerpo": "Recomiendo repasar la unidad anterior antes, si no queda colgado.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-02 14:00:00"
+  },
+  {
+    "idContenido": 84,
+    "usuarioId": 14,
+    "tipo": "comentario",
+    "cuerpo": "Coincido, a mí me pasó lo mismo el cuatrimestre pasado.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-03 11:00:00"
+  },
+  {
+    "idContenido": 85,
+    "usuarioId": 10,
+    "tipo": "comentario",
+    "cuerpo": "A mí me tomaron algo muy parecido en el recuperatorio.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-03 12:00:00"
+  },
+  {
+    "idContenido": 86,
+    "usuarioId": 1,
+    "tipo": "comentario",
+    "cuerpo": "Coincido, a mí me pasó lo mismo el cuatrimestre pasado.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-03 13:00:00"
+  },
+  {
+    "idContenido": 87,
+    "usuarioId": 11,
+    "tipo": "comentario",
+    "cuerpo": "A mí me tomaron algo muy parecido en el recuperatorio.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-04 14:00:00"
+  },
+  {
+    "idContenido": 88,
+    "usuarioId": 13,
+    "tipo": "comentario",
+    "cuerpo": "Perfecto, con esto me destrabó el ejercicio. Gracias.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-05 11:00:00"
+  },
+  {
+    "idContenido": 89,
+    "usuarioId": 3,
+    "tipo": "comentario",
+    "cuerpo": "Exacto, esa es la interpretación correcta según el apunte de cátedra.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-05 12:00:00"
+  },
+  {
+    "idContenido": 90,
+    "usuarioId": 12,
+    "tipo": "comentario",
+    "cuerpo": "Perfecto, con esto me destrabó el ejercicio. Gracias.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-05 13:00:00"
+  },
+  {
+    "idContenido": 91,
+    "usuarioId": 3,
+    "tipo": "comentario",
+    "cuerpo": "Gracias por compartir, debería estar fijado.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-06 14:00:00"
+  },
+  {
+    "idContenido": 92,
+    "usuarioId": 5,
+    "tipo": "comentario",
+    "cuerpo": "En la teórica lo explicaron distinto, pero el resultado es el mismo.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-07 11:00:00"
+  },
+  {
+    "idContenido": 93,
+    "usuarioId": 12,
+    "tipo": "comentario",
+    "cuerpo": "Buenísimo el aporte, justo lo estaba buscando.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-07 12:00:00"
+  },
+  {
+    "idContenido": 94,
+    "usuarioId": 2,
+    "tipo": "comentario",
+    "cuerpo": "En la teórica lo explicaron distinto, pero el resultado es el mismo.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-08 14:00:00"
+  },
+  {
+    "idContenido": 95,
+    "usuarioId": 6,
+    "tipo": "comentario",
+    "cuerpo": "Ojo que este año cambió la modalidad de evaluación, conviene confirmarlo con la cátedra.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-09 11:00:00"
+  },
+  {
+    "idContenido": 96,
+    "usuarioId": 12,
+    "tipo": "comentario",
+    "cuerpo": "Perfecto, con esto me destrabó el ejercicio. Gracias.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-09 12:00:00"
+  },
+  {
+    "idContenido": 97,
+    "usuarioId": 7,
+    "tipo": "comentario",
+    "cuerpo": "En la teórica lo explicaron distinto, pero el resultado es el mismo.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-09 13:00:00"
+  },
+  {
+    "idContenido": 98,
+    "usuarioId": 14,
+    "tipo": "comentario",
+    "cuerpo": "Si necesitan más ejemplos, la guía de trabajos prácticos tiene tres resueltos.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-11 11:00:00"
+  },
+  {
+    "idContenido": 99,
+    "usuarioId": 12,
+    "tipo": "comentario",
+    "cuerpo": "Yo lo resolví armando primero el esquema y después las consultas. Me resultó más ordenado.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-12 14:00:00"
+  },
+  {
+    "idContenido": 100,
+    "usuarioId": 8,
+    "tipo": "comentario",
+    "cuerpo": "Yo lo resolví armando primero el esquema y después las consultas. Me resultó más ordenado.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-13 11:00:00"
+  },
+  {
+    "idContenido": 101,
+    "usuarioId": 10,
+    "tipo": "comentario",
+    "cuerpo": "En la teórica lo explicaron distinto, pero el resultado es el mismo.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-14 14:00:00"
+  },
+  {
+    "idContenido": 102,
+    "usuarioId": 9,
+    "tipo": "comentario",
+    "cuerpo": "Yo lo resolví armando primero el esquema y después las consultas. Me resultó más ordenado.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-15 11:00:00"
+  },
+  {
+    "idContenido": 103,
+    "usuarioId": 10,
+    "tipo": "comentario",
+    "cuerpo": "A mí me tomaron algo muy parecido en el recuperatorio.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-15 12:00:00"
+  },
+  {
+    "idContenido": 104,
+    "usuarioId": 5,
+    "tipo": "comentario",
+    "cuerpo": "Buenísimo el aporte, justo lo estaba buscando.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-15 13:00:00"
+  },
+  {
+    "idContenido": 105,
+    "usuarioId": 9,
+    "tipo": "comentario",
+    "cuerpo": "Buenísimo el aporte, justo lo estaba buscando.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-16 14:00:00"
+  },
+  {
+    "idContenido": 106,
+    "usuarioId": 6,
+    "tipo": "comentario",
+    "cuerpo": "Sumo un detalle: el criterio cambia si el caso es el excepcional.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-17 11:00:00"
+  },
+  {
+    "idContenido": 107,
+    "usuarioId": 9,
+    "tipo": "comentario",
+    "cuerpo": "Gracias por compartir, debería estar fijado.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-17 12:00:00"
+  },
+  {
+    "idContenido": 108,
+    "usuarioId": 6,
+    "tipo": "comentario",
+    "cuerpo": "Exacto, esa es la interpretación correcta según el apunte de cátedra.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-17 13:00:00"
+  },
+  {
+    "idContenido": 109,
+    "usuarioId": 8,
+    "tipo": "comentario",
+    "cuerpo": "Yo lo resolví armando primero el esquema y después las consultas. Me resultó más ordenado.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-18 14:00:00"
+  },
+  {
+    "idContenido": 110,
+    "usuarioId": 7,
+    "tipo": "comentario",
+    "cuerpo": "Coincido, a mí me pasó lo mismo el cuatrimestre pasado.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-19 11:00:00"
+  },
+  {
+    "idContenido": 111,
+    "usuarioId": 12,
+    "tipo": "comentario",
+    "cuerpo": "Recomiendo repasar la unidad anterior antes, si no queda colgado.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-19 12:00:00"
+  },
+  {
+    "idContenido": 112,
+    "usuarioId": 1,
+    "tipo": "comentario",
+    "cuerpo": "Coincido, a mí me pasó lo mismo el cuatrimestre pasado.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-20 14:00:00"
+  },
+  {
+    "idContenido": 113,
+    "usuarioId": 7,
+    "tipo": "comentario",
+    "cuerpo": "Coincido, a mí me pasó lo mismo el cuatrimestre pasado.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-21 11:00:00"
+  },
+  {
+    "idContenido": 114,
+    "usuarioId": 12,
+    "tipo": "comentario",
+    "cuerpo": "Exacto, esa es la interpretación correcta según el apunte de cátedra.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-21 12:00:00"
+  },
+  {
+    "idContenido": 115,
+    "usuarioId": 6,
+    "tipo": "comentario",
+    "cuerpo": "Coincido, a mí me pasó lo mismo el cuatrimestre pasado.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-21 13:00:00"
+  },
+  {
+    "idContenido": 116,
+    "usuarioId": 6,
+    "tipo": "comentario",
+    "cuerpo": "Exacto, esa es la interpretación correcta según el apunte de cátedra.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-21 14:00:00"
+  },
+  {
+    "idContenido": 117,
+    "usuarioId": 4,
+    "tipo": "comentario",
+    "cuerpo": "Si necesitan más ejemplos, la guía de trabajos prácticos tiene tres resueltos.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-23 11:00:00"
+  },
+  {
+    "idContenido": 118,
+    "usuarioId": 10,
+    "tipo": "comentario",
+    "cuerpo": "A mí me tomaron algo muy parecido en el recuperatorio.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-23 12:00:00"
+  },
+  {
+    "idContenido": 119,
+    "usuarioId": 10,
+    "tipo": "comentario",
+    "cuerpo": "Ojo que este año cambió la modalidad de evaluación, conviene confirmarlo con la cátedra.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-24 14:00:00"
+  },
+  {
+    "idContenido": 120,
+    "usuarioId": 8,
+    "tipo": "comentario",
+    "cuerpo": "Exacto, esa es la interpretación correcta según el apunte de cátedra.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-25 11:00:00"
+  },
+  {
+    "idContenido": 121,
+    "usuarioId": 12,
+    "tipo": "comentario",
+    "cuerpo": "Ojo que este año cambió la modalidad de evaluación, conviene confirmarlo con la cátedra.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-25 12:00:00"
+  },
+  {
+    "idContenido": 122,
+    "usuarioId": 6,
+    "tipo": "comentario",
+    "cuerpo": "Buenísimo el aporte, justo lo estaba buscando.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-26 14:00:00"
+  },
+  {
+    "idContenido": 123,
+    "usuarioId": 3,
+    "tipo": "comentario",
+    "cuerpo": "Si necesitan más ejemplos, la guía de trabajos prácticos tiene tres resueltos.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-27 11:00:00"
+  },
+  {
+    "idContenido": 124,
+    "usuarioId": 1,
+    "tipo": "comentario",
+    "cuerpo": "Buenísimo el aporte, justo lo estaba buscando.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-27 12:00:00"
+  },
+  {
+    "idContenido": 125,
+    "usuarioId": 2,
+    "tipo": "comentario",
+    "cuerpo": "Yo lo resolví armando primero el esquema y después las consultas. Me resultó más ordenado.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-27 13:00:00"
+  },
+  {
+    "idContenido": 126,
+    "usuarioId": 7,
+    "tipo": "comentario",
+    "cuerpo": "Ojo que este año cambió la modalidad de evaluación, conviene confirmarlo con la cátedra.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-27 14:00:00"
+  },
+  {
+    "idContenido": 127,
+    "usuarioId": 14,
+    "tipo": "comentario",
+    "cuerpo": "Buenísimo el aporte, justo lo estaba buscando.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-28 14:00:00"
+  },
+  {
+    "idContenido": 128,
+    "usuarioId": 1,
+    "tipo": "comentario",
+    "cuerpo": "Buenísimo el aporte, justo lo estaba buscando.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-29 11:00:00"
+  },
+  {
+    "idContenido": 129,
+    "usuarioId": 2,
+    "tipo": "comentario",
+    "cuerpo": "Si necesitan más ejemplos, la guía de trabajos prácticos tiene tres resueltos.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-29 12:00:00"
+  },
+  {
+    "idContenido": 130,
+    "usuarioId": 4,
+    "tipo": "comentario",
+    "cuerpo": "Yo lo resolví armando primero el esquema y después las consultas. Me resultó más ordenado.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-29 13:00:00"
+  },
+  {
+    "idContenido": 131,
+    "usuarioId": 1,
+    "tipo": "comentario",
+    "cuerpo": "Perfecto, con esto me destrabó el ejercicio. Gracias.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-29 14:00:00"
+  },
+  {
+    "idContenido": 132,
+    "usuarioId": 13,
+    "tipo": "comentario",
+    "cuerpo": "Sumo un detalle: el criterio cambia si el caso es el excepcional.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-30 14:00:00"
+  },
+  {
+    "idContenido": 133,
+    "usuarioId": 4,
+    "tipo": "comentario",
+    "cuerpo": "Buenísimo el aporte, justo lo estaba buscando.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-01-31 11:00:00"
+  },
+  {
+    "idContenido": 134,
+    "usuarioId": 1,
+    "tipo": "comentario",
+    "cuerpo": "Recomiendo repasar la unidad anterior antes, si no queda colgado.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-02-01 14:00:00"
+  },
+  {
+    "idContenido": 135,
+    "usuarioId": 11,
+    "tipo": "comentario",
+    "cuerpo": "Perfecto, con esto me destrabó el ejercicio. Gracias.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-02-02 11:00:00"
+  },
+  {
+    "idContenido": 136,
+    "usuarioId": 1,
+    "tipo": "comentario",
+    "cuerpo": "Buenísimo el aporte, justo lo estaba buscando.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-02-02 12:00:00"
+  },
+  {
+    "idContenido": 137,
+    "usuarioId": 6,
+    "tipo": "comentario",
+    "cuerpo": "Buenísimo el aporte, justo lo estaba buscando.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-02-02 13:00:00"
+  },
+  {
+    "idContenido": 138,
+    "usuarioId": 9,
+    "tipo": "comentario",
+    "cuerpo": "Ojo que este año cambió la modalidad de evaluación, conviene confirmarlo con la cátedra.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-02-02 14:00:00"
+  },
+  {
+    "idContenido": 139,
+    "usuarioId": 5,
+    "tipo": "comentario",
+    "cuerpo": "A mí me tomaron algo muy parecido en el recuperatorio.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-02-04 11:00:00"
+  },
+  {
+    "idContenido": 140,
+    "usuarioId": 3,
+    "tipo": "comentario",
+    "cuerpo": "Recomiendo repasar la unidad anterior antes, si no queda colgado.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-02-05 14:00:00"
+  },
+  {
+    "idContenido": 141,
+    "usuarioId": 10,
+    "tipo": "comentario",
+    "cuerpo": "A mí me tomaron algo muy parecido en el recuperatorio.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-02-06 11:00:00"
+  },
+  {
+    "idContenido": 142,
+    "usuarioId": 10,
+    "tipo": "comentario",
+    "cuerpo": "Recomiendo repasar la unidad anterior antes, si no queda colgado.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-02-06 12:00:00"
+  },
+  {
+    "idContenido": 143,
+    "usuarioId": 7,
+    "tipo": "comentario",
+    "cuerpo": "Exacto, esa es la interpretación correcta según el apunte de cátedra.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-02-06 13:00:00"
+  },
+  {
+    "idContenido": 144,
+    "usuarioId": 13,
+    "tipo": "comentario",
+    "cuerpo": "Gracias por compartir, debería estar fijado.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-02-06 14:00:00"
+  },
+  {
+    "idContenido": 145,
+    "usuarioId": 13,
+    "tipo": "comentario",
+    "cuerpo": "Sumo un detalle: el criterio cambia si el caso es el excepcional.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-02-07 14:00:00"
+  },
+  {
+    "idContenido": 146,
+    "usuarioId": 1,
+    "tipo": "comentario",
+    "cuerpo": "Ojo que este año cambió la modalidad de evaluación, conviene confirmarlo con la cátedra.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-02-08 11:00:00"
+  },
+  {
+    "idContenido": 147,
+    "usuarioId": 3,
+    "tipo": "comentario",
+    "cuerpo": "Sumo un detalle: el criterio cambia si el caso es el excepcional.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-02-08 12:00:00"
+  },
+  {
+    "idContenido": 148,
+    "usuarioId": 1,
+    "tipo": "comentario",
+    "cuerpo": "Perfecto, con esto me destrabó el ejercicio. Gracias.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-02-08 13:00:00"
+  },
+  {
+    "idContenido": 149,
+    "usuarioId": 12,
+    "tipo": "comentario",
+    "cuerpo": "Recomiendo repasar la unidad anterior antes, si no queda colgado.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-02-08 14:00:00"
+  },
+  {
+    "idContenido": 150,
+    "usuarioId": 4,
+    "tipo": "comentario",
+    "cuerpo": "Exacto, esa es la interpretación correcta según el apunte de cátedra.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-02-09 14:00:00"
+  },
+  {
+    "idContenido": 151,
+    "usuarioId": 14,
+    "tipo": "comentario",
+    "cuerpo": "Buenísimo el aporte, justo lo estaba buscando.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-02-10 11:00:00"
+  },
+  {
+    "idContenido": 152,
+    "usuarioId": 9,
+    "tipo": "comentario",
+    "cuerpo": "Ojo que este año cambió la modalidad de evaluación, conviene confirmarlo con la cátedra.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-02-10 12:00:00"
+  },
+  {
+    "idContenido": 153,
+    "usuarioId": 13,
+    "tipo": "comentario",
+    "cuerpo": "Exacto, esa es la interpretación correcta según el apunte de cátedra.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-02-11 14:00:00"
+  },
+  {
+    "idContenido": 154,
+    "usuarioId": 10,
+    "tipo": "comentario",
+    "cuerpo": "Coincido, a mí me pasó lo mismo el cuatrimestre pasado.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-02-12 11:00:00"
+  },
+  {
+    "idContenido": 155,
+    "usuarioId": 4,
+    "tipo": "comentario",
+    "cuerpo": "Sumo un detalle: el criterio cambia si el caso es el excepcional.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-02-12 12:00:00"
+  },
+  {
+    "idContenido": 156,
+    "usuarioId": 10,
+    "tipo": "comentario",
+    "cuerpo": "En la teórica lo explicaron distinto, pero el resultado es el mismo.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-02-14 11:00:00"
+  },
+  {
+    "idContenido": 157,
+    "usuarioId": 5,
+    "tipo": "comentario",
+    "cuerpo": "En la teórica lo explicaron distinto, pero el resultado es el mismo.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-02-14 12:00:00"
+  },
+  {
+    "idContenido": 158,
+    "usuarioId": 1,
+    "tipo": "comentario",
+    "cuerpo": "Si necesitan más ejemplos, la guía de trabajos prácticos tiene tres resueltos.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-02-15 14:00:00"
+  },
+  {
+    "idContenido": 159,
+    "usuarioId": 5,
+    "tipo": "comentario",
+    "cuerpo": "Perfecto, con esto me destrabó el ejercicio. Gracias.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-02-16 11:00:00"
+  },
+  {
+    "idContenido": 160,
+    "usuarioId": 9,
+    "tipo": "comentario",
+    "cuerpo": "A mí me tomaron algo muy parecido en el recuperatorio.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-02-16 12:00:00"
+  },
+  {
+    "idContenido": 161,
+    "usuarioId": 13,
+    "tipo": "comentario",
+    "cuerpo": "Coincido, a mí me pasó lo mismo el cuatrimestre pasado.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-02-16 13:00:00"
+  },
+  {
+    "idContenido": 162,
+    "usuarioId": 10,
+    "tipo": "comentario",
+    "cuerpo": "Recomiendo repasar la unidad anterior antes, si no queda colgado.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-02-16 14:00:00"
+  },
+  {
+    "idContenido": 163,
+    "usuarioId": 14,
+    "tipo": "comentario",
+    "cuerpo": "Ojo que este año cambió la modalidad de evaluación, conviene confirmarlo con la cátedra.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-02-17 14:00:00"
+  },
+  {
+    "idContenido": 164,
+    "usuarioId": 13,
+    "tipo": "comentario",
+    "cuerpo": "Si necesitan más ejemplos, la guía de trabajos prácticos tiene tres resueltos.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-02-18 11:00:00"
+  },
+  {
+    "idContenido": 165,
+    "usuarioId": 14,
+    "tipo": "comentario",
+    "cuerpo": "Ojo que este año cambió la modalidad de evaluación, conviene confirmarlo con la cátedra.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-02-18 12:00:00"
+  },
+  {
+    "idContenido": 166,
+    "usuarioId": 13,
+    "tipo": "comentario",
+    "cuerpo": "Buenísimo el aporte, justo lo estaba buscando.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-02-20 11:00:00"
+  },
+  {
+    "idContenido": 167,
+    "usuarioId": 14,
+    "tipo": "comentario",
+    "cuerpo": "Exacto, esa es la interpretación correcta según el apunte de cátedra.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-02-20 12:00:00"
+  },
+  {
+    "idContenido": 168,
+    "usuarioId": 1,
+    "tipo": "comentario",
+    "cuerpo": "Yo lo resolví armando primero el esquema y después las consultas. Me resultó más ordenado.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-02-22 11:00:00"
+  },
+  {
+    "idContenido": 169,
+    "usuarioId": 10,
+    "tipo": "comentario",
+    "cuerpo": "Coincido, a mí me pasó lo mismo el cuatrimestre pasado.",
+    "estado": "publicado",
+    "fechaCreacion": "2026-02-23 14:00:00"
+  }
+]

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Buscá publicaciones por texto y filtrá por carrera, materia y categoría.">
+  <meta name="theme-color" content="#14294a">
+  <title>Explorar publicaciones · FacuLeaks</title>
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body data-pagina="buscar" data-nav="buscar">
+
+  <a class="fl-saltar" href="#contenido-principal">Saltar al contenido principal</a>
+
+  <header data-componente="encabezado"></header>
+
+  <main id="contenido-principal" class="fl-principal">
+
+    <div class="fl-contenedor">
+      <nav data-componente="migas"></nav>
+
+      <h1>Explorar publicaciones</h1>
+
+      <div class="fl-disposicion fl-disposicion--lateral-izq">
+
+        <aside class="fl-barra-lateral" aria-label="Filtros de búsqueda">
+          <form class="fl-tarjeta fl-panel-lateral" id="form-busqueda" role="search" novalidate>
+            <div class="fl-campo">
+              <label for="busqueda-texto">Buscar</label>
+              <div class="fl-buscador">
+                <input class="fl-entrada" type="search" id="busqueda-texto"
+                       placeholder="Palabra clave" autocomplete="off">
+                <button class="fl-boton" type="submit">Ir</button>
+              </div>
+            </div>
+
+            <div class="fl-campo">
+              <label for="filtro-carrera">Carrera</label>
+              <select class="fl-select" id="filtro-carrera">
+                <option value="">Todas las carreras</option>
+              </select>
+            </div>
+
+            <div class="fl-campo">
+              <label for="filtro-materia">Materia</label>
+              <select class="fl-select" id="filtro-materia" disabled>
+                <option value="">Todas las materias</option>
+              </select>
+            </div>
+
+            <div class="fl-campo">
+              <label for="filtro-categoria">Categoría</label>
+              <select class="fl-select" id="filtro-categoria">
+                <option value="">Todas las categorías</option>
+              </select>
+            </div>
+
+            <div class="fl-campo">
+              <label for="filtro-orden">Ordenar por</label>
+              <select class="fl-select" id="filtro-orden">
+                <option value="recientes">Más recientes</option>
+                <option value="populares">Más votadas</option>
+                <option value="comentadas">Más comentadas</option>
+                <option value="vistas">Más vistas</option>
+                <option value="antiguas">Más antiguas</option>
+              </select>
+            </div>
+
+            <button class="fl-boton fl-boton--secundario fl-boton--bloque" type="button"
+                    id="limpiar-filtros">Limpiar filtros</button>
+          </form>
+        </aside>
+
+        <div class="fl-columna-principal">
+          <div class="fl-seccion__cabecera">
+            <p class="fl-suave fl-mb0" id="resumen-busqueda" aria-live="polite">Cargando…</p>
+          </div>
+
+          <div class="fl-chips fl-seccion" id="filtros-activos"></div>
+
+          <div class="fl-cuadricula" id="resultados-busqueda"></div>
+          <div id="paginacion-busqueda"></div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer data-componente="pie"></footer>
+
+  <script src="assets/js/data/dataset.js"></script>
+  <script src="assets/js/utils/dom.js"></script>
+  <script src="assets/js/utils/formato.js"></script>
+  <script src="assets/js/utils/almacenamiento.js"></script>
+  <script src="assets/js/utils/validacion.js"></script>
+  <script src="assets/js/services/repositorio.js"></script>
+  <script src="assets/js/services/sesionService.js"></script>
+  <script src="assets/js/services/carrerasService.js"></script>
+  <script src="assets/js/services/publicacionesService.js"></script>
+  <script src="assets/js/services/comentariosService.js"></script>
+  <script src="assets/js/services/interaccionesService.js"></script>
+  <script src="assets/js/services/usuariosService.js"></script>
+  <script src="assets/js/components/avisos.js"></script>
+  <script src="assets/js/components/modal.js"></script>
+  <script src="assets/js/components/encabezado.js"></script>
+  <script src="assets/js/components/pie.js"></script>
+  <script src="assets/js/components/migas.js"></script>
+  <script src="assets/js/components/tarjetaPublicacion.js"></script>
+  <script src="assets/js/components/tarjetaCarrera.js"></script>
+  <script src="assets/js/components/paginacion.js"></script>
+  <script src="assets/js/pages/buscar.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

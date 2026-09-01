@@ -1,0 +1,303 @@
+[
+  {
+    "idMateria": 1,
+    "codigo": "SIS-101",
+    "nombre": "Algoritmos y Estructuras de Datos",
+    "descripcion": "Resolución algorítmica, complejidad y estructuras fundamentales.",
+    "activa": true
+  },
+  {
+    "idMateria": 2,
+    "codigo": "SIS-102",
+    "nombre": "Arquitectura de Computadoras",
+    "descripcion": "Organización del computador, memoria y conjunto de instrucciones.",
+    "activa": true
+  },
+  {
+    "idMateria": 3,
+    "codigo": "SIS-103",
+    "nombre": "Análisis Matemático I",
+    "descripcion": "Límites, derivadas e integrales de una variable.",
+    "activa": true
+  },
+  {
+    "idMateria": 4,
+    "codigo": "SIS-104",
+    "nombre": "Álgebra y Geometría Analítica",
+    "descripcion": "Matrices, sistemas lineales, vectores y conicas.",
+    "activa": true
+  },
+  {
+    "idMateria": 5,
+    "codigo": "SIS-201",
+    "nombre": "Programación Orientada a Objetos",
+    "descripcion": "Abstracción, encapsulamiento, herencia y polimorfismo.",
+    "activa": true
+  },
+  {
+    "idMateria": 6,
+    "codigo": "SIS-202",
+    "nombre": "Bases de Datos",
+    "descripcion": "Modelo relacional, normalización, SQL y transacciones.",
+    "activa": true
+  },
+  {
+    "idMateria": 7,
+    "codigo": "SIS-203",
+    "nombre": "Sistemas Operativos",
+    "descripcion": "Procesos, concurrencia, memoria y sistemas de archivos.",
+    "activa": true
+  },
+  {
+    "idMateria": 8,
+    "codigo": "SIS-204",
+    "nombre": "Análisis de Sistemas",
+    "descripcion": "Relevamiento, requerimientos y modelado UML.",
+    "activa": true
+  },
+  {
+    "idMateria": 9,
+    "codigo": "SIS-301",
+    "nombre": "Paradigmas de la Programación",
+    "descripcion": "Paradigmas imperativo, funcional, lógico y orientado a objetos.",
+    "activa": true
+  },
+  {
+    "idMateria": 10,
+    "codigo": "SIS-302",
+    "nombre": "Redes de Datos",
+    "descripcion": "Modelo OSI/TCP-IP, ruteo y servicios de red.",
+    "activa": true
+  },
+  {
+    "idMateria": 11,
+    "codigo": "SIS-303",
+    "nombre": "Ingeniería de Software",
+    "descripcion": "Ciclo de vida, metodologías, calidad y gestión de proyectos.",
+    "activa": true
+  },
+  {
+    "idMateria": 12,
+    "codigo": "SIS-304",
+    "nombre": "Desarrollo Web",
+    "descripcion": "HTML, CSS, JavaScript, arquitectura cliente-servidor.",
+    "activa": true
+  },
+  {
+    "idMateria": 13,
+    "codigo": "SIS-401",
+    "nombre": "Inteligencia Artificial",
+    "descripcion": "Búsqueda, representación del conocimiento y aprendizaje automático.",
+    "activa": true
+  },
+  {
+    "idMateria": 14,
+    "codigo": "SIS-402",
+    "nombre": "Gestión de Proyectos Informaticos",
+    "descripcion": "Alcance, cronograma, riesgos y costos de proyectos de TI.",
+    "activa": true
+  },
+  {
+    "idMateria": 15,
+    "codigo": "CON-101",
+    "nombre": "Contabilidad Básica",
+    "descripcion": "Patrimonio, ecuación contable y registración.",
+    "activa": true
+  },
+  {
+    "idMateria": 16,
+    "codigo": "CON-102",
+    "nombre": "Derecho Privado",
+    "descripcion": "Personas, obligaciones y contratos.",
+    "activa": true
+  },
+  {
+    "idMateria": 17,
+    "codigo": "CON-201",
+    "nombre": "Contabilidad Intermedia",
+    "descripcion": "Valuación, exposición y estados contables.",
+    "activa": true
+  },
+  {
+    "idMateria": 18,
+    "codigo": "CON-202",
+    "nombre": "Impuestos I",
+    "descripcion": "Sistema tributario argentino, IVA y ganancias.",
+    "activa": true
+  },
+  {
+    "idMateria": 19,
+    "codigo": "CON-301",
+    "nombre": "Auditoría",
+    "descripcion": "Normas de auditoría, evidencia e informe del auditor.",
+    "activa": true
+  },
+  {
+    "idMateria": 20,
+    "codigo": "CON-302",
+    "nombre": "Costos y Gestión",
+    "descripcion": "Sistemas de costeo y toma de decisiones.",
+    "activa": true
+  },
+  {
+    "idMateria": 21,
+    "codigo": "ABO-101",
+    "nombre": "Introducción al Derecho",
+    "descripcion": "Teoría general del derecho y fuentes normativas.",
+    "activa": true
+  },
+  {
+    "idMateria": 22,
+    "codigo": "ABO-201",
+    "nombre": "Derecho Constitucional",
+    "descripcion": "Poder constituyente, derechos y garantías.",
+    "activa": true
+  },
+  {
+    "idMateria": 23,
+    "codigo": "ABO-301",
+    "nombre": "Derecho Penal I",
+    "descripcion": "Teoría del delito y parte general.",
+    "activa": true
+  },
+  {
+    "idMateria": 24,
+    "codigo": "PSI-101",
+    "nombre": "Psicología General",
+    "descripcion": "Procesos basicos: percepción, memoria, aprendizaje.",
+    "activa": true
+  },
+  {
+    "idMateria": 25,
+    "codigo": "PSI-201",
+    "nombre": "Psicología del Desarrollo",
+    "descripcion": "Desarrollo psíquico a lo largo del ciclo vital.",
+    "activa": true
+  },
+  {
+    "idMateria": 26,
+    "codigo": "PSI-301",
+    "nombre": "Psicopatología",
+    "descripcion": "Clasificación y abordaje de los cuadros psicopatológicos.",
+    "activa": true
+  },
+  {
+    "idMateria": 27,
+    "codigo": "DGM-101",
+    "nombre": "Taller de Diseño I",
+    "descripcion": "Fundamentos del lenguaje visual y composición.",
+    "activa": true
+  },
+  {
+    "idMateria": 28,
+    "codigo": "DGM-201",
+    "nombre": "Tipografía",
+    "descripcion": "Anatomía tipográfica, familias y diagramación.",
+    "activa": true
+  },
+  {
+    "idMateria": 29,
+    "codigo": "DGM-301",
+    "nombre": "Diseño Multimedia",
+    "descripcion": "Diseño de interfaces, animación y producción audiovisual.",
+    "activa": true
+  },
+  {
+    "idMateria": 30,
+    "codigo": "CRI-101",
+    "nombre": "Introducción a la Criminalística",
+    "descripcion": "Escena del crimen, indicios y cadena de custodia.",
+    "activa": true
+  },
+  {
+    "idMateria": 31,
+    "codigo": "CRI-201",
+    "nombre": "Balística Forense",
+    "descripcion": "Armas, proyectiles y pericias balísticas.",
+    "activa": true
+  },
+  {
+    "idMateria": 32,
+    "codigo": "FON-101",
+    "nombre": "Anatomofisiología de la Comunicación",
+    "descripcion": "Bases anatómicas del habla, voz y audición.",
+    "activa": true
+  },
+  {
+    "idMateria": 33,
+    "codigo": "FON-201",
+    "nombre": "Audiología",
+    "descripcion": "Evaluación audiológica y rehabilitación auditiva.",
+    "activa": true
+  },
+  {
+    "idMateria": 34,
+    "codigo": "PSP-101",
+    "nombre": "Aprendizaje y Cognición",
+    "descripcion": "Teorias del aprendizaje y procesos cognitivos.",
+    "activa": true
+  },
+  {
+    "idMateria": 35,
+    "codigo": "PSP-201",
+    "nombre": "Diagnóstico Psicopedagógico",
+    "descripcion": "Instrumentos y proceso diagnóstico.",
+    "activa": true
+  },
+  {
+    "idMateria": 36,
+    "codigo": "NUT-101",
+    "nombre": "Bromatología",
+    "descripcion": "Higiene, conservación y seguridad alimentaria.",
+    "activa": true
+  },
+  {
+    "idMateria": 37,
+    "codigo": "NUT-201",
+    "nombre": "Nutrición Clínica",
+    "descripcion": "Dietoterapia y abordaje nutricional del paciente.",
+    "activa": true
+  },
+  {
+    "idMateria": 38,
+    "codigo": "ALI-101",
+    "nombre": "Química General",
+    "descripcion": "Estructura de la materia, estequiometría y soluciones.",
+    "activa": true
+  },
+  {
+    "idMateria": 39,
+    "codigo": "ALI-201",
+    "nombre": "Operaciones Unitarias",
+    "descripcion": "Transferencia de calor, masa y cantidad de movimiento.",
+    "activa": true
+  },
+  {
+    "idMateria": 40,
+    "codigo": "ALI-301",
+    "nombre": "Control de Calidad de Alimentos",
+    "descripcion": "Normas, muestreo y ensayos de calidad.",
+    "activa": true
+  },
+  {
+    "idMateria": 41,
+    "codigo": "GEN-101",
+    "nombre": "Inglés Técnico",
+    "descripcion": "Comprensión lectora de textos técnicos en inglés.",
+    "activa": true
+  },
+  {
+    "idMateria": 42,
+    "codigo": "GEN-102",
+    "nombre": "Metodología de la Investigación",
+    "descripcion": "Diseño de investigación, hipótesis y técnicas de recolección.",
+    "activa": true
+  },
+  {
+    "idMateria": 43,
+    "codigo": "GEN-103",
+    "nombre": "Estadística",
+    "descripcion": "Estadística descriptiva, probabilidad e inferencia.",
+    "activa": true
+  }
+]

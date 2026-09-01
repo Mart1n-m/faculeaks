@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Detalle de la publicación, con comentarios, respuestas anidadas, votación y adjuntos.">
+  <meta name="theme-color" content="#14294a">
+  <title>Publicación · FacuLeaks</title>
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body data-pagina="publicacion" data-nav="buscar">
+
+  <a class="fl-saltar" href="#contenido-principal">Saltar al contenido principal</a>
+
+  <header data-componente="encabezado"></header>
+
+  <main id="contenido-principal" class="fl-principal">
+
+    <div class="fl-contenedor" id="contenido-publicacion">
+      <nav data-componente="migas"></nav>
+
+      <div class="fl-disposicion fl-disposicion--con-lateral">
+
+        <div class="fl-columna-principal">
+          <article class="fl-tarjeta fl-seccion">
+            <div class="fl-detalle-publicacion">
+              <div id="votos-publicacion"></div>
+
+              <div>
+                <div class="fl-publicacion__meta" id="meta-publicacion"></div>
+                <h1 id="titulo-publicacion">Cargando…</h1>
+                <div class="fl-autor-publicacion fl-seccion" id="autor-publicacion"></div>
+                <div class="fl-contenido-publicacion" id="cuerpo-publicacion"></div>
+
+                <section id="seccion-adjuntos" class="fl-seccion fl-seccion--separada" hidden
+                         aria-labelledby="titulo-adjuntos">
+                  <h2 id="titulo-adjuntos">Archivos adjuntos</h2>
+                  <ul class="fl-adjuntos" id="adjuntos-publicacion"></ul>
+                </section>
+
+                <div class="fl-acciones-fila" id="acciones-publicacion"></div>
+              </div>
+            </div>
+          </article>
+
+          <section class="fl-seccion" aria-labelledby="titulo-comentarios">
+            <div class="fl-seccion__cabecera">
+              <h2 id="titulo-comentarios">Comentarios</h2>
+              <p class="fl-suave fl-mb0" id="contador-comentarios"></p>
+            </div>
+
+            <div class="fl-tarjeta fl-seccion" id="form-comentario-host"></div>
+
+            <div class="fl-comentarios" id="lista-comentarios"></div>
+          </section>
+        </div>
+
+        <aside class="fl-barra-lateral" aria-label="Normas de la comunidad">
+          <div class="fl-tarjeta fl-panel-lateral">
+            <h3 class="fl-tarjeta__titulo">Normas de la comunidad</h3>
+            <ul class="fl-suave">
+              <li>Compartí material propio o de acceso libre.</li>
+              <li>Citá la cátedra y el año cuando corresponda.</li>
+              <li>Criticá la propuesta académica, no a las personas.</li>
+              <li>Usá el botón «Reportar» ante contenido inadecuado.</li>
+            </ul>
+            <a class="fl-boton fl-boton--secundario fl-boton--bloque" href="buscar.html">
+              Explorar más publicaciones
+            </a>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </main>
+
+  <footer data-componente="pie"></footer>
+
+  <script src="assets/js/data/dataset.js"></script>
+  <script src="assets/js/utils/dom.js"></script>
+  <script src="assets/js/utils/formato.js"></script>
+  <script src="assets/js/utils/almacenamiento.js"></script>
+  <script src="assets/js/utils/validacion.js"></script>
+  <script src="assets/js/services/repositorio.js"></script>
+  <script src="assets/js/services/sesionService.js"></script>
+  <script src="assets/js/services/carrerasService.js"></script>
+  <script src="assets/js/services/publicacionesService.js"></script>
+  <script src="assets/js/services/comentariosService.js"></script>
+  <script src="assets/js/services/interaccionesService.js"></script>
+  <script src="assets/js/services/usuariosService.js"></script>
+  <script src="assets/js/components/avisos.js"></script>
+  <script src="assets/js/components/modal.js"></script>
+  <script src="assets/js/components/encabezado.js"></script>
+  <script src="assets/js/components/pie.js"></script>
+  <script src="assets/js/components/migas.js"></script>
+  <script src="assets/js/components/tarjetaPublicacion.js"></script>
+  <script src="assets/js/components/tarjetaCarrera.js"></script>
+  <script src="assets/js/components/paginacion.js"></script>
+  <script src="assets/js/pages/publicacion.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

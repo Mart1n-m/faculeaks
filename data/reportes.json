@@ -1,0 +1,58 @@
+[
+  {
+    "usuarioId": 6,
+    "contenidoId": 26,
+    "motivo": "duplicado",
+    "descripcion": "Ya existe una publicación con el mismo contenido en la sección de ayuda.",
+    "estado": "pendiente",
+    "fechaReporte": "2026-02-10 09:00:00"
+  },
+  {
+    "usuarioId": 7,
+    "contenidoId": 45,
+    "motivo": "contenido_inapropiado",
+    "descripcion": "El comentario descalifica a un docente sin argumentos.",
+    "estado": "pendiente",
+    "fechaReporte": "2026-02-12 09:00:00"
+  },
+  {
+    "usuarioId": 4,
+    "contenidoId": 15,
+    "motivo": "informacion_incorrecta",
+    "descripcion": "La modalidad de evaluación que se indica no es la vigente.",
+    "estado": "en_revision",
+    "fechaReporte": "2026-02-15 09:00:00"
+  },
+  {
+    "usuarioId": 5,
+    "contenidoId": 52,
+    "motivo": "spam",
+    "descripcion": "Publica un enlace comercial sin relación con la materia.",
+    "estado": "resuelto",
+    "fechaReporte": "2026-02-18 09:00:00"
+  },
+  {
+    "usuarioId": 8,
+    "contenidoId": 9,
+    "motivo": "material_con_derechos",
+    "descripcion": "Podría estar compartiendo material protegido de la editorial.",
+    "estado": "pendiente",
+    "fechaReporte": "2026-02-21 09:00:00"
+  },
+  {
+    "usuarioId": 9,
+    "contenidoId": 60,
+    "motivo": "contenido_inapropiado",
+    "descripcion": "Trato descortés hacia otro estudiante.",
+    "estado": "rechazado",
+    "fechaReporte": "2026-02-24 09:00:00"
+  },
+  {
+    "usuarioId": 10,
+    "contenidoId": 33,
+    "motivo": "spam",
+    "descripcion": "Repite el mismo texto en varias materias.",
+    "estado": "pendiente",
+    "fechaReporte": "2026-02-27 09:00:00"
+  }
+]

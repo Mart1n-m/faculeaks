@@ -1,0 +1,106 @@
+[
+  {
+    "idCarrera": 1,
+    "nombre": "Licenciatura en Diseño Gráfico y Multimedia",
+    "slug": "licenciatura-en-diseno-grafico-y-multimedia",
+    "descripcion": "Formación en comunicación visual, diseño editorial, audiovisual e interactivo.",
+    "duracionAnios": 4,
+    "activa": true
+  },
+  {
+    "idCarrera": 2,
+    "nombre": "Contador Público",
+    "slug": "contador-publico",
+    "descripcion": "Formación contable, impositiva y de auditoría para organizaciones públicas y privadas.",
+    "duracionAnios": 5,
+    "activa": true
+  },
+  {
+    "idCarrera": 3,
+    "nombre": "Ingeniería en Sistemas de Información",
+    "slug": "ingenieria-en-sistemas-de-informacion",
+    "descripcion": "Análisis, diseño, desarrollo e implantación de sistemas de información en las organizaciones.",
+    "duracionAnios": 5,
+    "activa": true
+  },
+  {
+    "idCarrera": 4,
+    "nombre": "Abogacía",
+    "slug": "abogacia",
+    "descripcion": "Formación jurídica integral en derecho público y privado.",
+    "duracionAnios": 5,
+    "activa": true
+  },
+  {
+    "idCarrera": 5,
+    "nombre": "Licenciatura en Criminalística",
+    "slug": "licenciatura-en-criminalistica",
+    "descripcion": "Investigación científica del delito, pericias y ciencias forenses.",
+    "duracionAnios": 4,
+    "activa": true
+  },
+  {
+    "idCarrera": 6,
+    "nombre": "Licenciatura en Psicología",
+    "slug": "licenciatura-en-psicologia",
+    "descripcion": "Estudio de los procesos psíquicos y de la conducta humana en sus distintos ámbitos.",
+    "duracionAnios": 5,
+    "activa": true
+  },
+  {
+    "idCarrera": 7,
+    "nombre": "Licenciatura en Fonoaudiología",
+    "slug": "licenciatura-en-fonoaudiologia",
+    "descripcion": "Prevención, diagnóstico y tratamiento de la comunicación humana.",
+    "duracionAnios": 5,
+    "activa": true
+  },
+  {
+    "idCarrera": 8,
+    "nombre": "Licenciatura en Psicopedagogía",
+    "slug": "licenciatura-en-psicopedagogia",
+    "descripcion": "Abordaje de los procesos de aprendizaje en contextos educativos y clínicos.",
+    "duracionAnios": 4,
+    "activa": true
+  },
+  {
+    "idCarrera": 9,
+    "nombre": "Licenciatura en Nutrición",
+    "slug": "licenciatura-en-nutricion",
+    "descripcion": "Alimentación humana, nutrición clínica y salud pública.",
+    "duracionAnios": 5,
+    "activa": true
+  },
+  {
+    "idCarrera": 10,
+    "nombre": "Analista Universitario en Sistemas de Información",
+    "slug": "analista-universitario-en-sistemas-de-informacion",
+    "descripcion": "Ciclo corto orientado al análisis y desarrollo de software.",
+    "duracionAnios": 3,
+    "activa": true
+  },
+  {
+    "idCarrera": 11,
+    "nombre": "Analista Universitario Contable",
+    "slug": "analista-universitario-contable",
+    "descripcion": "Ciclo corto orientado a la gestión contable y administrativa.",
+    "duracionAnios": 3,
+    "activa": true
+  },
+  {
+    "idCarrera": 12,
+    "nombre": "Ingeniería en Alimentos",
+    "slug": "ingenieria-en-alimentos",
+    "descripcion": "Procesos, calidad e industrialización de productos alimenticios.",
+    "duracionAnios": 5,
+    "activa": true
+  },
+  {
+    "idCarrera": 13,
+    "nombre": "Analista Universitario en Alimentos",
+    "slug": "analista-universitario-en-alimentos",
+    "descripcion": "Ciclo corto orientado al control de calidad y procesos alimentarios.",
+    "duracionAnios": 3,
+    "activa": true
+  }
+]

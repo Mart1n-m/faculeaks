@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Panel de moderación: cola de reportes de publicaciones y comentarios.">
+  <meta name="theme-color" content="#14294a">
+  <title>Moderación · FacuLeaks</title>
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body data-pagina="moderacion" data-nav="moderacion">
+
+  <a class="fl-saltar" href="#contenido-principal">Saltar al contenido principal</a>
+
+  <header data-componente="encabezado"></header>
+
+  <main id="contenido-principal" class="fl-principal">
+
+    <div class="fl-contenedor" id="contenido-moderacion">
+      <nav data-componente="migas"></nav>
+
+      <h1>Panel de moderación</h1>
+      <p class="fl-suave">
+        Cola de reportes enviados por la comunidad. Cada reporte apunta a una
+        publicación o a un comentario, nunca a ambos.
+      </p>
+
+      <div class="fl-estadisticas fl-seccion" id="resumen-moderacion"></div>
+
+      <div class="fl-tarjeta fl-seccion">
+        <fieldset class="fl-filtros__grupo">
+          <legend class="fl-etiqueta">Filtrar por estado</legend>
+          <div class="fl-chips">
+            <button class="fl-chip" type="button" data-estado="pendiente" aria-pressed="false">Pendientes</button>
+            <button class="fl-chip" type="button" data-estado="en_revision" aria-pressed="false">En revisión</button>
+            <button class="fl-chip" type="button" data-estado="resuelto" aria-pressed="false">Resueltos</button>
+            <button class="fl-chip" type="button" data-estado="rechazado" aria-pressed="false">Rechazados</button>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="fl-tabla-contenedor">
+        <table class="fl-tabla" id="tabla-reportes">
+          <caption>Reportes recibidos, del más reciente al más antiguo.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Reporte</th>
+              <th scope="col">Tipo</th>
+              <th scope="col">Contenido reportado</th>
+              <th scope="col">Motivo</th>
+              <th scope="col">Reportado por</th>
+              <th scope="col">Estado</th>
+              <th scope="col">Acciones</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <footer data-componente="pie"></footer>
+
+  <script src="assets/js/data/dataset.js"></script>
+  <script src="assets/js/utils/dom.js"></script>
+  <script src="assets/js/utils/formato.js"></script>
+  <script src="assets/js/utils/almacenamiento.js"></script>
+  <script src="assets/js/utils/validacion.js"></script>
+  <script src="assets/js/services/repositorio.js"></script>
+  <script src="assets/js/services/sesionService.js"></script>
+  <script src="assets/js/services/carrerasService.js"></script>
+  <script src="assets/js/services/publicacionesService.js"></script>
+  <script src="assets/js/services/comentariosService.js"></script>
+  <script src="assets/js/services/interaccionesService.js"></script>
+  <script src="assets/js/services/usuariosService.js"></script>
+  <script src="assets/js/components/avisos.js"></script>
+  <script src="assets/js/components/modal.js"></script>
+  <script src="assets/js/components/encabezado.js"></script>
+  <script src="assets/js/components/pie.js"></script>
+  <script src="assets/js/components/migas.js"></script>
+  <script src="assets/js/components/tarjetaPublicacion.js"></script>
+  <script src="assets/js/components/tarjetaCarrera.js"></script>
+  <script src="assets/js/components/paginacion.js"></script>
+  <script src="assets/js/pages/moderacion.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,565 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap">
+<title>FacuLeaks · DER en notación de Chen</title>
+<style>
+  /* ===================================================================
+     Registro visual: lámina de dibujo técnico.
+     Papel frío sesgado hacia el azul del proyecto, tinta azul para las
+     entidades, ámbar para las relaciones (único acento fuerte), y la
+     superfamilia IBM Plex en sus tres cortes: Sans para títulos, Serif
+     para prosa, Mono para todo lo que es notación.
+     =================================================================== */
+  :root {
+    --papel:      #e9edf4;
+    --lamina:     #ffffff;
+    --lamina-alt: #f4f6fa;
+    --tinta:      #0f1d33;
+    --tinta-tenue:#5b6b84;
+    --azul:       #1c3763;
+    --azul-suave: #c9d8ef;
+    --ambar:      #a8560a;
+    --ambar-suave:#fbeacd;
+    --regla:      #c3ccdb;
+    --regla-fina: #dce2ec;
+    --foco:       #1d4ed8;
+
+    --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --serif: "IBM Plex Serif", Georgia, "Times New Roman", serif;
+    --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+
+    --paso: clamp(1rem, 2.5vw, 1.75rem);
+    --ancho: 1280px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --papel:      #0b1322;
+      --lamina:     #101c30;
+      --lamina-alt: #16243c;
+      --tinta:      #e8eef8;
+      --tinta-tenue:#9aabc5;
+      --azul:       #8fb2ec;
+      --azul-suave: #24395e;
+      --ambar:      #f0ad4e;
+      --ambar-suave:#3a2a11;
+      --regla:      #2c3f5f;
+      --regla-fina: #1e2e49;
+      --foco:       #93b8ff;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --papel:      #0b1322;
+    --lamina:     #101c30;
+    --lamina-alt: #16243c;
+    --tinta:      #e8eef8;
+    --tinta-tenue:#9aabc5;
+    --azul:       #8fb2ec;
+    --azul-suave: #24395e;
+    --ambar:      #f0ad4e;
+    --ambar-suave:#3a2a11;
+    --regla:      #2c3f5f;
+    --regla-fina: #1e2e49;
+    --foco:       #93b8ff;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--papel);
+    color: var(--tinta);
+    font-family: var(--serif);
+    font-size: 1rem;
+    line-height: 1.65;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  .fl-oculto {
+    position: absolute; width: 1px; height: 1px;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+  }
+
+  :focus-visible { outline: 3px solid var(--foco); outline-offset: 3px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  .envoltura {
+    max-width: var(--ancho);
+    margin-inline: auto;
+    padding: clamp(2rem, 5vw, 4rem) var(--paso) 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(2rem, 4vw, 3.5rem);
+  }
+
+  /* --- Encabezado ---------------------------------------------------- */
+  .portada { display: grid; gap: 1rem; }
+
+  .portada__eyebrow {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ambar);
+  }
+
+  h1 {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: clamp(1.9rem, 5vw, 2.9rem);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .portada p { margin: 0; max-width: 66ch; color: var(--tinta-tenue); }
+
+  .cinta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.75rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--regla);
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--tinta-tenue);
+  }
+  .cinta b { color: var(--tinta); font-weight: 600; }
+
+  /* --- Lámina -------------------------------------------------------- */
+  .lamina {
+    background: var(--lamina);
+    border: 1px solid var(--regla);
+    border-radius: 2px;
+    box-shadow: 0 1px 2px rgba(15, 29, 51, 0.06);
+  }
+
+  .lamina__cab {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding: 1.1rem var(--paso);
+    border-bottom: 1px solid var(--regla);
+    background: var(--lamina-alt);
+  }
+  .lamina__num {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ambar);
+  }
+  .lamina__cab h2 {
+    font-family: var(--sans);
+    font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 0.15rem 0 0;
+    flex: 1 1 20ch;
+  }
+  .lamina__nota {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--tinta-tenue);
+  }
+
+  .lamina__cuerpo { padding: var(--paso); }
+  .lamina__cuerpo > p { max-width: 68ch; }
+  .lamina__cuerpo > p:first-child { margin-top: 0; }
+
+  .lienzo {
+    overflow-x: auto;
+    padding: 0.5rem 0 1rem;
+    border-bottom: 1px solid var(--regla-fina);
+    margin-bottom: 1.5rem;
+  }
+  .lienzo svg { display: block; width: 100%; min-width: 1020px; height: auto; }
+
+  /* --- Notación de Chen --------------------------------------------- */
+  .e-caja {
+    fill: var(--lamina);
+    stroke: var(--azul);
+    stroke-width: 2.2;
+  }
+  .e-caja--interna { fill: none; stroke-width: 1.4; }
+  .e-texto {
+    font-family: var(--sans);
+    font-size: 17px;
+    font-weight: 600;
+    fill: var(--azul);
+    text-anchor: middle;
+    letter-spacing: 0.02em;
+  }
+
+  .r-caja { fill: var(--ambar-suave); stroke: var(--ambar); stroke-width: 2; }
+  .r-caja--interna { fill: none; stroke-width: 1.2; }
+  .r-texto {
+    font-family: var(--sans);
+    font-size: 12.5px;
+    font-weight: 600;
+    fill: var(--ambar);
+    text-anchor: middle;
+    letter-spacing: 0.04em;
+  }
+
+  .a-caja { fill: var(--lamina); stroke: var(--tinta-tenue); stroke-width: 1.6; }
+  .a-caja--derivado { stroke-dasharray: 5 4; }
+  .a-texto {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    fill: var(--tinta);
+    text-anchor: middle;
+  }
+  .a-texto--clave { text-decoration: underline; text-decoration-thickness: 1.5px; }
+  .a-texto--parcial {
+    text-decoration: underline;
+    text-decoration-style: dashed;
+    text-decoration-thickness: 1.2px;
+  }
+
+  .v-linea { fill: none; stroke: var(--tinta-tenue); stroke-width: 1.7; }
+  .v-linea--total { stroke-width: 5.4; }
+  .v-linea--total-interna { stroke: var(--lamina); stroke-width: 2; }
+  .v-salto {
+    fill: none;
+    stroke: var(--tinta-tenue);
+    stroke-width: 1.7;
+  }
+
+  .isa-caja { fill: var(--lamina); stroke: var(--azul); stroke-width: 2; }
+  .isa-texto {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 700;
+    fill: var(--azul);
+    text-anchor: middle;
+    letter-spacing: 0.06em;
+  }
+
+  .c-texto {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 500;
+    fill: var(--tinta-tenue);
+  }
+  .rol-texto {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-style: italic;
+    fill: var(--tinta-tenue);
+  }
+
+  /* --- Leyenda ------------------------------------------------------- */
+  .leyenda {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 0.85rem 1.75rem;
+    padding: 1.25rem;
+    background: var(--lamina-alt);
+    border: 1px solid var(--regla-fina);
+    border-radius: 2px;
+    font-size: 0.9rem;
+  }
+  .leyenda__item { display: flex; gap: 0.7rem; align-items: flex-start; }
+  .leyenda__item svg { flex: 0 0 54px; margin-top: 2px; }
+  .leyenda__item span { color: var(--tinta-tenue); }
+  .leyenda__item b {
+    display: block;
+    font-family: var(--sans);
+    font-weight: 600;
+    color: var(--tinta);
+  }
+
+  /* --- Mini-diagramas de atributos ----------------------------------- */
+  .mosaico {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+    gap: 1.5rem;
+  }
+  .mini { margin: 0; }
+  .mini__lienzo {
+    border: 1px solid var(--regla-fina);
+    border-radius: 2px;
+    background: var(--lamina-alt);
+    overflow: hidden;
+  }
+  .mini__lienzo svg { display: block; width: 100%; height: auto; }
+  .mini figcaption {
+    padding-top: 0.6rem;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--tinta-tenue);
+  }
+  .mini figcaption strong {
+    font-family: var(--sans);
+    font-weight: 600;
+    color: var(--tinta);
+    margin-right: 0.5rem;
+  }
+  .mini figcaption span { display: block; margin-top: 0.15rem; }
+
+  /* --- Tablas del esquema relacional --------------------------------- */
+  .esquema {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(430px, 1fr));
+    gap: 1.25rem;
+  }
+  .tabla {
+    border: 1px solid var(--regla-fina);
+    border-radius: 2px;
+    overflow: hidden;
+    background: var(--lamina);
+  }
+  .tabla__cab {
+    padding: 0.75rem 1rem;
+    background: var(--azul-suave);
+    border-bottom: 1px solid var(--regla-fina);
+  }
+  .tabla__cab h3 {
+    margin: 0;
+    font-family: var(--mono);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--tinta);
+  }
+  .tabla__cab p {
+    margin: 0.1rem 0 0;
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    color: var(--tinta-tenue);
+  }
+  .tabla__scroll { overflow-x: auto; }
+  .tabla table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .tabla thead th {
+    text-align: left;
+    padding: 0.5rem 1rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--tinta-tenue);
+    font-weight: 500;
+    border-bottom: 1px solid var(--regla-fina);
+  }
+  .tabla td, .tabla tbody th {
+    padding: 0.42rem 1rem;
+    border-bottom: 1px solid var(--regla-fina);
+    text-align: left;
+    font-weight: 400;
+    vertical-align: top;
+  }
+  .tabla tbody tr:last-child td,
+  .tabla tbody tr:last-child th { border-bottom: 0; }
+  .col { color: var(--tinta); }
+  .col--pk { font-weight: 600; text-decoration: underline; text-decoration-thickness: 1.5px; }
+  .col--fk { font-style: italic; }
+  .marca { color: var(--ambar); white-space: nowrap; }
+  .tipo { color: var(--tinta-tenue); }
+
+  /* --- Prosa --------------------------------------------------------- */
+  h3.seccion {
+    font-family: var(--sans);
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 2rem 0 0.6rem;
+    padding-bottom: 0.35rem;
+    border-bottom: 1px solid var(--regla-fina);
+  }
+  .lamina__cuerpo ul { max-width: 68ch; padding-left: 1.15rem; }
+  .lamina__cuerpo li { margin-bottom: 0.4rem; }
+  code {
+    font-family: var(--mono);
+    font-size: 0.86em;
+    background: var(--lamina-alt);
+    border: 1px solid var(--regla-fina);
+    border-radius: 2px;
+    padding: 0.05em 0.35em;
+  }
+
+  .cierre {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--tinta-tenue);
+    border-top: 1px solid var(--regla);
+    padding-top: 1.25rem;
+  }
+  .cierre a { color: var(--azul); }
+</style>
+
+<div class="envoltura">
+
+  <header class="portada">
+    <p class="portada__eyebrow">FacuLeaks · Modelo de datos</p>
+    <h1>Diagrama entidad-relación en notación de Chen</h1>
+    <p>
+      Ocho entidades, trece relaciones y doce tablas. El modelo reduce a lo
+      necesario la estructura académica y unifica el voto y el reporte sobre una
+      generalización, de modo que publicaciones y comentarios se tratan con un
+      único mecanismo.
+    </p>
+    <div class="cinta">
+      <span><b>8</b> entidades</span>
+      <span><b>13</b> relaciones</span>
+      <span><b>12</b> tablas</span>
+      <span><b>1</b> jerarquía ISA</span>
+      <span><b>1</b> entidad débil</span>
+      <span><b>1</b> relación reflexiva</span>
+    </div>
+  </header>
+
+  <section class="lamina">
+    <div class="lamina__cab">
+      <div>
+        <p class="lamina__num">Lámina 1</p>
+        <h2>Diagrama entidad-relación</h2>
+      </div>
+      <p class="lamina__nota">Cardinalidades en formato (mín., máx.)</p>
+    </div>
+    <div class="lamina__cuerpo">
+      <div class="lienzo"><!--DIAGRAMA--></div>
+
+      <div class="leyenda">
+        <div class="leyenda__item">
+          <svg viewBox="0 0 54 34" aria-hidden="true">
+            <rect class="e-caja" x="4" y="6" width="46" height="22" rx="2"/>
+          </svg>
+          <span><b>Entidad</b>Objeto con existencia propia.</span>
+        </div>
+        <div class="leyenda__item">
+          <svg viewBox="0 0 54 34" aria-hidden="true">
+            <rect class="e-caja" x="2" y="4" width="50" height="26" rx="2"/>
+            <rect class="e-caja e-caja--interna" x="7" y="9" width="40" height="16" rx="1"/>
+          </svg>
+          <span><b>Entidad débil</b>No existe sin su entidad fuerte.</span>
+        </div>
+        <div class="leyenda__item">
+          <svg viewBox="0 0 54 34" aria-hidden="true">
+            <polygon class="r-caja" points="27,4 51,17 27,30 3,17"/>
+          </svg>
+          <span><b>Relación</b>Asociación entre entidades.</span>
+        </div>
+        <div class="leyenda__item">
+          <svg viewBox="0 0 54 34" aria-hidden="true">
+            <polygon class="r-caja" points="27,2 52,17 27,32 2,17"/>
+            <polygon class="r-caja r-caja--interna" points="27,7 45,17 27,27 9,17"/>
+          </svg>
+          <span><b>Relación identificadora</b>Da identidad a una entidad débil.</span>
+        </div>
+        <div class="leyenda__item">
+          <svg viewBox="0 0 54 34" aria-hidden="true">
+            <line class="v-linea" x1="4" y1="17" x2="50" y2="17"/>
+          </svg>
+          <span><b>Participación parcial</b>Mínimo 0: puede no participar.</span>
+        </div>
+        <div class="leyenda__item">
+          <svg viewBox="0 0 54 34" aria-hidden="true">
+            <line class="v-linea v-linea--total" x1="4" y1="17" x2="50" y2="17"/>
+            <line class="v-linea v-linea--total-interna" x1="4" y1="17" x2="50" y2="17"/>
+          </svg>
+          <span><b>Participación total</b>Mínimo 1: siempre participa.</span>
+        </div>
+        <div class="leyenda__item">
+          <svg viewBox="0 0 54 34" aria-hidden="true">
+            <circle class="isa-caja" cx="27" cy="17" r="13"/>
+            <text class="isa-texto" x="27" y="21">ISA</text>
+          </svg>
+          <span><b>Especialización</b>Total y disjunta: cada contenido es de un solo subtipo.</span>
+        </div>
+        <div class="leyenda__item">
+          <svg viewBox="0 0 54 34" aria-hidden="true">
+            <ellipse class="a-caja" cx="27" cy="17" rx="22" ry="11"/>
+          </svg>
+          <span><b>Atributo</b>Se detallan en la lámina 2.</span>
+        </div>
+      </div>
+
+      <h3 class="seccion">Reglas de negocio que el diagrama fija</h3>
+      <ul>
+        <li>Todo usuario tiene exactamente un rol; un rol lo pueden tener muchos usuarios.</li>
+        <li>Un usuario puede estudiar varias carreras, y una carrera la estudian muchos usuarios.
+            El año de ingreso y la sede son atributos de esa relación, no del usuario.</li>
+        <li>Una materia se dicta en al menos una carrera y puede compartirse entre varias.
+            El año de cursada, el cuatrimestre y la obligatoriedad dependen del par
+            carrera-materia: la misma materia puede ser de 2.º año y obligatoria en una carrera
+            y de 3.º y optativa en otra.</li>
+        <li>Un programa no existe sin su materia, y se identifica dentro de ella por su ciclo
+            lectivo y su versión.</li>
+        <li>Todo contenido tiene un autor y es exactamente una publicación o un comentario.</li>
+        <li>Toda publicación pertenece a una carrera; la materia es opcional, porque hay
+            publicaciones generales de la carrera.</li>
+        <li>Un comentario responde a lo sumo a otro comentario de la misma publicación.</li>
+        <li>Un usuario vota, guarda o reporta cada objeto una sola vez: la clave de esas
+            relaciones es el par de participantes.</li>
+      </ul>
+
+      <h3 class="seccion">Por qué una generalización</h3>
+      <p>
+        Votar y reportar se aplican por igual a publicaciones y a comentarios. Sin una
+        entidad que los reúna hay que elegir entre duplicar la relación —dos tablas de votos
+        gemelas—, usar dos claves foráneas opcionales con una restricción que exija que solo
+        una esté presente, o guardar el tipo del objeto en una columna, lo que impide declarar
+        una clave foránea real.
+      </p>
+      <p>
+        <strong>CONTENIDO</strong> resuelve las tres cosas: <code>VOTA</code> y
+        <code>REPORTA</code> tienen un único extremo, con integridad referencial verificada por
+        el motor. El estado de moderación también vive ahí, así que ocultar o eliminar funciona
+        igual para los dos subtipos.
+      </p>
+    </div>
+  </section>
+
+  <section class="lamina">
+    <div class="lamina__cab">
+      <div>
+        <p class="lamina__num">Lámina 2</p>
+        <h2>Atributos por entidad</h2>
+      </div>
+      <p class="lamina__nota">Identificador subrayado · parcial con guiones</p>
+    </div>
+    <div class="lamina__cuerpo">
+      <p>
+        Los atributos se dibujan aparte para que la lámina 1 quede legible. En un diagrama de
+        Chen completo cada elipse cuelga de su rectángulo con una línea, tal como aquí.
+      </p>
+      <div class="mosaico"><!--ATRIBUTOS--></div>
+    </div>
+  </section>
+
+  <section class="lamina">
+    <div class="lamina__cab">
+      <div>
+        <p class="lamina__num">Lámina 3</p>
+        <h2>Esquema relacional</h2>
+      </div>
+      <p class="lamina__nota">Clave primaria subrayada · foránea en cursiva</p>
+    </div>
+    <div class="lamina__cuerpo">
+      <p>
+        Resultado de aplicar las reglas de paso a tablas: una tabla por entidad; las relaciones
+        1:N se propagan como clave foránea al lado <em>muchos</em>; las N:M generan tabla propia
+        con clave primaria compuesta; la entidad débil hereda la clave de su entidad fuerte; y la
+        jerarquía ISA produce una tabla para el supertipo y una por cada subtipo.
+      </p>
+      <div class="esquema"><!--TABLAS--></div>
+    </div>
+  </section>
+
+  <p class="cierre">
+    Notación según Chen, P. P-S. (1976), <em>The Entity-Relationship Model — Toward a Unified
+    View of Data</em>, ACM Transactions on Database Systems 1(1), 9-36.
+    El detalle del modelo está en <code>docs/modelo-conceptual.md</code> y el esquema ejecutable
+    en <code>database/schema.sql</code>.
+  </p>
+
+</div>

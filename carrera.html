@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Ficha de la carrera: materias por año de cursada y publicaciones de la comunidad.">
+  <meta name="theme-color" content="#14294a">
+  <title>Carrera · FacuLeaks</title>
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body data-pagina="carrera" data-nav="carreras">
+
+  <a class="fl-saltar" href="#contenido-principal">Saltar al contenido principal</a>
+
+  <header data-componente="encabezado"></header>
+
+  <main id="contenido-principal" class="fl-principal">
+
+    <div class="fl-contenedor" id="contenido-carrera">
+      <nav data-componente="migas"></nav>
+
+      <header class="fl-seccion">
+        <h1 id="nombre-carrera">Cargando…</h1>
+        <p class="fl-suave" id="descripcion-carrera"></p>
+        <div class="fl-chips" id="datos-carrera"></div>
+      </header>
+
+      <div class="fl-disposicion fl-disposicion--con-lateral">
+
+        <div class="fl-columna-principal">
+          <section class="fl-seccion" aria-labelledby="titulo-malla">
+            <div class="fl-seccion__cabecera">
+              <h2 id="titulo-malla">Materias por año</h2>
+              <p class="fl-suave fl-mb0" id="contador-materias"></p>
+            </div>
+            <div id="malla-curricular"></div>
+          </section>
+
+          <section class="fl-seccion" aria-labelledby="titulo-pub-carrera">
+            <div class="fl-seccion__cabecera">
+              <h2 id="titulo-pub-carrera">Publicaciones de la carrera</h2>
+            </div>
+            <div class="fl-cuadricula" id="publicaciones-carrera"></div>
+          </section>
+        </div>
+
+        <aside class="fl-barra-lateral" aria-label="Acciones de la carrera">
+          <div class="fl-tarjeta fl-panel-lateral">
+            <h3 class="fl-tarjeta__titulo">Participar</h3>
+            <div class="fl-cuadricula" id="acciones-carrera"></div>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </main>
+
+  <footer data-componente="pie"></footer>
+
+  <script src="assets/js/data/dataset.js"></script>
+  <script src="assets/js/utils/dom.js"></script>
+  <script src="assets/js/utils/formato.js"></script>
+  <script src="assets/js/utils/almacenamiento.js"></script>
+  <script src="assets/js/utils/validacion.js"></script>
+  <script src="assets/js/services/repositorio.js"></script>
+  <script src="assets/js/services/sesionService.js"></script>
+  <script src="assets/js/services/carrerasService.js"></script>
+  <script src="assets/js/services/publicacionesService.js"></script>
+  <script src="assets/js/services/comentariosService.js"></script>
+  <script src="assets/js/services/interaccionesService.js"></script>
+  <script src="assets/js/services/usuariosService.js"></script>
+  <script src="assets/js/components/avisos.js"></script>
+  <script src="assets/js/components/modal.js"></script>
+  <script src="assets/js/components/encabezado.js"></script>
+  <script src="assets/js/components/pie.js"></script>
+  <script src="assets/js/components/migas.js"></script>
+  <script src="assets/js/components/tarjetaPublicacion.js"></script>
+  <script src="assets/js/components/tarjetaCarrera.js"></script>
+  <script src="assets/js/components/paginacion.js"></script>
+  <script src="assets/js/pages/carrera.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

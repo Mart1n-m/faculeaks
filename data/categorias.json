@@ -1,0 +1,37 @@
+[
+  {
+    "valor": "pregunta",
+    "nombre": "Pregunta",
+    "descripcion": "Dudas concretas sobre una materia o trámite."
+  },
+  {
+    "valor": "apunte",
+    "nombre": "Apunte",
+    "descripcion": "Resúmenes y material de estudio propio."
+  },
+  {
+    "valor": "parcial",
+    "nombre": "Parcial",
+    "descripcion": "Modelos de parcial, finales y recuperatorios."
+  },
+  {
+    "valor": "profesor",
+    "nombre": "Profesor",
+    "descripcion": "Información sobre cátedras y modalidades de cursado."
+  },
+  {
+    "valor": "experiencia",
+    "nombre": "Experiencia",
+    "descripcion": "Relatos de cursado y consejos personales."
+  },
+  {
+    "valor": "recomendacion",
+    "nombre": "Recomendación",
+    "descripcion": "Sugerencias de correlativas, orden de cursado y horarios."
+  },
+  {
+    "valor": "material",
+    "nombre": "Material",
+    "descripcion": "Bibliografía, links y recursos externos."
+  }
+]

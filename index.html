@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Consultá carreras, materias, programas y compartí apuntes, parciales y experiencias con otros estudiantes.">
+  <meta name="theme-color" content="#14294a">
+  <title>FacuLeaks · Comunidad académica universitaria</title>
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body data-pagina="inicio" data-nav="inicio">
+
+  <a class="fl-saltar" href="#contenido-principal">Saltar al contenido principal</a>
+
+  <header data-componente="encabezado"></header>
+
+  <main id="contenido-principal" class="fl-principal">
+
+    <section class="fl-portada">
+      <div class="fl-contenedor">
+        <h1>Todo lo que se dice de tu carrera, <em>en un solo lugar</em></h1>
+        <p>
+          Explorá carreras, materias y programas. Preguntá, compartí apuntes,
+          parciales y experiencias de cursada con el resto de la comunidad.
+        </p>
+
+        <form class="fl-portada__buscador" id="form-busqueda-portada" role="search" novalidate>
+          <label class="fl-solo-lectores" for="busqueda-portada">Buscar en FacuLeaks</label>
+          <div class="fl-buscador">
+            <input class="fl-entrada" type="search" id="busqueda-portada"
+                   placeholder="Buscar una materia, un tema o una duda…"
+                   autocomplete="off">
+            <button class="fl-boton fl-boton--acento" type="submit">Buscar</button>
+          </div>
+        </form>
+
+        <div class="fl-portada__metricas" id="metricas"></div>
+      </div>
+    </section>
+
+    <div class="fl-contenedor">
+      <div class="fl-disposicion fl-disposicion--con-lateral">
+
+        <div class="fl-columna-principal">
+          <section class="fl-seccion" aria-labelledby="titulo-recientes">
+            <div class="fl-seccion__cabecera">
+              <h2 id="titulo-recientes">Publicaciones recientes</h2>
+              <a href="buscar.html">Ver todas</a>
+            </div>
+            <div class="fl-cuadricula" id="publicaciones-recientes"></div>
+          </section>
+
+          <section class="fl-seccion" aria-labelledby="titulo-populares">
+            <div class="fl-seccion__cabecera">
+              <h2 id="titulo-populares">Lo más valorado</h2>
+              <a href="buscar.html?orden=populares">Ver ranking</a>
+            </div>
+            <div class="fl-cuadricula" id="publicaciones-populares"></div>
+          </section>
+
+          <section class="fl-seccion" aria-labelledby="titulo-carreras">
+            <div class="fl-seccion__cabecera">
+              <h2 id="titulo-carreras">Carreras con más actividad</h2>
+              <a href="carreras.html">Ver las 13 carreras</a>
+            </div>
+            <div class="fl-cuadricula fl-cuadricula--2 fl-cuadricula--3" id="carreras-destacadas"></div>
+          </section>
+        </div>
+
+        <aside class="fl-barra-lateral" aria-label="Accesos rápidos">
+          <div class="fl-tarjeta fl-panel-lateral" id="cta-sesion"></div>
+
+          <div class="fl-tarjeta">
+            <h3 class="fl-tarjeta__titulo">Categorías</h3>
+            <div class="fl-chips" id="categorias-portada"></div>
+          </div>
+
+          <div class="fl-tarjeta">
+            <h3 class="fl-tarjeta__titulo">Cómo funciona</h3>
+            <ol class="fl-suave">
+              <li>Elegí tu carrera y recorré su malla curricular.</li>
+              <li>Entrá a una materia y consultá su programa.</li>
+              <li>Preguntá, compartí material y votá lo que te sirvió.</li>
+            </ol>
+            <a class="fl-boton fl-boton--secundario fl-boton--bloque" href="carreras.html">
+              Empezar por las carreras
+            </a>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </main>
+
+  <footer data-componente="pie"></footer>
+
+  <script src="assets/js/data/dataset.js"></script>
+  <script src="assets/js/utils/dom.js"></script>
+  <script src="assets/js/utils/formato.js"></script>
+  <script src="assets/js/utils/almacenamiento.js"></script>
+  <script src="assets/js/utils/validacion.js"></script>
+  <script src="assets/js/services/repositorio.js"></script>
+  <script src="assets/js/services/sesionService.js"></script>
+  <script src="assets/js/services/carrerasService.js"></script>
+  <script src="assets/js/services/publicacionesService.js"></script>
+  <script src="assets/js/services/comentariosService.js"></script>
+  <script src="assets/js/services/interaccionesService.js"></script>
+  <script src="assets/js/services/usuariosService.js"></script>
+  <script src="assets/js/components/avisos.js"></script>
+  <script src="assets/js/components/modal.js"></script>
+  <script src="assets/js/components/encabezado.js"></script>
+  <script src="assets/js/components/pie.js"></script>
+  <script src="assets/js/components/migas.js"></script>
+  <script src="assets/js/components/tarjetaPublicacion.js"></script>
+  <script src="assets/js/components/tarjetaCarrera.js"></script>
+  <script src="assets/js/components/paginacion.js"></script>
+  <script src="assets/js/pages/inicio.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

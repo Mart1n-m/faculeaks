@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Creá una publicación: elegí carrera, materia y categoría, y compartí tu contenido con la comunidad.">
+  <meta name="theme-color" content="#14294a">
+  <title>Nueva publicación · FacuLeaks</title>
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body data-pagina="crearPublicacion" data-nav="crear">
+
+  <a class="fl-saltar" href="#contenido-principal">Saltar al contenido principal</a>
+
+  <header data-componente="encabezado"></header>
+
+  <main id="contenido-principal" class="fl-principal">
+
+    <div class="fl-contenedor" id="contenido-crear">
+      <nav data-componente="migas"></nav>
+
+      <div class="fl-disposicion fl-disposicion--con-lateral">
+
+        <div class="fl-columna-principal">
+          <h1>Nueva publicación</h1>
+          <p class="fl-suave">
+            Los campos marcados con <span class="fl-requerido" aria-hidden="true">*</span>
+            son obligatorios.
+          </p>
+
+          <form class="fl-tarjeta" id="form-publicacion" novalidate>
+
+            <div class="fl-fila-campos fl-fila-campos--2">
+              <div class="fl-campo">
+                <label for="carrera">
+                  Carrera <span class="fl-requerido" aria-hidden="true">*</span>
+                </label>
+                <select class="fl-select" id="carrera" data-campo="carreraId" required
+                        aria-describedby="carrera-ayuda carrera-error">
+                  <option value="">Cargando…</option>
+                </select>
+                <span class="fl-campo__ayuda" id="carrera-ayuda">
+                  Toda publicación pertenece al ámbito de una carrera.
+                </span>
+                <span class="fl-error-campo" id="carrera-error"></span>
+              </div>
+
+              <div class="fl-campo">
+                <label for="materia">Materia</label>
+                <select class="fl-select" id="materia" data-campo="materiaId" disabled>
+                  <option value="">Elegí primero una carrera</option>
+                </select>
+                <span class="fl-campo__ayuda">
+                  Opcional: dejala vacía si tu consulta es general de la carrera.
+                </span>
+                <span class="fl-error-campo" id="materia-error"></span>
+              </div>
+            </div>
+
+            <div class="fl-campo">
+              <label for="categoria">
+                Categoría <span class="fl-requerido" aria-hidden="true">*</span>
+              </label>
+              <select class="fl-select" id="categoria" data-campo="categoria" required
+                      aria-describedby="categoria-error">
+                <option value="">Cargando…</option>
+              </select>
+              <span class="fl-error-campo" id="categoria-error"></span>
+            </div>
+
+            <div class="fl-campo">
+              <label for="titulo">
+                Título <span class="fl-requerido" aria-hidden="true">*</span>
+              </label>
+              <input class="fl-entrada" type="text" id="titulo" data-campo="titulo"
+                     maxlength="180" required aria-describedby="titulo-ayuda titulo-error"
+                     placeholder="Resumí tu consulta o el material que compartís">
+              <span class="fl-campo__ayuda" id="titulo-ayuda">Entre 5 y 180 caracteres.</span>
+              <span class="fl-error-campo" id="titulo-error"></span>
+            </div>
+
+            <div class="fl-campo">
+              <label for="contenido">
+                Contenido <span class="fl-requerido" aria-hidden="true">*</span>
+              </label>
+              <textarea class="fl-area" id="contenido" data-campo="contenido" rows="12"
+                        required aria-describedby="contador-contenido contenido-error"
+                        placeholder="Contá el contexto: materia, cátedra, año, y qué necesitás o qué estás compartiendo."></textarea>
+              <span class="fl-contador" id="contador-contenido"></span>
+              <span class="fl-error-campo" id="contenido-error"></span>
+            </div>
+
+            <div class="fl-campo">
+              <span class="fl-etiqueta" id="etiqueta-adjunto">Archivo adjunto</span>
+              <div class="fl-zona-archivo">
+                <p class="fl-mb0">Adjuntá un apunte, un modelo de parcial o material de estudio.</p>
+                <label class="fl-solo-lectores" for="adjunto">Seleccionar archivo</label>
+                <input type="file" id="adjunto" accept=".pdf,.png,.jpg,.jpeg,.doc,.docx,.zip"
+                       aria-describedby="adjunto-info">
+                <p class="fl-tenue fl-mb0" id="adjunto-info">Ningún archivo seleccionado.</p>
+              </div>
+              <span class="fl-campo__ayuda">
+                En esta entrega solo se registra la referencia al archivo: la subida real
+                se implementa con el backend.
+              </span>
+            </div>
+
+            <div class="fl-modal__acciones">
+              <a class="fl-boton fl-boton--secundario" href="index.html">Cancelar</a>
+              <button class="fl-boton" type="submit" id="enviar-publicacion">Publicar</button>
+            </div>
+          </form>
+        </div>
+
+        <aside class="fl-barra-lateral" aria-label="Consejos para publicar">
+          <div class="fl-tarjeta fl-panel-lateral">
+            <h3 class="fl-tarjeta__titulo">Para que te respondan rápido</h3>
+            <ul class="fl-suave">
+              <li>Elegí la materia exacta: la publicación aparece en su foro.</li>
+              <li>Usá un título concreto en vez de «ayuda urgente».</li>
+              <li>Contá qué intentaste y dónde te trabaste.</li>
+              <li>Si compartís un parcial, indicá el año y la cátedra.</li>
+            </ul>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </main>
+
+  <footer data-componente="pie"></footer>
+
+  <script src="assets/js/data/dataset.js"></script>
+  <script src="assets/js/utils/dom.js"></script>
+  <script src="assets/js/utils/formato.js"></script>
+  <script src="assets/js/utils/almacenamiento.js"></script>
+  <script src="assets/js/utils/validacion.js"></script>
+  <script src="assets/js/services/repositorio.js"></script>
+  <script src="assets/js/services/sesionService.js"></script>
+  <script src="assets/js/services/carrerasService.js"></script>
+  <script src="assets/js/services/publicacionesService.js"></script>
+  <script src="assets/js/services/comentariosService.js"></script>
+  <script src="assets/js/services/interaccionesService.js"></script>
+  <script src="assets/js/services/usuariosService.js"></script>
+  <script src="assets/js/components/avisos.js"></script>
+  <script src="assets/js/components/modal.js"></script>
+  <script src="assets/js/components/encabezado.js"></script>
+  <script src="assets/js/components/pie.js"></script>
+  <script src="assets/js/components/migas.js"></script>
+  <script src="assets/js/components/tarjetaPublicacion.js"></script>
+  <script src="assets/js/components/tarjetaCarrera.js"></script>
+  <script src="assets/js/components/paginacion.js"></script>
+  <script src="assets/js/pages/crearPublicacion.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

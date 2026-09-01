@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Listado completo de las carreras disponibles en FacuLeaks, con sus materias por año y cuatrimestre.">
+  <meta name="theme-color" content="#14294a">
+  <title>Carreras · FacuLeaks</title>
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body data-pagina="carreras" data-nav="carreras">
+
+  <a class="fl-saltar" href="#contenido-principal">Saltar al contenido principal</a>
+
+  <header data-componente="encabezado"></header>
+
+  <main id="contenido-principal" class="fl-principal">
+
+    <div class="fl-contenedor">
+      <nav data-componente="migas"></nav>
+
+      <div class="fl-seccion__cabecera">
+        <div>
+          <h1>Carreras</h1>
+          <p class="fl-suave fl-mb0" id="contador-carreras">Cargando…</p>
+        </div>
+      </div>
+
+      <form class="fl-tarjeta fl-seccion" id="form-carreras" role="search" novalidate>
+        <div class="fl-fila-campos fl-fila-campos--2">
+          <div class="fl-campo fl-mb0">
+            <label for="buscar-carrera">Buscar carrera</label>
+            <input class="fl-entrada" type="search" id="buscar-carrera"
+                   placeholder="Por ejemplo: sistemas, contable, psicología"
+                   autocomplete="off">
+          </div>
+          <div class="fl-campo fl-mb0">
+            <label for="orden-carreras">Ordenar por</label>
+            <select class="fl-select" id="orden-carreras">
+              <option value="nombre">Nombre (A-Z)</option>
+              <option value="publicaciones">Más publicaciones</option>
+              <option value="materias">Más materias</option>
+              <option value="duracion">Menor duración</option>
+            </select>
+          </div>
+        </div>
+
+        <fieldset class="fl-filtros__grupo">
+          <legend class="fl-etiqueta">Duración</legend>
+          <div class="fl-chips">
+            <button class="fl-chip" type="button" data-duracion="corta" aria-pressed="false">
+              Ciclos cortos (hasta 3 años)
+            </button>
+            <button class="fl-chip" type="button" data-duracion="larga" aria-pressed="false">
+              Carreras largas (4 años o más)
+            </button>
+          </div>
+        </fieldset>
+      </form>
+
+      <div class="fl-cuadricula fl-cuadricula--2 fl-cuadricula--3" id="lista-carreras"></div>
+    </div>
+  </main>
+
+  <footer data-componente="pie"></footer>
+
+  <script src="assets/js/data/dataset.js"></script>
+  <script src="assets/js/utils/dom.js"></script>
+  <script src="assets/js/utils/formato.js"></script>
+  <script src="assets/js/utils/almacenamiento.js"></script>
+  <script src="assets/js/utils/validacion.js"></script>
+  <script src="assets/js/services/repositorio.js"></script>
+  <script src="assets/js/services/sesionService.js"></script>
+  <script src="assets/js/services/carrerasService.js"></script>
+  <script src="assets/js/services/publicacionesService.js"></script>
+  <script src="assets/js/services/comentariosService.js"></script>
+  <script src="assets/js/services/interaccionesService.js"></script>
+  <script src="assets/js/services/usuariosService.js"></script>
+  <script src="assets/js/components/avisos.js"></script>
+  <script src="assets/js/components/modal.js"></script>
+  <script src="assets/js/components/encabezado.js"></script>
+  <script src="assets/js/components/pie.js"></script>
+  <script src="assets/js/components/migas.js"></script>
+  <script src="assets/js/components/tarjetaPublicacion.js"></script>
+  <script src="assets/js/components/tarjetaCarrera.js"></script>
+  <script src="assets/js/components/paginacion.js"></script>
+  <script src="assets/js/pages/carreras.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

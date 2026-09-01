@@ -1,0 +1,100 @@
+[
+  {
+    "usuarioId": 4,
+    "carreraId": 3,
+    "anioIngreso": 2024,
+    "sede": "Sede Central",
+    "activo": true
+  },
+  {
+    "usuarioId": 8,
+    "carreraId": 10,
+    "anioIngreso": 2025,
+    "sede": "Sede Central",
+    "activo": true
+  },
+  {
+    "usuarioId": 8,
+    "carreraId": 3,
+    "anioIngreso": 2026,
+    "sede": "Sede Central",
+    "activo": true
+  },
+  {
+    "usuarioId": 5,
+    "carreraId": 1,
+    "anioIngreso": 2024,
+    "sede": "Sede Norte",
+    "activo": true
+  },
+  {
+    "usuarioId": 6,
+    "carreraId": 2,
+    "anioIngreso": 2023,
+    "sede": "Sede Central",
+    "activo": true
+  },
+  {
+    "usuarioId": 7,
+    "carreraId": 6,
+    "anioIngreso": 2022,
+    "sede": "Sede Sur",
+    "activo": true
+  },
+  {
+    "usuarioId": 9,
+    "carreraId": 4,
+    "anioIngreso": 2024,
+    "sede": "Sede Central",
+    "activo": true
+  },
+  {
+    "usuarioId": 10,
+    "carreraId": 9,
+    "anioIngreso": 2025,
+    "sede": "Sede Norte",
+    "activo": true
+  },
+  {
+    "usuarioId": 11,
+    "carreraId": 12,
+    "anioIngreso": 2023,
+    "sede": "Sede Sur",
+    "activo": true
+  },
+  {
+    "usuarioId": 12,
+    "carreraId": 5,
+    "anioIngreso": 2025,
+    "sede": "Sede Central",
+    "activo": true
+  },
+  {
+    "usuarioId": 13,
+    "carreraId": 7,
+    "anioIngreso": 2025,
+    "sede": "Sede Norte",
+    "activo": true
+  },
+  {
+    "usuarioId": 14,
+    "carreraId": 8,
+    "anioIngreso": 2024,
+    "sede": "Sede Sur",
+    "activo": true
+  },
+  {
+    "usuarioId": 2,
+    "carreraId": 3,
+    "anioIngreso": 2019,
+    "sede": "Sede Central",
+    "activo": true
+  },
+  {
+    "usuarioId": 3,
+    "carreraId": 4,
+    "anioIngreso": 2020,
+    "sede": "Sede Central",
+    "activo": true
+  }
+]

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Logotipo de FacuLeaks">
+  <rect width="64" height="64" rx="14" fill="#14294a"/>
+  <path d="M32 12 8 24l24 12 24-12z" fill="#fbbf5c"/>
+  <path d="M18 30v10c0 5 6.3 9 14 9s14-4 14-9V30l-14 7z" fill="#c3d4ee"/>
+  <circle cx="50" cy="40" r="4" fill="#d97706"/>
+  <path d="M50 27v7" stroke="#d97706" stroke-width="3" stroke-linecap="round"/>
+</svg>

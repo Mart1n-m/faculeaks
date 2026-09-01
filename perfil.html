@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Perfil de usuario: carrera, plan, publicaciones, comentarios y favoritos.">
+  <meta name="theme-color" content="#14294a">
+  <title>Perfil · FacuLeaks</title>
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body data-pagina="perfil" data-nav="perfil">
+
+  <a class="fl-saltar" href="#contenido-principal">Saltar al contenido principal</a>
+
+  <header data-componente="encabezado"></header>
+
+  <main id="contenido-principal" class="fl-principal">
+
+    <div class="fl-contenedor" id="contenido-perfil">
+      <nav data-componente="migas"></nav>
+
+      <div class="fl-disposicion fl-disposicion--con-lateral">
+
+        <div class="fl-columna-principal">
+          <header class="fl-tarjeta fl-seccion">
+            <div class="fl-perfil-cabecera" id="cabecera-perfil"></div>
+          </header>
+
+          <div class="fl-estadisticas fl-seccion" id="estadisticas-perfil"></div>
+
+          <div class="fl-tabs" id="tabs-perfil" role="tablist" aria-label="Actividad del usuario">
+            <button class="fl-tabs__boton" type="button" role="tab" id="tab-publicaciones"
+                    aria-selected="true" aria-controls="panel-publicaciones">Publicaciones</button>
+            <button class="fl-tabs__boton" type="button" role="tab" id="tab-comentarios"
+                    aria-selected="false" aria-controls="panel-comentarios">Comentarios</button>
+            <button class="fl-tabs__boton" type="button" role="tab" id="tab-favoritos"
+                    aria-selected="false" aria-controls="panel-favoritos">Favoritos</button>
+          </div>
+
+          <section class="fl-panel" id="panel-publicaciones" role="tabpanel"
+                   aria-labelledby="tab-publicaciones" tabindex="0">
+            <div class="fl-cuadricula" id="publicaciones-perfil"></div>
+          </section>
+
+          <section class="fl-panel" id="panel-comentarios" role="tabpanel"
+                   aria-labelledby="tab-comentarios" tabindex="0" hidden>
+            <div class="fl-comentarios" id="comentarios-perfil"></div>
+          </section>
+
+          <section class="fl-panel" id="panel-favoritos" role="tabpanel"
+                   aria-labelledby="tab-favoritos" tabindex="0" hidden>
+            <div class="fl-cuadricula" id="favoritos-perfil"></div>
+          </section>
+        </div>
+
+        <aside class="fl-barra-lateral" aria-label="Datos académicos">
+          <div class="fl-tarjeta fl-panel-lateral">
+            <h3 class="fl-tarjeta__titulo">Perfil académico</h3>
+            <div id="academico-perfil"></div>
+          </div>
+
+          <div class="fl-tarjeta">
+            <h3 class="fl-tarjeta__titulo">Acciones</h3>
+            <div class="fl-cuadricula" id="acciones-perfil"></div>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </main>
+
+  <footer data-componente="pie"></footer>
+
+  <script src="assets/js/data/dataset.js"></script>
+  <script src="assets/js/utils/dom.js"></script>
+  <script src="assets/js/utils/formato.js"></script>
+  <script src="assets/js/utils/almacenamiento.js"></script>
+  <script src="assets/js/utils/validacion.js"></script>
+  <script src="assets/js/services/repositorio.js"></script>
+  <script src="assets/js/services/sesionService.js"></script>
+  <script src="assets/js/services/carrerasService.js"></script>
+  <script src="assets/js/services/publicacionesService.js"></script>
+  <script src="assets/js/services/comentariosService.js"></script>
+  <script src="assets/js/services/interaccionesService.js"></script>
+  <script src="assets/js/services/usuariosService.js"></script>
+  <script src="assets/js/components/avisos.js"></script>
+  <script src="assets/js/components/modal.js"></script>
+  <script src="assets/js/components/encabezado.js"></script>
+  <script src="assets/js/components/pie.js"></script>
+  <script src="assets/js/components/migas.js"></script>
+  <script src="assets/js/components/tarjetaPublicacion.js"></script>
+  <script src="assets/js/components/tarjetaCarrera.js"></script>
+  <script src="assets/js/components/paginacion.js"></script>
+  <script src="assets/js/pages/perfil.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

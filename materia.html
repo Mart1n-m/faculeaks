@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Programas disponibles y foro de la materia: preguntas, apuntes, parciales y experiencias.">
+  <meta name="theme-color" content="#14294a">
+  <title>Materia · FacuLeaks</title>
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body data-pagina="materia" data-nav="carreras">
+
+  <a class="fl-saltar" href="#contenido-principal">Saltar al contenido principal</a>
+
+  <header data-componente="encabezado"></header>
+
+  <main id="contenido-principal" class="fl-principal">
+
+    <div class="fl-contenedor" id="contenido-materia">
+      <nav data-componente="migas"></nav>
+
+      <header class="fl-seccion">
+        <p class="fl-mb0"><span class="fl-codigo-materia" id="codigo-materia"></span></p>
+        <h1 id="nombre-materia">Cargando…</h1>
+        <p class="fl-suave" id="descripcion-materia"></p>
+      </header>
+
+      <div class="fl-disposicion fl-disposicion--con-lateral">
+
+        <div class="fl-columna-principal">
+          <section class="fl-seccion" aria-labelledby="titulo-programas">
+            <div class="fl-seccion__cabecera">
+              <h2 id="titulo-programas">Programas</h2>
+            </div>
+            <div id="lista-programas"></div>
+          </section>
+
+          <section class="fl-seccion" aria-labelledby="titulo-foro">
+            <div class="fl-seccion__cabecera">
+              <h2 id="titulo-foro">Foro de la materia</h2>
+              <p class="fl-suave fl-mb0" id="contador-publicaciones"></p>
+            </div>
+
+            <div class="fl-tarjeta fl-seccion">
+              <fieldset class="fl-filtros__grupo">
+                <legend class="fl-etiqueta">Filtrar por categoría</legend>
+                <div class="fl-chips" id="filtros-categoria"></div>
+              </fieldset>
+              <div class="fl-campo fl-mb0">
+                <label for="orden-publicaciones">Ordenar por</label>
+                <select class="fl-select" id="orden-publicaciones">
+                  <option value="recientes">Más recientes</option>
+                  <option value="populares">Más votadas</option>
+                  <option value="comentadas">Más comentadas</option>
+                  <option value="vistas">Más vistas</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="fl-cuadricula" id="publicaciones-materia"></div>
+            <div id="paginacion-materia"></div>
+          </section>
+        </div>
+
+        <aside class="fl-barra-lateral" aria-label="Información de la materia">
+          <div class="fl-tarjeta fl-panel-lateral">
+            <h3 class="fl-tarjeta__titulo">Participar</h3>
+            <div class="fl-cuadricula" id="acciones-materia"></div>
+          </div>
+
+          <div class="fl-tarjeta">
+            <h3 class="fl-tarjeta__titulo">Se dicta en</h3>
+            <div id="carreras-materia"></div>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </main>
+
+  <footer data-componente="pie"></footer>
+
+  <script src="assets/js/data/dataset.js"></script>
+  <script src="assets/js/utils/dom.js"></script>
+  <script src="assets/js/utils/formato.js"></script>
+  <script src="assets/js/utils/almacenamiento.js"></script>
+  <script src="assets/js/utils/validacion.js"></script>
+  <script src="assets/js/services/repositorio.js"></script>
+  <script src="assets/js/services/sesionService.js"></script>
+  <script src="assets/js/services/carrerasService.js"></script>
+  <script src="assets/js/services/publicacionesService.js"></script>
+  <script src="assets/js/services/comentariosService.js"></script>
+  <script src="assets/js/services/interaccionesService.js"></script>
+  <script src="assets/js/services/usuariosService.js"></script>
+  <script src="assets/js/components/avisos.js"></script>
+  <script src="assets/js/components/modal.js"></script>
+  <script src="assets/js/components/encabezado.js"></script>
+  <script src="assets/js/components/pie.js"></script>
+  <script src="assets/js/components/migas.js"></script>
+  <script src="assets/js/components/tarjetaPublicacion.js"></script>
+  <script src="assets/js/components/tarjetaCarrera.js"></script>
+  <script src="assets/js/components/paginacion.js"></script>
+  <script src="assets/js/pages/materia.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
