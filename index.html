@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FacuLeaks</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-contenido">
+      <h1 class="logo">FacuLeaks</h1>
+    </div>
+    <nav class="nav">
+      <a href="index.html">Inicio</a>
+      <a href="apuntes.html">Apuntes</a>
+      <a href="debates.html">Debates</a>
+      <a href="consultas.html">Consultas</a>
+      <a href="listado_box.html">Marketplace</a>
+    </nav>
+  </header>
+
+  <!-- CUERPO PRINCIPAL -->
+  <div class="contenedor">
+
+    <!-- BARRA LATERAL -->
+    <aside class="sidebar">
+      <h3>Categorias del foro</h3>
+      <ul>
+        <li><a href="apuntes.html">Apuntes</a></li>
+        <li><a href="debates.html">Debates</a></li>
+        <li><a href="consultas.html">Consultas</a></li>
+      </ul>
+
+      <h3>Marketplace</h3>
+      <ul>
+        <li><a href="listado_box.html">Ver en fichas</a></li>
+        <li><a href="listado_tabla.html">Ver en tabla</a></li>
+        <li><a href="comprar.html">Finalizar compra</a></li>
+      </ul>
+    </aside>
+
+    <!-- PUBLICACIONES -->
+    <main class="publicaciones">
+
+      <!-- Barra nueva publicacion -->
+      <div class="nueva-publicacion">
+        <input type="text" placeholder="Que queres publicar hoy?" />
+        <button>Publicar</button>
+      </div>
+
+      <!-- Post 1 -->
+      <article class="post">
+        <div class="post-votos">
+          <button class="voto-btn">▲</button>
+          <span class="voto-num">47</span>
+          <button class="voto-btn">▼</button>
+        </div>
+        <div class="post-contenido">
+          <span class="post-categoria apuntes">Apuntes</span>
+          <h2 class="post-titulo">Resumen completo de Analisis Matematico II - Unidad 3</h2>
+          <p class="post-descripcion">
+            Les comparto el resumen que arme para el parcial de la semana pasada.
+            Incluye limites, derivadas parciales y ejercicios resueltos.
+          </p>
+          <div class="post-footer">
+            <span>por <strong>matias_tp</strong></span>
+            <span>23 comentarios</span>
+            <span>hace 2 horas</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Post 2 -->
+      <article class="post">
+        <div class="post-votos">
+          <button class="voto-btn">▲</button>
+          <span class="voto-num">31</span>
+          <button class="voto-btn">▼</button>
+        </div>
+        <div class="post-contenido">
+          <span class="post-categoria debate">Debate</span>
+          <h2 class="post-titulo">Es mejor estudiar en grupo o solo para los finales?</h2>
+          <p class="post-descripcion">
+            Siempre hay discusion sobre esto. Yo prefiero estudiar solo porque me concentro mejor,
+            pero un amigo dice que en grupo aprende el doble. Que hacen ustedes?
+          </p>
+          <div class="post-footer">
+            <span>por <strong>caro_ing</strong></span>
+            <span>58 comentarios</span>
+            <span>hace 5 horas</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Post 3 -->
+      <article class="post">
+        <div class="post-votos">
+          <button class="voto-btn">▲</button>
+          <span class="voto-num">8</span>
+          <button class="voto-btn">▼</button>
+        </div>
+        <div class="post-contenido">
+          <span class="post-categoria consulta">Consulta</span>
+          <h2 class="post-titulo">Alguien sabe si el TP de Programacion se entrega por el campus?</h2>
+          <p class="post-descripcion">
+            No encuentro informacion clara en el campus sobre como entregar el TP final.
+            El profe no contesto el mail todavia. Alguien sabe algo?
+          </p>
+          <div class="post-footer">
+            <span>por <strong>juanma_dev</strong></span>
+            <span>7 comentarios</span>
+            <span>hace 3 horas</span>
+          </div>
+        </div>
+      </article>
+
+    </main>
+  </div>
+
+  <!-- PIE DE PAGINA -->
+  <footer class="footer">
+    <p>FacuLeaks &middot; Foro academico universitario &middot; Trabajo practico de Paradigmas de la Programacion 3</p>
+  </footer>
+
+</body>
+</html>

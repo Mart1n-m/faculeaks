@@ -1,0 +1,1032 @@
+/* ===========================
+   RESET Y BASE
+=========================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #dae0e6;
+  color: #1c1c1c;
+}
+
+/* ===========================
+   HEADER
+=========================== */
+.header {
+  background-color: #1a1a2e;
+  color: white;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-contenido {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  font-size: 28px;
+  letter-spacing: 1px;
+}
+
+
+.nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+  font-size: 15px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  background-color: #16213e;
+}
+
+.nav a:hover {
+  background-color: #e84545;
+}
+
+/* ===========================
+   CONTENEDOR PRINCIPAL
+=========================== */
+.contenedor {
+  display: flex;
+  max-width: 1100px;
+  margin: 25px auto;
+  gap: 20px;
+  padding: 0 15px;
+}
+
+/* ===========================
+   SIDEBAR
+=========================== */
+.sidebar {
+  width: 220px;
+  flex-shrink: 0;
+}
+
+.sidebar h3 {
+  background-color: #1a1a2e;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px 6px 0 0;
+  font-size: 14px;
+}
+
+.sidebar ul,
+.sidebar ol {
+  background-color: white;
+  padding: 10px 15px 10px 30px;
+  border-radius: 0 0 6px 6px;
+  margin-bottom: 20px;
+  list-style-position: inside;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding-left: 12px;
+}
+
+.sidebar ul li,
+.sidebar ol li {
+  padding: 6px 0;
+  font-size: 14px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  color: #1c1c1c;
+  display: block;
+}
+
+.sidebar ul li:hover,
+.sidebar ul li a:hover {
+  color: #e84545;
+}
+
+.sidebar ol li:last-child,
+.sidebar ul li:last-child {
+  border-bottom: none;
+}
+
+/* ===========================
+   PUBLICACIONES
+=========================== */
+.publicaciones {
+  flex: 1;
+}
+
+/* Titulo de pagina de categoria */
+.titulo-categoria {
+  font-size: 22px;
+  color: #1a1a2e;
+  margin-bottom: 15px;
+  border-left: 4px solid #e84545;
+  padding-left: 10px;
+}
+
+/* Barra nueva publicación */
+.nueva-publicacion {
+  background-color: white;
+  padding: 12px 15px;
+  border-radius: 6px;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 18px;
+  border: 1px solid #ccc;
+}
+
+.nueva-publicacion input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.nueva-publicacion button {
+  background-color: #e84545;
+  color: white;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.nueva-publicacion button:hover {
+  background-color: #c0392b;
+}
+
+/* ===========================
+   POST CARD
+=========================== */
+.post {
+  background-color: white;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  margin-bottom: 15px;
+  display: flex;
+  overflow: hidden;
+}
+
+/* Sección de votos */
+.post-votos {
+  background-color: #f8f9fa;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 10px;
+  gap: 5px;
+  min-width: 55px;
+  border-right: 1px solid #eee;
+}
+
+.voto-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: #888;
+  line-height: 1;
+}
+
+.voto-btn:hover {
+  color: #e84545;
+}
+
+.voto-num {
+  font-weight: bold;
+  font-size: 15px;
+  color: #333;
+}
+
+/* Contenido del post */
+.post-contenido {
+  padding: 12px 15px;
+  flex: 1;
+}
+
+.post-categoria {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 2px 8px;
+  border-radius: 20px;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+/* Colores por categoría */
+.apuntes  { background-color: #d4edda; color: #155724; }
+.debate   { background-color: #cce5ff; color: #004085; }
+.consulta { background-color: #f8d7da; color: #721c24; }
+
+.post-titulo {
+  font-size: 17px;
+  margin-bottom: 6px;
+  color: #1a1a2e;
+}
+
+.post-titulo:hover {
+  color: #e84545;
+  cursor: pointer;
+}
+
+.post-descripcion {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.post-footer {
+  font-size: 12px;
+  color: #888;
+  display: flex;
+  gap: 20px;
+}
+
+/* ===========================
+   NAVEGACION - ENLACE ACTIVO
+=========================== */
+.nav a.activo {
+  background-color: #e84545;
+}
+
+/* ===========================
+   MIGA DE PAN (BREADCRUMB)
+=========================== */
+.breadcrumb {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 12px;
+}
+
+.breadcrumb a {
+  color: #1a1a2e;
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  color: #e84545;
+  text-decoration: underline;
+}
+
+.breadcrumb span {
+  color: #888;
+}
+
+/* ===========================
+   BOTONES
+=========================== */
+.btn {
+  display: inline-block;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: inherit;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-primario {
+  background-color: #e84545;
+  color: white;
+}
+
+.btn-primario:hover {
+  background-color: #c0392b;
+}
+
+.btn-secundario {
+  background-color: white;
+  color: #1a1a2e;
+  border-color: #ccc;
+}
+
+.btn-secundario:hover {
+  border-color: #e84545;
+  color: #e84545;
+}
+
+.btn-secundario.btn-activo {
+  background-color: #1a1a2e;
+  border-color: #1a1a2e;
+  color: white;
+}
+
+.btn-tabla {
+  background-color: #1a1a2e;
+  color: white;
+  padding: 4px 12px;
+  font-size: 12px;
+}
+
+.btn-tabla:hover {
+  background-color: #e84545;
+}
+
+.btn-grande {
+  padding: 11px 26px;
+  font-size: 15px;
+}
+
+/* ===========================
+   BARRA DE CAMBIO DE VISTA
+=========================== */
+.barra-vista {
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 10px 15px;
+  margin-bottom: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.barra-vista-info {
+  font-size: 13px;
+  color: #555;
+}
+
+.barra-vista-acciones {
+  display: flex;
+  gap: 8px;
+}
+
+/* ===========================
+   ETIQUETAS DE TIPO Y ESTADO
+=========================== */
+.etiqueta {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 2px 8px;
+  border-radius: 20px;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.etiqueta.apuntes { background-color: #d4edda; color: #155724; }
+.etiqueta.libro   { background-color: #cce5ff; color: #004085; }
+.etiqueta.guia    { background-color: #fff3cd; color: #7a5c00; }
+.etiqueta.digital { background-color: #e2d9f3; color: #432874; }
+
+.estado {
+  display: inline-block;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid;
+  white-space: nowrap;
+}
+
+.estado-nuevo   { color: #155724; border-color: #b7dfc2; background-color: #f2fbf5; }
+.estado-usado   { color: #7a5c00; border-color: #ecd9a0; background-color: #fffaf0; }
+.estado-digital { color: #432874; border-color: #cdbde8; background-color: #f7f4fc; }
+
+.precio {
+  font-weight: bold;
+  color: #1a1a2e;
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+/* ===========================
+   LISTADO EN TABLA
+=========================== */
+.tabla-scroll {
+  overflow-x: auto;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.tabla-materiales {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  min-width: 780px;
+}
+
+.tabla-materiales caption {
+  caption-side: top;
+  text-align: left;
+  padding: 12px 15px;
+  font-size: 12px;
+  color: #666;
+  border-bottom: 1px solid #eee;
+}
+
+.tabla-materiales th,
+.tabla-materiales td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+  vertical-align: middle;
+}
+
+.tabla-materiales thead th {
+  background-color: #1a1a2e;
+  color: white;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: none;
+}
+
+.tabla-materiales tbody tr:nth-child(even) {
+  background-color: #fafbfc;
+}
+
+.tabla-materiales tbody tr:hover {
+  background-color: #fdeeee;
+}
+
+.tabla-materiales tfoot th,
+.tabla-materiales tfoot td {
+  background-color: #f8f9fa;
+  font-size: 13px;
+  border-bottom: none;
+  border-top: 2px solid #1a1a2e;
+}
+
+.col-numerica  { text-align: right; }
+.col-centrada  { text-align: center; }
+.col-codigo    { font-family: "Courier New", monospace; color: #666; font-weight: normal; }
+
+.nota-listado {
+  font-size: 12px;
+  color: #777;
+  line-height: 1.6;
+  margin-top: 15px;
+}
+
+.nota-listado a {
+  color: #e84545;
+}
+
+/* ===========================
+   LISTADO EN BOX (FICHAS)
+=========================== */
+.grid-materiales {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 15px;
+}
+
+.card {
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  border-color: #e84545;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.card-portada {
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #eee;
+}
+
+.card-portada-texto {
+  font-size: 26px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: white;
+}
+
+.portada-apuntes { background-color: #2e7d4f; }
+.portada-libro   { background-color: #1f4e8c; }
+.portada-guia    { background-color: #8a6d1f; }
+.portada-digital { background-color: #5b3d8c; }
+
+.card-cuerpo {
+  padding: 12px 15px;
+  flex: 1;
+}
+
+.card-titulo {
+  font-size: 15px;
+  line-height: 1.35;
+  margin-bottom: 8px;
+}
+
+.card-titulo a {
+  color: #1a1a2e;
+  text-decoration: none;
+}
+
+.card-titulo a:hover {
+  color: #e84545;
+}
+
+.card-descripcion {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.card-datos {
+  font-size: 12px;
+  color: #666;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2px 8px;
+}
+
+.card-datos dt {
+  font-weight: bold;
+  color: #888;
+}
+
+.card-footer {
+  border-top: 1px solid #eee;
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  background-color: #fafbfc;
+}
+
+/* ===========================
+   FICHA DEL MATERIAL
+=========================== */
+.ficha {
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  margin-bottom: 18px;
+}
+
+.ficha-galeria {
+  width: 240px;
+  flex-shrink: 0;
+}
+
+.ficha-portada {
+  height: 220px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ficha-portada-texto {
+  font-size: 40px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  color: white;
+}
+
+.ficha-miniaturas {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.miniatura {
+  width: 48px;
+  height: 48px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 13px;
+  opacity: 0.75;
+  cursor: pointer;
+}
+
+.miniatura:hover {
+  opacity: 1;
+}
+
+.ficha-datos {
+  flex: 1;
+  min-width: 260px;
+}
+
+.ficha-titulo {
+  font-size: 22px;
+  color: #1a1a2e;
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+
+.ficha-meta {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 14px;
+}
+
+.ficha-precio {
+  font-size: 30px;
+  font-weight: bold;
+  color: #1a1a2e;
+  margin-bottom: 4px;
+}
+
+.ficha-stock {
+  font-size: 13px;
+  color: #2e7d4f;
+  margin-bottom: 14px;
+}
+
+.ficha-puntos {
+  list-style: none;
+  font-size: 13px;
+  color: #555;
+  margin-bottom: 18px;
+}
+
+.ficha-puntos li {
+  padding: 4px 0 4px 18px;
+  position: relative;
+}
+
+.ficha-puntos li::before {
+  content: "\2713";
+  position: absolute;
+  left: 0;
+  color: #2e7d4f;
+  font-weight: bold;
+}
+
+.ficha-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Bloques de contenido de la ficha */
+.bloque {
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 18px 20px;
+  margin-bottom: 15px;
+}
+
+.bloque-titulo {
+  font-size: 16px;
+  color: #1a1a2e;
+  border-left: 4px solid #e84545;
+  padding-left: 10px;
+  margin-bottom: 12px;
+}
+
+.bloque p {
+  font-size: 14px;
+  color: #444;
+  line-height: 1.65;
+  margin-bottom: 10px;
+}
+
+.tabla-especificaciones {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.tabla-especificaciones th,
+.tabla-especificaciones td {
+  padding: 8px 10px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.tabla-especificaciones th {
+  width: 190px;
+  color: #666;
+  background-color: #fafbfc;
+  font-weight: bold;
+}
+
+.consulta-item {
+  border-left: 3px solid #eee;
+  padding: 4px 0 4px 12px;
+  margin-bottom: 12px;
+}
+
+.consulta-item-texto {
+  font-weight: bold;
+  color: #1a1a2e;
+  margin-bottom: 4px !important;
+}
+
+.consulta-item-respuesta {
+  color: #555;
+  margin-bottom: 0 !important;
+}
+
+.grid-relacionados {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.card-mini .card-titulo {
+  font-size: 14px;
+}
+
+/* ===========================
+   FORMULARIO DE COMPRA
+=========================== */
+.form-compra {
+  font-size: 14px;
+}
+
+.campo-grupo {
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 18px 20px;
+  margin-bottom: 18px;
+}
+
+.campo-grupo legend {
+  font-size: 15px;
+  font-weight: bold;
+  color: white;
+  background-color: #1a1a2e;
+  padding: 6px 14px;
+  border-radius: 4px;
+}
+
+.campos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin-top: 12px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+}
+
+.campo-ancho {
+  grid-column: 1 / -1;
+}
+
+.campo label {
+  font-size: 13px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.campo input,
+.campo select,
+.campo textarea {
+  font-family: inherit;
+  font-size: 14px;
+  padding: 9px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+  color: #1c1c1c;
+  width: 100%;
+}
+
+.campo textarea {
+  resize: vertical;
+}
+
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus {
+  outline: none;
+  border-color: #e84545;
+  box-shadow: 0 0 0 2px rgba(232, 69, 69, 0.15);
+}
+
+.campo input:invalid:not(:placeholder-shown) {
+  border-color: #e84545;
+  background-color: #fff8f8;
+}
+
+.campo input:valid:not(:placeholder-shown) {
+  border-color: #b7dfc2;
+}
+
+.ayuda {
+  font-size: 11px;
+  color: #888;
+  margin-top: 4px;
+}
+
+.req {
+  color: #e84545;
+  text-decoration: none;
+  border-bottom: none;
+}
+
+/* Opciones de medio de pago */
+.opciones {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.opcion {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 12px 14px;
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2px 10px;
+  align-items: center;
+}
+
+.opcion:hover {
+  border-color: #e84545;
+}
+
+.opcion input {
+  grid-row: 1 / 3;
+  cursor: pointer;
+}
+
+.opcion-titulo {
+  font-size: 13px;
+  font-weight: bold;
+  color: #1a1a2e;
+}
+
+.opcion-detalle {
+  font-size: 11px;
+  color: #888;
+}
+
+/* Tabla del carrito */
+.tabla-carrito {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  min-width: 640px;
+}
+
+.tabla-carrito th,
+.tabla-carrito td {
+  padding: 9px 10px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+  vertical-align: middle;
+}
+
+.tabla-carrito thead th {
+  background-color: #f8f9fa;
+  color: #555;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.tabla-carrito tbody a {
+  color: #1a1a2e;
+  text-decoration: none;
+}
+
+.tabla-carrito tbody a:hover {
+  color: #e84545;
+}
+
+.tabla-carrito tfoot th,
+.tabla-carrito tfoot td {
+  background-color: #f8f9fa;
+  border-top: 2px solid #1a1a2e;
+  border-bottom: none;
+  text-align: right;
+}
+
+.total {
+  font-size: 18px;
+  color: #e84545;
+}
+
+.input-cantidad {
+  width: 62px;
+  padding: 5px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 13px;
+  text-align: right;
+}
+
+/* Confirmacion */
+.campo-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13px;
+  color: #444;
+  margin-top: 12px;
+}
+
+.campo-check input {
+  margin-top: 3px;
+}
+
+.form-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+/* Pasos de la compra en la barra lateral */
+.pasos {
+  counter-reset: paso;
+}
+
+.pasos .paso-actual {
+  font-weight: bold;
+  color: #e84545;
+}
+
+/* ===========================
+   PIE DE PAGINA
+=========================== */
+.footer {
+  background-color: #1a1a2e;
+  color: #bbb;
+  text-align: center;
+  padding: 18px 15px;
+  font-size: 12px;
+  margin-top: 30px;
+}
+
+/* ===========================
+   UTILIDADES
+=========================== */
+.oculto-visual {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ===========================
+   DISEÑO ADAPTABLE
+=========================== */
+@media (max-width: 860px) {
+  .header {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .nav a {
+    margin-left: 0;
+    margin-right: 8px;
+    display: inline-block;
+    margin-bottom: 6px;
+  }
+
+  .contenedor {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+  }
+
+  .ficha-galeria {
+    width: 100%;
+  }
+}
