@@ -195,7 +195,15 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <!--
+                  AA13 - Parte B: cada <tr> de producto suma la clase
+                  "fila-producto" y el atributo data-precio (precio
+                  unitario en pesos, sin puntos ni signo $) para que
+                  el script pueda leerlo y recalcular el subtotal sin
+                  tener que interpretar el texto "$4.500" de la celda
+                  de precio.
+                -->
+                <tr class="fila-producto" data-precio="4500">
                   <td class="col-centrada">
                     <input type="checkbox" id="item-1" name="productos" value="M-001" checked="" />
                     <label for="item-1" class="oculto-visual">Incluir M-001 en la compra</label>
@@ -207,9 +215,9 @@
                     <label for="cant-1" class="oculto-visual">Cantidad de M-001</label>
                     <input type="number" id="cant-1" name="cantidad_m001" value="1" min="1" max="4" class="input-cantidad" />
                   </td>
-                  <td class="col-numerica precio">$4.500</td>
+                  <td class="col-numerica precio">$<span class="subtotal-producto">4.500</span></td>
                 </tr>
-                <tr>
+                <tr class="fila-producto" data-precio="3200">
                   <td class="col-centrada">
                     <input type="checkbox" id="item-2" name="productos" value="M-004" checked="" />
                     <label for="item-2" class="oculto-visual">Incluir M-004 en la compra</label>
@@ -221,9 +229,9 @@
                     <label for="cant-2" class="oculto-visual">Cantidad de M-004</label>
                     <input type="number" id="cant-2" name="cantidad_m004" value="1" min="1" max="6" class="input-cantidad" />
                   </td>
-                  <td class="col-numerica precio">$3.200</td>
+                  <td class="col-numerica precio">$<span class="subtotal-producto">3.200</span></td>
                 </tr>
-                <tr>
+                <tr class="fila-producto" data-precio="2500">
                   <td class="col-centrada">
                     <input type="checkbox" id="item-3" name="productos" value="M-005" />
                     <label for="item-3" class="oculto-visual">Incluir M-005 en la compra</label>
@@ -235,13 +243,13 @@
                     <label for="cant-3" class="oculto-visual">Cantidad de M-005</label>
                     <input type="number" id="cant-3" name="cantidad_m005" value="1" min="1" max="1" class="input-cantidad" />
                   </td>
-                  <td class="col-numerica precio">$2.500</td>
+                  <td class="col-numerica precio">$<span class="subtotal-producto">2.500</span></td>
                 </tr>
               </tbody>
               <tfoot>
                 <tr>
                   <th scope="row" colspan="5">Total del pedido</th>
-                  <td class="col-numerica precio total">$7.700</td>
+                  <td class="col-numerica precio total">$<span id="total-pedido">7.700</span></td>
                 </tr>
               </tfoot>
             </table>
@@ -291,6 +299,101 @@
   <footer class="footer">
     <p>FacuLeaks &middot; Foro academico universitario &middot; Trabajo practico de Paradigmas de la Programacion 3</p>
   </footer>
+
+  <!-- AA13 - Parte B: comportamiento dinamico de cantidad/subtotal -->
+  <script>
+    // ============================================================
+    // AA13 - Parte B
+    // Aplicacion practica sobre comprar.html (Marketplace de FacuLeaks).
+    // Captura el cambio de la cantidad de cada producto y recalcula,
+    // en tiempo real y sin recargar la pagina:
+    //   - el subtotal de esa fila (precio unitario x cantidad)
+    //   - el total del pedido (suma de los subtotales de los
+    //     productos que siguen incluidos, es decir con el checkbox
+    //     "Incluir" tildado)
+    // ============================================================
+
+    // 1) Todas las filas de producto de la tabla del carrito.
+    //    Se resuelven una sola vez, al llegar el navegador a este
+    //    <script>, que ya esta al final del <body> (el DOM de arriba
+    //    ya existe en ese momento).
+    const filasProducto = document.querySelectorAll('.fila-producto');
+
+    // 2) Nodo donde se inyecta el total del pedido (celda del tfoot).
+    const spanTotalPedido = document.getElementById('total-pedido');
+
+    // 3) Formateador de numeros en formato argentino (punto de miles,
+    //    sin decimales), para mostrar "4.500" en vez de "4500".
+    const formatoMoneda = new Intl.NumberFormat('es-AR', {
+      maximumFractionDigits: 0
+    });
+
+    // 4) Recalcula el subtotal de UNA fila de producto:
+    //    - lee el precio unitario desde data-precio del <tr>
+    //    - lee y valida la cantidad cargada por el usuario
+    //    - actualiza el <span class="subtotal-producto"> de esa fila
+    //    - devuelve el subtotal solo si el producto sigue incluido
+    //      (checkbox tildado); si no, devuelve 0 para no sumarlo
+    //      al total general.
+    function recalcularFila(fila) {
+      const precioUnitario = Number(fila.dataset.precio);
+
+      const inputCantidad = fila.querySelector('.input-cantidad');
+      const spanSubtotal = fila.querySelector('.subtotal-producto');
+      const checkboxIncluir = fila.querySelector('input[type="checkbox"]');
+
+      // Limites de cantidad ya declarados en el propio input (min/max
+      // del HTML). Si el usuario borra el campo o carga un valor fuera
+      // de rango, se corrige al limite mas cercano en vez de calcular
+      // con NaN o con un numero invalido.
+      const minimo = Number(inputCantidad.min) || 1;
+      const maximo = inputCantidad.max ? Number(inputCantidad.max) : Infinity;
+
+      let cantidad = Number(inputCantidad.value);
+      if (Number.isNaN(cantidad) || cantidad < minimo) {
+        cantidad = minimo;
+      } else if (cantidad > maximo) {
+        cantidad = maximo;
+      }
+      inputCantidad.value = cantidad;
+
+      const subtotal = precioUnitario * cantidad;
+      spanSubtotal.textContent = formatoMoneda.format(subtotal);
+
+      return checkboxIncluir.checked ? subtotal : 0;
+    }
+
+    // 5) Recorre todas las filas, actualiza cada subtotal y suma el
+    //    total del pedido en la fila del tfoot.
+    function recalcularTotalPedido() {
+      let total = 0;
+
+      filasProducto.forEach(function (fila) {
+        total += recalcularFila(fila);
+      });
+
+      spanTotalPedido.textContent = formatoMoneda.format(total);
+    }
+
+    // 6) Captura de eventos, por cada fila:
+    //    - "input" en el campo de cantidad: recalculo en tiempo real
+    //      a medida que el usuario escribe o usa las flechas del
+    //      input number.
+    //    - "change" en el checkbox "Incluir": si el usuario excluye o
+    //      vuelve a incluir un producto, el total se recalcula igual.
+    filasProducto.forEach(function (fila) {
+      const inputCantidad = fila.querySelector('.input-cantidad');
+      const checkboxIncluir = fila.querySelector('input[type="checkbox"]');
+
+      inputCantidad.addEventListener('input', recalcularTotalPedido);
+      checkboxIncluir.addEventListener('change', recalcularTotalPedido);
+    });
+
+    // 7) Primer calculo al llegar aca, para que los subtotales y el
+    //    total queden consistentes con los valores iniciales de los
+    //    inputs (por si en el futuro cambian los value= por defecto).
+    recalcularTotalPedido();
+  </script>
 
 </body>
 </html>
