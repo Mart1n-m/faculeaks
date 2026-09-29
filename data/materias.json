@@ -1,0 +1,50 @@
+[
+  {
+    "id_materia": 1,
+    "nombre": "Base de Datos"
+  },
+  {
+    "id_materia": 2,
+    "nombre": "Analisis Numerico"
+  },
+  {
+    "id_materia": 3,
+    "nombre": "Anatomia"
+  },
+  {
+    "id_materia": 4,
+    "nombre": "Analisis Matematico I"
+  },
+  {
+    "id_materia": 5,
+    "nombre": "Analisis Matematico II"
+  },
+  {
+    "id_materia": 6,
+    "nombre": "Algebra y Geometria Analitica"
+  },
+  {
+    "id_materia": 7,
+    "nombre": "Fisica I"
+  },
+  {
+    "id_materia": 8,
+    "nombre": "Programacion I"
+  },
+  {
+    "id_materia": 9,
+    "nombre": "Probabilidad y Estadistica"
+  },
+  {
+    "id_materia": 10,
+    "nombre": "Paradigmas de la Programacion 3"
+  },
+  {
+    "id_materia": 11,
+    "nombre": "Ingenieria de Software II"
+  },
+  {
+    "id_materia": 12,
+    "nombre": "Sistemas Operativos"
+  }
+]

@@ -1,0 +1,217 @@
+[
+  {
+    "id_usuario": 1,
+    "id_contenido": 4,
+    "valor": 1
+  },
+  {
+    "id_usuario": 1,
+    "id_contenido": 5,
+    "valor": 1
+  },
+  {
+    "id_usuario": 1,
+    "id_contenido": 6,
+    "valor": 1
+  },
+  {
+    "id_usuario": 1,
+    "id_contenido": 7,
+    "valor": 1
+  },
+  {
+    "id_usuario": 1,
+    "id_contenido": 8,
+    "valor": 1
+  },
+  {
+    "id_usuario": 1,
+    "id_contenido": 10,
+    "valor": 1
+  },
+  {
+    "id_usuario": 1,
+    "id_contenido": 11,
+    "valor": 1
+  },
+  {
+    "id_usuario": 2,
+    "id_contenido": 1,
+    "valor": 1
+  },
+  {
+    "id_usuario": 2,
+    "id_contenido": 4,
+    "valor": 1
+  },
+  {
+    "id_usuario": 2,
+    "id_contenido": 7,
+    "valor": 1
+  },
+  {
+    "id_usuario": 2,
+    "id_contenido": 8,
+    "valor": 1
+  },
+  {
+    "id_usuario": 2,
+    "id_contenido": 10,
+    "valor": 1
+  },
+  {
+    "id_usuario": 3,
+    "id_contenido": 1,
+    "valor": 1
+  },
+  {
+    "id_usuario": 3,
+    "id_contenido": 2,
+    "valor": -1
+  },
+  {
+    "id_usuario": 3,
+    "id_contenido": 4,
+    "valor": 1
+  },
+  {
+    "id_usuario": 4,
+    "id_contenido": 1,
+    "valor": 1
+  },
+  {
+    "id_usuario": 4,
+    "id_contenido": 5,
+    "valor": 1
+  },
+  {
+    "id_usuario": 4,
+    "id_contenido": 6,
+    "valor": 1
+  },
+  {
+    "id_usuario": 4,
+    "id_contenido": 7,
+    "valor": 1
+  },
+  {
+    "id_usuario": 4,
+    "id_contenido": 8,
+    "valor": 1
+  },
+  {
+    "id_usuario": 4,
+    "id_contenido": 9,
+    "valor": 1
+  },
+  {
+    "id_usuario": 4,
+    "id_contenido": 10,
+    "valor": 1
+  },
+  {
+    "id_usuario": 4,
+    "id_contenido": 13,
+    "valor": 1
+  },
+  {
+    "id_usuario": 5,
+    "id_contenido": 1,
+    "valor": 1
+  },
+  {
+    "id_usuario": 5,
+    "id_contenido": 4,
+    "valor": 1
+  },
+  {
+    "id_usuario": 5,
+    "id_contenido": 6,
+    "valor": -1
+  },
+  {
+    "id_usuario": 5,
+    "id_contenido": 8,
+    "valor": 1
+  },
+  {
+    "id_usuario": 5,
+    "id_contenido": 9,
+    "valor": 1
+  },
+  {
+    "id_usuario": 5,
+    "id_contenido": 10,
+    "valor": 1
+  },
+  {
+    "id_usuario": 6,
+    "id_contenido": 4,
+    "valor": 1
+  },
+  {
+    "id_usuario": 6,
+    "id_contenido": 5,
+    "valor": 1
+  },
+  {
+    "id_usuario": 6,
+    "id_contenido": 7,
+    "valor": 1
+  },
+  {
+    "id_usuario": 7,
+    "id_contenido": 1,
+    "valor": 1
+  },
+  {
+    "id_usuario": 7,
+    "id_contenido": 4,
+    "valor": 1
+  },
+  {
+    "id_usuario": 7,
+    "id_contenido": 7,
+    "valor": 1
+  },
+  {
+    "id_usuario": 7,
+    "id_contenido": 17,
+    "valor": 1
+  },
+  {
+    "id_usuario": 8,
+    "id_contenido": 4,
+    "valor": 1
+  },
+  {
+    "id_usuario": 8,
+    "id_contenido": 5,
+    "valor": -1
+  },
+  {
+    "id_usuario": 8,
+    "id_contenido": 7,
+    "valor": 1
+  },
+  {
+    "id_usuario": 9,
+    "id_contenido": 4,
+    "valor": 1
+  },
+  {
+    "id_usuario": 9,
+    "id_contenido": 8,
+    "valor": 1
+  },
+  {
+    "id_usuario": 9,
+    "id_contenido": 12,
+    "valor": 1
+  },
+  {
+    "id_usuario": 10,
+    "id_contenido": 11,
+    "valor": 1
+  }
+]

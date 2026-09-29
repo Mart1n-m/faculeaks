@@ -1,0 +1,67 @@
+[
+  {
+    "id_contenido": 2,
+    "id_publicacion": 1,
+    "id_comentario_padre": null
+  },
+  {
+    "id_contenido": 3,
+    "id_publicacion": 1,
+    "id_comentario_padre": 2
+  },
+  {
+    "id_contenido": 13,
+    "id_publicacion": 4,
+    "id_comentario_padre": null
+  },
+  {
+    "id_contenido": 14,
+    "id_publicacion": 4,
+    "id_comentario_padre": null
+  },
+  {
+    "id_contenido": 15,
+    "id_publicacion": 4,
+    "id_comentario_padre": 14
+  },
+  {
+    "id_contenido": 16,
+    "id_publicacion": 5,
+    "id_comentario_padre": null
+  },
+  {
+    "id_contenido": 17,
+    "id_publicacion": 7,
+    "id_comentario_padre": null
+  },
+  {
+    "id_contenido": 18,
+    "id_publicacion": 7,
+    "id_comentario_padre": 17
+  },
+  {
+    "id_contenido": 19,
+    "id_publicacion": 8,
+    "id_comentario_padre": null
+  },
+  {
+    "id_contenido": 20,
+    "id_publicacion": 10,
+    "id_comentario_padre": null
+  },
+  {
+    "id_contenido": 21,
+    "id_publicacion": 10,
+    "id_comentario_padre": 20
+  },
+  {
+    "id_contenido": 22,
+    "id_publicacion": 11,
+    "id_comentario_padre": null
+  },
+  {
+    "id_contenido": 23,
+    "id_publicacion": 12,
+    "id_comentario_padre": null
+  }
+]

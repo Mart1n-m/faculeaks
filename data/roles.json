@@ -1,0 +1,14 @@
+[
+  {
+    "id_rol": 1,
+    "nombre": "estudiante"
+  },
+  {
+    "id_rol": 2,
+    "nombre": "moderador"
+  },
+  {
+    "id_rol": 3,
+    "nombre": "administrador"
+  }
+]
