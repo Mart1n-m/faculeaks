@@ -170,6 +170,225 @@ function iniciarCompra() {
 }
 
 
+/* 4.2 listado_box.html - Buscador y filtro de catalogo en tiempo real
+   AE2 - Opcion 3 (Martin Nahuel Mekekiuk)
+   Escenario SOHDM "Explorar y buscar material de estudio":
+     1. Al entrar, el catalogo completo se carga de forma asincronica
+        con fetch() (tablas productos, usuarios y materias).
+     2. Las tres tablas se combinan en memoria, igual que un SELECT con
+        JOIN, y el resultado queda guardado en la variable "catalogo".
+     3. Cada vez que el usuario escribe (evento "input") o cambia un
+        selector (evento "change"), el catalogo se filtra con .filter()
+        y las fichas se vuelven a generar en el DOM, sin recargar.  */
+function iniciarCatalogo() {
+
+  // --- Nodos de la pagina (se resuelven una sola vez) ---
+  const formFiltros = document.getElementById('form-filtros');
+  const inputTexto = document.getElementById('filtro-texto');
+  const selectTipo = document.getElementById('filtro-tipo');
+  const selectMateria = document.getElementById('filtro-materia');
+  const grilla = document.getElementById('grid-materiales');
+  const infoResultados = document.getElementById('info-resultados');
+  const mensaje = document.getElementById('mensaje-catalogo');
+  const plantilla = document.getElementById('plantilla-ficha');
+
+  // Valor especial del selector de materia para los productos cuya
+  // id_materia es NULL (la columna lo admite: relacion CORRESPONDE
+  // opcional del modelo).
+  const SIN_MATERIA = 'sin-materia';
+
+  // Catalogo completo en memoria. Se llena una unica vez con fetch();
+  // despues, cada filtrado trabaja sobre este arreglo y no vuelve a
+  // pedir nada al servidor.
+  let catalogo = [];
+
+  // --- Utilidades del modulo ---
+
+  // Pasa a minusculas, quita tildes y espacios de los extremos, para
+  // que "algebra", "Álgebra " y "ALGEBRA" coincidan entre si.
+  function normalizar(texto) {
+    return texto
+      .trim()
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '');
+  }
+
+  function mostrarMensaje(texto, esError) {
+    mensaje.textContent = texto;
+    mensaje.classList.toggle('error', esError);
+    mensaje.hidden = false;
+  }
+
+  function ocultarMensaje() {
+    mensaje.hidden = true;
+  }
+
+  // --- Paso 2: combinar las tablas (equivalente al JOIN) ---
+  //   SELECT p.*, u.alias_usuario, m.nombre
+  //   FROM productos p
+  //        JOIN usuarios u      ON u.id_usuario = p.id_usuario
+  //        LEFT JOIN materias m ON m.id_materia = p.id_materia
+  // .map() produce una fila nueva por producto; .find() busca la fila
+  // relacionada por clave foranea. Si la materia es NULL, find() no
+  // encuentra nada y se usa el texto "Sin materia" (LEFT JOIN).
+  function combinarTablas(productos, usuarios, materias) {
+    return productos.map(function (producto) {
+      const vendedor = usuarios.find(u => u.id_usuario === producto.id_usuario);
+      const materia = materias.find(m => m.id_materia === producto.id_materia);
+
+      return {
+        ...producto,
+        codigo: codigoProducto(producto.id_producto),
+        alias_vendedor: vendedor ? vendedor.alias_usuario : '',
+        nombre_materia: materia ? materia.nombre : 'Sin materia'
+      };
+    });
+  }
+
+  // --- Opciones de los selectores ---
+
+  // Tipo de material: dominio del CHECK chk_productos_tipo.
+  function cargarOpcionesTipo() {
+    Object.entries(TIPOS_MATERIAL).forEach(function ([valor, etiqueta]) {
+      selectTipo.add(new Option(etiqueta, valor));
+    });
+  }
+
+  // Materia: solo las materias que tienen al menos un producto, en
+  // orden alfabetico, mas "Sin materia" si algun producto no tiene.
+  function cargarOpcionesMateria(materias) {
+    materias
+      .filter(m => catalogo.some(item => item.id_materia === m.id_materia))
+      .sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'))
+      .forEach(m => selectMateria.add(new Option(m.nombre, m.id_materia)));
+
+    if (catalogo.some(item => item.id_materia === null)) {
+      selectMateria.add(new Option('Sin materia', SIN_MATERIA));
+    }
+  }
+
+  // --- Paso 3: filtrar ---
+
+  // Devuelve true si el item cumple los TRES criterios a la vez (AND).
+  // Un criterio vacio ("Todos", "Todas" o buscador en blanco) no filtra.
+  function cumpleCriterios(item, criterios) {
+    const cumpleTexto = criterios.texto === '' ||
+      [item.titulo, item.nombre_materia, item.alias_vendedor]
+        .some(campo => normalizar(campo).includes(criterios.texto));
+
+    const cumpleTipo = criterios.tipo === '' ||
+      item.tipo_material === criterios.tipo;
+
+    let cumpleMateria = true;
+    if (criterios.materia === SIN_MATERIA) {
+      cumpleMateria = item.id_materia === null;
+    } else if (criterios.materia !== '') {
+      cumpleMateria = item.id_materia === Number(criterios.materia);
+    }
+
+    return cumpleTexto && cumpleTipo && cumpleMateria;
+  }
+
+  // Lee los controles, filtra el catalogo en memoria y redibuja.
+  function aplicarFiltros() {
+    const criterios = {
+      texto: normalizar(inputTexto.value),
+      tipo: selectTipo.value,
+      materia: selectMateria.value
+    };
+
+    const resultado = catalogo.filter(item => cumpleCriterios(item, criterios));
+
+    mostrarResultado(resultado);
+  }
+
+  // --- Inyeccion en el DOM ---
+
+  // Clona la <template> y completa sus nodos con textContent (nunca
+  // con innerHTML, para no interpretar como HTML un dato del usuario).
+  function crearFicha(item) {
+    const ficha = plantilla.content.firstElementChild.cloneNode(true);
+
+    ficha.querySelector('.card-portada').classList.add('portada-' + item.tipo_material);
+    ficha.querySelector('.card-portada-texto').textContent = item.codigo;
+
+    const etiqueta = ficha.querySelector('.etiqueta');
+    etiqueta.classList.add(item.tipo_material);
+    etiqueta.textContent = TIPOS_MATERIAL[item.tipo_material];
+
+    ficha.querySelector('.card-titulo a').textContent = item.titulo;
+    ficha.querySelector('.dato-materia').textContent = item.nombre_materia;
+    ficha.querySelector('.dato-vendedor').textContent = item.alias_vendedor;
+    ficha.querySelector('.precio').textContent = formatearPrecio(item.precio);
+
+    return ficha;
+  }
+
+  function mostrarResultado(resultado) {
+    // replaceChildren() borra las fichas anteriores e inserta las nuevas
+    // en una sola operacion.
+    grilla.replaceChildren(...resultado.map(crearFicha));
+
+    infoResultados.textContent =
+      `${resultado.length} de ${catalogo.length} materiales publicados`;
+
+    if (resultado.length === 0) {
+      mostrarMensaje('No hay material que coincida con la busqueda. Proba con otro texto o limpia los filtros.', false);
+    } else {
+      ocultarMensaje();
+    }
+  }
+
+  // --- Paso 1: carga asincronica del catalogo completo ---
+  async function cargarCatalogo() {
+    try {
+      // Las tres peticiones salen en paralelo; Promise.all espera a que
+      // terminen todas (o rechaza apenas una falla).
+      const [productos, usuarios, materias] = await Promise.all([
+        obtenerTabla('productos'),
+        obtenerTabla('usuarios'),
+        obtenerTabla('materias')
+      ]);
+
+      catalogo = combinarTablas(productos, usuarios, materias);
+      cargarOpcionesMateria(materias);
+      aplicarFiltros();
+    } catch (error) {
+      console.error(error);
+      infoResultados.textContent = 'Catalogo no disponible';
+      formFiltros.querySelectorAll('input, select, button')
+        .forEach(control => { control.disabled = true; });
+      mostrarMensaje('No se pudo cargar el catalogo. Verifica que el sitio se abra desde un servidor ' +
+        '(XAMPP o Live Server) y no como archivo local.', true);
+    }
+  }
+
+  // --- Captura de eventos (desacoplada del HTML) ---
+
+  // "input": se dispara con cada tecla, pegado o borrado en el buscador.
+  inputTexto.addEventListener('input', aplicarFiltros);
+
+  // "change": se dispara al elegir otra opcion en un selector.
+  selectTipo.addEventListener('change', aplicarFiltros);
+  selectMateria.addEventListener('change', aplicarFiltros);
+
+  // "reset": el navegador limpia los controles DESPUES de este evento,
+  // por eso el filtrado se posterga al siguiente ciclo con setTimeout.
+  formFiltros.addEventListener('reset', function () {
+    setTimeout(aplicarFiltros, 0);
+  });
+
+  // "submit": Enter dentro del buscador no debe recargar la pagina.
+  formFiltros.addEventListener('submit', function (evento) {
+    evento.preventDefault();
+  });
+
+  cargarOpcionesTipo();
+  cargarCatalogo();
+}
+
+
 /* ---------------------------------------------------------------------
    5. ARRANQUE
    Cada HTML declara que pagina es con <body data-pagina="...">.
@@ -178,6 +397,7 @@ function iniciarCompra() {
    --------------------------------------------------------------------- */
 
 const MODULOS = {
+  catalogo: iniciarCatalogo,
   comprar: iniciarCompra
 };
 
