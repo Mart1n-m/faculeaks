@@ -224,10 +224,12 @@ body {
   text-transform: uppercase;
 }
 
-/* Colores por categoría */
-.apuntes  { background-color: #d4edda; color: #155724; }
-.debate   { background-color: #cce5ff; color: #004085; }
-.consulta { background-color: #f8d7da; color: #721c24; }
+/* Colores por categoria: valores del CHECK chk_publicaciones_categoria */
+.post-categoria.apunte   { background-color: #d4edda; color: #155724; }
+.post-categoria.recurso  { background-color: #d1ecf1; color: #0c5460; }
+.post-categoria.parcial  { background-color: #cce5ff; color: #004085; }
+.post-categoria.final    { background-color: #e2d9f3; color: #432874; }
+.post-categoria.consulta { background-color: #f8d7da; color: #721c24; }
 
 .post-titulo {
   font-size: 17px;
@@ -368,7 +370,8 @@ body {
 }
 
 /* ===========================
-   ETIQUETAS DE TIPO Y ESTADO
+   ETIQUETAS DE TIPO DE MATERIAL
+   (valores del CHECK chk_productos_tipo)
 =========================== */
 .etiqueta {
   display: inline-block;
@@ -380,23 +383,11 @@ body {
   text-transform: uppercase;
 }
 
-.etiqueta.apuntes { background-color: #d4edda; color: #155724; }
-.etiqueta.libro   { background-color: #cce5ff; color: #004085; }
-.etiqueta.guia    { background-color: #fff3cd; color: #7a5c00; }
-.etiqueta.digital { background-color: #e2d9f3; color: #432874; }
-
-.estado {
-  display: inline-block;
-  font-size: 11px;
-  padding: 2px 8px;
-  border-radius: 4px;
-  border: 1px solid;
-  white-space: nowrap;
-}
-
-.estado-nuevo   { color: #155724; border-color: #b7dfc2; background-color: #f2fbf5; }
-.estado-usado   { color: #7a5c00; border-color: #ecd9a0; background-color: #fffaf0; }
-.estado-digital { color: #432874; border-color: #cdbde8; background-color: #f7f4fc; }
+.etiqueta.apunte { background-color: #d4edda; color: #155724; }
+.etiqueta.libro  { background-color: #cce5ff; color: #004085; }
+.etiqueta.guia   { background-color: #fff3cd; color: #7a5c00; }
+.etiqueta.pdf    { background-color: #e2d9f3; color: #432874; }
+.etiqueta.otro   { background-color: #e9ecef; color: #383d41; }
 
 .precio {
   font-weight: bold;
@@ -517,10 +508,11 @@ body {
   color: white;
 }
 
-.portada-apuntes { background-color: #2e7d4f; }
-.portada-libro   { background-color: #1f4e8c; }
-.portada-guia    { background-color: #8a6d1f; }
-.portada-digital { background-color: #5b3d8c; }
+.portada-apunte { background-color: #2e7d4f; }
+.portada-libro  { background-color: #1f4e8c; }
+.portada-guia   { background-color: #8a6d1f; }
+.portada-pdf    { background-color: #5b3d8c; }
+.portada-otro   { background-color: #5a6268; }
 
 .card-cuerpo {
   padding: 12px 15px;
@@ -540,13 +532,6 @@ body {
 
 .card-titulo a:hover {
   color: #e84545;
-}
-
-.card-descripcion {
-  font-size: 13px;
-  color: #555;
-  line-height: 1.5;
-  margin-bottom: 10px;
 }
 
 .card-datos {
@@ -606,29 +591,6 @@ body {
   color: white;
 }
 
-.ficha-miniaturas {
-  display: flex;
-  gap: 8px;
-  margin-top: 8px;
-}
-
-.miniatura {
-  width: 48px;
-  height: 48px;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 13px;
-  opacity: 0.75;
-  cursor: pointer;
-}
-
-.miniatura:hover {
-  opacity: 1;
-}
-
 .ficha-datos {
   flex: 1;
   min-width: 260px;
@@ -651,12 +613,6 @@ body {
   font-size: 30px;
   font-weight: bold;
   color: #1a1a2e;
-  margin-bottom: 4px;
-}
-
-.ficha-stock {
-  font-size: 13px;
-  color: #2e7d4f;
   margin-bottom: 14px;
 }
 
@@ -730,23 +686,6 @@ body {
   font-weight: bold;
 }
 
-.consulta-item {
-  border-left: 3px solid #eee;
-  padding: 4px 0 4px 12px;
-  margin-bottom: 12px;
-}
-
-.consulta-item-texto {
-  font-weight: bold;
-  color: #1a1a2e;
-  margin-bottom: 4px !important;
-}
-
-.consulta-item-respuesta {
-  color: #555;
-  margin-bottom: 0 !important;
-}
-
 .grid-relacionados {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -805,8 +744,7 @@ body {
 }
 
 .campo input,
-.campo select,
-.campo textarea {
+.campo select {
   font-family: inherit;
   font-size: 14px;
   padding: 9px 12px;
@@ -817,13 +755,8 @@ body {
   width: 100%;
 }
 
-.campo textarea {
-  resize: vertical;
-}
-
 .campo input:focus,
-.campo select:focus,
-.campo textarea:focus {
+.campo select:focus {
   outline: none;
   border-color: #e84545;
   box-shadow: 0 0 0 2px rgba(232, 69, 69, 0.15);
@@ -836,6 +769,25 @@ body {
 
 .campo input:valid:not(:placeholder-shown) {
   border-color: #b7dfc2;
+}
+
+/* Campos que muestran datos de la cuenta (tabla usuarios): no editables */
+.campo input[readonly] {
+  background-color: #f4f5f7;
+  color: #555;
+}
+
+.nota-sesion {
+  font-size: 13px;
+  color: #444;
+  margin-top: 12px;
+  line-height: 1.5;
+}
+
+.subtitulo-grupo {
+  font-size: 14px;
+  color: #1a1a2e;
+  margin-top: 20px;
 }
 
 .ayuda {

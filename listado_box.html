@@ -17,7 +17,7 @@
     <nav class="nav">
       <a href="index.html">Inicio</a>
       <a href="apuntes.html">Apuntes</a>
-      <a href="debates.html">Debates</a>
+      <a href="parciales.html">Parciales y finales</a>
       <a href="consultas.html">Consultas</a>
       <a href="listado_box.html" class="activo">Marketplace</a>
     </nav>
@@ -31,7 +31,7 @@
       <h3>Categorias del foro</h3>
       <ul>
         <li><a href="apuntes.html">Apuntes</a></li>
-        <li><a href="debates.html">Debates</a></li>
+        <li><a href="parciales.html">Parciales y finales</a></li>
         <li><a href="consultas.html">Consultas</a></li>
       </ul>
 
@@ -44,10 +44,11 @@
 
       <h3>Tipo de material</h3>
       <ul>
-        <li><a href="listado_box.html">Apuntes impresos</a></li>
-        <li><a href="listado_box.html">Libros usados</a></li>
-        <li><a href="listado_box.html">Guias resueltas</a></li>
-        <li><a href="listado_box.html">Material digital</a></li>
+        <li><a href="listado_box.html">Apunte</a></li>
+        <li><a href="listado_box.html">Libro</a></li>
+        <li><a href="listado_box.html">Guia</a></li>
+        <li><a href="listado_box.html">PDF</a></li>
+        <li><a href="listado_box.html">Otro</a></li>
       </ul>
     </aside>
 
@@ -62,7 +63,7 @@
       <h2 class="titulo-categoria">Material de estudio disponible</h2>
 
       <div class="barra-vista">
-        <p class="barra-vista-info">6 publicaciones encontradas</p>
+        <p class="barra-vista-info">10 materiales publicados</p>
         <div class="barra-vista-acciones">
           <a href="listado_box.html" class="btn btn-secundario btn-activo">Vista en fichas</a>
           <a href="listado_tabla.html" class="btn btn-secundario">Vista en tabla</a>
@@ -71,23 +72,82 @@
 
       <section class="grid-materiales" aria-label="Listado de materiales">
 
-        <!-- Material 1 -->
+        <!-- Material M-001 (productos.id_producto = 1) -->
         <article class="card">
-          <div class="card-portada portada-apuntes" aria-hidden="true">
-            <span class="card-portada-texto">AM II</span>
+          <div class="card-portada portada-apunte" aria-hidden="true">
+            <span class="card-portada-texto">M-001</span>
           </div>
           <div class="card-cuerpo">
-            <span class="etiqueta apuntes">Apuntes</span>
+            <span class="etiqueta apunte">Apunte</span>
+            <h3 class="card-titulo">
+              <a href="producto.html">Apuntes completos de Base de Datos 2026</a>
+            </h3>
+            <dl class="card-datos">
+              <dt>Materia</dt><dd>Base de Datos</dd>
+              <dt>Vendedor</dt><dd>mmekekiuk</dd>
+            </dl>
+          </div>
+          <div class="card-footer">
+            <p class="precio">$8.500</p>
+            <a href="producto.html" class="btn btn-primario">Ver ficha</a>
+          </div>
+        </article>
+
+        <!-- Material M-002 (productos.id_producto = 2) -->
+        <article class="card">
+          <div class="card-portada portada-guia" aria-hidden="true">
+            <span class="card-portada-texto">M-002</span>
+          </div>
+          <div class="card-cuerpo">
+            <span class="etiqueta guia">Guia</span>
+            <h3 class="card-titulo">
+              <a href="producto.html">Guia de ejercicios de Analisis Numerico</a>
+            </h3>
+            <dl class="card-datos">
+              <dt>Materia</dt><dd>Analisis Numerico</dd>
+              <dt>Vendedor</dt><dd>mmekekiuk</dd>
+            </dl>
+          </div>
+          <div class="card-footer">
+            <p class="precio">$4.200</p>
+            <a href="producto.html" class="btn btn-primario">Ver ficha</a>
+          </div>
+        </article>
+
+        <!-- Material M-003 (productos.id_producto = 3) -->
+        <article class="card">
+          <div class="card-portada portada-libro" aria-hidden="true">
+            <span class="card-portada-texto">M-003</span>
+          </div>
+          <div class="card-cuerpo">
+            <span class="etiqueta libro">Libro</span>
+            <h3 class="card-titulo">
+              <a href="producto.html">Libro Fundamentos de bases de datos</a>
+            </h3>
+            <dl class="card-datos">
+              <dt>Materia</dt><dd>Sin materia</dd>
+              <dt>Vendedor</dt><dd>apiedrafita</dd>
+            </dl>
+          </div>
+          <div class="card-footer">
+            <p class="precio">$15.000</p>
+            <a href="producto.html" class="btn btn-primario">Ver ficha</a>
+          </div>
+        </article>
+
+        <!-- Material M-004 (productos.id_producto = 4) -->
+        <article class="card">
+          <div class="card-portada portada-apunte" aria-hidden="true">
+            <span class="card-portada-texto">M-004</span>
+          </div>
+          <div class="card-cuerpo">
+            <span class="etiqueta apunte">Apunte</span>
             <h3 class="card-titulo">
               <a href="producto.html">Resumen completo de Analisis Matematico II - Unidad 3</a>
             </h3>
-            <p class="card-descripcion">
-              Anillado A4 de 48 paginas con limites, derivadas parciales y 30 ejercicios resueltos
-              con desarrollo completo.
-            </p>
             <dl class="card-datos">
+              <dt>Materia</dt><dd>Analisis Matematico II</dd>
               <dt>Vendedor</dt><dd>matias_tp</dd>
-              <dt>Estado</dt><dd>Nuevo</dd>
             </dl>
           </div>
           <div class="card-footer">
@@ -96,23 +156,19 @@
           </div>
         </article>
 
-        <!-- Material 2 -->
+        <!-- Material M-005 (productos.id_producto = 5) -->
         <article class="card">
-          <div class="card-portada portada-apuntes" aria-hidden="true">
-            <span class="card-portada-texto">QUIM</span>
+          <div class="card-portada portada-apunte" aria-hidden="true">
+            <span class="card-portada-texto">M-005</span>
           </div>
           <div class="card-cuerpo">
-            <span class="etiqueta apuntes">Apuntes</span>
+            <span class="etiqueta apunte">Apunte</span>
             <h3 class="card-titulo">
-              <a href="producto.html">Apuntes de Quimica General - cursada completa</a>
+              <a href="producto.html">Apuntes de Programacion I - cursada completa</a>
             </h3>
-            <p class="card-descripcion">
-              Los apuntes de toda la cursada organizados por unidad, con tablas de reacciones
-              y los practicos de laboratorio.
-            </p>
             <dl class="card-datos">
-              <dt>Vendedor</dt><dd>lau_quim</dd>
-              <dt>Estado</dt><dd>Nuevo</dd>
+              <dt>Materia</dt><dd>Programacion I</dd>
+              <dt>Vendedor</dt><dd>caro_ing</dd>
             </dl>
           </div>
           <div class="card-footer">
@@ -121,23 +177,19 @@
           </div>
         </article>
 
-        <!-- Material 3 -->
+        <!-- Material M-006 (productos.id_producto = 6) -->
         <article class="card">
           <div class="card-portada portada-libro" aria-hidden="true">
-            <span class="card-portada-texto">ALG</span>
+            <span class="card-portada-texto">M-006</span>
           </div>
           <div class="card-cuerpo">
             <span class="etiqueta libro">Libro</span>
             <h3 class="card-titulo">
               <a href="producto.html">Algebra y Geometria Analitica - Kozak / Pastorelli</a>
             </h3>
-            <p class="card-descripcion">
-              Ejemplar usado en muy buen estado, sin subrayados en lapicera. Edicion 2022,
-              tapa blanda.
-            </p>
             <dl class="card-datos">
+              <dt>Materia</dt><dd>Algebra y Geometria Analitica</dd>
               <dt>Vendedor</dt><dd>caro_ing</dd>
-              <dt>Estado</dt><dd>Usado - muy bueno</dd>
             </dl>
           </div>
           <div class="card-footer">
@@ -146,23 +198,19 @@
           </div>
         </article>
 
-        <!-- Material 4 -->
+        <!-- Material M-007 (productos.id_producto = 7) -->
         <article class="card">
           <div class="card-portada portada-guia" aria-hidden="true">
-            <span class="card-portada-texto">FIS I</span>
+            <span class="card-portada-texto">M-007</span>
           </div>
           <div class="card-cuerpo">
             <span class="etiqueta guia">Guia</span>
             <h3 class="card-titulo">
               <a href="producto.html">Guia de ejercicios resueltos de Fisica I</a>
             </h3>
-            <p class="card-descripcion">
-              Los 80 ejercicios de la guia de catedra resueltos paso a paso, con los graficos
-              hechos a mano.
-            </p>
             <dl class="card-datos">
+              <dt>Materia</dt><dd>Fisica I</dd>
               <dt>Vendedor</dt><dd>juanma_dev</dd>
-              <dt>Estado</dt><dd>Nuevo</dd>
             </dl>
           </div>
           <div class="card-footer">
@@ -171,23 +219,19 @@
           </div>
         </article>
 
-        <!-- Material 5 -->
+        <!-- Material M-008 (productos.id_producto = 8) -->
         <article class="card">
-          <div class="card-portada portada-digital" aria-hidden="true">
-            <span class="card-portada-texto">PDF</span>
+          <div class="card-portada portada-pdf" aria-hidden="true">
+            <span class="card-portada-texto">M-008</span>
           </div>
           <div class="card-cuerpo">
-            <span class="etiqueta digital">Digital</span>
+            <span class="etiqueta pdf">PDF</span>
             <h3 class="card-titulo">
-              <a href="producto.html">Resumen de Derecho Comercial - Unidades 1 a 4</a>
+              <a href="producto.html">Resumen de Sistemas Operativos - Unidades 1 a 4</a>
             </h3>
-            <p class="card-descripcion">
-              Archivo PDF de 62 paginas con cuadros comparativos y jurisprudencia citada.
-              Descarga inmediata tras la compra.
-            </p>
             <dl class="card-datos">
-              <dt>Vendedor</dt><dd>fede_dcho</dd>
-              <dt>Estado</dt><dd>Descarga digital</dd>
+              <dt>Materia</dt><dd>Sistemas Operativos</dd>
+              <dt>Vendedor</dt><dd>sistemas_2do</dd>
             </dl>
           </div>
           <div class="card-footer">
@@ -196,27 +240,44 @@
           </div>
         </article>
 
-        <!-- Material 6 -->
+        <!-- Material M-009 (productos.id_producto = 9) -->
         <article class="card">
           <div class="card-portada portada-guia" aria-hidden="true">
-            <span class="card-portada-texto">BD</span>
+            <span class="card-portada-texto">M-009</span>
           </div>
           <div class="card-cuerpo">
             <span class="etiqueta guia">Guia</span>
             <h3 class="card-titulo">
               <a href="producto.html">Base de Datos - parciales resueltos 2020 a 2025</a>
             </h3>
-            <p class="card-descripcion">
-              Compilado de 18 parciales tomados por la catedra, con la resolucion de cada
-              modelo entidad-relacion y las consultas SQL.
-            </p>
             <dl class="card-datos">
+              <dt>Materia</dt><dd>Base de Datos</dd>
               <dt>Vendedor</dt><dd>sistemas_2do</dd>
-              <dt>Estado</dt><dd>Usado - bueno</dd>
             </dl>
           </div>
           <div class="card-footer">
             <p class="precio">$3.900</p>
+            <a href="producto.html" class="btn btn-primario">Ver ficha</a>
+          </div>
+        </article>
+
+        <!-- Material M-010 (productos.id_producto = 10) -->
+        <article class="card">
+          <div class="card-portada portada-otro" aria-hidden="true">
+            <span class="card-portada-texto">M-010</span>
+          </div>
+          <div class="card-cuerpo">
+            <span class="etiqueta otro">Otro</span>
+            <h3 class="card-titulo">
+              <a href="producto.html">Calculadora cientifica Casio fx-570</a>
+            </h3>
+            <dl class="card-datos">
+              <dt>Materia</dt><dd>Sin materia</dd>
+              <dt>Vendedor</dt><dd>tomi_rta</dd>
+            </dl>
+          </div>
+          <div class="card-footer">
+            <p class="precio">$18.000</p>
             <a href="producto.html" class="btn btn-primario">Ver ficha</a>
           </div>
         </article>

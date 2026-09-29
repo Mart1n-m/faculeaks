@@ -3,11 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Publicaciones de la categoria consulta del foro FacuLeaks." />
   <title>FacuLeaks - Consultas</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
+  <!-- HEADER -->
   <header class="header">
     <div class="header-contenido">
       <h1 class="logo">FacuLeaks</h1>
@@ -15,19 +17,21 @@
     <nav class="nav">
       <a href="index.html">Inicio</a>
       <a href="apuntes.html">Apuntes</a>
-      <a href="debates.html">Debates</a>
-      <a href="consultas.html">Consultas</a>
+      <a href="parciales.html">Parciales y finales</a>
+      <a href="consultas.html" class="activo">Consultas</a>
       <a href="listado_box.html">Marketplace</a>
     </nav>
   </header>
 
+  <!-- CUERPO PRINCIPAL -->
   <div class="contenedor">
 
+    <!-- BARRA LATERAL -->
     <aside class="sidebar">
       <h3>Categorias del foro</h3>
       <ul>
         <li><a href="apuntes.html">Apuntes</a></li>
-        <li><a href="debates.html">Debates</a></li>
+        <li><a href="parciales.html">Parciales y finales</a></li>
         <li><a href="consultas.html">Consultas</a></li>
       </ul>
 
@@ -39,74 +43,78 @@
       </ul>
     </aside>
 
+    <!-- PUBLICACIONES -->
     <main class="publicaciones">
 
       <h2 class="titulo-categoria">Consultas</h2>
 
       <div class="nueva-publicacion">
-        <input type="text" placeholder="Escribi tu consulta..." />
-        <button>Publicar</button>
+        <input type="text" placeholder="Escribi tu consulta..." aria-label="Nueva publicacion" />
+        <button type="button">Publicar</button>
       </div>
 
+      <!-- Publicacion: contenidos + publicaciones (id_contenido = 10) -->
       <article class="post">
         <div class="post-votos">
-          <button class="voto-btn">▲</button>
-          <span class="voto-num">8</span>
-          <button class="voto-btn">▼</button>
+          <button class="voto-btn" type="button" aria-label="Votar a favor">&#9650;</button>
+          <span class="voto-num">4</span>
+          <button class="voto-btn" type="button" aria-label="Votar en contra">&#9660;</button>
         </div>
         <div class="post-contenido">
           <span class="post-categoria consulta">Consulta</span>
-          <h2 class="post-titulo">Alguien sabe si el TP de Programacion se entrega por el campus?</h2>
+          <h2 class="post-titulo">Alguien sabe si el TP de Programacion I se entrega por el campus?</h2>
           <p class="post-descripcion">
-            No encuentro informacion clara en el campus sobre como entregar el TP final.
-            El profe no contesto el mail todavia. Alguien sabe algo?
+            No encuentro informacion clara en el campus sobre como entregar el TP final. El profe no contesto el mail todavia. Alguien sabe algo?
           </p>
           <div class="post-footer">
             <span>por <strong>juanma_dev</strong></span>
-            <span>7 comentarios</span>
-            <span>hace 3 horas</span>
+            <span>Programacion I</span>
+            <span>2 comentarios</span>
+            <span><time datetime="2026-09-28T08:20:00">28/09/2026</time></span>
           </div>
         </div>
       </article>
 
+      <!-- Publicacion: contenidos + publicaciones (id_contenido = 11) -->
       <article class="post">
         <div class="post-votos">
-          <button class="voto-btn">▲</button>
-          <span class="voto-num">5</span>
-          <button class="voto-btn">▼</button>
+          <button class="voto-btn" type="button" aria-label="Votar a favor">&#9650;</button>
+          <span class="voto-num">2</span>
+          <button class="voto-btn" type="button" aria-label="Votar en contra">&#9660;</button>
         </div>
         <div class="post-contenido">
           <span class="post-categoria consulta">Consulta</span>
-          <h2 class="post-titulo">Cuantas materias se pueden cursar en el mismo cuatrimestre?</h2>
+          <h2 class="post-titulo">Conviene rendir libre Probabilidad y Estadistica?</h2>
           <p class="post-descripcion">
-            Quiero anotarme a 5 materias pero no se si hay un limite.
-            Alguien sabe como funciona el regimen de cursada?
+            Quiero anotarme a 5 materias este cuatrimestre y no se si conviene cursar Probabilidad y Estadistica o rendirla libre. Alguien sabe como funciona el regimen?
           </p>
           <div class="post-footer">
             <span>por <strong>nueva_estudiante</strong></span>
-            <span>4 comentarios</span>
-            <span>hace 1 dia</span>
+            <span>Probabilidad y Estadistica</span>
+            <span>1 comentario</span>
+            <span><time datetime="2026-09-27T19:45:00">27/09/2026</time></span>
           </div>
         </div>
       </article>
 
+      <!-- Publicacion: contenidos + publicaciones (id_contenido = 12) -->
       <article class="post">
         <div class="post-votos">
-          <button class="voto-btn">▲</button>
-          <span class="voto-num">11</span>
-          <button class="voto-btn">▼</button>
+          <button class="voto-btn" type="button" aria-label="Votar a favor">&#9650;</button>
+          <span class="voto-num">1</span>
+          <button class="voto-btn" type="button" aria-label="Votar en contra">&#9660;</button>
         </div>
         <div class="post-contenido">
           <span class="post-categoria consulta">Consulta</span>
-          <h2 class="post-titulo">Donde se tramita la libreta universitaria?</h2>
+          <h2 class="post-titulo">Donde consigo la guia de practicos de Analisis Matematico I?</h2>
           <p class="post-descripcion">
-            Soy de primer año y no se donde conseguir la libreta.
-            Fui a bedelía pero me mandaron a otro lado. Alguien que ya la tenga que me explique el proceso?
+            Soy de primer aÃ±o y no encuentro la guia. Fui a bedelia pero me mandaron a la fotocopiadora y ahi no la tienen. Alguien que ya la tenga?
           </p>
           <div class="post-footer">
             <span>por <strong>ingresante2025</strong></span>
-            <span>9 comentarios</span>
-            <span>hace 2 dias</span>
+            <span>Analisis Matematico I</span>
+            <span>1 comentario</span>
+            <span><time datetime="2026-09-26T11:00:00">26/09/2026</time></span>
           </div>
         </div>
       </article>

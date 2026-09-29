@@ -3,11 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FacuLeaks - Debates</title>
+  <meta name="description" content="Publicaciones de las categorias parcial y final del foro FacuLeaks." />
+  <title>FacuLeaks - Parciales y finales</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
+  <!-- HEADER -->
   <header class="header">
     <div class="header-contenido">
       <h1 class="logo">FacuLeaks</h1>
@@ -15,19 +17,21 @@
     <nav class="nav">
       <a href="index.html">Inicio</a>
       <a href="apuntes.html">Apuntes</a>
-      <a href="debates.html">Debates</a>
+      <a href="parciales.html" class="activo">Parciales y finales</a>
       <a href="consultas.html">Consultas</a>
       <a href="listado_box.html">Marketplace</a>
     </nav>
   </header>
 
+  <!-- CUERPO PRINCIPAL -->
   <div class="contenedor">
 
+    <!-- BARRA LATERAL -->
     <aside class="sidebar">
       <h3>Categorias del foro</h3>
       <ul>
         <li><a href="apuntes.html">Apuntes</a></li>
-        <li><a href="debates.html">Debates</a></li>
+        <li><a href="parciales.html">Parciales y finales</a></li>
         <li><a href="consultas.html">Consultas</a></li>
       </ul>
 
@@ -39,74 +43,81 @@
       </ul>
     </aside>
 
+    <!-- PUBLICACIONES -->
     <main class="publicaciones">
 
-      <h2 class="titulo-categoria">Debates</h2>
+      <h2 class="titulo-categoria">Parciales y finales</h2>
 
       <div class="nueva-publicacion">
-        <input type="text" placeholder="Abri un debate..." />
-        <button>Publicar</button>
+        <input type="text" placeholder="Comparti un parcial o un final..." aria-label="Nueva publicacion" />
+        <button type="button">Publicar</button>
       </div>
 
+      <!-- Publicacion: contenidos + publicaciones (id_contenido = 7) -->
       <article class="post">
         <div class="post-votos">
-          <button class="voto-btn">▲</button>
-          <span class="voto-num">31</span>
-          <button class="voto-btn">▼</button>
+          <button class="voto-btn" type="button" aria-label="Votar a favor">&#9650;</button>
+          <span class="voto-num">6</span>
+          <button class="voto-btn" type="button" aria-label="Votar en contra">&#9660;</button>
         </div>
         <div class="post-contenido">
-          <span class="post-categoria debate">Debate</span>
-          <h2 class="post-titulo">Es mejor estudiar en grupo o solo para los finales?</h2>
+          <span class="post-categoria parcial">Parcial</span>
+          <h2 class="post-titulo">Parcial 1 de Algebra y Geometria Analitica - Tema A</h2>
           <p class="post-descripcion">
-            Siempre hay discusion sobre esto. Yo prefiero estudiar solo porque me concentro mejor,
-            pero un amigo dice que en grupo aprende el doble. Que hacen ustedes?
+            Subo el enunciado del primer parcial con los ejercicios que resolvimos en la clase de consulta. Faltan los de la parte de conicas.
           </p>
           <div class="post-footer">
             <span>por <strong>caro_ing</strong></span>
-            <span>58 comentarios</span>
-            <span>hace 5 horas</span>
+            <span>Algebra y Geometria Analitica</span>
+            <span>2 comentarios</span>
+            <span>Adjunto: parcial1-tema-a.pdf</span>
+            <span><time datetime="2026-09-27T12:30:00">27/09/2026</time></span>
           </div>
         </div>
       </article>
 
+      <!-- Publicacion: contenidos + publicaciones (id_contenido = 8) -->
       <article class="post">
         <div class="post-votos">
-          <button class="voto-btn">▲</button>
-          <span class="voto-num">44</span>
-          <button class="voto-btn">▼</button>
+          <button class="voto-btn" type="button" aria-label="Votar a favor">&#9650;</button>
+          <span class="voto-num">5</span>
+          <button class="voto-btn" type="button" aria-label="Votar en contra">&#9660;</button>
         </div>
         <div class="post-contenido">
-          <span class="post-categoria debate">Debate</span>
-          <h2 class="post-titulo">Vale la pena ir a todas las clases o solo estudiar el libro?</h2>
+          <span class="post-categoria final">Final</span>
+          <h2 class="post-titulo">Final de Analisis Numerico - mesa de julio</h2>
           <p class="post-descripcion">
-            Hay profes que en clase dicen exactamente lo mismo que el libro.
-            A veces siento que pierdo el tiempo yendo. Ustedes como lo manejan?
+            Este es el final que tomaron en la mesa de julio. Pregunten si alguno no les sale, sobre todo el de interpolacion.
           </p>
           <div class="post-footer">
             <span>por <strong>tomi_rta</strong></span>
-            <span>72 comentarios</span>
-            <span>hace 8 horas</span>
+            <span>Analisis Numerico</span>
+            <span>1 comentario</span>
+            <span>Adjunto: final-julio.pdf</span>
+            <span><time datetime="2026-09-25T16:05:00">25/09/2026</time></span>
           </div>
         </div>
       </article>
 
+      <!-- Publicacion: contenidos + publicaciones (id_contenido = 9) -->
       <article class="post">
         <div class="post-votos">
-          <button class="voto-btn">▲</button>
-          <span class="voto-num">19</span>
-          <button class="voto-btn">▼</button>
+          <button class="voto-btn" type="button" aria-label="Votar a favor">&#9650;</button>
+          <span class="voto-num">2</span>
+          <button class="voto-btn" type="button" aria-label="Votar en contra">&#9660;</button>
         </div>
         <div class="post-contenido">
-          <span class="post-categoria debate">Debate</span>
-          <h2 class="post-titulo">La carrera de Sistemas tiene salida laboral antes de recibirte?</h2>
+          <span class="post-categoria parcial">Parcial</span>
+          <h2 class="post-titulo">Parcial 2 de Fisica I resuelto</h2>
           <p class="post-descripcion">
-            Estoy en segundo año y me preguntan si ya trabajo. 
-            Queria saber si otros estudiantes consiguieron trabajo antes de terminar la carrera y como lo hicieron.
+            Resolucion completa del segundo parcial, con los diagramas de cuerpo libre de cada ejercicio.
           </p>
           <div class="post-footer">
-            <span>por <strong>sistemas_2do</strong></span>
-            <span>34 comentarios</span>
-            <span>hace 2 dias</span>
+            <span>por <strong>juanma_dev</strong></span>
+            <span>Fisica I</span>
+            <span>0 comentarios</span>
+            <span>Adjunto: parcial2-resuelto.pdf</span>
+            <span><time datetime="2026-09-22T09:50:00">22/09/2026</time></span>
           </div>
         </div>
       </article>

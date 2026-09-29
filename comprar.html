@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Formulario de compra del Marketplace de FacuLeaks: datos del cliente, medio de pago y listado de productos." />
+  <meta name="description" content="Formulario de compra del Marketplace de FacuLeaks: comprador, medio de pago y listado de productos (tablas ventas y detalla)." />
   <title>FacuLeaks - Finalizar compra</title>
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -17,7 +17,7 @@
     <nav class="nav">
       <a href="index.html">Inicio</a>
       <a href="apuntes.html">Apuntes</a>
-      <a href="debates.html">Debates</a>
+      <a href="parciales.html">Parciales y finales</a>
       <a href="consultas.html">Consultas</a>
       <a href="listado_box.html" class="activo">Marketplace</a>
     </nav>
@@ -46,7 +46,6 @@
       <h3>Ayuda</h3>
       <ul>
         <li><a href="consultas.html">Preguntas frecuentes</a></li>
-        <li><a href="debates.html">Opiniones de compradores</a></li>
       </ul>
     </aside>
 
@@ -56,26 +55,59 @@
       <nav class="breadcrumb" aria-label="Ruta de navegacion">
         <a href="index.html">Inicio</a> &rsaquo;
         <a href="listado_box.html">Marketplace</a> &rsaquo;
-        <a href="producto.html">M-001</a> &rsaquo;
+        <a href="producto.html">M-004</a> &rsaquo;
         <span aria-current="page">Compra</span>
       </nav>
 
       <h2 class="titulo-categoria">Formulario de compra</h2>
 
+      <!--
+        Correspondencia con el modelo de datos (facuLeaks_ae2.sql):
+          ventas  (id_venta, fecha, medio_pago, id_usuario)
+          detalla (id_venta, id_producto, cantidad, precio_unitario)
+        id_venta y fecha los asigna el servidor (AUTO_INCREMENT y
+        CURRENT_TIMESTAMP); precio_unitario congela el precio vigente.
+      -->
       <form class="form-compra" action="#" method="post">
 
-        <!-- 1. DATOS DEL CLIENTE -->
+        <!-- 1. DATOS DEL COMPRADOR -->
         <fieldset class="campo-grupo">
-          <legend>1. Datos del cliente</legend>
+          <legend>1. Datos del comprador</legend>
+
+          <p class="nota-sesion">
+            Sesion iniciada como <strong>apiedrafita</strong>. Los datos provienen de la cuenta
+            del usuario y la venta se registra a su nombre mediante <code>ventas.id_usuario</code>.
+          </p>
+
+          <input type="hidden" name="id_usuario" value="2" />
 
           <div class="campos">
 
-            <p class="campo campo-ancho">
-              <label for="nombre">Nombre y apellido <abbr title="obligatorio" class="req">*</abbr></label>
-              <input type="text" id="nombre" name="nombre" placeholder="Martin Nahuel Meke"
-                     autocomplete="name" minlength="5" maxlength="80" required="" />
-              <span class="ayuda">Tal como figura en tu documento.</span>
+            <p class="campo">
+              <label for="alias">Usuario</label>
+              <input type="text" id="alias" value="apiedrafita" readonly="" />
             </p>
+
+            <p class="campo">
+              <label for="nombre">Nombre y apellido</label>
+              <input type="text" id="nombre" value="Augusto Piedrafita" readonly="" />
+            </p>
+
+            <p class="campo campo-ancho">
+              <label for="email">E-mail</label>
+              <input type="email" id="email" value="augusto@faculeaks.com" readonly="" />
+              <span class="ayuda">Ahi se envia la confirmacion del pedido.</span>
+            </p>
+
+          </div>
+
+          <h3 class="subtitulo-grupo">Datos de envio</h3>
+          <p class="ayuda">
+            Se usan solo para coordinar la entrega con el vendedor: el modelo de datos
+            no los registra en la venta.
+          </p>
+
+          <div class="campos">
 
             <p class="campo campo-ancho">
               <label for="direccion">Direccion <abbr title="obligatorio" class="req">*</abbr></label>
@@ -109,32 +141,18 @@
                      inputmode="numeric" pattern="[0-9]{4}" maxlength="4" autocomplete="postal-code" />
             </p>
 
-            <p class="campo">
-              <label for="telefono">Telefono <abbr title="obligatorio" class="req">*</abbr></label>
-              <input type="tel" id="telefono" name="telefono" placeholder="376 4123456"
-                     pattern="[0-9 +()-]{8,20}" autocomplete="tel" required="" />
-              <span class="ayuda">Con caracteristica, sin el 0 ni el 15.</span>
-            </p>
-
-            <p class="campo campo-ancho">
-              <label for="email">E-mail <abbr title="obligatorio" class="req">*</abbr></label>
-              <input type="email" id="email" name="email" placeholder="nombre@correo.com"
-                     autocomplete="email" maxlength="100" required="" />
-              <span class="ayuda">Ahi se envia la confirmacion del pedido.</span>
-            </p>
-
           </div>
         </fieldset>
 
-        <!-- 2. MEDIO DE PAGO -->
+        <!-- 2. MEDIO DE PAGO: valores del CHECK chk_ventas_medio_pago -->
         <fieldset class="campo-grupo">
           <legend>2. Medio de pago</legend>
 
           <div class="opciones">
-            <label class="opcion" for="pago-tarjeta">
-              <input type="radio" id="pago-tarjeta" name="medio_pago" value="tarjeta" required="" />
-              <span class="opcion-titulo">Tarjeta de credito o debito</span>
-              <span class="opcion-detalle">Visa, Mastercard y American Express</span>
+            <label class="opcion" for="pago-mercado-pago">
+              <input type="radio" id="pago-mercado-pago" name="medio_pago" value="mercado_pago" required="" />
+              <span class="opcion-titulo">Mercado Pago</span>
+              <span class="opcion-detalle">Tarjeta de credito, debito o dinero en cuenta</span>
             </label>
 
             <label class="opcion" for="pago-transferencia">
@@ -143,41 +161,15 @@
               <span class="opcion-detalle">CBU o alias del vendedor</span>
             </label>
 
-            <label class="opcion" for="pago-billetera">
-              <input type="radio" id="pago-billetera" name="medio_pago" value="billetera" />
-              <span class="opcion-titulo">Billetera virtual</span>
-              <span class="opcion-detalle">Mercado Pago o similar</span>
-            </label>
-
             <label class="opcion" for="pago-efectivo">
               <input type="radio" id="pago-efectivo" name="medio_pago" value="efectivo" />
               <span class="opcion-titulo">Efectivo</span>
               <span class="opcion-detalle">Al retirar el material en la sede</span>
             </label>
           </div>
-
-          <div class="campos">
-            <p class="campo">
-              <label for="cuotas">Cuotas</label>
-              <select id="cuotas" name="cuotas">
-                <option value="1" selected="">1 pago</option>
-                <option value="3">3 cuotas sin interes</option>
-                <option value="6">6 cuotas</option>
-              </select>
-            </p>
-
-            <p class="campo">
-              <label for="entrega">Forma de entrega</label>
-              <select id="entrega" name="entrega">
-                <option value="retiro" selected="">Retiro en la sede</option>
-                <option value="domicilio">Envio a domicilio</option>
-                <option value="descarga">Descarga digital</option>
-              </select>
-            </p>
-          </div>
         </fieldset>
 
-        <!-- 3. LISTADO DE PRODUCTOS -->
+        <!-- 3. LISTADO DE PRODUCTOS: cada fila es una futura fila de detalla -->
         <fieldset class="campo-grupo">
           <legend>3. Listado de productos</legend>
 
@@ -201,47 +193,48 @@
                   unitario en pesos, sin puntos ni signo $) para que
                   el script pueda leerlo y recalcular el subtotal sin
                   tener que interpretar el texto "$4.500" de la celda
-                  de precio.
+                  de precio. data-id-producto es la clave de la fila
+                  en la tabla productos.
                 -->
-                <tr class="fila-producto" data-precio="4500">
+                <tr class="fila-producto" data-id-producto="4" data-precio="4500">
                   <td class="col-centrada">
-                    <input type="checkbox" id="item-1" name="productos" value="M-001" checked="" />
-                    <label for="item-1" class="oculto-visual">Incluir M-001 en la compra</label>
+                    <input type="checkbox" id="item-1" name="id_producto" value="4" checked="" />
+                    <label for="item-1" class="oculto-visual">Incluir M-004 en la compra</label>
                   </td>
-                  <th scope="row" class="col-codigo">M-001</th>
-                  <td><a href="producto.html">Resumen de Analisis Matematico II - Unidad 3</a></td>
+                  <th scope="row" class="col-codigo">M-004</th>
+                  <td><a href="producto.html">Resumen completo de Analisis Matematico II - Unidad 3</a></td>
                   <td class="col-numerica precio">$4.500</td>
                   <td class="col-numerica">
-                    <label for="cant-1" class="oculto-visual">Cantidad de M-001</label>
-                    <input type="number" id="cant-1" name="cantidad_m001" value="1" min="1" max="4" class="input-cantidad" />
+                    <label for="cant-1" class="oculto-visual">Cantidad de M-004</label>
+                    <input type="number" id="cant-1" name="cantidad_4" value="1" min="1" class="input-cantidad" />
                   </td>
                   <td class="col-numerica precio">$<span class="subtotal-producto">4.500</span></td>
                 </tr>
-                <tr class="fila-producto" data-precio="3200">
+                <tr class="fila-producto" data-id-producto="7" data-precio="3200">
                   <td class="col-centrada">
-                    <input type="checkbox" id="item-2" name="productos" value="M-004" checked="" />
-                    <label for="item-2" class="oculto-visual">Incluir M-004 en la compra</label>
+                    <input type="checkbox" id="item-2" name="id_producto" value="7" checked="" />
+                    <label for="item-2" class="oculto-visual">Incluir M-007 en la compra</label>
                   </td>
-                  <th scope="row" class="col-codigo">M-004</th>
+                  <th scope="row" class="col-codigo">M-007</th>
                   <td><a href="producto.html">Guia de ejercicios resueltos de Fisica I</a></td>
                   <td class="col-numerica precio">$3.200</td>
                   <td class="col-numerica">
-                    <label for="cant-2" class="oculto-visual">Cantidad de M-004</label>
-                    <input type="number" id="cant-2" name="cantidad_m004" value="1" min="1" max="6" class="input-cantidad" />
+                    <label for="cant-2" class="oculto-visual">Cantidad de M-007</label>
+                    <input type="number" id="cant-2" name="cantidad_7" value="1" min="1" class="input-cantidad" />
                   </td>
                   <td class="col-numerica precio">$<span class="subtotal-producto">3.200</span></td>
                 </tr>
-                <tr class="fila-producto" data-precio="2500">
+                <tr class="fila-producto" data-id-producto="8" data-precio="2500">
                   <td class="col-centrada">
-                    <input type="checkbox" id="item-3" name="productos" value="M-005" />
-                    <label for="item-3" class="oculto-visual">Incluir M-005 en la compra</label>
+                    <input type="checkbox" id="item-3" name="id_producto" value="8" />
+                    <label for="item-3" class="oculto-visual">Incluir M-008 en la compra</label>
                   </td>
-                  <th scope="row" class="col-codigo">M-005</th>
-                  <td><a href="producto.html">Resumen de Derecho Comercial - Unidades 1 a 4</a></td>
+                  <th scope="row" class="col-codigo">M-008</th>
+                  <td><a href="producto.html">Resumen de Sistemas Operativos - Unidades 1 a 4</a></td>
                   <td class="col-numerica precio">$2.500</td>
                   <td class="col-numerica">
-                    <label for="cant-3" class="oculto-visual">Cantidad de M-005</label>
-                    <input type="number" id="cant-3" name="cantidad_m005" value="1" min="1" max="1" class="input-cantidad" />
+                    <label for="cant-3" class="oculto-visual">Cantidad de M-008</label>
+                    <input type="number" id="cant-3" name="cantidad_8" value="1" min="1" class="input-cantidad" />
                   </td>
                   <td class="col-numerica precio">$<span class="subtotal-producto">2.500</span></td>
                 </tr>
@@ -254,12 +247,6 @@
               </tfoot>
             </table>
           </div>
-
-          <p class="campo campo-ancho">
-            <label for="comentarios">Comentarios para el vendedor</label>
-            <textarea id="comentarios" name="comentarios" rows="4" maxlength="500"
-                      placeholder="Horario en el que podes retirar, aclaraciones sobre el envio, etc."></textarea>
-          </p>
         </fieldset>
 
         <!-- 4. CONFIRMACION -->
@@ -272,11 +259,6 @@
               Acepto los terminos de uso del Marketplace y confirmo que los datos son correctos
               <abbr title="obligatorio" class="req">*</abbr>
             </label>
-          </p>
-
-          <p class="campo-check">
-            <input type="checkbox" id="novedades" name="novedades" value="si" />
-            <label for="novedades">Quiero recibir avisos cuando se publique material de mis materias</label>
           </p>
 
           <p class="form-acciones">
