@@ -6,8 +6,9 @@
   <meta name="description" content="Formulario de compra del Marketplace de FacuLeaks: comprador, medio de pago y listado de productos (tablas ventas y detalla)." />
   <title>FacuLeaks - Finalizar compra</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="js/app.js" defer></script>
 </head>
-<body>
+<body data-pagina="comprar">
 
   <!-- HEADER -->
   <header class="header">
@@ -281,101 +282,6 @@
   <footer class="footer">
     <p>FacuLeaks &middot; Foro academico universitario &middot; Trabajo practico de Paradigmas de la Programacion 3</p>
   </footer>
-
-  <!-- AA13 - Parte B: comportamiento dinamico de cantidad/subtotal -->
-  <script>
-    // ============================================================
-    // AA13 - Parte B
-    // Aplicacion practica sobre comprar.html (Marketplace de FacuLeaks).
-    // Captura el cambio de la cantidad de cada producto y recalcula,
-    // en tiempo real y sin recargar la pagina:
-    //   - el subtotal de esa fila (precio unitario x cantidad)
-    //   - el total del pedido (suma de los subtotales de los
-    //     productos que siguen incluidos, es decir con el checkbox
-    //     "Incluir" tildado)
-    // ============================================================
-
-    // 1) Todas las filas de producto de la tabla del carrito.
-    //    Se resuelven una sola vez, al llegar el navegador a este
-    //    <script>, que ya esta al final del <body> (el DOM de arriba
-    //    ya existe en ese momento).
-    const filasProducto = document.querySelectorAll('.fila-producto');
-
-    // 2) Nodo donde se inyecta el total del pedido (celda del tfoot).
-    const spanTotalPedido = document.getElementById('total-pedido');
-
-    // 3) Formateador de numeros en formato argentino (punto de miles,
-    //    sin decimales), para mostrar "4.500" en vez de "4500".
-    const formatoMoneda = new Intl.NumberFormat('es-AR', {
-      maximumFractionDigits: 0
-    });
-
-    // 4) Recalcula el subtotal de UNA fila de producto:
-    //    - lee el precio unitario desde data-precio del <tr>
-    //    - lee y valida la cantidad cargada por el usuario
-    //    - actualiza el <span class="subtotal-producto"> de esa fila
-    //    - devuelve el subtotal solo si el producto sigue incluido
-    //      (checkbox tildado); si no, devuelve 0 para no sumarlo
-    //      al total general.
-    function recalcularFila(fila) {
-      const precioUnitario = Number(fila.dataset.precio);
-
-      const inputCantidad = fila.querySelector('.input-cantidad');
-      const spanSubtotal = fila.querySelector('.subtotal-producto');
-      const checkboxIncluir = fila.querySelector('input[type="checkbox"]');
-
-      // Limites de cantidad ya declarados en el propio input (min/max
-      // del HTML). Si el usuario borra el campo o carga un valor fuera
-      // de rango, se corrige al limite mas cercano en vez de calcular
-      // con NaN o con un numero invalido.
-      const minimo = Number(inputCantidad.min) || 1;
-      const maximo = inputCantidad.max ? Number(inputCantidad.max) : Infinity;
-
-      let cantidad = Number(inputCantidad.value);
-      if (Number.isNaN(cantidad) || cantidad < minimo) {
-        cantidad = minimo;
-      } else if (cantidad > maximo) {
-        cantidad = maximo;
-      }
-      inputCantidad.value = cantidad;
-
-      const subtotal = precioUnitario * cantidad;
-      spanSubtotal.textContent = formatoMoneda.format(subtotal);
-
-      return checkboxIncluir.checked ? subtotal : 0;
-    }
-
-    // 5) Recorre todas las filas, actualiza cada subtotal y suma el
-    //    total del pedido en la fila del tfoot.
-    function recalcularTotalPedido() {
-      let total = 0;
-
-      filasProducto.forEach(function (fila) {
-        total += recalcularFila(fila);
-      });
-
-      spanTotalPedido.textContent = formatoMoneda.format(total);
-    }
-
-    // 6) Captura de eventos, por cada fila:
-    //    - "input" en el campo de cantidad: recalculo en tiempo real
-    //      a medida que el usuario escribe o usa las flechas del
-    //      input number.
-    //    - "change" en el checkbox "Incluir": si el usuario excluye o
-    //      vuelve a incluir un producto, el total se recalcula igual.
-    filasProducto.forEach(function (fila) {
-      const inputCantidad = fila.querySelector('.input-cantidad');
-      const checkboxIncluir = fila.querySelector('input[type="checkbox"]');
-
-      inputCantidad.addEventListener('input', recalcularTotalPedido);
-      checkboxIncluir.addEventListener('change', recalcularTotalPedido);
-    });
-
-    // 7) Primer calculo al llegar aca, para que los subtotales y el
-    //    total queden consistentes con los valores iniciales de los
-    //    inputs (por si en el futuro cambian los value= por defecto).
-    recalcularTotalPedido();
-  </script>
 
 </body>
 </html>
