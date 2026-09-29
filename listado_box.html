@@ -42,15 +42,6 @@
         <li><a href="listado_tabla.html">Ver en tabla</a></li>
         <li><a href="comprar.html">Finalizar compra</a></li>
       </ul>
-
-      <h3>Tipo de material</h3>
-      <ul>
-        <li><a href="listado_box.html">Apunte</a></li>
-        <li><a href="listado_box.html">Libro</a></li>
-        <li><a href="listado_box.html">Guia</a></li>
-        <li><a href="listado_box.html">PDF</a></li>
-        <li><a href="listado_box.html">Otro</a></li>
-      </ul>
     </aside>
 
     <!-- LISTADO EN FICHAS -->
@@ -64,226 +55,79 @@
       <h2 class="titulo-categoria">Material de estudio disponible</h2>
 
       <div class="barra-vista">
-        <p class="barra-vista-info">10 materiales publicados</p>
+        <p class="barra-vista-info" id="info-resultados" aria-live="polite">Cargando catalogo...</p>
         <div class="barra-vista-acciones">
           <a href="listado_box.html" class="btn btn-secundario btn-activo">Vista en fichas</a>
           <a href="listado_tabla.html" class="btn btn-secundario">Vista en tabla</a>
         </div>
       </div>
 
-      <section class="grid-materiales" aria-label="Listado de materiales">
+      <!--
+        AE2 - Opcion 3: Buscador y filtro de catalogo en tiempo real.
+        Las fichas ya no estan escritas en el HTML: js/app.js carga el
+        catalogo completo con fetch() (data/productos.json, usuarios.json
+        y materias.json), lo filtra en memoria con .filter() y lo
+        inyecta en #grid-materiales cada vez que cambia un criterio.
+      -->
+      <form class="filtros" id="form-filtros" role="search" aria-label="Buscar y filtrar material">
 
-        <!-- Material M-001 (productos.id_producto = 1) -->
+        <p class="campo filtro-texto">
+          <label for="filtro-texto">Buscar</label>
+          <input type="search" id="filtro-texto" name="texto" maxlength="60"
+                 placeholder="Titulo, materia o vendedor" autocomplete="off" />
+        </p>
+
+        <p class="campo">
+          <label for="filtro-tipo">Tipo de material</label>
+          <select id="filtro-tipo" name="tipo">
+            <option value="">Todos</option>
+          </select>
+        </p>
+
+        <p class="campo">
+          <label for="filtro-materia">Materia</label>
+          <select id="filtro-materia" name="materia">
+            <option value="">Todas</option>
+          </select>
+        </p>
+
+        <p class="filtros-acciones">
+          <button type="reset" class="btn btn-secundario">Limpiar filtros</button>
+        </p>
+
+      </form>
+
+      <p class="mensaje-estado" id="mensaje-catalogo" role="status" hidden></p>
+
+      <section class="grid-materiales" id="grid-materiales" aria-label="Listado de materiales"></section>
+
+      <noscript>
+        <p class="mensaje-estado">El buscador necesita JavaScript. Podes ver todo el material en la
+          <a href="listado_tabla.html">vista en tabla</a>.</p>
+      </noscript>
+
+      <!-- Plantilla de ficha: js/app.js la clona una vez por cada producto -->
+      <template id="plantilla-ficha">
         <article class="card">
-          <div class="card-portada portada-apunte" aria-hidden="true">
-            <span class="card-portada-texto">M-001</span>
+          <div class="card-portada" aria-hidden="true">
+            <span class="card-portada-texto"></span>
           </div>
           <div class="card-cuerpo">
-            <span class="etiqueta apunte">Apunte</span>
+            <span class="etiqueta"></span>
             <h3 class="card-titulo">
-              <a href="producto.html">Apuntes completos de Base de Datos 2026</a>
+              <a href="producto.html"></a>
             </h3>
             <dl class="card-datos">
-              <dt>Materia</dt><dd>Base de Datos</dd>
-              <dt>Vendedor</dt><dd>mmekekiuk</dd>
+              <dt>Materia</dt><dd class="dato-materia"></dd>
+              <dt>Vendedor</dt><dd class="dato-vendedor"></dd>
             </dl>
           </div>
           <div class="card-footer">
-            <p class="precio">$8.500</p>
+            <p class="precio"></p>
             <a href="producto.html" class="btn btn-primario">Ver ficha</a>
           </div>
         </article>
-
-        <!-- Material M-002 (productos.id_producto = 2) -->
-        <article class="card">
-          <div class="card-portada portada-guia" aria-hidden="true">
-            <span class="card-portada-texto">M-002</span>
-          </div>
-          <div class="card-cuerpo">
-            <span class="etiqueta guia">Guia</span>
-            <h3 class="card-titulo">
-              <a href="producto.html">Guia de ejercicios de Analisis Numerico</a>
-            </h3>
-            <dl class="card-datos">
-              <dt>Materia</dt><dd>Analisis Numerico</dd>
-              <dt>Vendedor</dt><dd>mmekekiuk</dd>
-            </dl>
-          </div>
-          <div class="card-footer">
-            <p class="precio">$4.200</p>
-            <a href="producto.html" class="btn btn-primario">Ver ficha</a>
-          </div>
-        </article>
-
-        <!-- Material M-003 (productos.id_producto = 3) -->
-        <article class="card">
-          <div class="card-portada portada-libro" aria-hidden="true">
-            <span class="card-portada-texto">M-003</span>
-          </div>
-          <div class="card-cuerpo">
-            <span class="etiqueta libro">Libro</span>
-            <h3 class="card-titulo">
-              <a href="producto.html">Libro Fundamentos de bases de datos</a>
-            </h3>
-            <dl class="card-datos">
-              <dt>Materia</dt><dd>Sin materia</dd>
-              <dt>Vendedor</dt><dd>apiedrafita</dd>
-            </dl>
-          </div>
-          <div class="card-footer">
-            <p class="precio">$15.000</p>
-            <a href="producto.html" class="btn btn-primario">Ver ficha</a>
-          </div>
-        </article>
-
-        <!-- Material M-004 (productos.id_producto = 4) -->
-        <article class="card">
-          <div class="card-portada portada-apunte" aria-hidden="true">
-            <span class="card-portada-texto">M-004</span>
-          </div>
-          <div class="card-cuerpo">
-            <span class="etiqueta apunte">Apunte</span>
-            <h3 class="card-titulo">
-              <a href="producto.html">Resumen completo de Analisis Matematico II - Unidad 3</a>
-            </h3>
-            <dl class="card-datos">
-              <dt>Materia</dt><dd>Analisis Matematico II</dd>
-              <dt>Vendedor</dt><dd>matias_tp</dd>
-            </dl>
-          </div>
-          <div class="card-footer">
-            <p class="precio">$4.500</p>
-            <a href="producto.html" class="btn btn-primario">Ver ficha</a>
-          </div>
-        </article>
-
-        <!-- Material M-005 (productos.id_producto = 5) -->
-        <article class="card">
-          <div class="card-portada portada-apunte" aria-hidden="true">
-            <span class="card-portada-texto">M-005</span>
-          </div>
-          <div class="card-cuerpo">
-            <span class="etiqueta apunte">Apunte</span>
-            <h3 class="card-titulo">
-              <a href="producto.html">Apuntes de Programacion I - cursada completa</a>
-            </h3>
-            <dl class="card-datos">
-              <dt>Materia</dt><dd>Programacion I</dd>
-              <dt>Vendedor</dt><dd>caro_ing</dd>
-            </dl>
-          </div>
-          <div class="card-footer">
-            <p class="precio">$7.800</p>
-            <a href="producto.html" class="btn btn-primario">Ver ficha</a>
-          </div>
-        </article>
-
-        <!-- Material M-006 (productos.id_producto = 6) -->
-        <article class="card">
-          <div class="card-portada portada-libro" aria-hidden="true">
-            <span class="card-portada-texto">M-006</span>
-          </div>
-          <div class="card-cuerpo">
-            <span class="etiqueta libro">Libro</span>
-            <h3 class="card-titulo">
-              <a href="producto.html">Algebra y Geometria Analitica - Kozak / Pastorelli</a>
-            </h3>
-            <dl class="card-datos">
-              <dt>Materia</dt><dd>Algebra y Geometria Analitica</dd>
-              <dt>Vendedor</dt><dd>caro_ing</dd>
-            </dl>
-          </div>
-          <div class="card-footer">
-            <p class="precio">$12.000</p>
-            <a href="producto.html" class="btn btn-primario">Ver ficha</a>
-          </div>
-        </article>
-
-        <!-- Material M-007 (productos.id_producto = 7) -->
-        <article class="card">
-          <div class="card-portada portada-guia" aria-hidden="true">
-            <span class="card-portada-texto">M-007</span>
-          </div>
-          <div class="card-cuerpo">
-            <span class="etiqueta guia">Guia</span>
-            <h3 class="card-titulo">
-              <a href="producto.html">Guia de ejercicios resueltos de Fisica I</a>
-            </h3>
-            <dl class="card-datos">
-              <dt>Materia</dt><dd>Fisica I</dd>
-              <dt>Vendedor</dt><dd>juanma_dev</dd>
-            </dl>
-          </div>
-          <div class="card-footer">
-            <p class="precio">$3.200</p>
-            <a href="producto.html" class="btn btn-primario">Ver ficha</a>
-          </div>
-        </article>
-
-        <!-- Material M-008 (productos.id_producto = 8) -->
-        <article class="card">
-          <div class="card-portada portada-pdf" aria-hidden="true">
-            <span class="card-portada-texto">M-008</span>
-          </div>
-          <div class="card-cuerpo">
-            <span class="etiqueta pdf">PDF</span>
-            <h3 class="card-titulo">
-              <a href="producto.html">Resumen de Sistemas Operativos - Unidades 1 a 4</a>
-            </h3>
-            <dl class="card-datos">
-              <dt>Materia</dt><dd>Sistemas Operativos</dd>
-              <dt>Vendedor</dt><dd>sistemas_2do</dd>
-            </dl>
-          </div>
-          <div class="card-footer">
-            <p class="precio">$2.500</p>
-            <a href="producto.html" class="btn btn-primario">Ver ficha</a>
-          </div>
-        </article>
-
-        <!-- Material M-009 (productos.id_producto = 9) -->
-        <article class="card">
-          <div class="card-portada portada-guia" aria-hidden="true">
-            <span class="card-portada-texto">M-009</span>
-          </div>
-          <div class="card-cuerpo">
-            <span class="etiqueta guia">Guia</span>
-            <h3 class="card-titulo">
-              <a href="producto.html">Base de Datos - parciales resueltos 2020 a 2025</a>
-            </h3>
-            <dl class="card-datos">
-              <dt>Materia</dt><dd>Base de Datos</dd>
-              <dt>Vendedor</dt><dd>sistemas_2do</dd>
-            </dl>
-          </div>
-          <div class="card-footer">
-            <p class="precio">$3.900</p>
-            <a href="producto.html" class="btn btn-primario">Ver ficha</a>
-          </div>
-        </article>
-
-        <!-- Material M-010 (productos.id_producto = 10) -->
-        <article class="card">
-          <div class="card-portada portada-otro" aria-hidden="true">
-            <span class="card-portada-texto">M-010</span>
-          </div>
-          <div class="card-cuerpo">
-            <span class="etiqueta otro">Otro</span>
-            <h3 class="card-titulo">
-              <a href="producto.html">Calculadora cientifica Casio fx-570</a>
-            </h3>
-            <dl class="card-datos">
-              <dt>Materia</dt><dd>Sin materia</dd>
-              <dt>Vendedor</dt><dd>tomi_rta</dd>
-            </dl>
-          </div>
-          <div class="card-footer">
-            <p class="precio">$18.000</p>
-            <a href="producto.html" class="btn btn-primario">Ver ficha</a>
-          </div>
-        </article>
-
-      </section>
+      </template>
 
       <p class="nota-listado">
         Los precios son fijados por cada estudiante vendedor. FacuLeaks solo intermedia la publicacion
