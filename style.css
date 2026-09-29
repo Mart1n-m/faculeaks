@@ -558,6 +558,48 @@ body {
 }
 
 /* ===========================
+   BUSCADOR Y FILTROS DEL CATALOGO (AE2 - Opcion 3)
+=========================== */
+.filtros {
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 12px 15px;
+  margin-bottom: 18px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr auto;
+  gap: 12px;
+  align-items: end;
+  font-size: 14px;
+}
+
+.filtros-acciones {
+  display: flex;
+}
+
+.mensaje-estado {
+  background-color: white;
+  border: 1px dashed #ccc;
+  border-radius: 6px;
+  padding: 18px 15px;
+  margin-bottom: 18px;
+  font-size: 14px;
+  color: #555;
+  text-align: center;
+}
+
+.mensaje-estado.error {
+  border-style: solid;
+  border-color: #e84545;
+  background-color: #fff8f8;
+  color: #721c24;
+}
+
+.mensaje-estado a {
+  color: #e84545;
+}
+
+/* ===========================
    FICHA DEL MATERIAL
 =========================== */
 .ficha {
@@ -980,5 +1022,9 @@ body {
 
   .ficha-galeria {
     width: 100%;
+  }
+
+  .filtros {
+    grid-template-columns: 1fr;
   }
 }
