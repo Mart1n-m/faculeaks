@@ -263,9 +263,7 @@ body {
   background-color: #e84545;
 }
 
-/* ===========================
-   MIGA DE PAN (BREADCRUMB)
-=========================== */
+
 .breadcrumb {
   font-size: 12px;
   color: #666;
@@ -936,6 +934,51 @@ body {
   font-family: inherit;
   font-size: 13px;
   text-align: right;
+}
+
+/* Contador de cantidad (AE2 - Opcion 7) */
+.contador {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.btn-cantidad {
+  width: 28px;
+  height: 28px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+  color: #1a1a2e;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.btn-cantidad:hover:not(:disabled) {
+  border-color: #e84545;
+  color: #e84545;
+}
+
+.btn-cantidad:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.estado-precios {
+  font-size: 12px;
+  color: #666;
+  margin-top: 10px;
+}
+
+.estado-precios.error {
+  color: #721c24;
+}
+
+.precio-actualizado {
+  background-color: #fff3cd;
+  border-radius: 3px;
 }
 
 /* Confirmacion */

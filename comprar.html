@@ -10,7 +10,7 @@
 </head>
 <body data-pagina="comprar">
 
-  <!-- HEADER -->
+
   <header class="header">
     <div class="header-contenido">
       <h1 class="logo">FacuLeaks</h1>
@@ -61,14 +61,6 @@
       </nav>
 
       <h2 class="titulo-categoria">Formulario de compra</h2>
-
-      <!--
-        Correspondencia con el modelo de datos (facuLeaks_ae2.sql):
-          ventas  (id_venta, fecha, medio_pago, id_usuario)
-          detalla (id_venta, id_producto, cantidad, precio_unitario)
-        id_venta y fecha los asigna el servidor (AUTO_INCREMENT y
-        CURRENT_TIMESTAMP); precio_unitario congela el precio vigente.
-      -->
       <form class="form-compra" action="#" method="post">
 
         <!-- 1. DATOS DEL COMPRADOR -->
@@ -145,7 +137,6 @@
           </div>
         </fieldset>
 
-        <!-- 2. MEDIO DE PAGO: valores del CHECK chk_ventas_medio_pago -->
         <fieldset class="campo-grupo">
           <legend>2. Medio de pago</legend>
 
@@ -188,15 +179,6 @@
                 </tr>
               </thead>
               <tbody>
-                <!--
-                  AA13 - Parte B: cada <tr> de producto suma la clase
-                  "fila-producto" y el atributo data-precio (precio
-                  unitario en pesos, sin puntos ni signo $) para que
-                  el script pueda leerlo y recalcular el subtotal sin
-                  tener que interpretar el texto "$4.500" de la celda
-                  de precio. data-id-producto es la clave de la fila
-                  en la tabla productos.
-                -->
                 <tr class="fila-producto" data-id-producto="4" data-precio="4500">
                   <td class="col-centrada">
                     <input type="checkbox" id="item-1" name="id_producto" value="4" checked="" />
@@ -204,10 +186,14 @@
                   </td>
                   <th scope="row" class="col-codigo">M-004</th>
                   <td><a href="producto.html">Resumen completo de Analisis Matematico II - Unidad 3</a></td>
-                  <td class="col-numerica precio">$4.500</td>
+                  <td class="col-numerica precio"><span class="precio-unitario">$4.500</span></td>
                   <td class="col-numerica">
                     <label for="cant-1" class="oculto-visual">Cantidad de M-004</label>
-                    <input type="number" id="cant-1" name="cantidad_4" value="1" min="1" class="input-cantidad" />
+                    <div class="contador">
+                      <button type="button" class="btn-cantidad" data-accion="restar" aria-label="Restar una unidad de M-004">&minus;</button>
+                      <input type="number" id="cant-1" name="cantidad_4" value="1" min="1" max="65535" class="input-cantidad" />
+                      <button type="button" class="btn-cantidad" data-accion="sumar" aria-label="Sumar una unidad de M-004">+</button>
+                    </div>
                   </td>
                   <td class="col-numerica precio">$<span class="subtotal-producto">4.500</span></td>
                 </tr>
@@ -218,10 +204,14 @@
                   </td>
                   <th scope="row" class="col-codigo">M-007</th>
                   <td><a href="producto.html">Guia de ejercicios resueltos de Fisica I</a></td>
-                  <td class="col-numerica precio">$3.200</td>
+                  <td class="col-numerica precio"><span class="precio-unitario">$3.200</span></td>
                   <td class="col-numerica">
                     <label for="cant-2" class="oculto-visual">Cantidad de M-007</label>
-                    <input type="number" id="cant-2" name="cantidad_7" value="1" min="1" class="input-cantidad" />
+                    <div class="contador">
+                      <button type="button" class="btn-cantidad" data-accion="restar" aria-label="Restar una unidad de M-007">&minus;</button>
+                      <input type="number" id="cant-2" name="cantidad_7" value="1" min="1" max="65535" class="input-cantidad" />
+                      <button type="button" class="btn-cantidad" data-accion="sumar" aria-label="Sumar una unidad de M-007">+</button>
+                    </div>
                   </td>
                   <td class="col-numerica precio">$<span class="subtotal-producto">3.200</span></td>
                 </tr>
@@ -232,10 +222,14 @@
                   </td>
                   <th scope="row" class="col-codigo">M-008</th>
                   <td><a href="producto.html">Resumen de Sistemas Operativos - Unidades 1 a 4</a></td>
-                  <td class="col-numerica precio">$2.500</td>
+                  <td class="col-numerica precio"><span class="precio-unitario">$2.500</span></td>
                   <td class="col-numerica">
                     <label for="cant-3" class="oculto-visual">Cantidad de M-008</label>
-                    <input type="number" id="cant-3" name="cantidad_8" value="1" min="1" class="input-cantidad" />
+                    <div class="contador">
+                      <button type="button" class="btn-cantidad" data-accion="restar" aria-label="Restar una unidad de M-008">&minus;</button>
+                      <input type="number" id="cant-3" name="cantidad_8" value="1" min="1" max="65535" class="input-cantidad" />
+                      <button type="button" class="btn-cantidad" data-accion="sumar" aria-label="Sumar una unidad de M-008">+</button>
+                    </div>
                   </td>
                   <td class="col-numerica precio">$<span class="subtotal-producto">2.500</span></td>
                 </tr>
@@ -248,9 +242,9 @@
               </tfoot>
             </table>
           </div>
-        </fieldset>
 
-        <!-- 4. CONFIRMACION -->
+          <p class="estado-precios" id="estado-precios" role="status">Consultando precios actualizados...</p>
+        </fieldset>
         <fieldset class="campo-grupo">
           <legend>4. Confirmacion</legend>
 
@@ -277,11 +271,6 @@
 
     </main>
   </div>
-
-  <!-- PIE DE PAGINA -->
-  <footer class="footer">
-    <p>FacuLeaks &middot; Foro academico universitario &middot; Trabajo practico de Paradigmas de la Programacion 3</p>
-  </footer>
 
 </body>
 </html>
