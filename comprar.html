@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Formulario de compra del Marketplace de FacuLeaks: comprador, medio de pago y listado de productos (tablas ventas y detalla)." />
+  <title>FacuLeaks - Finalizar compra</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="js/app.js" defer></script>
+</head>
+<body data-pagina="comprar">
+
+
+  <header class="header">
+    <div class="header-contenido">
+      <h1 class="logo">FacuLeaks</h1>
+    </div>
+    <nav class="nav">
+      <a href="index.html">Inicio</a>
+      <a href="apuntes.html">Apuntes</a>
+      <a href="parciales.html">Parciales y finales</a>
+      <a href="consultas.html">Consultas</a>
+      <a href="listado_box.html" class="activo">Marketplace</a>
+    </nav>
+  </header>
+
+  <!-- CUERPO PRINCIPAL -->
+  <div class="contenedor">
+
+    <!-- BARRA LATERAL -->
+    <aside class="sidebar">
+      <h3>Marketplace</h3>
+      <ul>
+        <li><a href="listado_box.html">Ver en fichas</a></li>
+        <li><a href="listado_tabla.html">Ver en tabla</a></li>
+        <li><a href="comprar.html">Finalizar compra</a></li>
+      </ul>
+
+      <h3>Pasos de la compra</h3>
+      <ol class="pasos">
+        <li>Elegir el material</li>
+        <li class="paso-actual">Completar el formulario</li>
+        <li>Confirmar el pedido</li>
+        <li>Coordinar la entrega</li>
+      </ol>
+
+      <h3>Ayuda</h3>
+      <ul>
+        <li><a href="consultas.html">Preguntas frecuentes</a></li>
+      </ul>
+    </aside>
+
+    <!-- FORMULARIO DE COMPRA -->
+    <main class="publicaciones">
+
+      <nav class="breadcrumb" aria-label="Ruta de navegacion">
+        <a href="index.html">Inicio</a> &rsaquo;
+        <a href="listado_box.html">Marketplace</a> &rsaquo;
+        <a href="producto.html">M-004</a> &rsaquo;
+        <span aria-current="page">Compra</span>
+      </nav>
+
+      <h2 class="titulo-categoria">Formulario de compra</h2>
+      <form class="form-compra" action="#" method="post">
+
+        <!-- 1. DATOS DEL COMPRADOR -->
+        <fieldset class="campo-grupo">
+          <legend>1. Datos del comprador</legend>
+
+          <p class="nota-sesion">
+            Sesion iniciada como <strong>apiedrafita</strong>. Los datos provienen de la cuenta
+            del usuario y la venta se registra a su nombre mediante <code>ventas.id_usuario</code>.
+          </p>
+
+          <input type="hidden" name="id_usuario" value="2" />
+
+          <div class="campos">
+
+            <p class="campo">
+              <label for="alias">Usuario</label>
+              <input type="text" id="alias" value="apiedrafita" readonly="" />
+            </p>
+
+            <p class="campo">
+              <label for="nombre">Nombre y apellido</label>
+              <input type="text" id="nombre" value="Augusto Piedrafita" readonly="" />
+            </p>
+
+            <p class="campo campo-ancho">
+              <label for="email">E-mail</label>
+              <input type="email" id="email" value="augusto@faculeaks.com" readonly="" />
+              <span class="ayuda">Ahi se envia la confirmacion del pedido.</span>
+            </p>
+
+          </div>
+
+          <h3 class="subtitulo-grupo">Datos de envio</h3>
+          <p class="ayuda">
+            Se usan solo para coordinar la entrega con el vendedor: el modelo de datos
+            no los registra en la venta.
+          </p>
+
+          <div class="campos">
+
+            <p class="campo campo-ancho">
+              <label for="direccion">Direccion <abbr title="obligatorio" class="req">*</abbr></label>
+              <input type="text" id="direccion" name="direccion" placeholder="Calle, numero, piso y departamento"
+                     autocomplete="street-address" maxlength="120" required="" />
+            </p>
+
+            <p class="campo">
+              <label for="localidad">Localidad <abbr title="obligatorio" class="req">*</abbr></label>
+              <input type="text" id="localidad" name="localidad" placeholder="Posadas"
+                     autocomplete="address-level2" maxlength="60" required="" />
+            </p>
+
+            <p class="campo">
+              <label for="provincia">Provincia <abbr title="obligatorio" class="req">*</abbr></label>
+              <select id="provincia" name="provincia" autocomplete="address-level1" required="">
+                <option value="" selected="">Seleccionar...</option>
+                <option value="misiones">Misiones</option>
+                <option value="corrientes">Corrientes</option>
+                <option value="chaco">Chaco</option>
+                <option value="entre-rios">Entre Rios</option>
+                <option value="formosa">Formosa</option>
+                <option value="buenos-aires">Buenos Aires</option>
+                <option value="otra">Otra</option>
+              </select>
+            </p>
+
+            <p class="campo">
+              <label for="cp">Codigo postal</label>
+              <input type="text" id="cp" name="cp" placeholder="3300"
+                     inputmode="numeric" pattern="[0-9]{4}" maxlength="4" autocomplete="postal-code" />
+            </p>
+
+          </div>
+        </fieldset>
+
+        <fieldset class="campo-grupo">
+          <legend>2. Medio de pago</legend>
+
+          <div class="opciones">
+            <label class="opcion" for="pago-mercado-pago">
+              <input type="radio" id="pago-mercado-pago" name="medio_pago" value="mercado_pago" required="" />
+              <span class="opcion-titulo">Mercado Pago</span>
+              <span class="opcion-detalle">Tarjeta de credito, debito o dinero en cuenta</span>
+            </label>
+
+            <label class="opcion" for="pago-transferencia">
+              <input type="radio" id="pago-transferencia" name="medio_pago" value="transferencia" />
+              <span class="opcion-titulo">Transferencia bancaria</span>
+              <span class="opcion-detalle">CBU o alias del vendedor</span>
+            </label>
+
+            <label class="opcion" for="pago-efectivo">
+              <input type="radio" id="pago-efectivo" name="medio_pago" value="efectivo" />
+              <span class="opcion-titulo">Efectivo</span>
+              <span class="opcion-detalle">Al retirar el material en la sede</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <!-- 3. LISTADO DE PRODUCTOS: cada fila es una futura fila de detalla -->
+        <fieldset class="campo-grupo">
+          <legend>3. Listado de productos</legend>
+
+          <div class="tabla-scroll">
+            <table class="tabla-carrito">
+              <caption class="oculto-visual">Material seleccionado para la compra</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Incluir</th>
+                  <th scope="col">Codigo</th>
+                  <th scope="col">Material</th>
+                  <th scope="col" class="col-numerica">Precio</th>
+                  <th scope="col" class="col-numerica">Cantidad</th>
+                  <th scope="col" class="col-numerica">Subtotal</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="fila-producto" data-id-producto="4" data-precio="4500">
+                  <td class="col-centrada">
+                    <input type="checkbox" id="item-1" name="id_producto" value="4" checked="" />
+                    <label for="item-1" class="oculto-visual">Incluir M-004 en la compra</label>
+                  </td>
+                  <th scope="row" class="col-codigo">M-004</th>
+                  <td><a href="producto.html">Resumen completo de Analisis Matematico II - Unidad 3</a></td>
+                  <td class="col-numerica precio"><span class="precio-unitario">$4.500</span></td>
+                  <td class="col-numerica">
+                    <label for="cant-1" class="oculto-visual">Cantidad de M-004</label>
+                    <div class="contador">
+                      <button type="button" class="btn-cantidad" data-accion="restar" aria-label="Restar una unidad de M-004">&minus;</button>
+                      <input type="number" id="cant-1" name="cantidad_4" value="1" min="1" max="65535" class="input-cantidad" />
+                      <button type="button" class="btn-cantidad" data-accion="sumar" aria-label="Sumar una unidad de M-004">+</button>
+                    </div>
+                  </td>
+                  <td class="col-numerica precio">$<span class="subtotal-producto">4.500</span></td>
+                </tr>
+                <tr class="fila-producto" data-id-producto="7" data-precio="3200">
+                  <td class="col-centrada">
+                    <input type="checkbox" id="item-2" name="id_producto" value="7" checked="" />
+                    <label for="item-2" class="oculto-visual">Incluir M-007 en la compra</label>
+                  </td>
+                  <th scope="row" class="col-codigo">M-007</th>
+                  <td><a href="producto.html">Guia de ejercicios resueltos de Fisica I</a></td>
+                  <td class="col-numerica precio"><span class="precio-unitario">$3.200</span></td>
+                  <td class="col-numerica">
+                    <label for="cant-2" class="oculto-visual">Cantidad de M-007</label>
+                    <div class="contador">
+                      <button type="button" class="btn-cantidad" data-accion="restar" aria-label="Restar una unidad de M-007">&minus;</button>
+                      <input type="number" id="cant-2" name="cantidad_7" value="1" min="1" max="65535" class="input-cantidad" />
+                      <button type="button" class="btn-cantidad" data-accion="sumar" aria-label="Sumar una unidad de M-007">+</button>
+                    </div>
+                  </td>
+                  <td class="col-numerica precio">$<span class="subtotal-producto">3.200</span></td>
+                </tr>
+                <tr class="fila-producto" data-id-producto="8" data-precio="2500">
+                  <td class="col-centrada">
+                    <input type="checkbox" id="item-3" name="id_producto" value="8" />
+                    <label for="item-3" class="oculto-visual">Incluir M-008 en la compra</label>
+                  </td>
+                  <th scope="row" class="col-codigo">M-008</th>
+                  <td><a href="producto.html">Resumen de Sistemas Operativos - Unidades 1 a 4</a></td>
+                  <td class="col-numerica precio"><span class="precio-unitario">$2.500</span></td>
+                  <td class="col-numerica">
+                    <label for="cant-3" class="oculto-visual">Cantidad de M-008</label>
+                    <div class="contador">
+                      <button type="button" class="btn-cantidad" data-accion="restar" aria-label="Restar una unidad de M-008">&minus;</button>
+                      <input type="number" id="cant-3" name="cantidad_8" value="1" min="1" max="65535" class="input-cantidad" />
+                      <button type="button" class="btn-cantidad" data-accion="sumar" aria-label="Sumar una unidad de M-008">+</button>
+                    </div>
+                  </td>
+                  <td class="col-numerica precio">$<span class="subtotal-producto">2.500</span></td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th scope="row" colspan="5">Total del pedido</th>
+                  <td class="col-numerica precio total">$<span id="total-pedido">7.700</span></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+
+          <p class="estado-precios" id="estado-precios" role="status">Consultando precios actualizados...</p>
+        </fieldset>
+        <fieldset class="campo-grupo">
+          <legend>4. Confirmacion</legend>
+
+          <p class="campo-check">
+            <input type="checkbox" id="terminos" name="terminos" value="si" required="" />
+            <label for="terminos">
+              Acepto los terminos de uso del Marketplace y confirmo que los datos son correctos
+              <abbr title="obligatorio" class="req">*</abbr>
+            </label>
+          </p>
+
+          <p class="form-acciones">
+            <button type="submit" class="btn btn-primario btn-grande">Confirmar compra</button>
+            <button type="reset" class="btn btn-secundario btn-grande">Borrar datos</button>
+          </p>
+
+          <p class="nota-listado">
+            Los campos marcados con <abbr title="obligatorio" class="req">*</abbr> son obligatorios.
+            El pedido se confirma recien cuando el vendedor acepta la operacion.
+          </p>
+        </fieldset>
+
+      </form>
+
+    </main>
+  </div>
+
+</body>
+</html>
