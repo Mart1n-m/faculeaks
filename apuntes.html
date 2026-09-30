@@ -3,31 +3,36 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Publicaciones de las categorias apunte y recurso del foro FacuLeaks." />
   <title>FacuLeaks - Apuntes</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="js/app.js" defer></script>
 </head>
-<body>
+<body data-pagina="apuntes">
 
+  <!-- HEADER -->
   <header class="header">
     <div class="header-contenido">
       <h1 class="logo">FacuLeaks</h1>
     </div>
     <nav class="nav">
       <a href="index.html">Inicio</a>
-      <a href="apuntes.html">Apuntes</a>
-      <a href="debates.html">Debates</a>
+      <a href="apuntes.html" class="activo">Apuntes</a>
+      <a href="parciales.html">Parciales y finales</a>
       <a href="consultas.html">Consultas</a>
       <a href="listado_box.html">Marketplace</a>
     </nav>
   </header>
 
+  <!-- CUERPO PRINCIPAL -->
   <div class="contenedor">
 
+    <!-- BARRA LATERAL -->
     <aside class="sidebar">
       <h3>Categorias del foro</h3>
       <ul>
         <li><a href="apuntes.html">Apuntes</a></li>
-        <li><a href="debates.html">Debates</a></li>
+        <li><a href="parciales.html">Parciales y finales</a></li>
         <li><a href="consultas.html">Consultas</a></li>
       </ul>
 
@@ -39,74 +44,100 @@
       </ul>
     </aside>
 
+    <!-- PUBLICACIONES -->
     <main class="publicaciones">
 
       <h2 class="titulo-categoria">Apuntes</h2>
 
       <div class="nueva-publicacion">
-        <input type="text" placeholder="Compartí un apunte..." />
-        <button>Publicar</button>
+        <input type="text" placeholder="Comparti un apunte..." aria-label="Nueva publicacion" />
+        <button type="button">Publicar</button>
       </div>
 
+      <!-- Publicacion: contenidos + publicaciones (id_contenido = 4) -->
       <article class="post">
         <div class="post-votos">
-          <button class="voto-btn">▲</button>
-          <span class="voto-num">47</span>
-          <button class="voto-btn">▼</button>
+          <button class="voto-btn" type="button" aria-label="Votar a favor">&#9650;</button>
+          <span class="voto-num">8</span>
+          <button class="voto-btn" type="button" aria-label="Votar en contra">&#9660;</button>
         </div>
         <div class="post-contenido">
-          <span class="post-categoria apuntes">Apuntes</span>
+          <span class="post-categoria apunte">Apunte</span>
           <h2 class="post-titulo">Resumen completo de Analisis Matematico II - Unidad 3</h2>
           <p class="post-descripcion">
-            Les comparto el resumen que arme para el parcial de la semana pasada.
-            Incluye limites, derivadas parciales y ejercicios resueltos.
+            Les comparto el resumen que arme para el parcial de la semana pasada. Incluye limites, derivadas parciales y ejercicios resueltos.
           </p>
           <div class="post-footer">
             <span>por <strong>matias_tp</strong></span>
-            <span>23 comentarios</span>
-            <span>hace 2 horas</span>
+            <span>Analisis Matematico II</span>
+            <span>3 comentarios</span>
+            <span>Adjunto: resumen-unidad3.pdf</span>
+            <span><time datetime="2026-09-27T18:10:00">27/09/2026</time></span>
           </div>
         </div>
       </article>
 
+      <!-- Publicacion: contenidos + publicaciones (id_contenido = 1) -->
       <article class="post">
         <div class="post-votos">
-          <button class="voto-btn">▲</button>
-          <span class="voto-num">33</span>
-          <button class="voto-btn">▼</button>
+          <button class="voto-btn" type="button" aria-label="Votar a favor">&#9650;</button>
+          <span class="voto-num">5</span>
+          <button class="voto-btn" type="button" aria-label="Votar en contra">&#9660;</button>
         </div>
         <div class="post-contenido">
-          <span class="post-categoria apuntes">Apuntes</span>
-          <h2 class="post-titulo">Apuntes de Quimica General - Toda la cursada</h2>
-          <p class="post-descripcion">
-            Subi todos mis apuntes de Quimica del año pasado, organizados por unidad.
-            Me fueron muy utiles para el final, espero que sirvan.
-          </p>
+          <span class="post-categoria apunte">Apunte</span>
+          <h2 class="post-titulo">Resumen de normalizacion hasta 3FN con ejemplos resueltos.</h2>
           <div class="post-footer">
-            <span>por <strong>lau_quim</strong></span>
-            <span>15 comentarios</span>
-            <span>hace 1 dia</span>
+            <span>por <strong>mmekekiuk</strong></span>
+            <span>Base de Datos</span>
+            <span>2 comentarios</span>
+            <span>Adjunto: normalizacion.pdf</span>
+            <span><time datetime="2026-09-20T17:00:00">20/09/2026</time></span>
           </div>
         </div>
       </article>
 
+      <!-- Publicacion: contenidos + publicaciones (id_contenido = 5) -->
       <article class="post">
         <div class="post-votos">
-          <button class="voto-btn">▲</button>
-          <span class="voto-num">21</span>
-          <button class="voto-btn">▼</button>
+          <button class="voto-btn" type="button" aria-label="Votar a favor">&#9650;</button>
+          <span class="voto-num">2</span>
+          <button class="voto-btn" type="button" aria-label="Votar en contra">&#9660;</button>
         </div>
         <div class="post-contenido">
-          <span class="post-categoria apuntes">Apuntes</span>
-          <h2 class="post-titulo">Resumen Derecho Comercial - Unidades 1 a 4</h2>
+          <span class="post-categoria apunte">Apunte</span>
+          <h2 class="post-titulo">Apuntes de Programacion I - Toda la cursada</h2>
           <p class="post-descripcion">
-            Armé un resumen bastante completo con los conceptos clave de cada unidad.
-            Tiene ejemplos y algunos cuadros comparativos que me ayudaron mucho.
+            Subi todos mis apuntes de Programacion I del aÃ±o pasado, organizados por unidad. Me fueron muy utiles para el final, espero que sirvan.
           </p>
           <div class="post-footer">
-            <span>por <strong>fede_dcho</strong></span>
-            <span>6 comentarios</span>
-            <span>hace 3 dias</span>
+            <span>por <strong>caro_ing</strong></span>
+            <span>Programacion I</span>
+            <span>1 comentario</span>
+            <span>Adjunto: apuntes-cursada.pdf</span>
+            <span><time datetime="2026-09-26T21:40:00">26/09/2026</time></span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Publicacion: contenidos + publicaciones (id_contenido = 6) -->
+      <article class="post">
+        <div class="post-votos">
+          <button class="voto-btn" type="button" aria-label="Votar a favor">&#9650;</button>
+          <span class="voto-num">1</span>
+          <button class="voto-btn" type="button" aria-label="Votar en contra">&#9660;</button>
+        </div>
+        <div class="post-contenido">
+          <span class="post-categoria apunte">Apunte</span>
+          <h2 class="post-titulo">Resumen de Sistemas Operativos - Unidades 1 a 4</h2>
+          <p class="post-descripcion">
+            Arme un resumen bastante completo con los conceptos clave de cada unidad. Tiene ejemplos y algunos cuadros comparativos que me ayudaron mucho.
+          </p>
+          <div class="post-footer">
+            <span>por <strong>sistemas_2do</strong></span>
+            <span>Sistemas Operativos</span>
+            <span>0 comentarios</span>
+            <span><time datetime="2026-09-24T10:15:00">24/09/2026</time></span>
           </div>
         </div>
       </article>
@@ -114,10 +145,10 @@
     </main>
   </div>
 
-  <!-- PIE DE PAGINA -->
-  <footer class="footer">
-    <p>FacuLeaks &middot; Foro academico universitario &middot; Trabajo practico de Paradigmas de la Programacion 3</p>
-  </footer>
+  
+  
+    
+  
 
 </body>
 </html>

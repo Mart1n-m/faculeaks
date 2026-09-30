@@ -1,0 +1,72 @@
+[
+  {
+    "id_contenido": 1,
+    "categoria": "apunte",
+    "adjunto": "/archivos/bd/normalizacion.pdf",
+    "archivo_nombre": "normalizacion.pdf",
+    "id_materia": 1
+  },
+  {
+    "id_contenido": 4,
+    "categoria": "apunte",
+    "adjunto": "/archivos/am2/resumen-unidad3.pdf",
+    "archivo_nombre": "resumen-unidad3.pdf",
+    "id_materia": 5
+  },
+  {
+    "id_contenido": 5,
+    "categoria": "apunte",
+    "adjunto": "/archivos/prog1/apuntes-cursada.pdf",
+    "archivo_nombre": "apuntes-cursada.pdf",
+    "id_materia": 8
+  },
+  {
+    "id_contenido": 6,
+    "categoria": "apunte",
+    "adjunto": null,
+    "archivo_nombre": null,
+    "id_materia": 12
+  },
+  {
+    "id_contenido": 7,
+    "categoria": "parcial",
+    "adjunto": "/archivos/alg/parcial1-tema-a.pdf",
+    "archivo_nombre": "parcial1-tema-a.pdf",
+    "id_materia": 6
+  },
+  {
+    "id_contenido": 8,
+    "categoria": "final",
+    "adjunto": "/archivos/an/final-julio.pdf",
+    "archivo_nombre": "final-julio.pdf",
+    "id_materia": 2
+  },
+  {
+    "id_contenido": 9,
+    "categoria": "parcial",
+    "adjunto": "/archivos/fis1/parcial2-resuelto.pdf",
+    "archivo_nombre": "parcial2-resuelto.pdf",
+    "id_materia": 7
+  },
+  {
+    "id_contenido": 10,
+    "categoria": "consulta",
+    "adjunto": null,
+    "archivo_nombre": null,
+    "id_materia": 8
+  },
+  {
+    "id_contenido": 11,
+    "categoria": "consulta",
+    "adjunto": null,
+    "archivo_nombre": null,
+    "id_materia": 9
+  },
+  {
+    "id_contenido": 12,
+    "categoria": "consulta",
+    "adjunto": null,
+    "archivo_nombre": null,
+    "id_materia": 4
+  }
+]

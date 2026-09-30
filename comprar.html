@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Formulario de compra del Marketplace de FacuLeaks: datos del cliente, medio de pago y listado de productos." />
+  <meta name="description" content="Formulario de compra del Marketplace de FacuLeaks: comprador, medio de pago y listado de productos (tablas ventas y detalla)." />
   <title>FacuLeaks - Finalizar compra</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="js/app.js" defer></script>
 </head>
-<body>
+<body data-pagina="comprar">
 
-  <!-- HEADER -->
+
   <header class="header">
     <div class="header-contenido">
       <h1 class="logo">FacuLeaks</h1>
@@ -17,7 +18,7 @@
     <nav class="nav">
       <a href="index.html">Inicio</a>
       <a href="apuntes.html">Apuntes</a>
-      <a href="debates.html">Debates</a>
+      <a href="parciales.html">Parciales y finales</a>
       <a href="consultas.html">Consultas</a>
       <a href="listado_box.html" class="activo">Marketplace</a>
     </nav>
@@ -46,7 +47,6 @@
       <h3>Ayuda</h3>
       <ul>
         <li><a href="consultas.html">Preguntas frecuentes</a></li>
-        <li><a href="debates.html">Opiniones de compradores</a></li>
       </ul>
     </aside>
 
@@ -56,26 +56,51 @@
       <nav class="breadcrumb" aria-label="Ruta de navegacion">
         <a href="index.html">Inicio</a> &rsaquo;
         <a href="listado_box.html">Marketplace</a> &rsaquo;
-        <a href="producto.html">M-001</a> &rsaquo;
+        <a href="producto.html">M-004</a> &rsaquo;
         <span aria-current="page">Compra</span>
       </nav>
 
       <h2 class="titulo-categoria">Formulario de compra</h2>
-
       <form class="form-compra" action="#" method="post">
 
-        <!-- 1. DATOS DEL CLIENTE -->
+        <!-- 1. DATOS DEL COMPRADOR -->
         <fieldset class="campo-grupo">
-          <legend>1. Datos del cliente</legend>
+          <legend>1. Datos del comprador</legend>
+
+          <p class="nota-sesion">
+            Sesion iniciada como <strong>apiedrafita</strong>. Los datos provienen de la cuenta
+            del usuario y la venta se registra a su nombre mediante <code>ventas.id_usuario</code>.
+          </p>
+
+          <input type="hidden" name="id_usuario" value="2" />
 
           <div class="campos">
 
-            <p class="campo campo-ancho">
-              <label for="nombre">Nombre y apellido <abbr title="obligatorio" class="req">*</abbr></label>
-              <input type="text" id="nombre" name="nombre" placeholder="Martin Nahuel Meke"
-                     autocomplete="name" minlength="5" maxlength="80" required="" />
-              <span class="ayuda">Tal como figura en tu documento.</span>
+            <p class="campo">
+              <label for="alias">Usuario</label>
+              <input type="text" id="alias" value="apiedrafita" readonly="" />
             </p>
+
+            <p class="campo">
+              <label for="nombre">Nombre y apellido</label>
+              <input type="text" id="nombre" value="Augusto Piedrafita" readonly="" />
+            </p>
+
+            <p class="campo campo-ancho">
+              <label for="email">E-mail</label>
+              <input type="email" id="email" value="augusto@faculeaks.com" readonly="" />
+              <span class="ayuda">Ahi se envia la confirmacion del pedido.</span>
+            </p>
+
+          </div>
+
+          <h3 class="subtitulo-grupo">Datos de envio</h3>
+          <p class="ayuda">
+            Se usan solo para coordinar la entrega con el vendedor: el modelo de datos
+            no los registra en la venta.
+          </p>
+
+          <div class="campos">
 
             <p class="campo campo-ancho">
               <label for="direccion">Direccion <abbr title="obligatorio" class="req">*</abbr></label>
@@ -109,32 +134,17 @@
                      inputmode="numeric" pattern="[0-9]{4}" maxlength="4" autocomplete="postal-code" />
             </p>
 
-            <p class="campo">
-              <label for="telefono">Telefono <abbr title="obligatorio" class="req">*</abbr></label>
-              <input type="tel" id="telefono" name="telefono" placeholder="376 4123456"
-                     pattern="[0-9 +()-]{8,20}" autocomplete="tel" required="" />
-              <span class="ayuda">Con caracteristica, sin el 0 ni el 15.</span>
-            </p>
-
-            <p class="campo campo-ancho">
-              <label for="email">E-mail <abbr title="obligatorio" class="req">*</abbr></label>
-              <input type="email" id="email" name="email" placeholder="nombre@correo.com"
-                     autocomplete="email" maxlength="100" required="" />
-              <span class="ayuda">Ahi se envia la confirmacion del pedido.</span>
-            </p>
-
           </div>
         </fieldset>
 
-        <!-- 2. MEDIO DE PAGO -->
         <fieldset class="campo-grupo">
           <legend>2. Medio de pago</legend>
 
           <div class="opciones">
-            <label class="opcion" for="pago-tarjeta">
-              <input type="radio" id="pago-tarjeta" name="medio_pago" value="tarjeta" required="" />
-              <span class="opcion-titulo">Tarjeta de credito o debito</span>
-              <span class="opcion-detalle">Visa, Mastercard y American Express</span>
+            <label class="opcion" for="pago-mercado-pago">
+              <input type="radio" id="pago-mercado-pago" name="medio_pago" value="mercado_pago" required="" />
+              <span class="opcion-titulo">Mercado Pago</span>
+              <span class="opcion-detalle">Tarjeta de credito, debito o dinero en cuenta</span>
             </label>
 
             <label class="opcion" for="pago-transferencia">
@@ -143,41 +153,15 @@
               <span class="opcion-detalle">CBU o alias del vendedor</span>
             </label>
 
-            <label class="opcion" for="pago-billetera">
-              <input type="radio" id="pago-billetera" name="medio_pago" value="billetera" />
-              <span class="opcion-titulo">Billetera virtual</span>
-              <span class="opcion-detalle">Mercado Pago o similar</span>
-            </label>
-
             <label class="opcion" for="pago-efectivo">
               <input type="radio" id="pago-efectivo" name="medio_pago" value="efectivo" />
               <span class="opcion-titulo">Efectivo</span>
               <span class="opcion-detalle">Al retirar el material en la sede</span>
             </label>
           </div>
-
-          <div class="campos">
-            <p class="campo">
-              <label for="cuotas">Cuotas</label>
-              <select id="cuotas" name="cuotas">
-                <option value="1" selected="">1 pago</option>
-                <option value="3">3 cuotas sin interes</option>
-                <option value="6">6 cuotas</option>
-              </select>
-            </p>
-
-            <p class="campo">
-              <label for="entrega">Forma de entrega</label>
-              <select id="entrega" name="entrega">
-                <option value="retiro" selected="">Retiro en la sede</option>
-                <option value="domicilio">Envio a domicilio</option>
-                <option value="descarga">Descarga digital</option>
-              </select>
-            </p>
-          </div>
         </fieldset>
 
-        <!-- 3. LISTADO DE PRODUCTOS -->
+        <!-- 3. LISTADO DE PRODUCTOS: cada fila es una futura fila de detalla -->
         <fieldset class="campo-grupo">
           <legend>3. Listado de productos</legend>
 
@@ -195,53 +179,57 @@
                 </tr>
               </thead>
               <tbody>
-                <!--
-                  AA13 - Parte B: cada <tr> de producto suma la clase
-                  "fila-producto" y el atributo data-precio (precio
-                  unitario en pesos, sin puntos ni signo $) para que
-                  el script pueda leerlo y recalcular el subtotal sin
-                  tener que interpretar el texto "$4.500" de la celda
-                  de precio.
-                -->
-                <tr class="fila-producto" data-precio="4500">
+                <tr class="fila-producto" data-id-producto="4" data-precio="4500">
                   <td class="col-centrada">
-                    <input type="checkbox" id="item-1" name="productos" value="M-001" checked="" />
-                    <label for="item-1" class="oculto-visual">Incluir M-001 en la compra</label>
+                    <input type="checkbox" id="item-1" name="id_producto" value="4" checked="" />
+                    <label for="item-1" class="oculto-visual">Incluir M-004 en la compra</label>
                   </td>
-                  <th scope="row" class="col-codigo">M-001</th>
-                  <td><a href="producto.html">Resumen de Analisis Matematico II - Unidad 3</a></td>
-                  <td class="col-numerica precio">$4.500</td>
+                  <th scope="row" class="col-codigo">M-004</th>
+                  <td><a href="producto.html">Resumen completo de Analisis Matematico II - Unidad 3</a></td>
+                  <td class="col-numerica precio"><span class="precio-unitario">$4.500</span></td>
                   <td class="col-numerica">
-                    <label for="cant-1" class="oculto-visual">Cantidad de M-001</label>
-                    <input type="number" id="cant-1" name="cantidad_m001" value="1" min="1" max="4" class="input-cantidad" />
+                    <label for="cant-1" class="oculto-visual">Cantidad de M-004</label>
+                    <div class="contador">
+                      <button type="button" class="btn-cantidad" data-accion="restar" aria-label="Restar una unidad de M-004">&minus;</button>
+                      <input type="number" id="cant-1" name="cantidad_4" value="1" min="1" max="65535" class="input-cantidad" />
+                      <button type="button" class="btn-cantidad" data-accion="sumar" aria-label="Sumar una unidad de M-004">+</button>
+                    </div>
                   </td>
                   <td class="col-numerica precio">$<span class="subtotal-producto">4.500</span></td>
                 </tr>
-                <tr class="fila-producto" data-precio="3200">
+                <tr class="fila-producto" data-id-producto="7" data-precio="3200">
                   <td class="col-centrada">
-                    <input type="checkbox" id="item-2" name="productos" value="M-004" checked="" />
-                    <label for="item-2" class="oculto-visual">Incluir M-004 en la compra</label>
+                    <input type="checkbox" id="item-2" name="id_producto" value="7" checked="" />
+                    <label for="item-2" class="oculto-visual">Incluir M-007 en la compra</label>
                   </td>
-                  <th scope="row" class="col-codigo">M-004</th>
+                  <th scope="row" class="col-codigo">M-007</th>
                   <td><a href="producto.html">Guia de ejercicios resueltos de Fisica I</a></td>
-                  <td class="col-numerica precio">$3.200</td>
+                  <td class="col-numerica precio"><span class="precio-unitario">$3.200</span></td>
                   <td class="col-numerica">
-                    <label for="cant-2" class="oculto-visual">Cantidad de M-004</label>
-                    <input type="number" id="cant-2" name="cantidad_m004" value="1" min="1" max="6" class="input-cantidad" />
+                    <label for="cant-2" class="oculto-visual">Cantidad de M-007</label>
+                    <div class="contador">
+                      <button type="button" class="btn-cantidad" data-accion="restar" aria-label="Restar una unidad de M-007">&minus;</button>
+                      <input type="number" id="cant-2" name="cantidad_7" value="1" min="1" max="65535" class="input-cantidad" />
+                      <button type="button" class="btn-cantidad" data-accion="sumar" aria-label="Sumar una unidad de M-007">+</button>
+                    </div>
                   </td>
                   <td class="col-numerica precio">$<span class="subtotal-producto">3.200</span></td>
                 </tr>
-                <tr class="fila-producto" data-precio="2500">
+                <tr class="fila-producto" data-id-producto="8" data-precio="2500">
                   <td class="col-centrada">
-                    <input type="checkbox" id="item-3" name="productos" value="M-005" />
-                    <label for="item-3" class="oculto-visual">Incluir M-005 en la compra</label>
+                    <input type="checkbox" id="item-3" name="id_producto" value="8" />
+                    <label for="item-3" class="oculto-visual">Incluir M-008 en la compra</label>
                   </td>
-                  <th scope="row" class="col-codigo">M-005</th>
-                  <td><a href="producto.html">Resumen de Derecho Comercial - Unidades 1 a 4</a></td>
-                  <td class="col-numerica precio">$2.500</td>
+                  <th scope="row" class="col-codigo">M-008</th>
+                  <td><a href="producto.html">Resumen de Sistemas Operativos - Unidades 1 a 4</a></td>
+                  <td class="col-numerica precio"><span class="precio-unitario">$2.500</span></td>
                   <td class="col-numerica">
-                    <label for="cant-3" class="oculto-visual">Cantidad de M-005</label>
-                    <input type="number" id="cant-3" name="cantidad_m005" value="1" min="1" max="1" class="input-cantidad" />
+                    <label for="cant-3" class="oculto-visual">Cantidad de M-008</label>
+                    <div class="contador">
+                      <button type="button" class="btn-cantidad" data-accion="restar" aria-label="Restar una unidad de M-008">&minus;</button>
+                      <input type="number" id="cant-3" name="cantidad_8" value="1" min="1" max="65535" class="input-cantidad" />
+                      <button type="button" class="btn-cantidad" data-accion="sumar" aria-label="Sumar una unidad de M-008">+</button>
+                    </div>
                   </td>
                   <td class="col-numerica precio">$<span class="subtotal-producto">2.500</span></td>
                 </tr>
@@ -255,14 +243,8 @@
             </table>
           </div>
 
-          <p class="campo campo-ancho">
-            <label for="comentarios">Comentarios para el vendedor</label>
-            <textarea id="comentarios" name="comentarios" rows="4" maxlength="500"
-                      placeholder="Horario en el que podes retirar, aclaraciones sobre el envio, etc."></textarea>
-          </p>
+          <p class="estado-precios" id="estado-precios" role="status">Consultando precios actualizados...</p>
         </fieldset>
-
-        <!-- 4. CONFIRMACION -->
         <fieldset class="campo-grupo">
           <legend>4. Confirmacion</legend>
 
@@ -272,11 +254,6 @@
               Acepto los terminos de uso del Marketplace y confirmo que los datos son correctos
               <abbr title="obligatorio" class="req">*</abbr>
             </label>
-          </p>
-
-          <p class="campo-check">
-            <input type="checkbox" id="novedades" name="novedades" value="si" />
-            <label for="novedades">Quiero recibir avisos cuando se publique material de mis materias</label>
           </p>
 
           <p class="form-acciones">
@@ -294,106 +271,6 @@
 
     </main>
   </div>
-
-  <!-- PIE DE PAGINA -->
-  <footer class="footer">
-    <p>FacuLeaks &middot; Foro academico universitario &middot; Trabajo practico de Paradigmas de la Programacion 3</p>
-  </footer>
-
-  <!-- AA13 - Parte B: comportamiento dinamico de cantidad/subtotal -->
-  <script>
-    // ============================================================
-    // AA13 - Parte B
-    // Aplicacion practica sobre comprar.html (Marketplace de FacuLeaks).
-    // Captura el cambio de la cantidad de cada producto y recalcula,
-    // en tiempo real y sin recargar la pagina:
-    //   - el subtotal de esa fila (precio unitario x cantidad)
-    //   - el total del pedido (suma de los subtotales de los
-    //     productos que siguen incluidos, es decir con el checkbox
-    //     "Incluir" tildado)
-    // ============================================================
-
-    // 1) Todas las filas de producto de la tabla del carrito.
-    //    Se resuelven una sola vez, al llegar el navegador a este
-    //    <script>, que ya esta al final del <body> (el DOM de arriba
-    //    ya existe en ese momento).
-    const filasProducto = document.querySelectorAll('.fila-producto');
-
-    // 2) Nodo donde se inyecta el total del pedido (celda del tfoot).
-    const spanTotalPedido = document.getElementById('total-pedido');
-
-    // 3) Formateador de numeros en formato argentino (punto de miles,
-    //    sin decimales), para mostrar "4.500" en vez de "4500".
-    const formatoMoneda = new Intl.NumberFormat('es-AR', {
-      maximumFractionDigits: 0
-    });
-
-    // 4) Recalcula el subtotal de UNA fila de producto:
-    //    - lee el precio unitario desde data-precio del <tr>
-    //    - lee y valida la cantidad cargada por el usuario
-    //    - actualiza el <span class="subtotal-producto"> de esa fila
-    //    - devuelve el subtotal solo si el producto sigue incluido
-    //      (checkbox tildado); si no, devuelve 0 para no sumarlo
-    //      al total general.
-    function recalcularFila(fila) {
-      const precioUnitario = Number(fila.dataset.precio);
-
-      const inputCantidad = fila.querySelector('.input-cantidad');
-      const spanSubtotal = fila.querySelector('.subtotal-producto');
-      const checkboxIncluir = fila.querySelector('input[type="checkbox"]');
-
-      // Limites de cantidad ya declarados en el propio input (min/max
-      // del HTML). Si el usuario borra el campo o carga un valor fuera
-      // de rango, se corrige al limite mas cercano en vez de calcular
-      // con NaN o con un numero invalido.
-      const minimo = Number(inputCantidad.min) || 1;
-      const maximo = inputCantidad.max ? Number(inputCantidad.max) : Infinity;
-
-      let cantidad = Number(inputCantidad.value);
-      if (Number.isNaN(cantidad) || cantidad < minimo) {
-        cantidad = minimo;
-      } else if (cantidad > maximo) {
-        cantidad = maximo;
-      }
-      inputCantidad.value = cantidad;
-
-      const subtotal = precioUnitario * cantidad;
-      spanSubtotal.textContent = formatoMoneda.format(subtotal);
-
-      return checkboxIncluir.checked ? subtotal : 0;
-    }
-
-    // 5) Recorre todas las filas, actualiza cada subtotal y suma el
-    //    total del pedido en la fila del tfoot.
-    function recalcularTotalPedido() {
-      let total = 0;
-
-      filasProducto.forEach(function (fila) {
-        total += recalcularFila(fila);
-      });
-
-      spanTotalPedido.textContent = formatoMoneda.format(total);
-    }
-
-    // 6) Captura de eventos, por cada fila:
-    //    - "input" en el campo de cantidad: recalculo en tiempo real
-    //      a medida que el usuario escribe o usa las flechas del
-    //      input number.
-    //    - "change" en el checkbox "Incluir": si el usuario excluye o
-    //      vuelve a incluir un producto, el total se recalcula igual.
-    filasProducto.forEach(function (fila) {
-      const inputCantidad = fila.querySelector('.input-cantidad');
-      const checkboxIncluir = fila.querySelector('input[type="checkbox"]');
-
-      inputCantidad.addEventListener('input', recalcularTotalPedido);
-      checkboxIncluir.addEventListener('change', recalcularTotalPedido);
-    });
-
-    // 7) Primer calculo al llegar aca, para que los subtotales y el
-    //    total queden consistentes con los valores iniciales de los
-    //    inputs (por si en el futuro cambian los value= por defecto).
-    recalcularTotalPedido();
-  </script>
 
 </body>
 </html>

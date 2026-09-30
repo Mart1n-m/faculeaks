@@ -1,0 +1,14 @@
+[
+  {
+    "id_venta": 1,
+    "fecha": "2026-09-10T15:30:00",
+    "medio_pago": "mercado_pago",
+    "id_usuario": 2
+  },
+  {
+    "id_venta": 2,
+    "fecha": "2026-09-15T11:20:00",
+    "medio_pago": "transferencia",
+    "id_usuario": 3
+  }
+]

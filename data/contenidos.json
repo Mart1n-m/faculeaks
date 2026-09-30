@@ -1,0 +1,186 @@
+[
+  {
+    "id_contenido": 1,
+    "tipo": "publicacion",
+    "cuerpo_texto": "Resumen de normalizacion hasta 3FN con ejemplos resueltos.",
+    "fecha_creacion": "2026-09-20T17:00:00",
+    "id_usuario": 1,
+    "id_carrera": 1
+  },
+  {
+    "id_contenido": 2,
+    "tipo": "comentario",
+    "cuerpo_texto": "Muy buen resumen, me sirvio para el parcial.",
+    "fecha_creacion": "2026-09-21T09:15:00",
+    "id_usuario": 2,
+    "id_carrera": 1
+  },
+  {
+    "id_contenido": 3,
+    "tipo": "comentario",
+    "cuerpo_texto": "Gracias, la semana que viene subo la parte de BCNF.",
+    "fecha_creacion": "2026-09-21T12:40:00",
+    "id_usuario": 1,
+    "id_carrera": 1
+  },
+  {
+    "id_contenido": 4,
+    "tipo": "publicacion",
+    "cuerpo_texto": "Resumen completo de Analisis Matematico II - Unidad 3\nLes comparto el resumen que arme para el parcial de la semana pasada. Incluye limites, derivadas parciales y ejercicios resueltos.",
+    "fecha_creacion": "2026-09-27T18:10:00",
+    "id_usuario": 4,
+    "id_carrera": 1
+  },
+  {
+    "id_contenido": 5,
+    "tipo": "publicacion",
+    "cuerpo_texto": "Apuntes de Programacion I - Toda la cursada\nSubi todos mis apuntes de Programacion I del aÃ±o pasado, organizados por unidad. Me fueron muy utiles para el final, espero que sirvan.",
+    "fecha_creacion": "2026-09-26T21:40:00",
+    "id_usuario": 5,
+    "id_carrera": 1
+  },
+  {
+    "id_contenido": 6,
+    "tipo": "publicacion",
+    "cuerpo_texto": "Resumen de Sistemas Operativos - Unidades 1 a 4\nArme un resumen bastante completo con los conceptos clave de cada unidad. Tiene ejemplos y algunos cuadros comparativos que me ayudaron mucho.",
+    "fecha_creacion": "2026-09-24T10:15:00",
+    "id_usuario": 7,
+    "id_carrera": 1
+  },
+  {
+    "id_contenido": 7,
+    "tipo": "publicacion",
+    "cuerpo_texto": "Parcial 1 de Algebra y Geometria Analitica - Tema A\nSubo el enunciado del primer parcial con los ejercicios que resolvimos en la clase de consulta. Faltan los de la parte de conicas.",
+    "fecha_creacion": "2026-09-27T12:30:00",
+    "id_usuario": 5,
+    "id_carrera": 1
+  },
+  {
+    "id_contenido": 8,
+    "tipo": "publicacion",
+    "cuerpo_texto": "Final de Analisis Numerico - mesa de julio\nEste es el final que tomaron en la mesa de julio. Pregunten si alguno no les sale, sobre todo el de interpolacion.",
+    "fecha_creacion": "2026-09-25T16:05:00",
+    "id_usuario": 8,
+    "id_carrera": 1
+  },
+  {
+    "id_contenido": 9,
+    "tipo": "publicacion",
+    "cuerpo_texto": "Parcial 2 de Fisica I resuelto\nResolucion completa del segundo parcial, con los diagramas de cuerpo libre de cada ejercicio.",
+    "fecha_creacion": "2026-09-22T09:50:00",
+    "id_usuario": 6,
+    "id_carrera": 1
+  },
+  {
+    "id_contenido": 10,
+    "tipo": "publicacion",
+    "cuerpo_texto": "Alguien sabe si el TP de Programacion I se entrega por el campus?\nNo encuentro informacion clara en el campus sobre como entregar el TP final. El profe no contesto el mail todavia. Alguien sabe algo?",
+    "fecha_creacion": "2026-09-28T08:20:00",
+    "id_usuario": 6,
+    "id_carrera": 1
+  },
+  {
+    "id_contenido": 11,
+    "tipo": "publicacion",
+    "cuerpo_texto": "Conviene rendir libre Probabilidad y Estadistica?\nQuiero anotarme a 5 materias este cuatrimestre y no se si conviene cursar Probabilidad y Estadistica o rendirla libre. Alguien sabe como funciona el regimen?",
+    "fecha_creacion": "2026-09-27T19:45:00",
+    "id_usuario": 9,
+    "id_carrera": 1
+  },
+  {
+    "id_contenido": 12,
+    "tipo": "publicacion",
+    "cuerpo_texto": "Donde consigo la guia de practicos de Analisis Matematico I?\nSoy de primer aÃ±o y no encuentro la guia. Fui a bedelia pero me mandaron a la fotocopiadora y ahi no la tienen. Alguien que ya la tenga?",
+    "fecha_creacion": "2026-09-26T11:00:00",
+    "id_usuario": 10,
+    "id_carrera": 1
+  },
+  {
+    "id_contenido": 13,
+    "tipo": "comentario",
+    "cuerpo_texto": "Gracias! Justo lo necesitaba para el recuperatorio.",
+    "fecha_creacion": "2026-09-27T19:00:00",
+    "id_usuario": 2,
+    "id_carrera": 1
+  },
+  {
+    "id_contenido": 14,
+    "tipo": "comentario",
+    "cuerpo_texto": "Tenes tambien la unidad 4?",
+    "fecha_creacion": "2026-09-27T20:10:00",
+    "id_usuario": 6,
+    "id_carrera": 1
+  },
+  {
+    "id_contenido": 15,
+    "tipo": "comentario",
+    "cuerpo_texto": "Todavia no, la subo cuando la termine.",
+    "fecha_creacion": "2026-09-27T21:05:00",
+    "id_usuario": 4,
+    "id_carrera": 1
+  },
+  {
+    "id_contenido": 16,
+    "tipo": "comentario",
+    "cuerpo_texto": "Muy completos, sobre todo la parte de punteros.",
+    "fecha_creacion": "2026-09-27T08:30:00",
+    "id_usuario": 7,
+    "id_carrera": 1
+  },
+  {
+    "id_contenido": 17,
+    "tipo": "comentario",
+    "cuerpo_texto": "Los de conicas los resolvimos en la practica 6.",
+    "fecha_creacion": "2026-09-27T14:00:00",
+    "id_usuario": 1,
+    "id_carrera": 1
+  },
+  {
+    "id_contenido": 18,
+    "tipo": "comentario",
+    "cuerpo_texto": "Buenisimo, los agrego al archivo.",
+    "fecha_creacion": "2026-09-27T15:20:00",
+    "id_usuario": 5,
+    "id_carrera": 1
+  },
+  {
+    "id_contenido": 19,
+    "tipo": "comentario",
+    "cuerpo_texto": "El de interpolacion de Lagrange me dio distinto, lo revisamos?",
+    "fecha_creacion": "2026-09-25T18:40:00",
+    "id_usuario": 2,
+    "id_carrera": 1
+  },
+  {
+    "id_contenido": 20,
+    "tipo": "comentario",
+    "cuerpo_texto": "Si, se sube en la seccion Entregas del campus.",
+    "fecha_creacion": "2026-09-28T09:00:00",
+    "id_usuario": 1,
+    "id_carrera": 1
+  },
+  {
+    "id_contenido": 21,
+    "tipo": "comentario",
+    "cuerpo_texto": "Gracias, ahi lo encontre.",
+    "fecha_creacion": "2026-09-28T09:30:00",
+    "id_usuario": 6,
+    "id_carrera": 1
+  },
+  {
+    "id_contenido": 22,
+    "tipo": "comentario",
+    "cuerpo_texto": "Yo la rendi libre y el examen tiene una parte practica larga.",
+    "fecha_creacion": "2026-09-27T21:15:00",
+    "id_usuario": 7,
+    "id_carrera": 1
+  },
+  {
+    "id_contenido": 23,
+    "tipo": "comentario",
+    "cuerpo_texto": "La tiene el centro de estudiantes en PDF.",
+    "fecha_creacion": "2026-09-26T12:10:00",
+    "id_usuario": 5,
+    "id_carrera": 1
+  }
+]

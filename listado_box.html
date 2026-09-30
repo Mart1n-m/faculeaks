@@ -6,8 +6,9 @@
   <meta name="description" content="Listado en formato de fichas del material de estudio publicado en el Marketplace de FacuLeaks." />
   <title>FacuLeaks - Marketplace</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="js/app.js" defer></script>
 </head>
-<body>
+<body data-pagina="catalogo">
 
   <!-- HEADER -->
   <header class="header">
@@ -17,7 +18,7 @@
     <nav class="nav">
       <a href="index.html">Inicio</a>
       <a href="apuntes.html">Apuntes</a>
-      <a href="debates.html">Debates</a>
+      <a href="parciales.html">Parciales y finales</a>
       <a href="consultas.html">Consultas</a>
       <a href="listado_box.html" class="activo">Marketplace</a>
     </nav>
@@ -31,7 +32,7 @@
       <h3>Categorias del foro</h3>
       <ul>
         <li><a href="apuntes.html">Apuntes</a></li>
-        <li><a href="debates.html">Debates</a></li>
+        <li><a href="parciales.html">Parciales y finales</a></li>
         <li><a href="consultas.html">Consultas</a></li>
       </ul>
 
@@ -40,14 +41,6 @@
         <li><a href="listado_box.html">Ver en fichas</a></li>
         <li><a href="listado_tabla.html">Ver en tabla</a></li>
         <li><a href="comprar.html">Finalizar compra</a></li>
-      </ul>
-
-      <h3>Tipo de material</h3>
-      <ul>
-        <li><a href="listado_box.html">Apuntes impresos</a></li>
-        <li><a href="listado_box.html">Libros usados</a></li>
-        <li><a href="listado_box.html">Guias resueltas</a></li>
-        <li><a href="listado_box.html">Material digital</a></li>
       </ul>
     </aside>
 
@@ -62,166 +55,79 @@
       <h2 class="titulo-categoria">Material de estudio disponible</h2>
 
       <div class="barra-vista">
-        <p class="barra-vista-info">6 publicaciones encontradas</p>
+        <p class="barra-vista-info" id="info-resultados" aria-live="polite">Cargando catalogo...</p>
         <div class="barra-vista-acciones">
           <a href="listado_box.html" class="btn btn-secundario btn-activo">Vista en fichas</a>
           <a href="listado_tabla.html" class="btn btn-secundario">Vista en tabla</a>
         </div>
       </div>
 
-      <section class="grid-materiales" aria-label="Listado de materiales">
+      <!--
+        AE2 - Opcion 3: Buscador y filtro de catalogo en tiempo real.
+        Las fichas ya no estan escritas en el HTML: js/app.js carga el
+        catalogo completo con fetch() (data/productos.json, usuarios.json
+        y materias.json), lo filtra en memoria con .filter() y lo
+        inyecta en #grid-materiales cada vez que cambia un criterio.
+      -->
+      <form class="filtros" id="form-filtros" role="search" aria-label="Buscar y filtrar material">
 
-        <!-- Material 1 -->
+        <p class="campo filtro-texto">
+          <label for="filtro-texto">Buscar</label>
+          <input type="search" id="filtro-texto" name="texto" maxlength="60"
+                 placeholder="Titulo, materia o vendedor" autocomplete="off" />
+        </p>
+
+        <p class="campo">
+          <label for="filtro-tipo">Tipo de material</label>
+          <select id="filtro-tipo" name="tipo">
+            <option value="">Todos</option>
+          </select>
+        </p>
+
+        <p class="campo">
+          <label for="filtro-materia">Materia</label>
+          <select id="filtro-materia" name="materia">
+            <option value="">Todas</option>
+          </select>
+        </p>
+
+        <p class="filtros-acciones">
+          <button type="reset" class="btn btn-secundario">Limpiar filtros</button>
+        </p>
+
+      </form>
+
+      <p class="mensaje-estado" id="mensaje-catalogo" role="status" hidden></p>
+
+      <section class="grid-materiales" id="grid-materiales" aria-label="Listado de materiales"></section>
+
+      <noscript>
+        <p class="mensaje-estado">El buscador necesita JavaScript. Podes ver todo el material en la
+          <a href="listado_tabla.html">vista en tabla</a>.</p>
+      </noscript>
+
+      <!-- Plantilla de ficha: js/app.js la clona una vez por cada producto -->
+      <template id="plantilla-ficha">
         <article class="card">
-          <div class="card-portada portada-apuntes" aria-hidden="true">
-            <span class="card-portada-texto">AM II</span>
+          <div class="card-portada" aria-hidden="true">
+            <span class="card-portada-texto"></span>
           </div>
           <div class="card-cuerpo">
-            <span class="etiqueta apuntes">Apuntes</span>
+            <span class="etiqueta"></span>
             <h3 class="card-titulo">
-              <a href="producto.html">Resumen completo de Analisis Matematico II - Unidad 3</a>
+              <a href="producto.html"></a>
             </h3>
-            <p class="card-descripcion">
-              Anillado A4 de 48 paginas con limites, derivadas parciales y 30 ejercicios resueltos
-              con desarrollo completo.
-            </p>
             <dl class="card-datos">
-              <dt>Vendedor</dt><dd>matias_tp</dd>
-              <dt>Estado</dt><dd>Nuevo</dd>
+              <dt>Materia</dt><dd class="dato-materia"></dd>
+              <dt>Vendedor</dt><dd class="dato-vendedor"></dd>
             </dl>
           </div>
           <div class="card-footer">
-            <p class="precio">$4.500</p>
+            <p class="precio"></p>
             <a href="producto.html" class="btn btn-primario">Ver ficha</a>
           </div>
         </article>
-
-        <!-- Material 2 -->
-        <article class="card">
-          <div class="card-portada portada-apuntes" aria-hidden="true">
-            <span class="card-portada-texto">QUIM</span>
-          </div>
-          <div class="card-cuerpo">
-            <span class="etiqueta apuntes">Apuntes</span>
-            <h3 class="card-titulo">
-              <a href="producto.html">Apuntes de Quimica General - cursada completa</a>
-            </h3>
-            <p class="card-descripcion">
-              Los apuntes de toda la cursada organizados por unidad, con tablas de reacciones
-              y los practicos de laboratorio.
-            </p>
-            <dl class="card-datos">
-              <dt>Vendedor</dt><dd>lau_quim</dd>
-              <dt>Estado</dt><dd>Nuevo</dd>
-            </dl>
-          </div>
-          <div class="card-footer">
-            <p class="precio">$7.800</p>
-            <a href="producto.html" class="btn btn-primario">Ver ficha</a>
-          </div>
-        </article>
-
-        <!-- Material 3 -->
-        <article class="card">
-          <div class="card-portada portada-libro" aria-hidden="true">
-            <span class="card-portada-texto">ALG</span>
-          </div>
-          <div class="card-cuerpo">
-            <span class="etiqueta libro">Libro</span>
-            <h3 class="card-titulo">
-              <a href="producto.html">Algebra y Geometria Analitica - Kozak / Pastorelli</a>
-            </h3>
-            <p class="card-descripcion">
-              Ejemplar usado en muy buen estado, sin subrayados en lapicera. Edicion 2022,
-              tapa blanda.
-            </p>
-            <dl class="card-datos">
-              <dt>Vendedor</dt><dd>caro_ing</dd>
-              <dt>Estado</dt><dd>Usado - muy bueno</dd>
-            </dl>
-          </div>
-          <div class="card-footer">
-            <p class="precio">$12.000</p>
-            <a href="producto.html" class="btn btn-primario">Ver ficha</a>
-          </div>
-        </article>
-
-        <!-- Material 4 -->
-        <article class="card">
-          <div class="card-portada portada-guia" aria-hidden="true">
-            <span class="card-portada-texto">FIS I</span>
-          </div>
-          <div class="card-cuerpo">
-            <span class="etiqueta guia">Guia</span>
-            <h3 class="card-titulo">
-              <a href="producto.html">Guia de ejercicios resueltos de Fisica I</a>
-            </h3>
-            <p class="card-descripcion">
-              Los 80 ejercicios de la guia de catedra resueltos paso a paso, con los graficos
-              hechos a mano.
-            </p>
-            <dl class="card-datos">
-              <dt>Vendedor</dt><dd>juanma_dev</dd>
-              <dt>Estado</dt><dd>Nuevo</dd>
-            </dl>
-          </div>
-          <div class="card-footer">
-            <p class="precio">$3.200</p>
-            <a href="producto.html" class="btn btn-primario">Ver ficha</a>
-          </div>
-        </article>
-
-        <!-- Material 5 -->
-        <article class="card">
-          <div class="card-portada portada-digital" aria-hidden="true">
-            <span class="card-portada-texto">PDF</span>
-          </div>
-          <div class="card-cuerpo">
-            <span class="etiqueta digital">Digital</span>
-            <h3 class="card-titulo">
-              <a href="producto.html">Resumen de Derecho Comercial - Unidades 1 a 4</a>
-            </h3>
-            <p class="card-descripcion">
-              Archivo PDF de 62 paginas con cuadros comparativos y jurisprudencia citada.
-              Descarga inmediata tras la compra.
-            </p>
-            <dl class="card-datos">
-              <dt>Vendedor</dt><dd>fede_dcho</dd>
-              <dt>Estado</dt><dd>Descarga digital</dd>
-            </dl>
-          </div>
-          <div class="card-footer">
-            <p class="precio">$2.500</p>
-            <a href="producto.html" class="btn btn-primario">Ver ficha</a>
-          </div>
-        </article>
-
-        <!-- Material 6 -->
-        <article class="card">
-          <div class="card-portada portada-guia" aria-hidden="true">
-            <span class="card-portada-texto">BD</span>
-          </div>
-          <div class="card-cuerpo">
-            <span class="etiqueta guia">Guia</span>
-            <h3 class="card-titulo">
-              <a href="producto.html">Base de Datos - parciales resueltos 2020 a 2025</a>
-            </h3>
-            <p class="card-descripcion">
-              Compilado de 18 parciales tomados por la catedra, con la resolucion de cada
-              modelo entidad-relacion y las consultas SQL.
-            </p>
-            <dl class="card-datos">
-              <dt>Vendedor</dt><dd>sistemas_2do</dd>
-              <dt>Estado</dt><dd>Usado - bueno</dd>
-            </dl>
-          </div>
-          <div class="card-footer">
-            <p class="precio">$3.900</p>
-            <a href="producto.html" class="btn btn-primario">Ver ficha</a>
-          </div>
-        </article>
-
-      </section>
+      </template>
 
       <p class="nota-listado">
         Los precios son fijados por cada estudiante vendedor. FacuLeaks solo intermedia la publicacion
@@ -231,10 +137,10 @@
     </main>
   </div>
 
-  <!-- PIE DE PAGINA -->
-  <footer class="footer">
-    <p>FacuLeaks &middot; Foro academico universitario &middot; Trabajo practico de Paradigmas de la Programacion 3</p>
-  </footer>
+  
+  
+    
+  
 
 </body>
 </html>

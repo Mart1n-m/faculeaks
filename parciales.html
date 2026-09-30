@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Portada del foro academico FacuLeaks: publicaciones mas votadas de todas las categorias." />
-  <title>FacuLeaks</title>
+  <meta name="description" content="Publicaciones de las categorias parcial y final del foro FacuLeaks." />
+  <title>FacuLeaks - Parciales y finales</title>
   <link rel="stylesheet" href="style.css" />
   <script src="js/app.js" defer></script>
 </head>
-<body data-pagina="inicio">
+<body data-pagina="parciales">
 
   <!-- HEADER -->
   <header class="header">
@@ -16,9 +16,9 @@
       <h1 class="logo">FacuLeaks</h1>
     </div>
     <nav class="nav">
-      <a href="index.html" class="activo">Inicio</a>
+      <a href="index.html">Inicio</a>
       <a href="apuntes.html">Apuntes</a>
-      <a href="parciales.html">Parciales y finales</a>
+      <a href="parciales.html" class="activo">Parciales y finales</a>
       <a href="consultas.html">Consultas</a>
       <a href="listado_box.html">Marketplace</a>
     </nav>
@@ -47,35 +47,12 @@
     <!-- PUBLICACIONES -->
     <main class="publicaciones">
 
-      <h2 class="titulo-categoria">Lo mas votado</h2>
+      <h2 class="titulo-categoria">Parciales y finales</h2>
 
       <div class="nueva-publicacion">
-        <input type="text" placeholder="Que queres publicar hoy?" aria-label="Nueva publicacion" />
+        <input type="text" placeholder="Comparti un parcial o un final..." aria-label="Nueva publicacion" />
         <button type="button">Publicar</button>
       </div>
-
-      <!-- Publicacion: contenidos + publicaciones (id_contenido = 4) -->
-      <article class="post">
-        <div class="post-votos">
-          <button class="voto-btn" type="button" aria-label="Votar a favor">&#9650;</button>
-          <span class="voto-num">8</span>
-          <button class="voto-btn" type="button" aria-label="Votar en contra">&#9660;</button>
-        </div>
-        <div class="post-contenido">
-          <span class="post-categoria apunte">Apunte</span>
-          <h2 class="post-titulo">Resumen completo de Analisis Matematico II - Unidad 3</h2>
-          <p class="post-descripcion">
-            Les comparto el resumen que arme para el parcial de la semana pasada. Incluye limites, derivadas parciales y ejercicios resueltos.
-          </p>
-          <div class="post-footer">
-            <span>por <strong>matias_tp</strong></span>
-            <span>Analisis Matematico II</span>
-            <span>3 comentarios</span>
-            <span>Adjunto: resumen-unidad3.pdf</span>
-            <span><time datetime="2026-09-27T18:10:00">27/09/2026</time></span>
-          </div>
-        </div>
-      </article>
 
       <!-- Publicacion: contenidos + publicaciones (id_contenido = 7) -->
       <article class="post">
@@ -123,44 +100,25 @@
         </div>
       </article>
 
-      <!-- Publicacion: contenidos + publicaciones (id_contenido = 1) -->
+      <!-- Publicacion: contenidos + publicaciones (id_contenido = 9) -->
       <article class="post">
         <div class="post-votos">
           <button class="voto-btn" type="button" aria-label="Votar a favor">&#9650;</button>
-          <span class="voto-num">5</span>
+          <span class="voto-num">2</span>
           <button class="voto-btn" type="button" aria-label="Votar en contra">&#9660;</button>
         </div>
         <div class="post-contenido">
-          <span class="post-categoria apunte">Apunte</span>
-          <h2 class="post-titulo">Resumen de normalizacion hasta 3FN con ejemplos resueltos.</h2>
-          <div class="post-footer">
-            <span>por <strong>mmekekiuk</strong></span>
-            <span>Base de Datos</span>
-            <span>2 comentarios</span>
-            <span>Adjunto: normalizacion.pdf</span>
-            <span><time datetime="2026-09-20T17:00:00">20/09/2026</time></span>
-          </div>
-        </div>
-      </article>
-
-      <!-- Publicacion: contenidos + publicaciones (id_contenido = 10) -->
-      <article class="post">
-        <div class="post-votos">
-          <button class="voto-btn" type="button" aria-label="Votar a favor">&#9650;</button>
-          <span class="voto-num">4</span>
-          <button class="voto-btn" type="button" aria-label="Votar en contra">&#9660;</button>
-        </div>
-        <div class="post-contenido">
-          <span class="post-categoria consulta">Consulta</span>
-          <h2 class="post-titulo">Alguien sabe si el TP de Programacion I se entrega por el campus?</h2>
+          <span class="post-categoria parcial">Parcial</span>
+          <h2 class="post-titulo">Parcial 2 de Fisica I resuelto</h2>
           <p class="post-descripcion">
-            No encuentro informacion clara en el campus sobre como entregar el TP final. El profe no contesto el mail todavia. Alguien sabe algo?
+            Resolucion completa del segundo parcial, con los diagramas de cuerpo libre de cada ejercicio.
           </p>
           <div class="post-footer">
             <span>por <strong>juanma_dev</strong></span>
-            <span>Programacion I</span>
-            <span>2 comentarios</span>
-            <span><time datetime="2026-09-28T08:20:00">28/09/2026</time></span>
+            <span>Fisica I</span>
+            <span>0 comentarios</span>
+            <span>Adjunto: parcial2-resuelto.pdf</span>
+            <span><time datetime="2026-09-22T09:50:00">22/09/2026</time></span>
           </div>
         </div>
       </article>

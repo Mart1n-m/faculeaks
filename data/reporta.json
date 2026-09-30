@@ -1,0 +1,9 @@
+[
+  {
+    "id_usuario": 3,
+    "id_contenido": 2,
+    "motivo": "Contenido fuera de tema",
+    "estado": "pendiente",
+    "fecha_reporte": "2026-09-21T13:00:00"
+  }
+]

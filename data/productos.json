@@ -1,0 +1,82 @@
+[
+  {
+    "id_producto": 1,
+    "titulo": "Apuntes completos de Base de Datos 2026",
+    "precio": 8500,
+    "tipo_material": "apunte",
+    "id_usuario": 1,
+    "id_materia": 1
+  },
+  {
+    "id_producto": 2,
+    "titulo": "Guia de ejercicios de Analisis Numerico",
+    "precio": 4200,
+    "tipo_material": "guia",
+    "id_usuario": 1,
+    "id_materia": 2
+  },
+  {
+    "id_producto": 3,
+    "titulo": "Libro Fundamentos de bases de datos",
+    "precio": 15000,
+    "tipo_material": "libro",
+    "id_usuario": 2,
+    "id_materia": null
+  },
+  {
+    "id_producto": 4,
+    "titulo": "Resumen completo de Analisis Matematico II - Unidad 3",
+    "precio": 4500,
+    "tipo_material": "apunte",
+    "id_usuario": 4,
+    "id_materia": 5
+  },
+  {
+    "id_producto": 5,
+    "titulo": "Apuntes de Programacion I - cursada completa",
+    "precio": 7800,
+    "tipo_material": "apunte",
+    "id_usuario": 5,
+    "id_materia": 8
+  },
+  {
+    "id_producto": 6,
+    "titulo": "Algebra y Geometria Analitica - Kozak / Pastorelli",
+    "precio": 12000,
+    "tipo_material": "libro",
+    "id_usuario": 5,
+    "id_materia": 6
+  },
+  {
+    "id_producto": 7,
+    "titulo": "Guia de ejercicios resueltos de Fisica I",
+    "precio": 3200,
+    "tipo_material": "guia",
+    "id_usuario": 6,
+    "id_materia": 7
+  },
+  {
+    "id_producto": 8,
+    "titulo": "Resumen de Sistemas Operativos - Unidades 1 a 4",
+    "precio": 2500,
+    "tipo_material": "pdf",
+    "id_usuario": 7,
+    "id_materia": 12
+  },
+  {
+    "id_producto": 9,
+    "titulo": "Base de Datos - parciales resueltos 2020 a 2025",
+    "precio": 3900,
+    "tipo_material": "guia",
+    "id_usuario": 7,
+    "id_materia": 1
+  },
+  {
+    "id_producto": 10,
+    "titulo": "Calculadora cientifica Casio fx-570",
+    "precio": 18000,
+    "tipo_material": "otro",
+    "id_usuario": 8,
+    "id_materia": null
+  }
+]

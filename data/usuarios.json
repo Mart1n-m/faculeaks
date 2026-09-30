@@ -1,0 +1,122 @@
+[
+  {
+    "id_usuario": 1,
+    "alias_usuario": "mmekekiuk",
+    "email": "martin@faculeaks.com",
+    "nombre": "Martin",
+    "apellido": "Mekekiuk",
+    "enlace_foto_perfil": null,
+    "biografia": null,
+    "estado": "activo",
+    "fecha_registro": "2026-03-02T10:00:00",
+    "id_rol": 1
+  },
+  {
+    "id_usuario": 2,
+    "alias_usuario": "apiedrafita",
+    "email": "augusto@faculeaks.com",
+    "nombre": "Augusto",
+    "apellido": "Piedrafita",
+    "enlace_foto_perfil": null,
+    "biografia": null,
+    "estado": "activo",
+    "fecha_registro": "2026-03-02T10:05:00",
+    "id_rol": 1
+  },
+  {
+    "id_usuario": 3,
+    "alias_usuario": "modsoft",
+    "email": "mod@faculeaks.com",
+    "nombre": "Lucia",
+    "apellido": "Ramirez",
+    "enlace_foto_perfil": null,
+    "biografia": null,
+    "estado": "activo",
+    "fecha_registro": "2026-03-05T09:00:00",
+    "id_rol": 2
+  },
+  {
+    "id_usuario": 4,
+    "alias_usuario": "matias_tp",
+    "email": "matias_tp@faculeaks.com",
+    "nombre": "Matias",
+    "apellido": "Torres",
+    "enlace_foto_perfil": null,
+    "biografia": null,
+    "estado": "activo",
+    "fecha_registro": "2026-03-10T18:00:00",
+    "id_rol": 1
+  },
+  {
+    "id_usuario": 5,
+    "alias_usuario": "caro_ing",
+    "email": "caro_ing@faculeaks.com",
+    "nombre": "Carolina",
+    "apellido": "Ibarra",
+    "enlace_foto_perfil": null,
+    "biografia": null,
+    "estado": "activo",
+    "fecha_registro": "2026-03-11T20:30:00",
+    "id_rol": 1
+  },
+  {
+    "id_usuario": 6,
+    "alias_usuario": "juanma_dev",
+    "email": "juanma_dev@faculeaks.com",
+    "nombre": "Juan Manuel",
+    "apellido": "Duarte",
+    "enlace_foto_perfil": null,
+    "biografia": null,
+    "estado": "activo",
+    "fecha_registro": "2026-03-15T08:45:00",
+    "id_rol": 1
+  },
+  {
+    "id_usuario": 7,
+    "alias_usuario": "sistemas_2do",
+    "email": "sistemas_2do@faculeaks.com",
+    "nombre": "Sofia",
+    "apellido": "Benitez",
+    "enlace_foto_perfil": null,
+    "biografia": null,
+    "estado": "activo",
+    "fecha_registro": "2026-04-01T14:10:00",
+    "id_rol": 1
+  },
+  {
+    "id_usuario": 8,
+    "alias_usuario": "tomi_rta",
+    "email": "tomi_rta@faculeaks.com",
+    "nombre": "Tomas",
+    "apellido": "Rolon",
+    "enlace_foto_perfil": null,
+    "biografia": null,
+    "estado": "activo",
+    "fecha_registro": "2026-04-03T19:25:00",
+    "id_rol": 1
+  },
+  {
+    "id_usuario": 9,
+    "alias_usuario": "nueva_estudiante",
+    "email": "nueva_estudiante@faculeaks.com",
+    "nombre": "Valentina",
+    "apellido": "Gomez",
+    "enlace_foto_perfil": null,
+    "biografia": null,
+    "estado": "activo",
+    "fecha_registro": "2026-08-04T10:00:00",
+    "id_rol": 1
+  },
+  {
+    "id_usuario": 10,
+    "alias_usuario": "ingresante2025",
+    "email": "ingresante2025@faculeaks.com",
+    "nombre": "Lucas",
+    "apellido": "Fernandez",
+    "enlace_foto_perfil": null,
+    "biografia": null,
+    "estado": "activo",
+    "fecha_registro": "2026-08-05T11:30:00",
+    "id_rol": 1
+  }
+]
