@@ -20,14 +20,301 @@ function codigoProducto(idProducto) {
   return 'M-' + String(idProducto).padStart(3, '0');
 }
 
-async function obtenerTabla(nombreTabla) {
-  const respuesta = await fetch(`data/${nombreTabla}.json`);
+// GET a un endpoint publico de api/ que devuelve JSON.
+// Desde el AE3 los datos salen de MySQL a traves de PHP: los antiguos
+// data/*.json se reemplazaron por api/productos.php y api/materias.php.
+async function obtenerJson(url) {
+  const respuesta = await fetch(url, { headers: { Accept: 'application/json' } });
 
   if (!respuesta.ok) {
-    throw new Error(`No se pudo cargar ${nombreTabla}.json (HTTP ${respuesta.status})`);
+    throw new Error(`No se pudo consultar ${url} (HTTP ${respuesta.status})`);
   }
 
   return respuesta.json();
+}
+
+// POST con cuerpo JSON. Devuelve el codigo HTTP junto con el cuerpo de la
+// respuesta, porque 400, 401 o 409 no son fallas de red sino respuestas
+// que la interfaz tiene que mostrar.
+async function enviarJson(url, datos) {
+  const respuesta = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+    body: JSON.stringify(datos)
+  });
+
+  let cuerpo = {};
+  try {
+    cuerpo = await respuesta.json();
+  } catch (error) {
+    // Respuesta sin JSON (por ejemplo, un error de PHP): se deja vacia.
+  }
+
+  return { estado: respuesta.status, cuerpo };
+}
+
+/* =====================================================================
+   SESION (AE3)
+   Al cargar cualquier pagina se consulta el endpoint privado
+   api/perfil.php: 200 = hay sesion; 401 = invitado. Con esa respuesta se
+   alterna el DOM sin recargar la pagina.
+
+   Marcado que usa este modulo:
+     data-requiere-sesion  -> visible solo con sesion iniciada
+     data-solo-invitado    -> visible solo sin sesion
+     data-campo-sesion="x" -> recibe el campo x del perfil
+     data-abrir-acceso     -> abre el panel en "login" o "registro"
+     data-cerrar-sesion    -> boton de logout
+
+   SEGURIDAD (XSS): todo dato que proviene del usuario o de la base se
+   escribe con .textContent (o .value en los input), nunca con innerHTML.
+   Asi, un alias o un nombre como <img src=x onerror=alert(1)> se muestra
+   como texto literal: el navegador no lo interpreta como HTML.
+   ===================================================================== */
+
+// Devuelve el perfil del usuario de la sesion, o null si es un invitado.
+async function consultarSesion() {
+  try {
+    const respuesta = await fetch('api/perfil.php', { headers: { Accept: 'application/json' } });
+
+    if (respuesta.status === 401) {
+      return null;
+    }
+    if (!respuesta.ok) {
+      throw new Error(`api/perfil.php respondio HTTP ${respuesta.status}`);
+    }
+    return await respuesta.json();
+  } catch (error) {
+    // Sin servidor (file://) o con la base caida, la pagina se comporta
+    // como para un invitado: nunca se muestran acciones privadas por error.
+    console.error(error);
+    return null;
+  }
+}
+
+// Valor de un campo del perfil; nombre_completo es un campo derivado.
+function valorCampoSesion(usuario, campo) {
+  if (campo === 'nombre_completo') {
+    return `${usuario.nombre} ${usuario.apellido}`;
+  }
+  return usuario[campo] ?? '';
+}
+
+function aplicarEstadoSesion(usuario) {
+  const haySesion = usuario !== null;
+
+  document.querySelectorAll('[data-requiere-sesion]').forEach(function (nodo) {
+    nodo.hidden = !haySesion;
+  });
+  document.querySelectorAll('[data-solo-invitado]').forEach(function (nodo) {
+    nodo.hidden = haySesion;
+  });
+
+  // Votar es una accion de usuario registrado (RN-03).
+  document.querySelectorAll('.voto-btn').forEach(function (boton) {
+    boton.disabled = !haySesion;
+    boton.title = haySesion ? '' : 'Inicia sesion para votar';
+  });
+
+  // Renderizado seguro: textContent / value, nunca innerHTML.
+  document.querySelectorAll('[data-campo-sesion]').forEach(function (nodo) {
+    const valor = haySesion ? valorCampoSesion(usuario, nodo.dataset.campoSesion) : '';
+
+    if (nodo instanceof HTMLInputElement) {
+      nodo.value = valor;
+    } else {
+      nodo.textContent = valor;
+    }
+  });
+
+  // El nombre completo como tooltip del saludo, por si el alias se recorta.
+  document.querySelectorAll('.sesion-saludo').forEach(function (saludo) {
+    saludo.title = haySesion ? valorCampoSesion(usuario, 'nombre_completo') : '';
+  });
+}
+
+async function actualizarSesion() {
+  const usuario = await consultarSesion();
+  aplicarEstadoSesion(usuario);
+  return usuario;
+}
+
+function iniciarSesionUsuario() {
+
+  // --- Nodos de la pagina (se resuelven una sola vez) ---
+  const panel = document.getElementById('panel-acceso');
+  const mensaje = document.getElementById('mensaje-acceso');
+  const formLogin = document.getElementById('form-login');
+  const formRegistro = document.getElementById('form-registro');
+  const passwordRegistro = document.getElementById('registro-password');
+  const confirmacion = document.getElementById('registro-confirmacion');
+  const pestanas = panel.querySelectorAll('[data-pestana]');
+
+  const formularios = { login: formLogin, registro: formRegistro };
+
+  // Mensaje del panel. Los detalles (errores de validacion del servidor)
+  // se agregan como <li> creados uno por uno con textContent.
+  function mostrarMensaje(texto, tipo, detalles = []) {
+    mensaje.textContent = texto;
+    mensaje.classList.toggle('error', tipo === 'error');
+    mensaje.classList.toggle('exito', tipo === 'exito');
+
+    if (detalles.length > 0) {
+      const lista = document.createElement('ul');
+      detalles.forEach(function (detalle) {
+        const item = document.createElement('li');
+        item.textContent = detalle;
+        lista.append(item);
+      });
+      mensaje.append(lista);
+    }
+
+    mensaje.hidden = false;
+  }
+
+  function ocultarMensaje() {
+    mensaje.hidden = true;
+    mensaje.replaceChildren();
+  }
+
+  function mostrarPestana(nombre) {
+    pestanas.forEach(function (pestana) {
+      pestana.setAttribute('aria-selected', String(pestana.dataset.pestana === nombre));
+    });
+    Object.entries(formularios).forEach(function ([clave, formulario]) {
+      formulario.hidden = clave !== nombre;
+    });
+    formularios[nombre].querySelector('input').focus();
+  }
+
+  function abrirPanel(nombre) {
+    ocultarMensaje();
+    panel.hidden = false;
+    mostrarPestana(nombre);
+    panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function cerrarPanel() {
+    panel.hidden = true;
+    ocultarMensaje();
+  }
+
+  // Deshabilita el boton de envio mientras la peticion esta en curso
+  // para evitar envios duplicados.
+  async function conBotonOcupado(formulario, tarea) {
+    const boton = formulario.querySelector('button[type="submit"]');
+    boton.disabled = true;
+    try {
+      await tarea();
+    } catch (error) {
+      console.error(error);
+      mostrarMensaje('No se pudo conectar con el servidor. Verifica que XAMPP este iniciado.', 'error');
+    } finally {
+      boton.disabled = false;
+    }
+  }
+
+  async function enviarLogin() {
+    const datos = Object.fromEntries(new FormData(formLogin));
+    const { estado, cuerpo } = await enviarJson('api/login.php', datos);
+
+    if (estado === 200) {
+      formLogin.reset();
+      cerrarPanel();
+      await actualizarSesion();
+      return;
+    }
+
+    mostrarMensaje(cuerpo.error || `Error inesperado (HTTP ${estado}).`, 'error');
+  }
+
+  async function enviarRegistro() {
+    const datos = Object.fromEntries(new FormData(formRegistro));
+    delete datos.confirmacion; // solo se usa para validar en el cliente
+
+    const { estado, cuerpo } = await enviarJson('api/registro.php', datos);
+
+    if (estado === 201) {
+      formRegistro.reset();
+      mostrarPestana('login');
+      document.getElementById('login-usuario').value = datos.alias_usuario;
+      document.getElementById('login-password').focus();
+      mostrarMensaje(cuerpo.mensaje, 'exito');
+      return;
+    }
+
+    mostrarMensaje(cuerpo.error || `Error inesperado (HTTP ${estado}).`, 'error', cuerpo.detalles || []);
+  }
+
+  // --- Eventos ---
+
+  // Delegacion en document: los botones que abren el panel estan en el
+  // header y tambien dentro del contenido de algunas paginas.
+  document.addEventListener('click', function (evento) {
+    const abrir = evento.target.closest('[data-abrir-acceso]');
+    if (abrir) {
+      abrirPanel(abrir.dataset.abrirAcceso);
+      return;
+    }
+
+    const cerrarSesion = evento.target.closest('[data-cerrar-sesion]');
+    if (cerrarSesion) {
+      cerrarSesion.disabled = true;
+      enviarJson('api/logout.php', {})
+        .catch(console.error)
+        .finally(function () {
+          cerrarSesion.disabled = false;
+          actualizarSesion();
+        });
+    }
+  });
+
+  panel.querySelector('[data-cerrar-acceso]').addEventListener('click', cerrarPanel);
+
+  pestanas.forEach(function (pestana) {
+    pestana.addEventListener('click', function () {
+      ocultarMensaje();
+      mostrarPestana(pestana.dataset.pestana);
+    });
+  });
+
+  panel.addEventListener('keydown', function (evento) {
+    if (evento.key === 'Escape') {
+      cerrarPanel();
+    }
+  });
+
+  // La confirmacion de contrasena es una validacion solo de cliente.
+  function validarConfirmacion() {
+    confirmacion.setCustomValidity(
+      confirmacion.value === passwordRegistro.value ? '' : 'Las contrasenas no coinciden.'
+    );
+  }
+  passwordRegistro.addEventListener('input', validarConfirmacion);
+  confirmacion.addEventListener('input', validarConfirmacion);
+
+  // Los formularios llevan novalidate: el submit siempre llega a este
+  // manejador, que muestra los avisos nativos con reportValidity().
+  formLogin.addEventListener('submit', function (evento) {
+    evento.preventDefault();
+    ocultarMensaje();
+    if (!formLogin.reportValidity()) {
+      return;
+    }
+    conBotonOcupado(formLogin, enviarLogin);
+  });
+
+  formRegistro.addEventListener('submit', function (evento) {
+    evento.preventDefault();
+    ocultarMensaje();
+    validarConfirmacion();
+    if (!formRegistro.reportValidity()) {
+      return;
+    }
+    conBotonOcupado(formRegistro, enviarRegistro);
+  });
+
+  actualizarSesion();
 }
 function iniciarCompra() {
 
@@ -81,7 +368,7 @@ function iniciarCompra() {
 
   async function actualizarPrecios() {
     try {
-      const productos = await obtenerTabla('productos');
+      const productos = await obtenerJson('api/productos.php');
       let cambios = 0;
 
       filasProducto.forEach(function (fila) {
@@ -174,16 +461,14 @@ function iniciarCatalogo() {
     mensaje.hidden = true;
   }
 
-  function combinarTablas(productos, usuarios, materias) {
+  // El JOIN productos ⋈ usuarios ⋈ materias ahora lo resuelve MySQL en
+  // api/productos.php; aca solo se agregan los campos de presentacion.
+  function prepararCatalogo(productos) {
     return productos.map(function (producto) {
-      const vendedor = usuarios.find(u => u.id_usuario === producto.id_usuario);
-      const materia = materias.find(m => m.id_materia === producto.id_materia);
-
       return {
         ...producto,
         codigo: codigoProducto(producto.id_producto),
-        alias_vendedor: vendedor ? vendedor.alias_usuario : '',
-        nombre_materia: materia ? materia.nombre : 'Sin materia'
+        nombre_materia: producto.nombre_materia ?? 'Sin materia'
       };
     });
   }
@@ -271,13 +556,12 @@ function iniciarCatalogo() {
   // --- Paso 1: carga asincronica del catalogo completo ---
   async function cargarCatalogo() {
     try {
-      const [productos, usuarios, materias] = await Promise.all([
-        obtenerTabla('productos'),
-        obtenerTabla('usuarios'),
-        obtenerTabla('materias')
+      const [productos, materias] = await Promise.all([
+        obtenerJson('api/productos.php'),
+        obtenerJson('api/materias.php')
       ]);
 
-      catalogo = combinarTablas(productos, usuarios, materias);
+      catalogo = prepararCatalogo(productos);
       cargarOpcionesMateria(materias);
       aplicarFiltros();
     } catch (error) {
@@ -285,8 +569,8 @@ function iniciarCatalogo() {
       infoResultados.textContent = 'Catalogo no disponible';
       formFiltros.querySelectorAll('input, select, button')
         .forEach(control => { control.disabled = true; });
-      mostrarMensaje('No se pudo cargar el catalogo. Verifica que el sitio se abra desde un servidor ' +
-        '(XAMPP o Live Server) y no como archivo local.', true);
+      mostrarMensaje('No se pudo cargar el catalogo. Verifica que el sitio se abra desde XAMPP ' +
+        '(Apache y MySQL iniciados) y no como archivo local.', true);
     }
   }
 
@@ -313,6 +597,9 @@ const MODULOS = {
   comprar: iniciarCompra
 };
 document.addEventListener('DOMContentLoaded', function () {
+  // La sesion se verifica en todas las paginas (AE3).
+  iniciarSesionUsuario();
+
   const pagina = document.body.dataset.pagina;
   const iniciarPagina = MODULOS[pagina];
 
