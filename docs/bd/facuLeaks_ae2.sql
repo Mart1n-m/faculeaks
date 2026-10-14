@@ -433,7 +433,7 @@ ORDER BY carrera, materia;
 -- INSERT INTO usuarios (alias_usuario, email, nombre, apellido, contrasena_cifrada, id_rol)
 --   VALUES ('otro', 'martin@faculeaks.com', 'Otro', 'Usuario', 'hash', 1);
 
---b) CHECK: el valor del voto solo puede ser -1 o 1
+-- b) CHECK: el valor del voto solo puede ser -1 o 1
 -- INSERT INTO vota (id_usuario, id_contenido, valor) VALUES (1, 2, 5); 
 
 -- c) CHECK: el precio no puede ser negativo
