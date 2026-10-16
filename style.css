@@ -1029,6 +1029,154 @@ body {
 }
 
 /* ===========================
+   SESION Y ACCESO (AE3)
+=========================== */
+
+/* El atributo hidden debe ganarle a cualquier display de una clase:
+   app.js muestra y oculta bloques enteros cambiando solo este atributo. */
+[hidden] {
+  display: none !important;
+}
+
+.sesion-estado {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sesion-saludo {
+  font-size: 14px;
+  /* Un alias largo no debe empujar ni romper el header. */
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.btn-chico {
+  padding: 5px 12px;
+  font-size: 13px;
+}
+
+.panel-acceso {
+  background-color: #16213e;
+  padding: 20px 30px;
+}
+
+.panel-acceso-contenido {
+  max-width: 640px;
+  margin: 0 auto;
+  background-color: white;
+  border-radius: 6px;
+  padding: 20px 24px;
+}
+
+.panel-acceso-cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.panel-acceso-cabecera .titulo-categoria {
+  margin-bottom: 0;
+}
+
+.pestanas {
+  display: flex;
+  border-bottom: 2px solid #eee;
+  margin-bottom: 16px;
+}
+
+.pestana {
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  padding: 8px 16px;
+  font-family: inherit;
+  font-size: 14px;
+  color: #555;
+  cursor: pointer;
+}
+
+.pestana[aria-selected="true"] {
+  border-bottom-color: #e84545;
+  color: #1a1a2e;
+  font-weight: bold;
+}
+
+.panel-acceso .mensaje-estado {
+  margin-bottom: 14px;
+  padding: 12px 15px;
+  text-align: left;
+}
+
+.mensaje-estado.exito {
+  border-style: solid;
+  border-color: #22c55e;
+  color: #166534;
+  background-color: #f0fdf4;
+}
+
+.mensaje-estado ul {
+  margin: 6px 0 0 18px;
+}
+
+/* Los campos de acceso no tienen placeholder, asi que la regla general
+   (:invalid:not(:placeholder-shown)) los pintaria de rojo apenas se abre
+   el panel. Aca el error se marca solo despues de que el usuario
+   interactua con el campo (:user-invalid). */
+.form-acceso .campo input:invalid:not(:placeholder-shown) {
+  border-color: #ccc;
+  background-color: white;
+}
+
+.form-acceso .campo input:focus {
+  border-color: #e84545;
+}
+
+.form-acceso .campo input:user-invalid {
+  border-color: #e84545;
+  background-color: #fff8f8;
+}
+
+.acciones-acceso {
+  margin-top: 16px;
+  text-align: right;
+}
+
+.aviso-sesion {
+  background-color: white;
+  border: 1px dashed #e84545;
+  border-radius: 6px;
+  padding: 12px 15px;
+  margin-bottom: 18px;
+  font-size: 14px;
+}
+
+/* Boton con aspecto de enlace: es una accion de la pagina, no una navegacion. */
+.enlace-boton {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: #e84545;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.enlace-boton:hover {
+  color: #c0392b;
+}
+
+.voto-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* ===========================
    DISEÑO ADAPTABLE
 =========================== */
 @media (max-width: 860px) {
@@ -1046,6 +1194,14 @@ body {
 
   .contenedor {
     flex-direction: column;
+  }
+
+  .panel-acceso {
+    padding: 16px;
+  }
+
+  .sesion-saludo {
+    max-width: 160px;
   }
 
   .sidebar {

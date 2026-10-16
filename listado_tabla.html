@@ -22,7 +22,97 @@
       <a href="consultas.html">Consultas</a>
       <a href="listado_box.html" class="activo">Marketplace</a>
     </nav>
+    <!-- SESION: el estado lo resuelve app.js consultando api/perfil.php -->
+    <div class="sesion">
+      <div class="sesion-estado" data-solo-invitado hidden>
+        <button type="button" class="btn btn-secundario btn-chico" data-abrir-acceso="login">Iniciar sesion</button>
+        <button type="button" class="btn btn-primario btn-chico" data-abrir-acceso="registro">Registrarse</button>
+      </div>
+      <div class="sesion-estado" data-requiere-sesion hidden>
+        <span class="sesion-saludo">Hola, <strong data-campo-sesion="alias_usuario"></strong></span>
+        <button type="button" class="btn btn-secundario btn-chico" data-cerrar-sesion>Cerrar sesion</button>
+      </div>
+    </div>
   </header>
+
+  <!-- PANEL DE ACCESO: login y registro se alternan sin recargar la pagina -->
+  <section class="panel-acceso" id="panel-acceso" aria-labelledby="titulo-acceso" hidden>
+    <div class="panel-acceso-contenido">
+
+      <div class="panel-acceso-cabecera">
+        <h2 id="titulo-acceso" class="titulo-categoria">Acceso a FacuLeaks</h2>
+        <button type="button" class="btn btn-secundario btn-chico" data-cerrar-acceso>Cerrar</button>
+      </div>
+
+      <div class="pestanas" role="tablist" aria-label="Tipo de acceso">
+        <button type="button" class="pestana" role="tab" id="pestana-login"
+                aria-controls="form-login" data-pestana="login">Iniciar sesion</button>
+        <button type="button" class="pestana" role="tab" id="pestana-registro"
+                aria-controls="form-registro" data-pestana="registro">Crear cuenta</button>
+      </div>
+
+      <p class="mensaje-estado" id="mensaje-acceso" role="alert" hidden></p>
+
+      <form class="form-acceso" id="form-login" role="tabpanel" aria-labelledby="pestana-login" novalidate>
+        <div class="campos">
+          <p class="campo campo-ancho">
+            <label for="login-usuario">Usuario o e-mail</label>
+            <input type="text" id="login-usuario" name="usuario" autocomplete="username"
+                   maxlength="120" required />
+          </p>
+          <p class="campo campo-ancho">
+            <label for="login-password">Contrasena</label>
+            <input type="password" id="login-password" name="password" autocomplete="current-password"
+                   maxlength="72" required />
+          </p>
+        </div>
+        <p class="acciones-acceso">
+          <button type="submit" class="btn btn-primario">Ingresar</button>
+        </p>
+      </form>
+
+      <form class="form-acceso" id="form-registro" role="tabpanel" aria-labelledby="pestana-registro" novalidate hidden>
+        <div class="campos">
+          <p class="campo">
+            <label for="registro-nombre">Nombre</label>
+            <input type="text" id="registro-nombre" name="nombre" autocomplete="given-name"
+                   maxlength="60" required />
+          </p>
+          <p class="campo">
+            <label for="registro-apellido">Apellido</label>
+            <input type="text" id="registro-apellido" name="apellido" autocomplete="family-name"
+                   maxlength="60" required />
+          </p>
+          <p class="campo">
+            <label for="registro-alias">Usuario</label>
+            <input type="text" id="registro-alias" name="alias_usuario" autocomplete="username"
+                   pattern="[A-Za-z0-9_]{3,30}" maxlength="30" required />
+            <span class="ayuda">De 3 a 30 caracteres: letras, numeros o guion bajo.</span>
+          </p>
+          <p class="campo">
+            <label for="registro-email">E-mail</label>
+            <input type="email" id="registro-email" name="email" autocomplete="email"
+                   maxlength="120" required />
+          </p>
+          <p class="campo">
+            <label for="registro-password">Contrasena</label>
+            <input type="password" id="registro-password" name="password" autocomplete="new-password"
+                   minlength="8" maxlength="72" required />
+            <span class="ayuda">Minimo 8 caracteres.</span>
+          </p>
+          <p class="campo">
+            <label for="registro-confirmacion">Repetir contrasena</label>
+            <input type="password" id="registro-confirmacion" name="confirmacion" autocomplete="new-password"
+                   minlength="8" maxlength="72" required />
+          </p>
+        </div>
+        <p class="acciones-acceso">
+          <button type="submit" class="btn btn-primario">Crear cuenta</button>
+        </p>
+      </form>
+
+    </div>
+  </section>
 
   <!-- CUERPO PRINCIPAL -->
   <div class="contenedor">
