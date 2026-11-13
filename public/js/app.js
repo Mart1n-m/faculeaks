@@ -425,7 +425,9 @@ function iniciarPanelAcceso() {
     origenDelFoco = origen || null;
     ocultarMensaje(mensaje);
     panel.hidden = false;
-    panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // Sin animacion si el usuario pidio reducir el movimiento (WCAG 2.3.3).
+    const reducirMovimiento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    panel.scrollIntoView({ behavior: reducirMovimiento ? 'auto' : 'smooth', block: 'start' });
     mostrarPestana(nombre);
   }
 
@@ -1840,6 +1842,18 @@ document.addEventListener('DOMContentLoaded', async function () {
   carrito.cargar();
   iniciarPanelAcceso();
   iniciarVotos();
+
+  // Tab + Enter: en las casillas y opciones el navegador solo reacciona a la
+  // barra espaciadora, y Enter enviaria el formulario. Para que todo el
+  // sitio se pueda operar con Tab y Enter, Enter las marca como un clic.
+  document.addEventListener('keydown', function (evento) {
+    const control = evento.target;
+    if (evento.key === 'Enter' && control instanceof HTMLInputElement &&
+        (control.type === 'checkbox' || control.type === 'radio')) {
+      evento.preventDefault();
+      control.click();
+    }
+  });
 
   // "Saltar al contenido": mueve el foco a <main> sin cambiar la ruta.
   document.querySelector('.saltar-contenido').addEventListener('click', function (evento) {
