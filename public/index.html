@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="FacuLeaks: foro academico universitario con material de estudio y Marketplace entre estudiantes." />
+  <title>FacuLeaks</title>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="css/estilos.css" />
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+
+  <!--
+    SPA (AE4): esta es la unica pagina del sitio. Las ocho paginas de la
+    maqueta del AE1 se convirtieron en las plantillas <template> del final
+    del documento. js/app.js elige la plantilla segun la ruta (#/...), la
+    clona, la completa con datos de la API (fetch + async/await) usando
+    .textContent y la inserta en <main id="vista">, sin recargar la pagina.
+  -->
+
+  <a class="saltar-contenido" href="#vista">Saltar al contenido</a>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-contenido">
+      <p class="logo"><a href="#/">FacuLeaks</a></p>
+    </div>
+    <nav class="nav" aria-label="Secciones principales">
+      <a href="#/" data-seccion="inicio">Inicio</a>
+      <a href="#/apuntes" data-seccion="apuntes">Apuntes</a>
+      <a href="#/parciales" data-seccion="parciales">Parciales y finales</a>
+      <a href="#/consultas" data-seccion="consultas">Consultas</a>
+      <a href="#/marketplace" data-seccion="marketplace">Marketplace</a>
+    </nav>
+    <!-- SESION: el estado lo resuelve app.js consultando api/perfil.php -->
+    <div class="sesion">
+      <div class="sesion-estado" data-solo-invitado hidden>
+        <button type="button" class="btn btn-secundario btn-chico" data-abrir-acceso="login">Iniciar sesion</button>
+        <button type="button" class="btn btn-primario btn-chico" data-abrir-acceso="registro">Registrarse</button>
+      </div>
+      <div class="sesion-estado" data-requiere-sesion hidden>
+        <span class="sesion-saludo">Hola, <strong data-campo-sesion="alias_usuario"></strong></span>
+        <a href="#/carrito" class="btn btn-secundario btn-chico">Carrito (<span data-cantidad-carrito>0</span>)</a>
+        <button type="button" class="btn btn-secundario btn-chico" data-cerrar-sesion>Cerrar sesion</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- PANEL DE ACCESO: login y registro se alternan sin recargar la pagina -->
+  <section class="panel-acceso" id="panel-acceso" aria-labelledby="titulo-acceso" hidden>
+    <div class="panel-acceso-contenido">
+
+      <div class="panel-acceso-cabecera">
+        <h2 id="titulo-acceso" class="titulo-categoria">Acceso a FacuLeaks</h2>
+        <button type="button" class="btn btn-secundario btn-chico" data-cerrar-acceso>Cerrar</button>
+      </div>
+
+      <div class="pestanas" role="tablist" aria-label="Tipo de acceso">
+        <button type="button" class="pestana" role="tab" id="pestana-login"
+                aria-controls="panel-login" data-pestana="login">Iniciar sesion</button>
+        <button type="button" class="pestana" role="tab" id="pestana-registro"
+                aria-controls="panel-registro" data-pestana="registro">Crear cuenta</button>
+      </div>
+
+      <p class="mensaje-estado" id="mensaje-acceso" role="alert" hidden></p>
+
+      <div role="tabpanel" id="panel-login" aria-labelledby="pestana-login">
+      <form class="form-acceso" id="form-login" aria-labelledby="pestana-login" novalidate>
+        <div class="campos">
+          <p class="campo campo-ancho">
+            <label for="login-usuario">Usuario o e-mail</label>
+            <input type="text" id="login-usuario" name="usuario" autocomplete="username"
+                   maxlength="120" required />
+          </p>
+          <p class="campo campo-ancho">
+            <label for="login-password">Contrasena</label>
+            <input type="password" id="login-password" name="password" autocomplete="current-password"
+                   maxlength="72" required />
+          </p>
+        </div>
+        <p class="acciones-acceso">
+          <button type="submit" class="btn btn-primario">Ingresar</button>
+        </p>
+      </form>
+      </div>
+
+      <div role="tabpanel" id="panel-registro" aria-labelledby="pestana-registro" hidden>
+      <form class="form-acceso" id="form-registro" aria-labelledby="pestana-registro" novalidate>
+        <div class="campos">
+          <p class="campo">
+            <label for="registro-nombre">Nombre</label>
+            <input type="text" id="registro-nombre" name="nombre" autocomplete="given-name"
+                   maxlength="60" required />
+          </p>
+          <p class="campo">
+            <label for="registro-apellido">Apellido</label>
+            <input type="text" id="registro-apellido" name="apellido" autocomplete="family-name"
+                   maxlength="60" required />
+          </p>
+          <p class="campo">
+            <label for="registro-alias">Usuario</label>
+            <input type="text" id="registro-alias" name="alias_usuario" autocomplete="username"
+                   pattern="[A-Za-z0-9_]{3,30}" maxlength="30" required aria-describedby="ayuda-alias" />
+            <span class="ayuda" id="ayuda-alias">De 3 a 30 caracteres: letras, numeros o guion bajo.</span>
+          </p>
+          <p class="campo">
+            <label for="registro-email">E-mail</label>
+            <input type="email" id="registro-email" name="email" autocomplete="email"
+                   maxlength="120" required />
+          </p>
+          <p class="campo">
+            <label for="registro-password">Contrasena</label>
+            <input type="password" id="registro-password" name="password" autocomplete="new-password"
+                   minlength="8" maxlength="72" required aria-describedby="ayuda-password" />
+            <span class="ayuda" id="ayuda-password">Minimo 8 caracteres.</span>
+          </p>
+          <p class="campo">
+            <label for="registro-confirmacion">Repetir contrasena</label>
+            <input type="password" id="registro-confirmacion" name="confirmacion" autocomplete="new-password"
+                   minlength="8" maxlength="72" required />
+          </p>
+        </div>
+        <p class="acciones-acceso">
+          <button type="submit" class="btn btn-primario">Crear cuenta</button>
+        </p>
+      </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CUERPO PRINCIPAL -->
+  <div class="contenedor">
+
+    <!-- BARRA LATERAL -->
+    <aside class="sidebar" aria-label="Accesos rapidos">
+      <h2 class="sidebar-titulo">Categorias del foro</h2>
+      <ul>
+        <li><a href="#/apuntes">Apuntes</a></li>
+        <li><a href="#/parciales">Parciales y finales</a></li>
+        <li><a href="#/consultas">Consultas</a></li>
+      </ul>
+
+      <h2 class="sidebar-titulo">Marketplace</h2>
+      <ul>
+        <li><a href="#/marketplace">Ver en fichas</a></li>
+        <li><a href="#/marketplace/tabla">Ver en tabla</a></li>
+        <li><a href="#/carrito">Carrito y compra</a></li>
+      </ul>
+
+      <div data-requiere-sesion hidden>
+        <h2 class="sidebar-titulo">Mi cuenta</h2>
+        <ul>
+          <li><a href="#/publicar">Nueva publicacion</a></li>
+          <li><a href="#/vender">Vender material</a></li>
+          <li><a href="#/mis-compras">Mis compras</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- VISTA: app.js inserta aca la plantilla de la ruta actual -->
+    <main class="publicaciones" id="vista" tabindex="-1">
+      <p class="mensaje-estado">Cargando FacuLeaks...</p>
+      <noscript>
+        <p class="mensaje-estado error">FacuLeaks necesita JavaScript habilitado.</p>
+      </noscript>
+    </main>
+  </div>
+
+  <!-- Anuncio de cambio de vista para lectores de pantalla -->
+  <p class="oculto-visual" id="anuncio-vista" aria-live="polite"></p>
+
+  <!-- =================================================================
+       PLANTILLAS DE LAS VISTAS (evolucion de las paginas del AE1)
+       ================================================================= -->
+
+  <!-- Foro: inicio, apuntes, parciales y consultas (index/apuntes/parciales/consultas.html del AE1) -->
+  <template id="plantilla-foro">
+    <h1 class="titulo-categoria" data-titulo-vista tabindex="-1"></h1>
+
+    <p class="aviso-sesion" data-solo-invitado hidden>
+      Para publicar, comentar y votar,
+      <button type="button" class="enlace-boton" data-abrir-acceso="login">inicia sesion</button>
+      o <button type="button" class="enlace-boton" data-abrir-acceso="registro">crea una cuenta</button>.
+    </p>
+    <p class="nueva-publicacion" data-requiere-sesion hidden>
+      <a class="btn btn-primario" data-enlace-publicar href="#/publicar">Nueva publicacion</a>
+    </p>
+
+    <form class="filtros" data-filtros-foro role="search" aria-label="Buscar publicaciones">
+      <p class="campo filtro-texto">
+        <label for="foro-texto">Buscar</label>
+        <input type="search" id="foro-texto" name="q" maxlength="100" placeholder="Titulo o contenido" />
+      </p>
+      <p class="campo">
+        <label for="foro-materia">Materia</label>
+        <select id="foro-materia" name="id_materia">
+          <option value="">Todas</option>
+        </select>
+      </p>
+      <p class="campo">
+        <label for="foro-orden">Ordenar por</label>
+        <select id="foro-orden" name="orden">
+          <option value="votos">Mas votadas</option>
+          <option value="recientes">Mas recientes</option>
+        </select>
+      </p>
+      <p class="filtros-acciones">
+        <button type="submit" class="btn btn-primario">Buscar</button>
+        <button type="reset" class="btn btn-secundario">Limpiar</button>
+      </p>
+    </form>
+
+    <p class="barra-vista-info" data-info-resultados aria-live="polite"></p>
+    <p class="mensaje-estado" data-mensaje role="status" hidden></p>
+    <div class="lista-posts" data-lista-posts></div>
+  </template>
+
+  <!-- Una publicacion dentro de un listado o del detalle -->
+  <template id="plantilla-post">
+    <article class="post">
+      <div class="post-votos" data-votos>
+        <button class="voto-btn" type="button" data-voto="1" aria-pressed="false">&#9650;</button>
+        <span class="voto-num" data-puntaje></span>
+        <button class="voto-btn" type="button" data-voto="-1" aria-pressed="false">&#9660;</button>
+      </div>
+      <div class="post-contenido">
+        <span class="post-categoria" data-categoria></span>
+        <h2 class="post-titulo"><a data-enlace-post></a></h2>
+        <p class="post-descripcion" data-cuerpo></p>
+        <div class="post-footer">
+          <span>por <strong data-autor></strong></span>
+          <span data-materia></span>
+          <span data-comentarios></span>
+          <span data-adjunto hidden></span>
+          <span><time data-fecha></time></span>
+        </div>
+      </div>
+    </article>
+  </template>
+
+  <!-- Detalle de una publicacion con sus comentarios -->
+  <template id="plantilla-publicacion">
+    <nav class="breadcrumb" aria-label="Ruta de navegacion">
+      <a href="#/">Inicio</a> &rsaquo;
+      <a data-enlace-categoria></a> &rsaquo;
+      <span aria-current="page" data-miga-actual></span>
+    </nav>
+
+    <h1 class="oculto-visual" data-titulo-vista tabindex="-1"></h1>
+    <p class="mensaje-estado" data-mensaje role="status" hidden></p>
+    <div data-contenedor-post></div>
+
+    <p class="acciones-contenido" data-acciones-autor hidden>
+      <a class="btn btn-secundario" data-enlace-editar>Editar publicacion</a>
+      <button type="button" class="btn btn-secundario btn-peligro" data-eliminar-publicacion>Eliminar publicacion</button>
+    </p>
+
+    <section class="bloque" aria-labelledby="titulo-comentarios">
+      <h2 class="bloque-titulo" id="titulo-comentarios">Comentarios</h2>
+      <ol class="comentarios" data-lista-comentarios aria-live="polite"></ol>
+      <p class="nota-listado" data-sin-comentarios hidden>Todavia no hay comentarios. Se el primero en comentar.</p>
+
+      <p class="aviso-sesion" data-solo-invitado hidden>
+        Para comentar,
+        <button type="button" class="enlace-boton" data-abrir-acceso="login">inicia sesion</button>.
+      </p>
+      <form class="form-comentario" data-form-comentario data-requiere-sesion hidden novalidate>
+        <p class="respondiendo" data-respondiendo hidden>
+          <span data-respondiendo-texto></span>
+          <button type="button" class="enlace-boton" data-cancelar-respuesta>Cancelar</button>
+        </p>
+        <p class="campo campo-ancho">
+          <label for="comentario-texto" data-etiqueta-comentario>Tu comentario</label>
+          <textarea id="comentario-texto" name="texto" rows="3" maxlength="2000" required></textarea>
+        </p>
+        <p class="mensaje-estado" data-mensaje-comentario role="alert" hidden></p>
+        <p class="form-acciones">
+          <button type="submit" class="btn btn-primario" data-enviar-comentario>Comentar</button>
+        </p>
+      </form>
+    </section>
+  </template>
+
+  <!-- Un comentario -->
+  <template id="plantilla-comentario">
+    <li class="comentario">
+      <article>
+        <p class="comentario-cabecera">
+          <strong data-autor></strong>
+          <span data-en-respuesta hidden></span>
+          <time data-fecha></time>
+        </p>
+        <p class="comentario-texto" data-texto></p>
+        <div class="comentario-acciones">
+          <span class="comentario-votos" data-votos>
+            <button class="voto-btn voto-chico" type="button" data-voto="1" aria-pressed="false">&#9650;</button>
+            <span class="voto-num" data-puntaje></span>
+            <button class="voto-btn voto-chico" type="button" data-voto="-1" aria-pressed="false">&#9660;</button>
+          </span>
+          <button type="button" class="enlace-boton" data-responder data-requiere-sesion hidden>Responder</button>
+          <button type="button" class="enlace-boton" data-editar-comentario hidden>Editar</button>
+          <button type="button" class="enlace-boton" data-eliminar-comentario hidden>Eliminar</button>
+        </div>
+      </article>
+    </li>
+  </template>
+
+  <!-- Alta y edicion de una publicacion -->
+  <template id="plantilla-form-publicacion">
+    <nav class="breadcrumb" aria-label="Ruta de navegacion">
+      <a href="#/">Inicio</a> &rsaquo;
+      <span aria-current="page" data-miga-actual></span>
+    </nav>
+    <h1 class="titulo-categoria" data-titulo-vista tabindex="-1"></h1>
+
+    <div data-requiere-sesion-vista>
+      <form class="form-compra" data-form-publicacion novalidate>
+        <fieldset class="campo-grupo">
+          <legend>Datos de la publicacion</legend>
+          <div class="campos">
+            <p class="campo campo-ancho">
+              <label for="pub-titulo">Titulo <abbr title="obligatorio" class="req">*</abbr></label>
+              <input type="text" id="pub-titulo" name="titulo" minlength="5" maxlength="150" required />
+            </p>
+            <p class="campo">
+              <label for="pub-categoria">Categoria <abbr title="obligatorio" class="req">*</abbr></label>
+              <select id="pub-categoria" name="categoria" required>
+                <option value="">Seleccionar...</option>
+                <option value="apunte">Apunte</option>
+                <option value="parcial">Parcial</option>
+                <option value="final">Final</option>
+                <option value="consulta">Consulta</option>
+                <option value="recurso">Recurso</option>
+              </select>
+            </p>
+            <p class="campo">
+              <label for="pub-materia">Materia <abbr title="obligatorio" class="req">*</abbr></label>
+              <select id="pub-materia" name="id_materia" required>
+                <option value="">Seleccionar...</option>
+              </select>
+            </p>
+            <p class="campo campo-ancho">
+              <label for="pub-cuerpo">Contenido <abbr title="obligatorio" class="req">*</abbr></label>
+              <textarea id="pub-cuerpo" name="cuerpo" rows="8" maxlength="5000" required></textarea>
+            </p>
+          </div>
+        </fieldset>
+        <p class="mensaje-estado" data-mensaje role="alert" hidden></p>
+        <p class="form-acciones">
+          <button type="submit" class="btn btn-primario btn-grande" data-enviar></button>
+          <a class="btn btn-secundario btn-grande" data-enlace-cancelar href="#/">Cancelar</a>
+        </p>
+      </form>
+    </div>
+  </template>
+
+  <!-- Marketplace en fichas (listado_box.html del AE1 + Opcion 3 del AE2) -->
+  <template id="plantilla-marketplace">
+    <nav class="breadcrumb" aria-label="Ruta de navegacion">
+      <a href="#/">Inicio</a> &rsaquo;
+      <span aria-current="page">Marketplace</span>
+    </nav>
+
+    <h1 class="titulo-categoria" data-titulo-vista tabindex="-1">Material de estudio disponible</h1>
+
+    <div class="barra-vista">
+      <p class="barra-vista-info" data-info-resultados aria-live="polite">Cargando catalogo...</p>
+      <div class="barra-vista-acciones">
+        <a href="#/marketplace" class="btn btn-secundario btn-activo" aria-current="page">Vista en fichas</a>
+        <a href="#/marketplace/tabla" class="btn btn-secundario">Vista en tabla</a>
+        <a href="#/vender" class="btn btn-primario" data-requiere-sesion hidden>Vender material</a>
+      </div>
+    </div>
+
+    <form class="filtros" data-filtros-catalogo role="search" aria-label="Buscar y filtrar material">
+      <p class="campo filtro-texto">
+        <label for="filtro-texto">Buscar</label>
+        <input type="search" id="filtro-texto" name="texto" maxlength="60"
+               placeholder="Titulo, materia o vendedor" autocomplete="off" />
+      </p>
+      <p class="campo">
+        <label for="filtro-tipo">Tipo de material</label>
+        <select id="filtro-tipo" name="tipo">
+          <option value="">Todos</option>
+        </select>
+      </p>
+      <p class="campo">
+        <label for="filtro-materia">Materia</label>
+        <select id="filtro-materia" name="materia">
+          <option value="">Todas</option>
+        </select>
+      </p>
+      <p class="filtros-acciones">
+        <button type="reset" class="btn btn-secundario">Limpiar filtros</button>
+      </p>
+    </form>
+
+    <p class="mensaje-estado" data-mensaje role="status" hidden></p>
+    <section class="grid-materiales" data-grilla aria-label="Listado de materiales"></section>
+
+    <p class="nota-listado">
+      Los precios son fijados por cada estudiante vendedor. FacuLeaks solo intermedia la publicacion
+      y el contacto entre las partes.
+    </p>
+  </template>
+
+  <!-- Ficha del catalogo -->
+  <template id="plantilla-ficha">
+    <article class="card">
+      <div class="card-portada" aria-hidden="true">
+        <span class="card-portada-texto"></span>
+      </div>
+      <div class="card-cuerpo">
+        <span class="etiqueta"></span>
+        <h2 class="card-titulo"><a data-enlace-producto></a></h2>
+        <dl class="card-datos">
+          <dt>Materia</dt><dd class="dato-materia"></dd>
+          <dt>Vendedor</dt><dd class="dato-vendedor"></dd>
+        </dl>
+      </div>
+      <div class="card-footer">
+        <p class="precio"></p>
+        <a class="btn btn-primario" data-enlace-producto-boton>Ver ficha</a>
+      </div>
+    </article>
+  </template>
+
+  <!-- Marketplace en tabla (listado_tabla.html del AE1) -->
+  <template id="plantilla-marketplace-tabla">
+    <nav class="breadcrumb" aria-label="Ruta de navegacion">
+      <a href="#/">Inicio</a> &rsaquo;
+      <a href="#/marketplace">Marketplace</a> &rsaquo;
+      <span aria-current="page">Vista tabla</span>
+    </nav>
+
+    <h1 class="titulo-categoria" data-titulo-vista tabindex="-1">Material de estudio disponible</h1>
+
+    <div class="barra-vista">
+      <p class="barra-vista-info" data-info-resultados aria-live="polite">Cargando catalogo...</p>
+      <div class="barra-vista-acciones">
+        <a href="#/marketplace" class="btn btn-secundario">Vista en fichas</a>
+        <a href="#/marketplace/tabla" class="btn btn-secundario btn-activo" aria-current="page">Vista en tabla</a>
+      </div>
+    </div>
+
+    <p class="mensaje-estado" data-mensaje role="status" hidden></p>
+    <div class="tabla-scroll">
+      <table class="tabla-materiales">
+        <caption>Listado completo de material publicado por estudiantes en el Marketplace de FacuLeaks</caption>
+        <thead>
+          <tr>
+            <th scope="col">Codigo</th>
+            <th scope="col">Material</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Materia</th>
+            <th scope="col">Vendedor</th>
+            <th scope="col" class="col-numerica">Precio</th>
+            <th scope="col">Ficha</th>
+          </tr>
+        </thead>
+        <tbody data-filas></tbody>
+      </table>
+    </div>
+  </template>
+
+  <template id="plantilla-fila-producto">
+    <tr>
+      <th scope="row" class="col-codigo" data-codigo></th>
+      <td data-titulo></td>
+      <td><span class="etiqueta" data-tipo></span></td>
+      <td data-materia></td>
+      <td data-vendedor></td>
+      <td class="col-numerica precio" data-precio></td>
+      <td><a class="btn btn-tabla" data-enlace-producto>Ver</a></td>
+    </tr>
+  </template>
+
+  <!-- Ficha de producto (producto.html del AE1) -->
+  <template id="plantilla-producto">
+    <nav class="breadcrumb" aria-label="Ruta de navegacion">
+      <a href="#/">Inicio</a> &rsaquo;
+      <a href="#/marketplace">Marketplace</a> &rsaquo;
+      <span aria-current="page" data-miga-actual></span>
+    </nav>
+
+    <p class="mensaje-estado" data-mensaje role="status" hidden></p>
+
+    <article class="ficha">
+      <div class="ficha-galeria">
+        <div class="ficha-portada" data-portada aria-hidden="true">
+          <span class="ficha-portada-texto" data-codigo></span>
+        </div>
+      </div>
+      <div class="ficha-datos">
+        <span class="etiqueta" data-tipo></span>
+        <h1 class="ficha-titulo" data-titulo-vista tabindex="-1"></h1>
+        <p class="ficha-meta">
+          Codigo <strong data-codigo></strong> &middot;
+          publicado por <strong data-vendedor></strong>
+        </p>
+        <p class="ficha-precio" data-precio></p>
+        <p class="ficha-acciones">
+          <button type="button" class="btn btn-primario btn-grande" data-agregar-carrito hidden>Agregar al carrito</button>
+          <button type="button" class="btn btn-primario btn-grande" data-solo-invitado data-abrir-acceso="login" hidden>Inicia sesion para comprar</button>
+          <a href="#/marketplace" class="btn btn-secundario btn-grande">Volver al listado</a>
+        </p>
+        <p class="nota-listado" data-propio hidden>Este material lo publicaste vos.</p>
+        <p class="acciones-contenido" data-acciones-autor hidden>
+          <a class="btn btn-secundario" data-enlace-editar>Editar producto</a>
+          <button type="button" class="btn btn-secundario btn-peligro" data-eliminar-producto>Eliminar producto</button>
+        </p>
+      </div>
+    </article>
+
+    <section class="bloque" aria-labelledby="titulo-especificaciones">
+      <h2 class="bloque-titulo" id="titulo-especificaciones">Especificaciones</h2>
+      <table class="tabla-especificaciones">
+        <caption class="oculto-visual">Datos del material publicado</caption>
+        <tbody>
+          <tr><th scope="row">Codigo</th><td data-codigo></td></tr>
+          <tr><th scope="row">Tipo de material</th><td data-tipo-texto></td></tr>
+          <tr><th scope="row">Materia</th><td data-materia></td></tr>
+          <tr><th scope="row">Vendedor</th><td data-vendedor></td></tr>
+          <tr><th scope="row">Precio</th><td data-precio></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="bloque" aria-labelledby="titulo-relacionados" data-bloque-relacionados hidden>
+      <h2 class="bloque-titulo" id="titulo-relacionados">Material del mismo tipo</h2>
+      <div class="grid-relacionados" data-relacionados></div>
+    </section>
+  </template>
+
+  <template id="plantilla-ficha-mini">
+    <article class="card card-mini">
+      <div class="card-cuerpo">
+        <span class="etiqueta"></span>
+        <h3 class="card-titulo"><a data-enlace-producto></a></h3>
+      </div>
+      <div class="card-footer">
+        <p class="precio"></p>
+        <a class="btn btn-tabla" data-enlace-producto-boton>Ver</a>
+      </div>
+    </article>
+  </template>
+
+  <!-- Alta y edicion de un producto -->
+  <template id="plantilla-form-producto">
+    <nav class="breadcrumb" aria-label="Ruta de navegacion">
+      <a href="#/">Inicio</a> &rsaquo;
+      <a href="#/marketplace">Marketplace</a> &rsaquo;
+      <span aria-current="page" data-miga-actual></span>
+    </nav>
+    <h1 class="titulo-categoria" data-titulo-vista tabindex="-1"></h1>
+
+    <div data-requiere-sesion-vista>
+      <form class="form-compra" data-form-producto novalidate>
+        <fieldset class="campo-grupo">
+          <legend>Datos del material</legend>
+          <div class="campos">
+            <p class="campo campo-ancho">
+              <label for="prod-titulo">Titulo <abbr title="obligatorio" class="req">*</abbr></label>
+              <input type="text" id="prod-titulo" name="titulo" minlength="5" maxlength="120" required />
+            </p>
+            <p class="campo">
+              <label for="prod-tipo">Tipo de material <abbr title="obligatorio" class="req">*</abbr></label>
+              <select id="prod-tipo" name="tipo_material" required>
+                <option value="">Seleccionar...</option>
+              </select>
+            </p>
+            <p class="campo">
+              <label for="prod-precio">Precio en pesos <abbr title="obligatorio" class="req">*</abbr></label>
+              <input type="number" id="prod-precio" name="precio" min="0" max="99999999" step="0.01"
+                     inputmode="decimal" required />
+            </p>
+            <p class="campo campo-ancho">
+              <label for="prod-materia">Materia</label>
+              <select id="prod-materia" name="id_materia">
+                <option value="">Sin materia</option>
+              </select>
+            </p>
+          </div>
+        </fieldset>
+        <p class="mensaje-estado" data-mensaje role="alert" hidden></p>
+        <p class="form-acciones">
+          <button type="submit" class="btn btn-primario btn-grande" data-enviar></button>
+          <a class="btn btn-secundario btn-grande" data-enlace-cancelar href="#/marketplace">Cancelar</a>
+        </p>
+      </form>
+    </div>
+  </template>
+
+  <!-- Carrito y compra (comprar.html del AE1 + Opcion 7 del AE2) -->
+  <template id="plantilla-carrito">
+    <nav class="breadcrumb" aria-label="Ruta de navegacion">
+      <a href="#/">Inicio</a> &rsaquo;
+      <a href="#/marketplace">Marketplace</a> &rsaquo;
+      <span aria-current="page">Compra</span>
+    </nav>
+
+    <h1 class="titulo-categoria" data-titulo-vista tabindex="-1">Formulario de compra</h1>
+
+    <div data-requiere-sesion-vista>
+      <p class="mensaje-estado" data-carrito-vacio hidden>
+        Tu carrito esta vacio. Agrega material desde el <a href="#/marketplace">Marketplace</a>.
+      </p>
+
+      <form class="form-compra" data-form-compra novalidate>
+        <fieldset class="campo-grupo">
+          <legend>1. Datos del comprador</legend>
+          <p class="nota-sesion">
+            Sesion iniciada como <strong data-campo-sesion="alias_usuario"></strong>. La venta se
+            registra a nombre de esta cuenta: el servidor toma al comprador de la sesion, no del formulario.
+          </p>
+          <div class="campos">
+            <p class="campo">
+              <label for="compra-alias">Usuario</label>
+              <input type="text" id="compra-alias" data-campo-sesion="alias_usuario" readonly />
+            </p>
+            <p class="campo">
+              <label for="compra-nombre">Nombre y apellido</label>
+              <input type="text" id="compra-nombre" data-campo-sesion="nombre_completo" readonly />
+            </p>
+            <p class="campo campo-ancho">
+              <label for="compra-email">E-mail</label>
+              <input type="email" id="compra-email" data-campo-sesion="email" readonly
+                     aria-describedby="ayuda-email" />
+              <span class="ayuda" id="ayuda-email">Ahi se envia la confirmacion del pedido.</span>
+            </p>
+          </div>
+
+          <h2 class="subtitulo-grupo">Datos de envio</h2>
+          <p class="ayuda">
+            Se usan solo para coordinar la entrega con el vendedor: el modelo de datos
+            no los registra en la venta.
+          </p>
+          <div class="campos">
+            <p class="campo campo-ancho">
+              <label for="compra-direccion">Direccion <abbr title="obligatorio" class="req">*</abbr></label>
+              <input type="text" id="compra-direccion" name="direccion" placeholder="Calle, numero, piso y departamento"
+                     autocomplete="street-address" maxlength="120" required />
+            </p>
+            <p class="campo">
+              <label for="compra-localidad">Localidad <abbr title="obligatorio" class="req">*</abbr></label>
+              <input type="text" id="compra-localidad" name="localidad" placeholder="Posadas"
+                     autocomplete="address-level2" maxlength="60" required />
+            </p>
+            <p class="campo">
+              <label for="compra-provincia">Provincia <abbr title="obligatorio" class="req">*</abbr></label>
+              <select id="compra-provincia" name="provincia" autocomplete="address-level1" required>
+                <option value="">Seleccionar...</option>
+                <option value="misiones">Misiones</option>
+                <option value="corrientes">Corrientes</option>
+                <option value="chaco">Chaco</option>
+                <option value="entre-rios">Entre Rios</option>
+                <option value="formosa">Formosa</option>
+                <option value="buenos-aires">Buenos Aires</option>
+                <option value="otra">Otra</option>
+              </select>
+            </p>
+            <p class="campo">
+              <label for="compra-cp">Codigo postal</label>
+              <input type="text" id="compra-cp" name="cp" placeholder="3300"
+                     inputmode="numeric" pattern="[0-9]{4}" maxlength="4" autocomplete="postal-code" />
+            </p>
+          </div>
+        </fieldset>
+
+        <fieldset class="campo-grupo">
+          <legend>2. Medio de pago</legend>
+          <div class="opciones">
+            <label class="opcion" for="pago-mercado-pago">
+              <input type="radio" id="pago-mercado-pago" name="medio_pago" value="mercado_pago" required />
+              <span class="opcion-titulo">Mercado Pago</span>
+              <span class="opcion-detalle">Tarjeta de credito, debito o dinero en cuenta</span>
+            </label>
+            <label class="opcion" for="pago-transferencia">
+              <input type="radio" id="pago-transferencia" name="medio_pago" value="transferencia" />
+              <span class="opcion-titulo">Transferencia bancaria</span>
+              <span class="opcion-detalle">CBU o alias del vendedor</span>
+            </label>
+            <label class="opcion" for="pago-efectivo">
+              <input type="radio" id="pago-efectivo" name="medio_pago" value="efectivo" />
+              <span class="opcion-titulo">Efectivo</span>
+              <span class="opcion-detalle">Al retirar el material en la sede</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset class="campo-grupo">
+          <legend>3. Listado de productos</legend>
+          <div class="tabla-scroll">
+            <table class="tabla-carrito">
+              <caption class="oculto-visual">Material seleccionado para la compra</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Codigo</th>
+                  <th scope="col">Material</th>
+                  <th scope="col" class="col-numerica">Precio</th>
+                  <th scope="col" class="col-numerica">Cantidad</th>
+                  <th scope="col" class="col-numerica">Subtotal</th>
+                  <th scope="col">Quitar</th>
+                </tr>
+              </thead>
+              <tbody data-filas-carrito></tbody>
+              <tfoot>
+                <tr>
+                  <th scope="row" colspan="4">Total del pedido</th>
+                  <td class="col-numerica precio total" data-total aria-live="polite"></td>
+                  <td></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+          <p class="estado-precios" data-estado-precios role="status"></p>
+        </fieldset>
+
+        <fieldset class="campo-grupo">
+          <legend>4. Confirmacion</legend>
+          <p class="campo-check">
+            <input type="checkbox" id="compra-terminos" name="terminos" value="si" required />
+            <label for="compra-terminos">
+              Acepto los terminos de uso del Marketplace y confirmo que los datos son correctos
+              <abbr title="obligatorio" class="req">*</abbr>
+            </label>
+          </p>
+          <p class="mensaje-estado" data-mensaje role="alert" hidden></p>
+          <p class="form-acciones">
+            <button type="submit" class="btn btn-primario btn-grande">Confirmar compra</button>
+            <a href="#/marketplace" class="btn btn-secundario btn-grande">Seguir comprando</a>
+          </p>
+          <p class="nota-listado">
+            Los campos marcados con <abbr title="obligatorio" class="req">*</abbr> son obligatorios.
+          </p>
+        </fieldset>
+      </form>
+    </div>
+  </template>
+
+  <template id="plantilla-fila-carrito">
+    <tr class="fila-producto">
+      <th scope="row" class="col-codigo" data-codigo></th>
+      <td><a data-enlace-producto></a></td>
+      <td class="col-numerica precio" data-precio></td>
+      <td class="col-numerica">
+        <div class="contador">
+          <button type="button" class="btn-cantidad" data-accion="restar">&minus;</button>
+          <input type="number" class="input-cantidad" min="1" max="99" />
+          <button type="button" class="btn-cantidad" data-accion="sumar">+</button>
+        </div>
+      </td>
+      <td class="col-numerica precio" data-subtotal></td>
+      <td class="col-centrada"><button type="button" class="btn btn-tabla" data-quitar>Quitar</button></td>
+    </tr>
+  </template>
+
+  <!-- Historial de compras -->
+  <template id="plantilla-mis-compras">
+    <nav class="breadcrumb" aria-label="Ruta de navegacion">
+      <a href="#/">Inicio</a> &rsaquo;
+      <a href="#/marketplace">Marketplace</a> &rsaquo;
+      <span aria-current="page">Mis compras</span>
+    </nav>
+    <h1 class="titulo-categoria" data-titulo-vista tabindex="-1">Mis compras</h1>
+    <div data-requiere-sesion-vista>
+      <p class="mensaje-estado" data-mensaje role="status" hidden></p>
+      <div data-lista-compras></div>
+    </div>
+  </template>
+
+  <template id="plantilla-compra">
+    <section class="bloque">
+      <h2 class="bloque-titulo" data-titulo-compra></h2>
+      <p class="nota-listado" data-datos-compra></p>
+      <div class="tabla-scroll">
+        <table class="tabla-carrito">
+          <caption class="oculto-visual" data-caption></caption>
+          <thead>
+            <tr>
+              <th scope="col">Material</th>
+              <th scope="col" class="col-numerica">Precio</th>
+              <th scope="col" class="col-numerica">Cantidad</th>
+              <th scope="col" class="col-numerica">Subtotal</th>
+            </tr>
+          </thead>
+          <tbody data-filas></tbody>
+          <tfoot>
+            <tr>
+              <th scope="row" colspan="3">Total</th>
+              <td class="col-numerica precio total" data-total></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </section>
+  </template>
+
+  <!-- Aviso de vista que requiere sesion -->
+  <template id="plantilla-requiere-sesion">
+    <p class="aviso-sesion">
+      Esta seccion requiere una cuenta.
+      <button type="button" class="enlace-boton" data-abrir-acceso="login">Inicia sesion</button>
+      o <button type="button" class="enlace-boton" data-abrir-acceso="registro">crea una cuenta</button>.
+    </p>
+  </template>
+
+  <!-- Ruta inexistente o recurso no encontrado -->
+  <template id="plantilla-no-encontrado">
+    <h1 class="titulo-categoria" data-titulo-vista tabindex="-1">Pagina no encontrada</h1>
+    <p class="mensaje-estado" data-mensaje></p>
+    <p><a class="btn btn-primario" href="#/">Volver al inicio</a></p>
+  </template>
+
+</body>
+</html>

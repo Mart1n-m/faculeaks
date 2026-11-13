@@ -11,40 +11,151 @@ Augusto Piedrafita. El avance entrega por entrega está en [`BITACORA.md`](BITAC
 HTML5 + CSS3 + JavaScript sin frameworks · PHP 8 con PDO · MySQL 8 / MariaDB 10.4+ ·
 XAMPP.
 
-## Estructura
+## Estructura (MVC desacoplado)
 
 ```
 faculeaks/
-├── *.html                 8 páginas (foro y Marketplace)
-├── style.css              hoja de estilos única
-├── js/app.js              comportamiento: sesión, catálogo, carrito
-├── api/                   servicios PHP (respuestas JSON)
-│   ├── conexion.php       PDO, sesión y utilidades comunes
+├── index.php              redirige a public/
+├── config/
+│   └── conexion.php       clase Conexion: PDO Singleton (no accesible por HTTP)
+├── models/                MODELO: acceso a datos con PDO Prepared Statements
+│   ├── UsuarioModel.php
+│   ├── PublicacionModel.php
+│   ├── ComentarioModel.php
+│   ├── VotoModel.php
+│   ├── ProductoModel.php
+│   ├── VentaModel.php
+│   └── MateriaModel.php
+├── api/                   CONTROLADOR: endpoints REST que responden JSON
+│   ├── utilidades.php     sesión, respuestas JSON, guardián 401, manejo de 500
 │   ├── registro.php       POST  alta de cuenta (BCRYPT)
 │   ├── login.php          POST  inicio de sesión
 │   ├── logout.php         POST  cierre de sesión
 │   ├── perfil.php         GET   PRIVADO: datos de la cuenta (401 sin sesión)
-│   ├── productos.php      GET   catálogo del Marketplace
+│   ├── publicaciones.php  CRUD  foro
+│   ├── comentarios.php    CRUD  comentarios y respuestas
+│   ├── votos.php          POST  votar contenido
+│   ├── productos.php      CRUD  Marketplace
+│   ├── ventas.php         GET/POST  compras
 │   └── materias.php       GET   catálogo de materias
-└── docs/bd/               esquema SQL, datos de prueba y diagrama lógico
+├── public/                VISTA: Single Page Application
+│   ├── index.html         única página: layout + plantillas <template> de cada vista
+│   ├── css/estilos.css
+│   └── js/app.js          router por hash, fetch() + async/await contra ../api/
+└── docs/
+    ├── bd/                faculeaks_ae4.sql (script único), scripts por etapa y diagrama
+    └── capturas/          Lighthouse 100/100 y peticiones de la pestaña Network
 ```
+
+La vista y el servidor se comunican solo por HTTP con JSON. Los controladores de
+`api/` no contienen SQL: lo delegan en `models/`, que obtienen la conexión de
+`config/conexion.php`.
+
+## Rutas de la SPA
+
+`public/index.html` es la única página. `js/app.js` lee la ruta del *hash* de la URL,
+clona la plantilla de la vista, la completa con datos de la API y la inserta sin
+recargar. Los botones Atrás/Adelante del navegador funcionan.
+
+| Ruta | Vista | Sesión |
+|---|---|---|
+| `#/` | Lo más votado (todas las categorías) | — |
+| `#/apuntes`, `#/parciales`, `#/consultas` | Foro por categoría, con búsqueda, filtro por materia y orden | — |
+| `#/publicacion/4` | Publicación con comentarios, respuestas y votos | para comentar y votar |
+| `#/publicar`, `#/publicacion/4/editar` | Alta y edición de publicaciones | sí |
+| `#/marketplace` | Catálogo en fichas con buscador en tiempo real | — |
+| `#/marketplace/tabla` | Catálogo en tabla | — |
+| `#/producto/3` | Ficha del material | para comprar |
+| `#/vender`, `#/producto/3/editar` | Alta y edición de material | sí |
+| `#/carrito` | Carrito y formulario de compra | sí |
+| `#/mis-compras` | Historial de compras | sí |
+
+## API REST
+
+Todas las respuestas son JSON (`Content-Type: application/json; charset=utf-8`).
+Los cuerpos de POST y PUT se envían como JSON. Los recursos individuales se indican con
+`?id=` en la URL. 🔒 = requiere sesión (sin ella responde **401**).
+
+| Método | URL (`/api/...`) | Entrada | Respuesta | Códigos |
+|---|---|---|---|---|
+| POST | `registro.php` | `alias_usuario, email, nombre, apellido, password` | `{mensaje, id_usuario}` | 201, 400, 409 |
+| POST | `login.php` | `usuario` (alias o e-mail), `password` | `{mensaje, alias_usuario}` | 200, 400, 401, 403 |
+| POST | `logout.php` | — | `{mensaje}` | 200 |
+| GET 🔒 | `perfil.php` | — | usuario + `carreras` | 200, 401 |
+| GET | `publicaciones.php` | query: `categoria, id_materia, id_carrera, q, orden=votos\|recientes` | lista de publicaciones | 200, 400 |
+| GET | `publicaciones.php?id=4` | — | publicación + `comentarios` | 200, 404 |
+| POST 🔒 | `publicaciones.php` | `titulo, cuerpo, categoria, id_materia` | publicación creada | 201, 400, 401 |
+| PUT 🔒 | `publicaciones.php?id=4` | `titulo, cuerpo, categoria, id_materia` | publicación editada | 200, 400, 401, 403, 404 |
+| DELETE 🔒 | `publicaciones.php?id=4` | — | `{mensaje, id_publicacion}` | 200, 401, 403, 404 |
+| GET | `comentarios.php?id_publicacion=4` | — | lista de comentarios | 200, 400, 404 |
+| POST 🔒 | `comentarios.php` | `id_publicacion, texto, id_comentario_padre?` | comentario creado | 201, 400, 401, 404 |
+| PUT 🔒 | `comentarios.php?id=13` | `texto` | comentario editado | 200, 400, 401, 403, 404 |
+| DELETE 🔒 | `comentarios.php?id=13` | — | `{mensaje, id_comentario}` | 200, 401, 403, 404 |
+| POST 🔒 | `votos.php` | `id_contenido, valor` (1, -1 o 0 para quitar) | `{id_contenido, mi_voto, puntaje}` | 200, 400, 401, 404 |
+| GET | `productos.php` | — | catálogo | 200 |
+| GET | `productos.php?id=3` | — | producto | 200, 404 |
+| POST 🔒 | `productos.php` | `titulo, precio, tipo_material, id_materia?` | producto creado | 201, 400, 401 |
+| PUT 🔒 | `productos.php?id=3` | `titulo, precio, tipo_material, id_materia?` | producto editado | 200, 400, 401, 403, 404 |
+| DELETE 🔒 | `productos.php?id=3` | — | `{mensaje, id_producto}` | 200, 401, 403, 404, 409 |
+| GET 🔒 | `ventas.php` | — | mis compras con `total` y `detalle` | 200, 401 |
+| POST 🔒 | `ventas.php` | `medio_pago, items: [{id_producto, cantidad}]` | venta con `total` y `detalle` | 201, 400, 401, 404 |
+| GET | `materias.php` | — | materias | 200 |
+
+Además, cualquier endpoint responde **405** ante un método no admitido y **500** (sin
+detalles técnicos) si falla la base de datos.
+
+**Control de acceso:** editar o borrar una publicación, un comentario o un producto
+solo lo puede hacer su autor/vendedor o un usuario con rol `moderador` o
+`administrador` (si no, **403**). En una compra, el comprador es siempre el usuario de
+la sesión y los precios se leen de la base, no del cliente.
+
+## Accesibilidad (WCAG 2.1 AA)
+
+- **Teclado:** todo el sitio se opera con Tab y Enter. El primer Tab muestra
+  "Saltar al contenido"; al cambiar de vista el foco pasa al título (`h1`); Enter
+  también marca casillas y opciones; Escape cierra el panel de acceso y el foco vuelve
+  al botón que lo abrió. En los `<select>` se usan las flechas, como en cualquier sitio.
+- **Foco visible:** `:focus-visible` con contorno de 3 px (azul en el contenido,
+  amarillo sobre el header oscuro).
+- **Lectores de pantalla:** regiones `aria-live="polite"` / `role="status"` para los
+  resultados de cada `fetch()`, anuncio de cada cambio de vista, botones de voto con
+  `aria-pressed` y `aria-label` descriptivo, tablas con `caption` y `scope`.
+- **Contraste:** paleta con relación mínima 4.5:1 en todo el texto.
+
+### Cómo verificar el 100/100 de Lighthouse
+
+1. Abrir `http://localhost/faculeaks/` en Chrome (o Edge).
+2. F12 → pestaña **Lighthouse** → categoría **Accessibility** → **Analyze page load**.
+3. Repetir en otras vistas cambiando el *hash* (`#/marketplace`, `#/publicacion/4`,
+   `#/carrito` con sesión iniciada, etc.).
+
+Resultado obtenido: **100/100 en las 8 vistas medidas** (inicio, marketplace,
+publicación, producto, publicar, vender, carrito y mis compras). Las capturas están en
+[`docs/capturas/`](docs/capturas/), junto con las de la pestaña Network que muestran
+las peticiones `fetch()` a la API y sus respuestas JSON.
 
 ## Cómo ejecutarlo con XAMPP
 
 1. Copiar la carpeta del proyecto en `C:\xampp\htdocs\faculeaks`.
 2. Iniciar **Apache** y **MySQL** desde el XAMPP Control Panel.
-3. En phpMyAdmin (`http://localhost/phpmyadmin`), pestaña **Importar**, ejecutar en este
-   orden:
-   1. `docs/bd/facuLeaks_ae2.sql` — crea la base `facuLeaks` (**borra la existente**)
-   2. `docs/bd/datos_prueba_ae2.sql` — datos de prueba
-   3. `docs/bd/usuarios_bcrypt_ae3.sql` — contraseñas BCRYPT reales
-4. Abrir `http://localhost/faculeaks/`.
+3. En phpMyAdmin (`http://localhost/phpmyadmin`), pestaña **Importar**, elegir
+   **`docs/bd/faculeaks_ae4.sql`** y ejecutar. Es un único script que crea la base
+   `facuLeaks` (**borra la existente**), carga los datos de prueba y las contraseñas
+   BCRYPT. Equivale a ejecutar en orden `facuLeaks_ae2.sql`, `datos_prueba_ae2.sql` y
+   `usuarios_bcrypt_ae3.sql`, que se conservan por separado en la misma carpeta.
+4. Abrir `http://localhost/faculeaks/` (redirige a `public/`).
 
 > El sitio debe abrirse desde `http://localhost`, no con doble clic (`file://`): ni PHP
 > ni `fetch()` funcionan sin servidor.
 
 Si MySQL tiene usuario o contraseña distintos de los de XAMPP (`root` sin contraseña),
-se cambian en las constantes de `api/conexion.php`.
+se cambian en las constantes de la clase `Conexion` en `config/conexion.php`.
+
+> **Si MySQL no arranca en XAMPP (puerto 3306 ocupado):** suele ser otro MySQL instalado
+> como servicio de Windows. Se detiene desde `services.msc` (servicio `MySQL80`,
+> `MySQL97` o similar → **Detener**) y se vuelve a iniciar MySQL en XAMPP. Otra opción
+> es cambiar el puerto de XAMPP en `my.ini` y la constante `PUERTO` de la clase
+> `Conexion` al mismo valor.
 
 ## Usuarios de prueba
 

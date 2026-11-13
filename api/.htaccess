@@ -1,0 +1,4 @@
+# utilidades.php solo se incluye desde los endpoints; no se sirve por HTTP.
+<Files "utilidades.php">
+    Require all denied
+</Files>

@@ -9,7 +9,7 @@
  */
 
 declare(strict_types=1);
-require __DIR__ . '/conexion.php';
+require __DIR__ . '/utilidades.php';
 
 exigirMetodo('POST');
 iniciarSesion();

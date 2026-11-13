@@ -2,6 +2,8 @@
 /**
  * POST api/registro.php
  *
+ * Controlador del caso de uso Registrarse. El SQL vive en UsuarioModel.
+ *
  * Cuerpo JSON:
  *   { "alias_usuario", "email", "nombre", "apellido", "password" }
  *
@@ -12,7 +14,8 @@
  */
 
 declare(strict_types=1);
-require __DIR__ . '/conexion.php';
+require __DIR__ . '/utilidades.php';
+require_once __DIR__ . '/../models/UsuarioModel.php';
 
 ejecutarEndpoint(function (): void {
     exigirMetodo('POST');
@@ -50,38 +53,20 @@ ejecutarEndpoint(function (): void {
         responderJson(400, ['error' => 'Datos invalidos.', 'detalles' => $errores]);
     }
 
-    $pdo = obtenerConexion();
+    $usuarios = new UsuarioModel();
 
     // --- Unicidad de alias y email (uq_usuarios_alias, uq_usuarios_email)
-    $consulta = $pdo->prepare(
-        'SELECT 1 FROM usuarios WHERE alias_usuario = :alias OR email = :email LIMIT 1'
-    );
-    $consulta->execute([':alias' => $alias, ':email' => $email]);
-
-    if ($consulta->fetchColumn() !== false) {
+    if ($usuarios->existeAliasOEmail($alias, $email)) {
         responderJson(409, ['error' => 'El usuario o el e-mail ya estan registrados.']);
     }
 
     // --- Hash BCRYPT: la contrasena en texto plano nunca se guarda ------
     $hash = password_hash($password, PASSWORD_BCRYPT);
 
-    // --- INSERT con sentencia preparada. El rol se resuelve por nombre:
-    //     toda cuenta nueva nace como 'estudiante' (RN-01).
-    $insercion = $pdo->prepare(
-        'INSERT INTO usuarios (alias_usuario, email, nombre, apellido, contrasena_cifrada, id_rol)
-         SELECT :alias, :email, :nombre, :apellido, :hash, id_rol
-         FROM roles WHERE nombre = :rol'
-    );
-
+    // --- INSERT con sentencia preparada (UsuarioModel::crear). Toda cuenta
+    //     nueva nace con el rol 'estudiante' (RN-01).
     try {
-        $insercion->execute([
-            ':alias'    => $alias,
-            ':email'    => $email,
-            ':nombre'   => $nombre,
-            ':apellido' => $apellido,
-            ':hash'     => $hash,
-            ':rol'      => 'estudiante',
-        ]);
+        $idUsuario = $usuarios->crear($alias, $email, $nombre, $apellido, $hash, 'estudiante');
     } catch (PDOException $error) {
         // 23000 = violacion de restriccion: otra peticion registro el mismo
         // alias o email entre la verificacion y el INSERT.
@@ -93,6 +78,6 @@ ejecutarEndpoint(function (): void {
 
     responderJson(201, [
         'mensaje'    => 'Cuenta creada. Ya podes iniciar sesion.',
-        'id_usuario' => (int) $pdo->lastInsertId(),
+        'id_usuario' => $idUsuario,
     ]);
 });

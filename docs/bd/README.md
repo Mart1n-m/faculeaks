@@ -4,12 +4,14 @@
 
 | Archivo | Qué es |
 |---|---|
+| `faculeaks_ae4.sql` | **Script único de la entrega AE4:** los tres scripts siguientes concatenados sin cambios, en orden. Es el que se importa. |
 | `facuLeaks_ae2.sql` | Esquema relacional en 3FN entregado en Base de Datos (AE2). **Es la fuente de verdad y no se modifica.** |
-| `diagrama_logico_ae2.png` | Diagrama lógico del esquema relacional (15 tablas + 2 vistas). |
+| `diagrama_logico_ae2.png` | Diagrama lógico del esquema relacional (14 tablas + 2 vistas). |
 | `datos_prueba_ae2.sql` | Datos de prueba: solo `UPDATE` de fechas de la carga mínima e `INSERT` de filas nuevas. No altera la estructura. |
 | `usuarios_bcrypt_ae3.sql` | AE3: reemplaza los hashes ficticios de la carga de prueba por un hash BCRYPT real (contraseña `faculeaks123`). No altera la estructura. |
 
-Orden de ejecución en MySQL Workbench o phpMyAdmin (XAMPP):
+En phpMyAdmin (XAMPP) o MySQL Workbench se importa solo `faculeaks_ae4.sql`. Si se
+prefieren los scripts por etapa, el orden es:
 
 1. `facuLeaks_ae2.sql`
 2. `datos_prueba_ae2.sql`
@@ -31,14 +33,20 @@ ningún `ALTER TABLE`.
 Todo dato visible en un HTML tiene respaldo en el esquema: una columna, una vista o un cálculo
 derivable de ellas. Lo que no cumple la regla se quitó del frontend.
 
-## Página ↔ tablas
+## Vista de la SPA ↔ tablas
 
-| Página | Tablas y vistas que respaldan lo que muestra |
-|---|---|
-| `index.html`, `apuntes.html`, `parciales.html`, `consultas.html` | `contenidos` ⋈ `publicaciones` ⋈ `usuarios` ⋈ `materias`; puntaje = `vw_puntaje_contenido`; cantidad de comentarios = `COUNT(*)` de `comentarios` |
-| `listado_tabla.html`, `listado_box.html` | `productos` ⋈ `usuarios` ⋈ `materias` (`LEFT JOIN`, porque `id_materia` admite `NULL`) |
-| `producto.html` | `productos` ⋈ `usuarios` ⋈ `materias` ⋈ `dicta` ⋈ `carreras`; votos del vendedor = suma del puntaje de sus contenidos |
-| `comprar.html` | Comprador = usuario de la sesión (`api/perfil.php`); precios desde `api/productos.php`. La compra genera una fila de `ventas` y una de `detalla` por producto |
+Desde el AE4 el frontend es una SPA (`public/index.html`); cada vista consume un
+endpoint de `api/`, y el SQL vive en `models/`.
+
+| Vista (ruta) | Endpoint | Tablas y vistas |
+|---|---|---|
+| Foro `#/`, `#/apuntes`, `#/parciales`, `#/consultas` | `publicaciones.php` | `contenidos` ⋈ `publicaciones` ⋈ `usuarios` ⋈ `materias` ⋈ `carreras`; puntaje = `vw_puntaje_contenido`; comentarios = `COUNT(*)` de `comentarios`; voto propio = `vota` |
+| Publicación `#/publicacion/:id` | `publicaciones.php?id`, `comentarios.php`, `votos.php` | Lo anterior más `comentarios` (con `id_comentario_padre`) y `vota` |
+| Publicar / editar `#/publicar` | `publicaciones.php` (POST/PUT) | `contenidos` + `publicaciones` en una transacción; carrera por `dicta` y `estudia` |
+| Marketplace `#/marketplace`, `#/marketplace/tabla`, `#/producto/:id` | `productos.php` | `productos` ⋈ `usuarios` ⋈ `materias` (`LEFT JOIN`, porque `id_materia` admite `NULL`) |
+| Vender / editar `#/vender` | `productos.php` (POST/PUT/DELETE) | `productos`; no se borra un producto con filas en `detalla` |
+| Carrito y compra `#/carrito` | `ventas.php` (POST) | `ventas` + `detalla` en una transacción; el precio se toma de `productos` |
+| Mis compras `#/mis-compras` | `ventas.php` (GET) | `vw_venta_total` + `detalla` ⋈ `productos` |
 
 ## Decisiones de equiparación
 

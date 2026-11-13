@@ -1,0 +1,2 @@
+# La configuracion no se sirve por HTTP: solo la incluye PHP.
+Require all denied
