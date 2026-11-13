@@ -107,6 +107,26 @@ solo lo puede hacer su autor/vendedor o un usuario con rol `moderador` o
 `administrador` (si no, **403**). En una compra, el comprador es siempre el usuario de
 la sesión y los precios se leen de la base, no del cliente.
 
+## Accesibilidad (WCAG 2.1 AA)
+
+- **Teclado:** todo el sitio se opera con Tab y Enter. El primer Tab muestra
+  "Saltar al contenido"; al cambiar de vista el foco pasa al título (`h1`); Enter
+  también marca casillas y opciones; Escape cierra el panel de acceso y el foco vuelve
+  al botón que lo abrió. En los `<select>` se usan las flechas, como en cualquier sitio.
+- **Foco visible:** `:focus-visible` con contorno de 3 px (azul en el contenido,
+  amarillo sobre el header oscuro).
+- **Lectores de pantalla:** regiones `aria-live="polite"` / `role="status"` para los
+  resultados de cada `fetch()`, anuncio de cada cambio de vista, botones de voto con
+  `aria-pressed` y `aria-label` descriptivo, tablas con `caption` y `scope`.
+- **Contraste:** paleta con relación mínima 4.5:1 en todo el texto.
+
+### Cómo verificar el 100/100 de Lighthouse
+
+1. Abrir `http://localhost/faculeaks/` en Chrome (o Edge).
+2. F12 → pestaña **Lighthouse** → categoría **Accessibility** → **Analyze page load**.
+3. Repetir en otras vistas cambiando el *hash* (`#/marketplace`, `#/publicacion/4`,
+   `#/carrito` con sesión iniciada, etc.).
+
 ## Cómo ejecutarlo con XAMPP
 
 1. Copiar la carpeta del proyecto en `C:\xampp\htdocs\faculeaks`.

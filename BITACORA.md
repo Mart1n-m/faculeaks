@@ -196,3 +196,29 @@ README.
   edición y baja de publicaciones, comentarios, respuestas y productos; votos;
   carrito con +/− y compra; recorrido solo con Tab y Enter; sin desborde horizontal a
   375 px.
+
+### Fase 4 — Accesibilidad (WCAG 2.1) y foco visible
+
+Se auditó cada vista con **axe-core 4.10**, el motor que usa Lighthouse para su
+categoría de accesibilidad, con las reglas WCAG 2.0/2.1 A y AA y las *best practices*.
+
+| Hallazgo | Causa | Corrección |
+|---|---|---|
+| `color-contrast` en todas las vistas | Texto blanco sobre `#e84545` (3.9:1); grises `#888`, `#777`, `#666` sobre blanco o gris (2.7 a 4.4:1) | Rojo `#b3261e` (6.5:1) y grises `#595959` / `#4d4d4d` |
+| `link-in-text-block` en la miga de pan | Los enlaces solo se distinguían por el color | Enlaces subrayados |
+| `aria-allowed-role` en el panel de acceso | `role="tabpanel"` sobre un `<form>`, rol no permitido | El rol pasa a un `<div>` que envuelve cada formulario |
+| Sin foco visible en los campos | La regla `outline: none` de los `input` | `:focus-visible` global con contorno de 3 px |
+
+Además:
+
+- Enter marca casillas y opciones sin enviar el formulario, para cumplir la consigna
+  de operar todo con Tab y Enter. El desplazamiento animado respeta
+  `prefers-reduced-motion`.
+- **Resultado:** 0 violaciones en 16 vistas, con sesión y como invitado (45 reglas
+  aprobadas por vista), más el panel de login/registro, los mensajes de error y el
+  carrito con productos.
+- Recorrido de una compra completa solo con teclado: dirección, provincia (flechas),
+  medio de pago con Enter, +/− de cantidades con Enter, términos con Enter y
+  confirmación con Enter.
+- El puntaje 100/100 de Lighthouse se captura desde Chrome DevTools para el informe
+  (los pasos están en el README).
