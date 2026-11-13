@@ -167,5 +167,5 @@ README.
 - **Inyección SQL:** los filtros del listado (`q`, `categoria`, etc.) viajan como
   parámetros; el comodín `%` del `LIKE` se agrega al valor, no al SQL. Se probó
   `q=' OR 1=1 --` y devuelve una lista vacía.
-- Verificación: 75 pruebas con `curl` sobre los cinco endpoints (200, 201, 400, 401,
+- Verificación: 71 pruebas con `curl` sobre los cinco endpoints (200, 201, 400, 401,
   403, 404, 405 y 409), incluidas las de autoría y rol de moderador.
