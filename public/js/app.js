@@ -414,8 +414,9 @@ function iniciarPanelAcceso() {
     pestanas.forEach(function (pestana) {
       pestana.setAttribute('aria-selected', String(pestana.dataset.pestana === nombre));
     });
+    // Se muestra el tabpanel que contiene al formulario de la pestana elegida.
     Object.entries(formularios).forEach(function ([clave, formulario]) {
-      formulario.hidden = clave !== nombre;
+      formulario.closest('[role="tabpanel"]').hidden = clave !== nombre;
     });
     formularios[nombre].querySelector('input').focus();
   }

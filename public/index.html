@@ -58,14 +58,15 @@
 
       <div class="pestanas" role="tablist" aria-label="Tipo de acceso">
         <button type="button" class="pestana" role="tab" id="pestana-login"
-                aria-controls="form-login" data-pestana="login">Iniciar sesion</button>
+                aria-controls="panel-login" data-pestana="login">Iniciar sesion</button>
         <button type="button" class="pestana" role="tab" id="pestana-registro"
-                aria-controls="form-registro" data-pestana="registro">Crear cuenta</button>
+                aria-controls="panel-registro" data-pestana="registro">Crear cuenta</button>
       </div>
 
       <p class="mensaje-estado" id="mensaje-acceso" role="alert" hidden></p>
 
-      <form class="form-acceso" id="form-login" role="tabpanel" aria-labelledby="pestana-login" novalidate>
+      <div role="tabpanel" id="panel-login" aria-labelledby="pestana-login">
+      <form class="form-acceso" id="form-login" aria-labelledby="pestana-login" novalidate>
         <div class="campos">
           <p class="campo campo-ancho">
             <label for="login-usuario">Usuario o e-mail</label>
@@ -82,8 +83,10 @@
           <button type="submit" class="btn btn-primario">Ingresar</button>
         </p>
       </form>
+      </div>
 
-      <form class="form-acceso" id="form-registro" role="tabpanel" aria-labelledby="pestana-registro" novalidate hidden>
+      <div role="tabpanel" id="panel-registro" aria-labelledby="pestana-registro" hidden>
+      <form class="form-acceso" id="form-registro" aria-labelledby="pestana-registro" novalidate>
         <div class="campos">
           <p class="campo">
             <label for="registro-nombre">Nombre</label>
@@ -122,6 +125,7 @@
           <button type="submit" class="btn btn-primario">Crear cuenta</button>
         </p>
       </form>
+      </div>
 
     </div>
   </section>
