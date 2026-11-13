@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Listado en formato de fichas del material de estudio publicado en el Marketplace de FacuLeaks." />
-  <title>FacuLeaks - Marketplace</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="Publicaciones de las categorias parcial y final del foro FacuLeaks." />
+  <title>FacuLeaks - Parciales y finales</title>
+  <link rel="stylesheet" href="css/estilos.css" />
   <script src="js/app.js" defer></script>
 </head>
-<body data-pagina="catalogo">
+<body data-pagina="parciales">
 
   <!-- HEADER -->
   <header class="header">
@@ -18,9 +18,9 @@
     <nav class="nav">
       <a href="index.html">Inicio</a>
       <a href="apuntes.html">Apuntes</a>
-      <a href="parciales.html">Parciales y finales</a>
+      <a href="parciales.html" class="activo">Parciales y finales</a>
       <a href="consultas.html">Consultas</a>
-      <a href="listado_box.html" class="activo">Marketplace</a>
+      <a href="listado_box.html">Marketplace</a>
     </nav>
     <!-- SESION: el estado lo resuelve app.js consultando api/perfil.php -->
     <div class="sesion">
@@ -134,96 +134,89 @@
       </ul>
     </aside>
 
-    <!-- LISTADO EN FICHAS -->
+    <!-- PUBLICACIONES -->
     <main class="publicaciones">
 
-      <nav class="breadcrumb" aria-label="Ruta de navegacion">
-        <a href="index.html">Inicio</a> &rsaquo;
-        <span aria-current="page">Marketplace</span>
-      </nav>
+      <h2 class="titulo-categoria">Parciales y finales</h2>
 
-      <h2 class="titulo-categoria">Material de estudio disponible</h2>
-
-      <div class="barra-vista">
-        <p class="barra-vista-info" id="info-resultados" aria-live="polite">Cargando catalogo...</p>
-        <div class="barra-vista-acciones">
-          <a href="listado_box.html" class="btn btn-secundario btn-activo">Vista en fichas</a>
-          <a href="listado_tabla.html" class="btn btn-secundario">Vista en tabla</a>
-        </div>
+      <p class="aviso-sesion" data-solo-invitado hidden>
+        Para publicar y votar,
+        <button type="button" class="enlace-boton" data-abrir-acceso="login">inicia sesion</button>
+        o <button type="button" class="enlace-boton" data-abrir-acceso="registro">crea una cuenta</button>.
+      </p>
+      <div class="nueva-publicacion" data-requiere-sesion hidden>
+        <input type="text" placeholder="Comparti un parcial o un final..." aria-label="Nueva publicacion" />
+        <button type="button">Publicar</button>
       </div>
 
-      <!--
-        AE2 - Opcion 3: Buscador y filtro de catalogo en tiempo real.
-        Las fichas ya no estan escritas en el HTML: js/app.js carga el
-        catalogo completo con fetch() (desde el AE3: api/productos.php y
-        api/materias.php, que leen MySQL), lo filtra en memoria con
-        .filter() y lo inyecta en #grid-materiales cada vez que cambia
-        un criterio.
-      -->
-      <form class="filtros" id="form-filtros" role="search" aria-label="Buscar y filtrar material">
-
-        <p class="campo filtro-texto">
-          <label for="filtro-texto">Buscar</label>
-          <input type="search" id="filtro-texto" name="texto" maxlength="60"
-                 placeholder="Titulo, materia o vendedor" autocomplete="off" />
-        </p>
-
-        <p class="campo">
-          <label for="filtro-tipo">Tipo de material</label>
-          <select id="filtro-tipo" name="tipo">
-            <option value="">Todos</option>
-          </select>
-        </p>
-
-        <p class="campo">
-          <label for="filtro-materia">Materia</label>
-          <select id="filtro-materia" name="materia">
-            <option value="">Todas</option>
-          </select>
-        </p>
-
-        <p class="filtros-acciones">
-          <button type="reset" class="btn btn-secundario">Limpiar filtros</button>
-        </p>
-
-      </form>
-
-      <p class="mensaje-estado" id="mensaje-catalogo" role="status" hidden></p>
-
-      <section class="grid-materiales" id="grid-materiales" aria-label="Listado de materiales"></section>
-
-      <noscript>
-        <p class="mensaje-estado">El buscador necesita JavaScript. Podes ver todo el material en la
-          <a href="listado_tabla.html">vista en tabla</a>.</p>
-      </noscript>
-
-      <!-- Plantilla de ficha: js/app.js la clona una vez por cada producto -->
-      <template id="plantilla-ficha">
-        <article class="card">
-          <div class="card-portada" aria-hidden="true">
-            <span class="card-portada-texto"></span>
+      <!-- Publicacion: contenidos + publicaciones (id_contenido = 7) -->
+      <article class="post">
+        <div class="post-votos">
+          <button class="voto-btn" type="button" aria-label="Votar a favor">&#9650;</button>
+          <span class="voto-num">6</span>
+          <button class="voto-btn" type="button" aria-label="Votar en contra">&#9660;</button>
+        </div>
+        <div class="post-contenido">
+          <span class="post-categoria parcial">Parcial</span>
+          <h2 class="post-titulo">Parcial 1 de Algebra y Geometria Analitica - Tema A</h2>
+          <p class="post-descripcion">
+            Subo el enunciado del primer parcial con los ejercicios que resolvimos en la clase de consulta. Faltan los de la parte de conicas.
+          </p>
+          <div class="post-footer">
+            <span>por <strong>caro_ing</strong></span>
+            <span>Algebra y Geometria Analitica</span>
+            <span>2 comentarios</span>
+            <span>Adjunto: parcial1-tema-a.pdf</span>
+            <span><time datetime="2026-09-27T12:30:00">27/09/2026</time></span>
           </div>
-          <div class="card-cuerpo">
-            <span class="etiqueta"></span>
-            <h3 class="card-titulo">
-              <a href="producto.html"></a>
-            </h3>
-            <dl class="card-datos">
-              <dt>Materia</dt><dd class="dato-materia"></dd>
-              <dt>Vendedor</dt><dd class="dato-vendedor"></dd>
-            </dl>
-          </div>
-          <div class="card-footer">
-            <p class="precio"></p>
-            <a href="producto.html" class="btn btn-primario">Ver ficha</a>
-          </div>
-        </article>
-      </template>
+        </div>
+      </article>
 
-      <p class="nota-listado">
-        Los precios son fijados por cada estudiante vendedor. FacuLeaks solo intermedia la publicacion
-        y el contacto entre las partes.
-      </p>
+      <!-- Publicacion: contenidos + publicaciones (id_contenido = 8) -->
+      <article class="post">
+        <div class="post-votos">
+          <button class="voto-btn" type="button" aria-label="Votar a favor">&#9650;</button>
+          <span class="voto-num">5</span>
+          <button class="voto-btn" type="button" aria-label="Votar en contra">&#9660;</button>
+        </div>
+        <div class="post-contenido">
+          <span class="post-categoria final">Final</span>
+          <h2 class="post-titulo">Final de Analisis Numerico - mesa de julio</h2>
+          <p class="post-descripcion">
+            Este es el final que tomaron en la mesa de julio. Pregunten si alguno no les sale, sobre todo el de interpolacion.
+          </p>
+          <div class="post-footer">
+            <span>por <strong>tomi_rta</strong></span>
+            <span>Analisis Numerico</span>
+            <span>1 comentario</span>
+            <span>Adjunto: final-julio.pdf</span>
+            <span><time datetime="2026-09-25T16:05:00">25/09/2026</time></span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Publicacion: contenidos + publicaciones (id_contenido = 9) -->
+      <article class="post">
+        <div class="post-votos">
+          <button class="voto-btn" type="button" aria-label="Votar a favor">&#9650;</button>
+          <span class="voto-num">2</span>
+          <button class="voto-btn" type="button" aria-label="Votar en contra">&#9660;</button>
+        </div>
+        <div class="post-contenido">
+          <span class="post-categoria parcial">Parcial</span>
+          <h2 class="post-titulo">Parcial 2 de Fisica I resuelto</h2>
+          <p class="post-descripcion">
+            Resolucion completa del segundo parcial, con los diagramas de cuerpo libre de cada ejercicio.
+          </p>
+          <div class="post-footer">
+            <span>por <strong>juanma_dev</strong></span>
+            <span>Fisica I</span>
+            <span>0 comentarios</span>
+            <span>Adjunto: parcial2-resuelto.pdf</span>
+            <span><time datetime="2026-09-22T09:50:00">22/09/2026</time></span>
+          </div>
+        </div>
+      </article>
 
     </main>
   </div>

@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Publicaciones de las categorias apunte y recurso del foro FacuLeaks." />
-  <title>FacuLeaks - Apuntes</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="Listado en formato de fichas del material de estudio publicado en el Marketplace de FacuLeaks." />
+  <title>FacuLeaks - Marketplace</title>
+  <link rel="stylesheet" href="css/estilos.css" />
   <script src="js/app.js" defer></script>
 </head>
-<body data-pagina="apuntes">
+<body data-pagina="catalogo">
 
   <!-- HEADER -->
   <header class="header">
@@ -17,10 +17,10 @@
     </div>
     <nav class="nav">
       <a href="index.html">Inicio</a>
-      <a href="apuntes.html" class="activo">Apuntes</a>
+      <a href="apuntes.html">Apuntes</a>
       <a href="parciales.html">Parciales y finales</a>
       <a href="consultas.html">Consultas</a>
-      <a href="listado_box.html">Marketplace</a>
+      <a href="listado_box.html" class="activo">Marketplace</a>
     </nav>
     <!-- SESION: el estado lo resuelve app.js consultando api/perfil.php -->
     <div class="sesion">
@@ -134,108 +134,96 @@
       </ul>
     </aside>
 
-    <!-- PUBLICACIONES -->
+    <!-- LISTADO EN FICHAS -->
     <main class="publicaciones">
 
-      <h2 class="titulo-categoria">Apuntes</h2>
+      <nav class="breadcrumb" aria-label="Ruta de navegacion">
+        <a href="index.html">Inicio</a> &rsaquo;
+        <span aria-current="page">Marketplace</span>
+      </nav>
 
-      <p class="aviso-sesion" data-solo-invitado hidden>
-        Para publicar y votar,
-        <button type="button" class="enlace-boton" data-abrir-acceso="login">inicia sesion</button>
-        o <button type="button" class="enlace-boton" data-abrir-acceso="registro">crea una cuenta</button>.
-      </p>
-      <div class="nueva-publicacion" data-requiere-sesion hidden>
-        <input type="text" placeholder="Comparti un apunte..." aria-label="Nueva publicacion" />
-        <button type="button">Publicar</button>
+      <h2 class="titulo-categoria">Material de estudio disponible</h2>
+
+      <div class="barra-vista">
+        <p class="barra-vista-info" id="info-resultados" aria-live="polite">Cargando catalogo...</p>
+        <div class="barra-vista-acciones">
+          <a href="listado_box.html" class="btn btn-secundario btn-activo">Vista en fichas</a>
+          <a href="listado_tabla.html" class="btn btn-secundario">Vista en tabla</a>
+        </div>
       </div>
 
-      <!-- Publicacion: contenidos + publicaciones (id_contenido = 4) -->
-      <article class="post">
-        <div class="post-votos">
-          <button class="voto-btn" type="button" aria-label="Votar a favor">&#9650;</button>
-          <span class="voto-num">8</span>
-          <button class="voto-btn" type="button" aria-label="Votar en contra">&#9660;</button>
-        </div>
-        <div class="post-contenido">
-          <span class="post-categoria apunte">Apunte</span>
-          <h2 class="post-titulo">Resumen completo de Analisis Matematico II - Unidad 3</h2>
-          <p class="post-descripcion">
-            Les comparto el resumen que arme para el parcial de la semana pasada. Incluye limites, derivadas parciales y ejercicios resueltos.
-          </p>
-          <div class="post-footer">
-            <span>por <strong>matias_tp</strong></span>
-            <span>Analisis Matematico II</span>
-            <span>3 comentarios</span>
-            <span>Adjunto: resumen-unidad3.pdf</span>
-            <span><time datetime="2026-09-27T18:10:00">27/09/2026</time></span>
-          </div>
-        </div>
-      </article>
+      <!--
+        AE2 - Opcion 3: Buscador y filtro de catalogo en tiempo real.
+        Las fichas ya no estan escritas en el HTML: js/app.js carga el
+        catalogo completo con fetch() (desde el AE3: api/productos.php y
+        api/materias.php, que leen MySQL), lo filtra en memoria con
+        .filter() y lo inyecta en #grid-materiales cada vez que cambia
+        un criterio.
+      -->
+      <form class="filtros" id="form-filtros" role="search" aria-label="Buscar y filtrar material">
 
-      <!-- Publicacion: contenidos + publicaciones (id_contenido = 1) -->
-      <article class="post">
-        <div class="post-votos">
-          <button class="voto-btn" type="button" aria-label="Votar a favor">&#9650;</button>
-          <span class="voto-num">5</span>
-          <button class="voto-btn" type="button" aria-label="Votar en contra">&#9660;</button>
-        </div>
-        <div class="post-contenido">
-          <span class="post-categoria apunte">Apunte</span>
-          <h2 class="post-titulo">Resumen de normalizacion hasta 3FN con ejemplos resueltos.</h2>
-          <div class="post-footer">
-            <span>por <strong>mmekekiuk</strong></span>
-            <span>Base de Datos</span>
-            <span>2 comentarios</span>
-            <span>Adjunto: normalizacion.pdf</span>
-            <span><time datetime="2026-09-20T17:00:00">20/09/2026</time></span>
-          </div>
-        </div>
-      </article>
+        <p class="campo filtro-texto">
+          <label for="filtro-texto">Buscar</label>
+          <input type="search" id="filtro-texto" name="texto" maxlength="60"
+                 placeholder="Titulo, materia o vendedor" autocomplete="off" />
+        </p>
 
-      <!-- Publicacion: contenidos + publicaciones (id_contenido = 5) -->
-      <article class="post">
-        <div class="post-votos">
-          <button class="voto-btn" type="button" aria-label="Votar a favor">&#9650;</button>
-          <span class="voto-num">2</span>
-          <button class="voto-btn" type="button" aria-label="Votar en contra">&#9660;</button>
-        </div>
-        <div class="post-contenido">
-          <span class="post-categoria apunte">Apunte</span>
-          <h2 class="post-titulo">Apuntes de Programacion I - Toda la cursada</h2>
-          <p class="post-descripcion">
-            Subi todos mis apuntes de Programacion I del aÃ±o pasado, organizados por unidad. Me fueron muy utiles para el final, espero que sirvan.
-          </p>
-          <div class="post-footer">
-            <span>por <strong>caro_ing</strong></span>
-            <span>Programacion I</span>
-            <span>1 comentario</span>
-            <span>Adjunto: apuntes-cursada.pdf</span>
-            <span><time datetime="2026-09-26T21:40:00">26/09/2026</time></span>
-          </div>
-        </div>
-      </article>
+        <p class="campo">
+          <label for="filtro-tipo">Tipo de material</label>
+          <select id="filtro-tipo" name="tipo">
+            <option value="">Todos</option>
+          </select>
+        </p>
 
-      <!-- Publicacion: contenidos + publicaciones (id_contenido = 6) -->
-      <article class="post">
-        <div class="post-votos">
-          <button class="voto-btn" type="button" aria-label="Votar a favor">&#9650;</button>
-          <span class="voto-num">1</span>
-          <button class="voto-btn" type="button" aria-label="Votar en contra">&#9660;</button>
-        </div>
-        <div class="post-contenido">
-          <span class="post-categoria apunte">Apunte</span>
-          <h2 class="post-titulo">Resumen de Sistemas Operativos - Unidades 1 a 4</h2>
-          <p class="post-descripcion">
-            Arme un resumen bastante completo con los conceptos clave de cada unidad. Tiene ejemplos y algunos cuadros comparativos que me ayudaron mucho.
-          </p>
-          <div class="post-footer">
-            <span>por <strong>sistemas_2do</strong></span>
-            <span>Sistemas Operativos</span>
-            <span>0 comentarios</span>
-            <span><time datetime="2026-09-24T10:15:00">24/09/2026</time></span>
+        <p class="campo">
+          <label for="filtro-materia">Materia</label>
+          <select id="filtro-materia" name="materia">
+            <option value="">Todas</option>
+          </select>
+        </p>
+
+        <p class="filtros-acciones">
+          <button type="reset" class="btn btn-secundario">Limpiar filtros</button>
+        </p>
+
+      </form>
+
+      <p class="mensaje-estado" id="mensaje-catalogo" role="status" hidden></p>
+
+      <section class="grid-materiales" id="grid-materiales" aria-label="Listado de materiales"></section>
+
+      <noscript>
+        <p class="mensaje-estado">El buscador necesita JavaScript. Podes ver todo el material en la
+          <a href="listado_tabla.html">vista en tabla</a>.</p>
+      </noscript>
+
+      <!-- Plantilla de ficha: js/app.js la clona una vez por cada producto -->
+      <template id="plantilla-ficha">
+        <article class="card">
+          <div class="card-portada" aria-hidden="true">
+            <span class="card-portada-texto"></span>
           </div>
-        </div>
-      </article>
+          <div class="card-cuerpo">
+            <span class="etiqueta"></span>
+            <h3 class="card-titulo">
+              <a href="producto.html"></a>
+            </h3>
+            <dl class="card-datos">
+              <dt>Materia</dt><dd class="dato-materia"></dd>
+              <dt>Vendedor</dt><dd class="dato-vendedor"></dd>
+            </dl>
+          </div>
+          <div class="card-footer">
+            <p class="precio"></p>
+            <a href="producto.html" class="btn btn-primario">Ver ficha</a>
+          </div>
+        </article>
+      </template>
+
+      <p class="nota-listado">
+        Los precios son fijados por cada estudiante vendedor. FacuLeaks solo intermedia la publicacion
+        y el contacto entre las partes.
+      </p>
 
     </main>
   </div>

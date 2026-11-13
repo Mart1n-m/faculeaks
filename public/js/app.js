@@ -1,4 +1,9 @@
 'use strict';
+
+// La vista vive en public/ y la API en api/, un nivel arriba (MVC desacoplado):
+// el cliente solo se comunica con el servidor por HTTP + JSON.
+const API = '../api/';
+
 const TIPOS_MATERIAL = {
   apunte: 'Apunte',
   libro: 'Libro',
@@ -75,7 +80,7 @@ async function enviarJson(url, datos) {
 // Devuelve el perfil del usuario de la sesion, o null si es un invitado.
 async function consultarSesion() {
   try {
-    const respuesta = await fetch('api/perfil.php', { headers: { Accept: 'application/json' } });
+    const respuesta = await fetch(API + 'perfil.php', { headers: { Accept: 'application/json' } });
 
     if (respuesta.status === 401) {
       return null;
@@ -216,7 +221,7 @@ function iniciarSesionUsuario() {
 
   async function enviarLogin() {
     const datos = Object.fromEntries(new FormData(formLogin));
-    const { estado, cuerpo } = await enviarJson('api/login.php', datos);
+    const { estado, cuerpo } = await enviarJson(API + 'login.php', datos);
 
     if (estado === 200) {
       formLogin.reset();
@@ -232,7 +237,7 @@ function iniciarSesionUsuario() {
     const datos = Object.fromEntries(new FormData(formRegistro));
     delete datos.confirmacion; // solo se usa para validar en el cliente
 
-    const { estado, cuerpo } = await enviarJson('api/registro.php', datos);
+    const { estado, cuerpo } = await enviarJson(API + 'registro.php', datos);
 
     if (estado === 201) {
       formRegistro.reset();
@@ -260,7 +265,7 @@ function iniciarSesionUsuario() {
     const cerrarSesion = evento.target.closest('[data-cerrar-sesion]');
     if (cerrarSesion) {
       cerrarSesion.disabled = true;
-      enviarJson('api/logout.php', {})
+      enviarJson(API + 'logout.php', {})
         .catch(console.error)
         .finally(function () {
           cerrarSesion.disabled = false;
@@ -368,7 +373,7 @@ function iniciarCompra() {
 
   async function actualizarPrecios() {
     try {
-      const productos = await obtenerJson('api/productos.php');
+      const productos = await obtenerJson(API + 'productos.php');
       let cambios = 0;
 
       filasProducto.forEach(function (fila) {
@@ -557,8 +562,8 @@ function iniciarCatalogo() {
   async function cargarCatalogo() {
     try {
       const [productos, materias] = await Promise.all([
-        obtenerJson('api/productos.php'),
-        obtenerJson('api/materias.php')
+        obtenerJson(API + 'productos.php'),
+        obtenerJson(API + 'materias.php')
       ]);
 
       catalogo = prepararCatalogo(productos);
