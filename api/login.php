@@ -2,6 +2,8 @@
 /**
  * POST api/login.php
  *
+ * Controlador del caso de uso Iniciar sesion. El SQL vive en UsuarioModel.
+ *
  * Cuerpo JSON:
  *   { "usuario": "<alias o email>", "password": "..." }
  *
@@ -14,6 +16,7 @@
 
 declare(strict_types=1);
 require __DIR__ . '/utilidades.php';
+require __DIR__ . '/../models/UsuarioModel.php';
 
 ejecutarEndpoint(function (): void {
     exigirMetodo('POST');
@@ -26,38 +29,25 @@ ejecutarEndpoint(function (): void {
         responderJson(400, ['error' => 'Ingresa tu usuario y tu contrasena.']);
     }
 
-    $pdo = Conexion::obtener();
-    $consulta = $pdo->prepare(
-        'SELECT id_usuario, alias_usuario, contrasena_cifrada, estado
-         FROM usuarios
-         WHERE alias_usuario = :alias OR email = :email
-         LIMIT 1'
-    );
-    $consulta->execute([':alias' => $usuario, ':email' => $usuario]);
-    $fila = $consulta->fetch();
+    $usuarios = new UsuarioModel();
+    $cuenta   = $usuarios->buscarParaLogin($usuario);
 
     // password_verify() extrae la sal y el costo del propio hash, vuelve a
     // calcularlo con la contrasena recibida y compara en tiempo constante.
     // El mensaje es el mismo si el usuario no existe o si la contrasena es
     // incorrecta: asi no se revela que cuentas existen.
-    if ($fila === false || !password_verify($password, $fila['contrasena_cifrada'])) {
+    if ($cuenta === null || !password_verify($password, $cuenta['contrasena_cifrada'])) {
         responderJson(401, ['error' => 'Usuario o contrasena incorrectos.']);
     }
 
-    if ($fila['estado'] !== 'activo') {
+    if ($cuenta['estado'] !== 'activo') {
         responderJson(403, ['error' => 'La cuenta no esta activa.']);
     }
 
     // Si el costo por defecto de PHP cambio desde que se creo el hash, se
     // aprovecha que tenemos la contrasena en claro para actualizarlo.
-    if (password_needs_rehash($fila['contrasena_cifrada'], PASSWORD_BCRYPT)) {
-        $actualizacion = $pdo->prepare(
-            'UPDATE usuarios SET contrasena_cifrada = :hash WHERE id_usuario = :id'
-        );
-        $actualizacion->execute([
-            ':hash' => password_hash($password, PASSWORD_BCRYPT),
-            ':id'   => $fila['id_usuario'],
-        ]);
+    if (password_needs_rehash($cuenta['contrasena_cifrada'], PASSWORD_BCRYPT)) {
+        $usuarios->actualizarHash((int) $cuenta['id_usuario'], password_hash($password, PASSWORD_BCRYPT));
     }
 
     iniciarSesion();
@@ -67,10 +57,10 @@ ejecutarEndpoint(function (): void {
     // plantado un id conocido antes del login no puede reutilizarlo.
     session_regenerate_id(true);
 
-    $_SESSION['usuario_id'] = (int) $fila['id_usuario'];
+    $_SESSION['usuario_id'] = (int) $cuenta['id_usuario'];
 
     responderJson(200, [
         'mensaje'       => 'Sesion iniciada.',
-        'alias_usuario' => $fila['alias_usuario'],
+        'alias_usuario' => $cuenta['alias_usuario'],
     ]);
 });
