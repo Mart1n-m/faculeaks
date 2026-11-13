@@ -10,7 +10,7 @@
 
 declare(strict_types=1);
 require __DIR__ . '/utilidades.php';
-require __DIR__ . '/../models/ProductoModel.php';
+require_once __DIR__ . '/../models/ProductoModel.php';
 
 ejecutarEndpoint(function (): void {
     exigirMetodo('GET');

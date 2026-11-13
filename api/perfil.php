@@ -13,7 +13,7 @@
 
 declare(strict_types=1);
 require __DIR__ . '/utilidades.php';
-require __DIR__ . '/../models/UsuarioModel.php';
+require_once __DIR__ . '/../models/UsuarioModel.php';
 
 // Guardian de sesion: sin $_SESSION['usuario_id'] responde 401 de inmediato,
 // antes de ejecutar cualquier consulta.

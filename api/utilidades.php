@@ -15,6 +15,7 @@
 declare(strict_types=1);
 
 require_once __DIR__ . '/../config/conexion.php';
+require_once __DIR__ . '/../models/UsuarioModel.php';
 
 /**
  * Inicia (o retoma) la sesion con una cookie endurecida.
@@ -55,9 +56,77 @@ function responderJson(int $codigo, array $datos): never
 function exigirMetodo(string $metodo): void
 {
     if ($_SERVER['REQUEST_METHOD'] !== $metodo) {
-        header('Allow: ' . $metodo);
-        responderJson(405, ['error' => 'Metodo no permitido.']);
+        responderMetodoNoPermitido([$metodo]);
     }
+}
+
+/** Responde 405 informando en la cabecera Allow los metodos aceptados. */
+function responderMetodoNoPermitido(array $permitidos): never
+{
+    header('Allow: ' . implode(', ', $permitidos));
+    responderJson(405, ['error' => 'Metodo no permitido.']);
+}
+
+/** Metodo HTTP de la peticion (GET, POST, PUT, DELETE...). */
+function metodoActual(): string
+{
+    return $_SERVER['REQUEST_METHOD'];
+}
+
+/**
+ * Lee un identificador positivo de la query string (?id=5).
+ * Devuelve null si no vino; responde 400 si vino con un valor invalido.
+ */
+function idDeLaUrl(string $parametro = 'id'): ?int
+{
+    if (!isset($_GET[$parametro]) || $_GET[$parametro] === '') {
+        return null;
+    }
+
+    $id = filter_var($_GET[$parametro], FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]);
+    if ($id === false) {
+        responderJson(400, ['error' => "El parametro '$parametro' debe ser un entero positivo."]);
+    }
+
+    return $id;
+}
+
+/** Como idDeLaUrl(), pero el identificador es obligatorio (400 si falta). */
+function exigirIdDeLaUrl(string $parametro = 'id'): int
+{
+    $id = idDeLaUrl($parametro);
+    if ($id === null) {
+        responderJson(400, ['error' => "Falta el parametro '$parametro' en la URL."]);
+    }
+
+    return $id;
+}
+
+/**
+ * Devuelve el campo del JSON como entero positivo, null si no vino,
+ * o false si vino con un valor que no es un entero positivo.
+ */
+function campoEntero(array $datos, string $campo): int|false|null
+{
+    if (!array_key_exists($campo, $datos) || $datos[$campo] === null || $datos[$campo] === '') {
+        return null;
+    }
+
+    return filter_var($datos[$campo], FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]);
+}
+
+/** Id del usuario de la sesion, o null si es un visitante anonimo. */
+function usuarioDeLaSesion(): ?int
+{
+    iniciarSesion();
+
+    return isset($_SESSION['usuario_id']) ? (int) $_SESSION['usuario_id'] : null;
+}
+
+/** Los moderadores y administradores pueden editar o borrar contenido ajeno. */
+function puedeModerar(string $rol): bool
+{
+    return in_array($rol, ['moderador', 'administrador'], true);
 }
 
 /**
@@ -74,6 +143,26 @@ function exigirSesion(): int
     }
 
     return (int) $_SESSION['usuario_id'];
+}
+
+/**
+ * Para las operaciones de escritura: ademas de la sesion, verifica en la
+ * base que la cuenta siga existiendo y activa (pudo ser suspendida despues
+ * del login). Devuelve ['id_usuario' => int, 'rol' => string] o responde 401.
+ *
+ * Se llama dentro de ejecutarEndpoint() porque consulta la base.
+ */
+function exigirUsuarioActivo(int $idUsuario): array
+{
+    $perfil = (new UsuarioModel())->obtenerPerfil($idUsuario);
+
+    if ($perfil === null || $perfil['estado'] !== 'activo') {
+        $_SESSION = [];
+        session_destroy();
+        responderJson(401, ['error' => 'No autorizado: inicia sesion.']);
+    }
+
+    return ['id_usuario' => $idUsuario, 'rol' => $perfil['rol']];
 }
 
 /**
