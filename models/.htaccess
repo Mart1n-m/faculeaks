@@ -1,0 +1,2 @@
+# Los modelos solo se incluyen desde los controladores; no se sirven por HTTP.
+Require all denied
