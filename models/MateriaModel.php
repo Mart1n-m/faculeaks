@@ -20,6 +20,15 @@ final class MateriaModel
         $this->pdo = $pdo ?? Conexion::obtener();
     }
 
+    /** Indica si existe la materia. */
+    public function existe(int $idMateria): bool
+    {
+        $consulta = $this->pdo->prepare('SELECT 1 FROM materias WHERE id_materia = :id');
+        $consulta->execute([':id' => $idMateria]);
+
+        return $consulta->fetchColumn() !== false;
+    }
+
     /** Todas las materias ordenadas por nombre: { id_materia, nombre }. */
     public function listar(): array
     {
