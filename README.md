@@ -42,7 +42,9 @@ faculeaks/
 │   ├── index.html         única página: layout + plantillas <template> de cada vista
 │   ├── css/estilos.css
 │   └── js/app.js          router por hash, fetch() + async/await contra ../api/
-└── docs/bd/               esquema SQL, datos de prueba y diagrama lógico
+└── docs/
+    ├── bd/                faculeaks_ae4.sql (script único), scripts por etapa y diagrama
+    └── capturas/          Lighthouse 100/100 y peticiones de la pestaña Network
 ```
 
 La vista y el servidor se comunican solo por HTTP con JSON. Los controladores de
@@ -127,15 +129,20 @@ la sesión y los precios se leen de la base, no del cliente.
 3. Repetir en otras vistas cambiando el *hash* (`#/marketplace`, `#/publicacion/4`,
    `#/carrito` con sesión iniciada, etc.).
 
+Resultado obtenido: **100/100 en las 8 vistas medidas** (inicio, marketplace,
+publicación, producto, publicar, vender, carrito y mis compras). Las capturas están en
+[`docs/capturas/`](docs/capturas/), junto con las de la pestaña Network que muestran
+las peticiones `fetch()` a la API y sus respuestas JSON.
+
 ## Cómo ejecutarlo con XAMPP
 
 1. Copiar la carpeta del proyecto en `C:\xampp\htdocs\faculeaks`.
 2. Iniciar **Apache** y **MySQL** desde el XAMPP Control Panel.
-3. En phpMyAdmin (`http://localhost/phpmyadmin`), pestaña **Importar**, ejecutar en este
-   orden:
-   1. `docs/bd/facuLeaks_ae2.sql` — crea la base `facuLeaks` (**borra la existente**)
-   2. `docs/bd/datos_prueba_ae2.sql` — datos de prueba
-   3. `docs/bd/usuarios_bcrypt_ae3.sql` — contraseñas BCRYPT reales
+3. En phpMyAdmin (`http://localhost/phpmyadmin`), pestaña **Importar**, elegir
+   **`docs/bd/faculeaks_ae4.sql`** y ejecutar. Es un único script que crea la base
+   `facuLeaks` (**borra la existente**), carga los datos de prueba y las contraseñas
+   BCRYPT. Equivale a ejecutar en orden `facuLeaks_ae2.sql`, `datos_prueba_ae2.sql` y
+   `usuarios_bcrypt_ae3.sql`, que se conservan por separado en la misma carpeta.
 4. Abrir `http://localhost/faculeaks/` (redirige a `public/`).
 
 > El sitio debe abrirse desde `http://localhost`, no con doble clic (`file://`): ni PHP
@@ -143,6 +150,12 @@ la sesión y los precios se leen de la base, no del cliente.
 
 Si MySQL tiene usuario o contraseña distintos de los de XAMPP (`root` sin contraseña),
 se cambian en las constantes de la clase `Conexion` en `config/conexion.php`.
+
+> **Si MySQL no arranca en XAMPP (puerto 3306 ocupado):** suele ser otro MySQL instalado
+> como servicio de Windows. Se detiene desde `services.msc` (servicio `MySQL80`,
+> `MySQL97` o similar → **Detener**) y se vuelve a iniciar MySQL en XAMPP. Otra opción
+> es cambiar el puerto de XAMPP en `my.ini` y la constante `PUERTO` de la clase
+> `Conexion` al mismo valor.
 
 ## Usuarios de prueba
 

@@ -222,3 +222,24 @@ Además:
   confirmación con Enter.
 - El puntaje 100/100 de Lighthouse se captura desde Chrome DevTools para el informe
   (los pasos están en el README).
+
+### Fase 5 — Base de datos consolidada, instalación y capturas
+
+- **`docs/bd/faculeaks_ae4.sql`:** script único para la entrega. Concatena sin cambios
+  `facuLeaks_ae2.sql` (14 tablas + 2 vistas), `datos_prueba_ae2.sql` y
+  `usuarios_bcrypt_ae3.sql`. Se probó importándolo en un servidor MariaDB vacío: se
+  crean las 14 tablas y las 2 vistas, se cargan 10 usuarios, 10 publicaciones, 10
+  productos y 2 ventas, y `password_verify('faculeaks123', …)` acepta el hash.
+- **README:** instalación con un solo script, nota sobre el puerto 3306 ocupado por otro
+  MySQL instalado como servicio de Windows (se detiene desde `services.msc`), y
+  resultados de Lighthouse.
+- **`docs/bd/README.md`:** la tabla página ↔ tablas pasa a vista de la SPA ↔ endpoint ↔
+  tablas.
+- **Capturas (`docs/capturas/`):** Lighthouse Accessibility **100/100** en 8 vistas
+  (inicio, marketplace, publicación, producto, publicar, vender, carrito y mis compras),
+  y pestaña Network de Chrome con `GET publicaciones.php`, `POST login.php`,
+  `POST publicaciones.php` (payload y respuesta) y `GET ventas.php` (respuesta JSON con
+  el detalle), más `GET perfil.php` sin sesión → 401.
+- **Bloqueo por `.htaccess` verificado en Apache:** `config/conexion.php`,
+  `models/UsuarioModel.php` y `api/utilidades.php` → 403; `api/perfil.php` sin sesión →
+  401; `public/` → 200.
