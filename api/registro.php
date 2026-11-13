@@ -12,7 +12,7 @@
  */
 
 declare(strict_types=1);
-require __DIR__ . '/conexion.php';
+require __DIR__ . '/utilidades.php';
 
 ejecutarEndpoint(function (): void {
     exigirMetodo('POST');
@@ -50,7 +50,7 @@ ejecutarEndpoint(function (): void {
         responderJson(400, ['error' => 'Datos invalidos.', 'detalles' => $errores]);
     }
 
-    $pdo = obtenerConexion();
+    $pdo = Conexion::obtener();
 
     // --- Unicidad de alias y email (uq_usuarios_alias, uq_usuarios_email)
     $consulta = $pdo->prepare(

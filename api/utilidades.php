@@ -1,46 +1,20 @@
 <?php
 /**
- * FacuLeaks - Utilidades comunes de la API (AE3)
+ * FacuLeaks - Utilidades comunes de los controladores de api/ (AE4)
  *
- * Todos los endpoints de api/ incluyen este archivo. Reune tres cosas:
- *   1. La conexion PDO a MySQL/MariaDB.
- *   2. La configuracion e inicio de la sesion PHP.
- *   3. Funciones para leer el cuerpo JSON y responder en JSON.
+ * Todos los endpoints incluyen este archivo. Reune:
+ *   1. La configuracion e inicio de la sesion PHP.
+ *   2. Funciones para leer el cuerpo JSON y responder en JSON con su
+ *      codigo HTTP.
+ *   3. El guardian de sesion (401) y el manejo de excepciones (500).
+ *
+ * La conexion a MySQL vive en config/conexion.php y el acceso a datos en
+ * models/: los controladores no escriben SQL.
  */
 
 declare(strict_types=1);
 
-// --- Configuracion de la base (valores por defecto de XAMPP) ---------
-const DB_HOST    = '127.0.0.1';
-const DB_NOMBRE  = 'facuLeaks';
-const DB_USUARIO = 'root';
-const DB_CLAVE   = '';
-
-/**
- * Devuelve una unica conexion PDO por peticion.
- *
- * - ERRMODE_EXCEPTION: cualquier error SQL lanza PDOException en lugar de
- *   fallar en silencio.
- * - EMULATE_PREPARES = false: las sentencias preparadas las resuelve el
- *   propio motor. La consulta y los datos viajan por separado, de modo que
- *   un valor del usuario nunca se interpreta como SQL (proteccion contra
- *   inyeccion SQL).
- */
-function obtenerConexion(): PDO
-{
-    static $pdo = null;
-
-    if ($pdo === null) {
-        $dsn = 'mysql:host=' . DB_HOST . ';dbname=' . DB_NOMBRE . ';charset=utf8mb4';
-        $pdo = new PDO($dsn, DB_USUARIO, DB_CLAVE, [
-            PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-            PDO::ATTR_EMULATE_PREPARES   => false,
-        ]);
-    }
-
-    return $pdo;
-}
+require_once __DIR__ . '/../config/conexion.php';
 
 /**
  * Inicia (o retoma) la sesion con una cookie endurecida.
@@ -67,7 +41,7 @@ function iniciarSesion(): void
 }
 
 /** Envia una respuesta JSON con su codigo de estado HTTP y termina. */
-function responderJson(int $codigo, array $datos): void
+function responderJson(int $codigo, array $datos): never
 {
     http_response_code($codigo);
     header('Content-Type: application/json; charset=utf-8');
@@ -84,6 +58,22 @@ function exigirMetodo(string $metodo): void
         header('Allow: ' . $metodo);
         responderJson(405, ['error' => 'Metodo no permitido.']);
     }
+}
+
+/**
+ * Guardian de sesion (OWASP A01): si no hay usuario autenticado responde
+ * 401 y termina antes de ejecutar cualquier consulta. Devuelve el id del
+ * usuario de la sesion.
+ */
+function exigirSesion(): int
+{
+    iniciarSesion();
+
+    if (!isset($_SESSION['usuario_id'])) {
+        responderJson(401, ['error' => 'No autorizado: inicia sesion.']);
+    }
+
+    return (int) $_SESSION['usuario_id'];
 }
 
 /**

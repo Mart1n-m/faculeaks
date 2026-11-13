@@ -13,7 +13,7 @@
  */
 
 declare(strict_types=1);
-require __DIR__ . '/conexion.php';
+require __DIR__ . '/utilidades.php';
 
 ejecutarEndpoint(function (): void {
     exigirMetodo('POST');
@@ -26,7 +26,7 @@ ejecutarEndpoint(function (): void {
         responderJson(400, ['error' => 'Ingresa tu usuario y tu contrasena.']);
     }
 
-    $pdo = obtenerConexion();
+    $pdo = Conexion::obtener();
     $consulta = $pdo->prepare(
         'SELECT id_usuario, alias_usuario, contrasena_cifrada, estado
          FROM usuarios

@@ -8,12 +8,12 @@
  */
 
 declare(strict_types=1);
-require __DIR__ . '/conexion.php';
+require __DIR__ . '/utilidades.php';
 
 ejecutarEndpoint(function (): void {
     exigirMetodo('GET');
 
-    $filas = obtenerConexion()
+    $filas = Conexion::obtener()
         ->query('SELECT id_materia, nombre FROM materias ORDER BY nombre')
         ->fetchAll();
 

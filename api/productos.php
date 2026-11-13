@@ -11,12 +11,12 @@
  */
 
 declare(strict_types=1);
-require __DIR__ . '/conexion.php';
+require __DIR__ . '/utilidades.php';
 
 ejecutarEndpoint(function (): void {
     exigirMetodo('GET');
 
-    $filas = obtenerConexion()->query(
+    $filas = Conexion::obtener()->query(
         'SELECT p.id_producto, p.titulo, p.precio, p.tipo_material,
                 p.id_usuario, u.alias_usuario AS alias_vendedor,
                 p.id_materia, m.nombre AS nombre_materia

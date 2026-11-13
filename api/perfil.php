@@ -12,7 +12,7 @@
  */
 
 declare(strict_types=1);
-require __DIR__ . '/conexion.php';
+require __DIR__ . '/utilidades.php';
 
 iniciarSesion();
 
@@ -28,7 +28,7 @@ if (!isset($_SESSION['usuario_id'])) {
 
 ejecutarEndpoint(function (): void {
     exigirMetodo('GET');
-    $pdo = obtenerConexion();
+    $pdo = Conexion::obtener();
 
     $consulta = $pdo->prepare(
         'SELECT u.id_usuario, u.alias_usuario, u.email, u.nombre, u.apellido,
