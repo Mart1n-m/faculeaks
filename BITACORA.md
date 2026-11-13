@@ -111,9 +111,9 @@ integrantes se integraron y se subieron al repositorio desde la cuenta de Martí
   sin recarga, compra con sesión, catálogo desde la API, logout e intento de XSS sin
   ejecución de código. Vista de escritorio y móvil (390 px).
 
-## AE4 — SPA, API REST en MVC desacoplado, calidad y accesibilidad (en curso)
+## AE4 — SPA, API REST en MVC desacoplado, calidad y accesibilidad
 
-**Rama:** `ae4` · **Tag:** `ae4-entrega` (al integrar en `main`)
+**Fecha:** 13 de noviembre de 2026 · **Rama:** `ae4` · **Tag:** `ae4-entrega`
 
 **Autores:** Martín Nahuel Mekekiuk y Augusto Piedrafita. Los cambios de ambos
 integrantes se suben desde la cuenta de Martín con Augusto como coautor
