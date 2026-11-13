@@ -23,6 +23,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 12px 20px;
 }
 
 .header-contenido {
@@ -37,10 +39,16 @@ body {
 }
 
 
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
 .nav a {
   color: white;
   text-decoration: none;
-  margin-left: 20px;
+  white-space: nowrap;
   font-size: 15px;
   padding: 6px 12px;
   border-radius: 20px;
@@ -70,7 +78,8 @@ body {
   flex-shrink: 0;
 }
 
-.sidebar h3 {
+.sidebar h3,
+.sidebar-titulo {
   background-color: #1a1a2e;
   color: white;
   padding: 8px 12px;
@@ -784,7 +793,8 @@ body {
 }
 
 .campo input,
-.campo select {
+.campo select,
+.campo textarea {
   font-family: inherit;
   font-size: 14px;
   padding: 9px 12px;
@@ -796,18 +806,24 @@ body {
 }
 
 .campo input:focus,
-.campo select:focus {
+.campo select:focus,
+.campo textarea:focus {
   outline: none;
   border-color: #e84545;
   box-shadow: 0 0 0 2px rgba(232, 69, 69, 0.15);
 }
 
-.campo input:invalid:not(:placeholder-shown) {
+/* :user-invalid marca el error recien despues de que el usuario interactua
+   con el campo, no apenas se abre el formulario. */
+.campo input:user-invalid,
+.campo select:user-invalid,
+.campo textarea:user-invalid {
   border-color: #e84545;
   background-color: #fff8f8;
 }
 
-.campo input:valid:not(:placeholder-shown) {
+.campo input:user-valid,
+.campo textarea:user-valid {
   border-color: #b7dfc2;
 }
 
@@ -1040,6 +1056,7 @@ body {
 
 .sesion-estado {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 10px;
 }
@@ -1177,6 +1194,164 @@ body {
 }
 
 /* ===========================
+   SPA (AE4)
+=========================== */
+
+/* Logo: enlace al inicio con el aspecto del titulo original */
+.logo {
+  margin: 0;
+}
+
+.logo a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Enlace "Saltar al contenido": invisible hasta que recibe el foco */
+.saltar-contenido {
+  position: absolute;
+  left: 12px;
+  top: -60px;
+  z-index: 100;
+  background-color: #ffffff;
+  color: #1a1a2e;
+  padding: 10px 16px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.saltar-contenido:focus {
+  top: 12px;
+}
+
+/* El titulo de cada vista recibe el foco al navegar, pero no se marca
+   como si fuera un control interactivo. */
+[data-titulo-vista]:focus,
+#vista:focus {
+  outline: none;
+}
+
+.sidebar-titulo {
+  font-size: 14px;
+}
+
+.nueva-publicacion {
+  justify-content: flex-end;
+}
+
+.post-titulo a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.post-titulo a:hover {
+  color: #e84545;
+  text-decoration: underline;
+}
+
+.post-descripcion-completa {
+  font-size: 15px;
+  color: #333;
+  white-space: pre-line;
+}
+
+.post-footer {
+  flex-wrap: wrap;
+  row-gap: 4px;
+}
+
+.voto-btn[aria-pressed="true"] {
+  color: #e84545;
+}
+
+.lista-posts {
+  margin-top: 12px;
+}
+
+.barra-vista-info {
+  margin: 12px 0 4px;
+}
+
+.campo textarea {
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.acciones-contenido {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.btn-peligro {
+  color: #a3212c;
+  border-color: #a3212c;
+}
+
+/* Comentarios */
+.comentarios {
+  list-style: none;
+  margin-bottom: 16px;
+}
+
+.comentario {
+  border-bottom: 1px solid #eee;
+  padding: 12px 0;
+}
+
+.comentario-respuesta {
+  margin-left: 28px;
+  padding-left: 12px;
+  border-left: 3px solid #e2e4e8;
+}
+
+.comentario-cabecera {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 13px;
+  color: #555;
+  margin-bottom: 4px;
+}
+
+.comentario-texto {
+  font-size: 14px;
+  line-height: 1.5;
+  white-space: pre-line;
+}
+
+.comentario-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  margin-top: 6px;
+  font-size: 13px;
+}
+
+.comentario-votos {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.voto-chico {
+  font-size: 14px;
+}
+
+.form-comentario {
+  margin-top: 8px;
+}
+
+.respondiendo {
+  font-size: 13px;
+  margin-bottom: 8px;
+  display: flex;
+  gap: 10px;
+}
+
+/* ===========================
    DISEÑO ADAPTABLE
 =========================== */
 @media (max-width: 860px) {
@@ -1185,12 +1360,6 @@ body {
     gap: 12px;
   }
 
-  .nav a {
-    margin-left: 0;
-    margin-right: 8px;
-    display: inline-block;
-    margin-bottom: 6px;
-  }
 
   .contenedor {
     flex-direction: column;
@@ -1206,6 +1375,15 @@ body {
 
   .sidebar {
     width: 100%;
+  }
+
+  /* En pantallas angostas la vista va antes que la barra lateral. */
+  .publicaciones {
+    order: -1;
+  }
+
+  .comentario-respuesta {
+    margin-left: 12px;
   }
 
   .ficha-galeria {
