@@ -139,3 +139,33 @@ integrantes se suben desde la cuenta de Martín con Augusto como coautor
 - Verificación: 15 pruebas con `curl` (200, 201, 400, 401, 405, 409 y 500 con la base
   caída) y prueba en el navegador de login, catálogo y formulario de compra desde
   `public/`.
+
+### Fase 2 — API REST con CRUD completo
+
+Cada endpoint responde a un caso de uso del AE1 y persiste en MySQL a través de un
+modelo. El inventario completo de métodos, parámetros y códigos HTTP está en el
+README.
+
+| Endpoint | Casos de uso | Tablas |
+|---|---|---|
+| `publicaciones.php` (GET, POST, PUT, DELETE) | Ver y filtrar publicaciones, Publicar, Editar y Eliminar publicación | `contenidos`, `publicaciones` |
+| `comentarios.php` (GET, POST, PUT, DELETE) | Comentar, Responder, Editar y Eliminar comentario | `contenidos`, `comentarios` |
+| `votos.php` (POST) | Votar publicación o comentario | `vota`, `vw_puntaje_contenido` |
+| `productos.php` (GET, POST, PUT, DELETE) | Ver catálogo y producto, Publicar, Editar y Eliminar producto | `productos` |
+| `ventas.php` (GET, POST) | Comprar material, Ver mis compras | `ventas`, `detalla`, `vw_venta_total` |
+
+- **Control de acceso (OWASP A01):** solo el autor o un moderador/administrador puede
+  editar o borrar (403). Las operaciones de escritura verifican además que la cuenta
+  siga activa (`exigirUsuarioActivo()`).
+- **Transacciones:** el alta y la baja de publicaciones y comentarios (supertipo
+  `contenidos` + subtipo) y el registro de una venta con sus renglones se hacen en una
+  transacción: si falla una parte, no queda nada a medias.
+- **Integridad del negocio:** el precio de cada renglón se copia de `productos` (el
+  cliente no puede fijarlo); no se puede comprar un producto propio; un producto con
+  ventas no se elimina (409); al borrar una publicación se borran antes sus
+  comentarios porque la FK es `ON DELETE RESTRICT`.
+- **Inyección SQL:** los filtros del listado (`q`, `categoria`, etc.) viajan como
+  parámetros; el comodín `%` del `LIKE` se agrega al valor, no al SQL. Se probó
+  `q=' OR 1=1 --` y devuelve una lista vacía.
+- Verificación: 75 pruebas con `curl` sobre los cinco endpoints (200, 201, 400, 401,
+  403, 404, 405 y 409), incluidas las de autoría y rol de moderador.

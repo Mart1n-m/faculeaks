@@ -20,7 +20,11 @@ faculeaks/
 │   └── conexion.php       clase Conexion: PDO Singleton (no accesible por HTTP)
 ├── models/                MODELO: acceso a datos con PDO Prepared Statements
 │   ├── UsuarioModel.php
+│   ├── PublicacionModel.php
+│   ├── ComentarioModel.php
+│   ├── VotoModel.php
 │   ├── ProductoModel.php
+│   ├── VentaModel.php
 │   └── MateriaModel.php
 ├── api/                   CONTROLADOR: endpoints REST que responden JSON
 │   ├── utilidades.php     sesión, respuestas JSON, guardián 401, manejo de 500
@@ -28,7 +32,11 @@ faculeaks/
 │   ├── login.php          POST  inicio de sesión
 │   ├── logout.php         POST  cierre de sesión
 │   ├── perfil.php         GET   PRIVADO: datos de la cuenta (401 sin sesión)
-│   ├── productos.php      GET   catálogo del Marketplace
+│   ├── publicaciones.php  CRUD  foro
+│   ├── comentarios.php    CRUD  comentarios y respuestas
+│   ├── votos.php          POST  votar contenido
+│   ├── productos.php      CRUD  Marketplace
+│   ├── ventas.php         GET/POST  compras
 │   └── materias.php       GET   catálogo de materias
 ├── public/                VISTA: HTML5 + CSS + JavaScript Vanilla
 │   ├── *.html
@@ -40,6 +48,45 @@ faculeaks/
 La vista y el servidor se comunican solo por HTTP con JSON. Los controladores de
 `api/` no contienen SQL: lo delegan en `models/`, que obtienen la conexión de
 `config/conexion.php`.
+
+## API REST
+
+Todas las respuestas son JSON (`Content-Type: application/json; charset=utf-8`).
+Los cuerpos de POST y PUT se envían como JSON. Los recursos individuales se indican con
+`?id=` en la URL. 🔒 = requiere sesión (sin ella responde **401**).
+
+| Método | URL (`/api/...`) | Entrada | Respuesta | Códigos |
+|---|---|---|---|---|
+| POST | `registro.php` | `alias_usuario, email, nombre, apellido, password` | `{mensaje, id_usuario}` | 201, 400, 409 |
+| POST | `login.php` | `usuario` (alias o e-mail), `password` | `{mensaje, alias_usuario}` | 200, 400, 401, 403 |
+| POST | `logout.php` | — | `{mensaje}` | 200 |
+| GET 🔒 | `perfil.php` | — | usuario + `carreras` | 200, 401 |
+| GET | `publicaciones.php` | query: `categoria, id_materia, id_carrera, q, orden=votos\|recientes` | lista de publicaciones | 200, 400 |
+| GET | `publicaciones.php?id=4` | — | publicación + `comentarios` | 200, 404 |
+| POST 🔒 | `publicaciones.php` | `titulo, cuerpo, categoria, id_materia` | publicación creada | 201, 400, 401 |
+| PUT 🔒 | `publicaciones.php?id=4` | `titulo, cuerpo, categoria, id_materia` | publicación editada | 200, 400, 401, 403, 404 |
+| DELETE 🔒 | `publicaciones.php?id=4` | — | `{mensaje, id_publicacion}` | 200, 401, 403, 404 |
+| GET | `comentarios.php?id_publicacion=4` | — | lista de comentarios | 200, 400, 404 |
+| POST 🔒 | `comentarios.php` | `id_publicacion, texto, id_comentario_padre?` | comentario creado | 201, 400, 401, 404 |
+| PUT 🔒 | `comentarios.php?id=13` | `texto` | comentario editado | 200, 400, 401, 403, 404 |
+| DELETE 🔒 | `comentarios.php?id=13` | — | `{mensaje, id_comentario}` | 200, 401, 403, 404 |
+| POST 🔒 | `votos.php` | `id_contenido, valor` (1, -1 o 0 para quitar) | `{id_contenido, mi_voto, puntaje}` | 200, 400, 401, 404 |
+| GET | `productos.php` | — | catálogo | 200 |
+| GET | `productos.php?id=3` | — | producto | 200, 404 |
+| POST 🔒 | `productos.php` | `titulo, precio, tipo_material, id_materia?` | producto creado | 201, 400, 401 |
+| PUT 🔒 | `productos.php?id=3` | `titulo, precio, tipo_material, id_materia?` | producto editado | 200, 400, 401, 403, 404 |
+| DELETE 🔒 | `productos.php?id=3` | — | `{mensaje, id_producto}` | 200, 401, 403, 404, 409 |
+| GET 🔒 | `ventas.php` | — | mis compras con `total` y `detalle` | 200, 401 |
+| POST 🔒 | `ventas.php` | `medio_pago, items: [{id_producto, cantidad}]` | venta con `total` y `detalle` | 201, 400, 401, 404 |
+| GET | `materias.php` | — | materias | 200 |
+
+Además, cualquier endpoint responde **405** ante un método no admitido y **500** (sin
+detalles técnicos) si falla la base de datos.
+
+**Control de acceso:** editar o borrar una publicación, un comentario o un producto
+solo lo puede hacer su autor/vendedor o un usuario con rol `moderador` o
+`administrador` (si no, **403**). En una compra, el comprador es siempre el usuario de
+la sesión y los precios se leen de la base, no del cliente.
 
 ## Cómo ejecutarlo con XAMPP
 
