@@ -11,23 +11,35 @@ Augusto Piedrafita. El avance entrega por entrega está en [`BITACORA.md`](BITAC
 HTML5 + CSS3 + JavaScript sin frameworks · PHP 8 con PDO · MySQL 8 / MariaDB 10.4+ ·
 XAMPP.
 
-## Estructura
+## Estructura (MVC desacoplado)
 
 ```
 faculeaks/
-├── *.html                 8 páginas (foro y Marketplace)
-├── style.css              hoja de estilos única
-├── js/app.js              comportamiento: sesión, catálogo, carrito
-├── api/                   servicios PHP (respuestas JSON)
-│   ├── conexion.php       PDO, sesión y utilidades comunes
+├── index.php              redirige a public/
+├── config/
+│   └── conexion.php       clase Conexion: PDO Singleton (no accesible por HTTP)
+├── models/                MODELO: acceso a datos con PDO Prepared Statements
+│   ├── UsuarioModel.php
+│   ├── ProductoModel.php
+│   └── MateriaModel.php
+├── api/                   CONTROLADOR: endpoints REST que responden JSON
+│   ├── utilidades.php     sesión, respuestas JSON, guardián 401, manejo de 500
 │   ├── registro.php       POST  alta de cuenta (BCRYPT)
 │   ├── login.php          POST  inicio de sesión
 │   ├── logout.php         POST  cierre de sesión
 │   ├── perfil.php         GET   PRIVADO: datos de la cuenta (401 sin sesión)
 │   ├── productos.php      GET   catálogo del Marketplace
 │   └── materias.php       GET   catálogo de materias
+├── public/                VISTA: HTML5 + CSS + JavaScript Vanilla
+│   ├── *.html
+│   ├── css/estilos.css
+│   └── js/app.js          fetch() + async/await contra ../api/
 └── docs/bd/               esquema SQL, datos de prueba y diagrama lógico
 ```
+
+La vista y el servidor se comunican solo por HTTP con JSON. Los controladores de
+`api/` no contienen SQL: lo delegan en `models/`, que obtienen la conexión de
+`config/conexion.php`.
 
 ## Cómo ejecutarlo con XAMPP
 
@@ -38,13 +50,13 @@ faculeaks/
    1. `docs/bd/facuLeaks_ae2.sql` — crea la base `facuLeaks` (**borra la existente**)
    2. `docs/bd/datos_prueba_ae2.sql` — datos de prueba
    3. `docs/bd/usuarios_bcrypt_ae3.sql` — contraseñas BCRYPT reales
-4. Abrir `http://localhost/faculeaks/`.
+4. Abrir `http://localhost/faculeaks/` (redirige a `public/`).
 
 > El sitio debe abrirse desde `http://localhost`, no con doble clic (`file://`): ni PHP
 > ni `fetch()` funcionan sin servidor.
 
 Si MySQL tiene usuario o contraseña distintos de los de XAMPP (`root` sin contraseña),
-se cambian en las constantes de `api/conexion.php`.
+se cambian en las constantes de la clase `Conexion` en `config/conexion.php`.
 
 ## Usuarios de prueba
 

@@ -14,7 +14,8 @@ recuperar con `git checkout <tag>`.
 |---|---|---|
 | AE1 | `ae1` | Frontend HTML + CSS: foro y Marketplace de material de estudio |
 | AE2 | `ae2-entrega` | JavaScript desacoplado, `fetch()` y equiparación con la base de datos |
-| AE3 | `ae3-entrega` | Backend PHP: autenticación con BCRYPT, sesiones, 401 y prevención de XSS |
+| AE3 | `ae3` | Backend PHP: autenticación con BCRYPT, sesiones, 401 y prevención de XSS |
+| AE4 | `ae4-entrega` | SPA + API REST en MVC desacoplado, OWASP, ISO/IEC 25010 y WCAG 2.1 |
 
 ---
 
@@ -52,7 +53,7 @@ recuperar con `git checkout <tag>`.
 
 ## AE3 — Autenticación segura, sesiones y protección de endpoints
 
-**Fecha:** 14 de octubre de 2026 · **Rama:** `Ae3-autenticacion` · **Tag:** `ae3-entrega`
+**Fecha:** 14 de octubre de 2026 · **Rama:** `Ae3-autenticacion` · **Tag:** `ae3`
 
 **Autores:** Martín Nahuel Mekekiuk y Augusto Piedrafita. Los archivos de ambos
 integrantes se integraron y se subieron al repositorio desde la cuenta de Martín.
@@ -109,3 +110,32 @@ integrantes se integraron y se subieron al repositorio desde la cuenta de Martí
 - Prueba de punta a punta en navegador (Chromium): registro, login, alternancia del DOM
   sin recarga, compra con sesión, catálogo desde la API, logout e intento de XSS sin
   ejecución de código. Vista de escritorio y móvil (390 px).
+
+## AE4 — SPA, API REST en MVC desacoplado, calidad y accesibilidad (en curso)
+
+**Rama:** `ae4` · **Tag:** `ae4-entrega` (al integrar en `main`)
+
+**Autores:** Martín Nahuel Mekekiuk y Augusto Piedrafita. Los cambios de ambos
+integrantes se suben desde la cuenta de Martín con Augusto como coautor
+(`Co-authored-by`).
+
+### Fase 1 — Arquitectura en capas (MVC)
+
+- `config/conexion.php`: clase `Conexion` con patrón Singleton (una sola instancia de
+  PDO por petición, constructor privado, `ERRMODE_EXCEPTION`,
+  `EMULATE_PREPARES = false`).
+- `models/`: `UsuarioModel`, `ProductoModel` y `MateriaModel` concentran todo el SQL.
+  Cada consulta usa `prepare()` con marcadores nombrados (`:campo`), incluidas las
+  que no reciben parámetros, que antes usaban `query()`.
+- `api/`: los controladores validan la entrada, llaman al modelo y responden JSON con
+  el código HTTP correspondiente. `api/conexion.php` pasó a `api/utilidades.php`
+  (sesión, `responderJson`, guardián `exigirSesion()` con 401 y `ejecutarEndpoint()`
+  con 500 sin exponer el detalle del error).
+- `public/`: la vista (HTML, `css/estilos.css` y `js/app.js`) se separa del servidor.
+  `app.js` consume la API con la ruta relativa `../api/`. `index.php` en la raíz
+  redirige a `public/`.
+- `config/` y `models/` tienen un `.htaccess` con `Require all denied`: solo PHP los
+  incluye; el navegador no puede pedirlos.
+- Verificación: 15 pruebas con `curl` (200, 201, 400, 401, 405, 409 y 500 con la base
+  caída) y prueba en el navegador de login, catálogo y formulario de compra desde
+  `public/`.
