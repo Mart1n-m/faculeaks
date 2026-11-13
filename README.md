@@ -38,16 +38,35 @@ faculeaks/
 │   ├── productos.php      CRUD  Marketplace
 │   ├── ventas.php         GET/POST  compras
 │   └── materias.php       GET   catálogo de materias
-├── public/                VISTA: HTML5 + CSS + JavaScript Vanilla
-│   ├── *.html
+├── public/                VISTA: Single Page Application
+│   ├── index.html         única página: layout + plantillas <template> de cada vista
 │   ├── css/estilos.css
-│   └── js/app.js          fetch() + async/await contra ../api/
+│   └── js/app.js          router por hash, fetch() + async/await contra ../api/
 └── docs/bd/               esquema SQL, datos de prueba y diagrama lógico
 ```
 
 La vista y el servidor se comunican solo por HTTP con JSON. Los controladores de
 `api/` no contienen SQL: lo delegan en `models/`, que obtienen la conexión de
 `config/conexion.php`.
+
+## Rutas de la SPA
+
+`public/index.html` es la única página. `js/app.js` lee la ruta del *hash* de la URL,
+clona la plantilla de la vista, la completa con datos de la API y la inserta sin
+recargar. Los botones Atrás/Adelante del navegador funcionan.
+
+| Ruta | Vista | Sesión |
+|---|---|---|
+| `#/` | Lo más votado (todas las categorías) | — |
+| `#/apuntes`, `#/parciales`, `#/consultas` | Foro por categoría, con búsqueda, filtro por materia y orden | — |
+| `#/publicacion/4` | Publicación con comentarios, respuestas y votos | para comentar y votar |
+| `#/publicar`, `#/publicacion/4/editar` | Alta y edición de publicaciones | sí |
+| `#/marketplace` | Catálogo en fichas con buscador en tiempo real | — |
+| `#/marketplace/tabla` | Catálogo en tabla | — |
+| `#/producto/3` | Ficha del material | para comprar |
+| `#/vender`, `#/producto/3/editar` | Alta y edición de material | sí |
+| `#/carrito` | Carrito y formulario de compra | sí |
+| `#/mis-compras` | Historial de compras | sí |
 
 ## API REST
 

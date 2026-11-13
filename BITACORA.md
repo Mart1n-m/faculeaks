@@ -169,3 +169,30 @@ README.
   `q=' OR 1=1 --` y devuelve una lista vacía.
 - Verificación: 71 pruebas con `curl` sobre los cinco endpoints (200, 201, 400, 401,
   403, 404, 405 y 409), incluidas las de autoría y rol de moderador.
+
+### Fase 3 — De la maqueta del AE1 a la SPA
+
+- **Una sola página.** Las ocho páginas HTML de la maqueta se convirtieron en plantillas
+  `<template>` dentro de `public/index.html`. Se conservó su marcado semántico y sus
+  clases CSS, de modo que el diseño responsive del AE1 sigue vigente.
+- **Router por hash.** `app.js` asocia cada ruta (`#/apuntes`, `#/producto/3`...) a una
+  vista. Cada vista clona su plantilla, pide los datos con `fetch()` + `async/await` y
+  los escribe con `.textContent`. Un contador de turnos descarta las respuestas de
+  vistas que el usuario ya abandonó.
+- **Del contenido fijo a la base.** Las publicaciones del foro, que en la maqueta
+  estaban escritas a mano en el HTML, ahora salen de `api/publicaciones.php`. El
+  carrito, que tenía tres productos fijos, ahora se arma desde la ficha de cada
+  producto y la compra se registra en `ventas` y `detalla`.
+- **Trazabilidad con el AE2.** El buscador en tiempo real (Opción 3, Martín) sigue en
+  `#/marketplace` y el contador +/− con subtotales (Opción 7, Augusto) sigue en
+  `#/carrito`.
+- **Accesibilidad.** Un `h1` por vista que recibe el foco al navegar, anuncio del
+  cambio de vista en una región `aria-live="polite"`, enlace "Saltar al contenido",
+  botones de voto con `aria-pressed` y `aria-label` descriptivo, y el foco vuelve al
+  control que abrió el panel de acceso al cerrarlo.
+- **XSS.** Se publicó un título `<img src=x onerror=alert(1)>`: se ve como texto y el
+  DOM no contiene ningún `<img>`.
+- Verificación en el navegador: todas las rutas como invitado y con sesión; alta,
+  edición y baja de publicaciones, comentarios, respuestas y productos; votos;
+  carrito con +/− y compra; recorrido solo con Tab y Enter; sin desborde horizontal a
+  375 px.
